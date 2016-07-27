@@ -43,6 +43,8 @@
 #*.jpg   binary
 #*.png   binary
 #*.gif   binary
+# Cannot commit files Error: lf would be replaced by crlf
+* -text
 
 ###############################################################################
 # diff behavior for common document formats
