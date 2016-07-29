@@ -51,6 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Article.cs" />
+    <Compile Include="Entities\Comment.cs" />
     <Compile Include="EntityModel.cs" />
     <Compile Include="Migrations\201607271421351_InitialCreate.cs" />
     <Compile Include="Migrations\201607271421351_InitialCreate.Designer.cs">
@@ -70,8 +72,8 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Role.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ORM;
+using ORM.Entities;
 
 namespace MVCNBlog.Controllers
 {
