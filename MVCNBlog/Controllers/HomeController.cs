@@ -3,28 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ORM;
-using ORM.Entities;
+using BLL.Interface.Services;
+using MVCNBlog.Infrastructure.Mappers;
 
 namespace MVCNBlog.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IUserService service;
+
+        public HomeController(IUserService service)
+        {
+            this.service = service;
+        }
+
         public ActionResult Index()
         {
-            using (var db = new EntityModel())
-            {
-                var role = new Role {Name = "XDROle"};
-                db.Users.Add(new User { Name = "TestUser", Roles = new List<Role>() {role} });
-                db.SaveChanges();
-
-                foreach (var user in db.Users)
-                {
-                    ViewBag.UserName = user.Name;
-                    ViewBag.UserRole = user.Roles[0].Name;
-                }
-            }
-            return View();
+            return View(service.GetAllUserEntities().Select(user => user.ToMvcUser()));
         }
 
         public ActionResult About()

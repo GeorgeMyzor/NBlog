@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace ORM.Entities
+namespace BLL.Interface.Entities
 {
-    public class User
+    public class UserEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTime? CreationDate { get; set; }
-
-        public virtual List<Role> Roles { get; set; }
     }
 }
