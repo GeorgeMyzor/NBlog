@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace DAL.Interface.DTO
+namespace MVCNBlog.ViewModels
 {
-    public class DalArticle : IEntity
+    public class ArticleViewModel
     {
         public int Id { get; set; }
         public string Content { get; set; }
         public DateTime? PublicationDate { get; set; }
-        public DalUser Author { get; set; }
-        public List<DalComment> Comments { get; set; }
+        public UserViewModel Author { get; set; }
+        public IEnumerable<CommentViewModel> Comments { get; set; }
     }
 }

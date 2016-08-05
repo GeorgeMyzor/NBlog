@@ -10,7 +10,7 @@ namespace BLL.Mappers
 {
     public static class BllUserMapper
     {
-        public static DalUser ToDalUser(this UserEntity userEntity)
+        public static DalUser ToDalUser(this BllUser userEntity)
         {
             return new DalUser()
             {
@@ -20,9 +20,9 @@ namespace BLL.Mappers
             };
         }
 
-        public static UserEntity ToBllUser(this DalUser dalUser)
+        public static BllUser ToBllUser(this DalUser dalUser)
         {
-            return new UserEntity()
+            return new BllUser()
             {
                 Id = dalUser.Id,
                 Name = dalUser.Name,

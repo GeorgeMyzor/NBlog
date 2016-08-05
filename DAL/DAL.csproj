@@ -49,8 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConcreteRepository\ArticleRepository.cs" />
     <Compile Include="ConcreteRepository\UnitOfWork.cs" />
     <Compile Include="ConcreteRepository\UserRepository.cs" />
+    <Compile Include="Mappers\DalArticleMapper.cs" />
+    <Compile Include="Mappers\DalCommentMapper.cs" />
+    <Compile Include="Mappers\DalUserMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

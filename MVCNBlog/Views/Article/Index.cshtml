@@ -1,0 +1,21 @@
+﻿@model IEnumerable<MVCNBlog.ViewModels.ArticleViewModel>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>All articles</h2>
+    @foreach (var article in Model)
+    {
+        <b>Content:</b>
+        @Html.DisplayFor(modelItem => article.Content)
+        <b>Publication date:</b>
+        @Html.DisplayTextFor(modelItem => article.PublicationDate)
+
+        foreach (var comment in article.Comments)
+        {
+            <br/>
+            <b> &nbsp; &nbsp; Comment:</b> @Html.DisplayFor(modelItem => comment.Content)
+            <b> &nbsp; &nbsp; Author's comment:</b> @Html.DisplayFor(modelItem => comment.Author.Name)
+        }
+        <br/>
+    }

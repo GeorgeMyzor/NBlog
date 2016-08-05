@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DAL.Interface.DTO;
 using DAL.Interface.Repository;
+using DAL.Mappers;
 using ORM.Entities;
 
 namespace DAL.ConcreteRepository
@@ -22,12 +23,7 @@ namespace DAL.ConcreteRepository
 
         public IEnumerable<DalUser> GetAll()
         {
-            return context.Set<User>().Select(user => new DalUser()
-            {
-                Id = user.Id,
-                Name = user.Name,
-                CreationDate = user.CreationDate
-            });
+            return context.Set<User>().ToList().Select(ormUser => ormUser.ToDalUser());
         }
 
         public DalUser GetById(int key)

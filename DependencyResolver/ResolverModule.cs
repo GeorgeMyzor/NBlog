@@ -28,7 +28,9 @@ namespace DependencyResolver
             kernel.Bind<DbContext>().To<EntityModel>().InRequestScope();
             
             kernel.Bind<IUserService>().To<UserService>();
+            kernel.Bind<IArticleService>().To<ArticleService>();
             kernel.Bind<IRepository<DalUser>>().To<UserRepository>();
+            kernel.Bind<IRepository<DalArticle>>().To<ArticleRepository>();
         }
     }
 }

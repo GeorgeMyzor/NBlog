@@ -40,9 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\RoleEntity.cs" />
-    <Compile Include="Entities\UserEntity.cs" />
+    <Compile Include="Entities\BllArticle.cs" />
+    <Compile Include="Entities\BllComment.cs" />
+    <Compile Include="Entities\BllRole.cs" />
+    <Compile Include="Entities\BllUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IArticleService.cs" />
     <Compile Include="Services\IUserService.cs" />
   </ItemGroup>
   <ItemGroup />

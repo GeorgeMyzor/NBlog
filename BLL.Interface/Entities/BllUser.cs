@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Interface.DTO
+namespace BLL.Interface.Entities
 {
-    public class DalComment : IEntity
+    public class BllUser
     {
         public int Id { get; set; }
-        public string Content { get; set; }
-        public DalUser Author { get; set; }
+        public string Name { get; set; }
+        public DateTime? CreationDate { get; set; }
     }
 }

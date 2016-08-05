@@ -22,23 +22,23 @@ namespace BLL.Services
             this.userRepository = repository;
         }
 
-        public UserEntity GetUserEntity(int id)
+        public BllUser GetUserEntity(int id)
         {
             return userRepository.GetById(id).ToBllUser();
         }
 
-        public IEnumerable<UserEntity> GetAllUserEntities()
+        public IEnumerable<BllUser> GetAllUserEntities()
         {
             return userRepository.GetAll().Select(user => user.ToBllUser());
         }
 
-        public void CreateUser(UserEntity user)
+        public void CreateUser(BllUser user)
         {
             userRepository.Create(user.ToDalUser());
             uow.Commit();
         }
 
-        public void DeleteUser(UserEntity user)
+        public void DeleteUser(BllUser user)
         {
             userRepository.Delete(user.ToDalUser());
             uow.Commit();

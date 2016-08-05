@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Interface.DTO
+namespace BLL.Interface.Entities
 {
-    public class DalComment : IEntity
+    public class BllArticle
     {
         public int Id { get; set; }
         public string Content { get; set; }
-        public DalUser Author { get; set; }
+        public DateTime? PublicationDate { get; set; }
+        public BllUser Author { get; set; }
+        public IEnumerable<BllComment> Comments { get; set; } 
     }
 }

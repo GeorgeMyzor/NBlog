@@ -9,7 +9,7 @@ namespace MVCNBlog.Infrastructure.Mappers
 {
     public static class MvcUserMapper
     {
-        public static UserViewModel ToMvcUser(this UserEntity userEntity)
+        public static UserViewModel ToMvcUser(this BllUser userEntity)
         {
             return new UserViewModel()
             {
@@ -19,9 +19,9 @@ namespace MVCNBlog.Infrastructure.Mappers
             };
         }
 
-        public static UserEntity ToBllUser(this UserViewModel userViewModel)
+        public static BllUser ToBllUser(this UserViewModel userViewModel)
         {
-            return new UserEntity()
+            return new BllUser()
             {
                 Id = userViewModel.Id,
                 Name = userViewModel.Name,

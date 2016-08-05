@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace BLL.Interface.Entities
 {
-    public class UserEntity
+    public class BllComment
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public DateTime? CreationDate { get; set; }
+        public string Content { get; set; }
+        public BllUser Author { get; set; }
     }
 }
