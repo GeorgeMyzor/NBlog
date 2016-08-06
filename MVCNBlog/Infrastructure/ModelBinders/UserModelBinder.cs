@@ -12,25 +12,6 @@ namespace MVCNBlog.Infrastructure.ModelBinders
 {
     public class UserModelBinder : DefaultModelBinder
     {
-        public override object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
-        {
-            if (bindingContext.ModelType == typeof (UserViewModel))
-            {
-                int roleId = FromPostedData<int>(bindingContext, "RoleId");
-
-                if (roleId > 0)
-                {
-
-                    return roleId.ToMvcRole();
-                }
-                return null;
-            }
-            else
-            {
-                return base.BindModel(controllerContext, bindingContext);
-            }
-        }
-
         protected override void BindProperty(ControllerContext controllerContext, ModelBindingContext bindingContext, PropertyDescriptor propertyDescriptor)
         {
             if (propertyDescriptor.Name == nameof(UserViewModel.CreationDate))
@@ -48,6 +29,7 @@ namespace MVCNBlog.Infrastructure.ModelBinders
 
             base.BindProperty(controllerContext, bindingContext, propertyDescriptor);
         }
+
         private T FromPostedData<T>(ModelBindingContext bindingContext, string prefix)
         {
             var valueProvider = bindingContext.ValueProvider;

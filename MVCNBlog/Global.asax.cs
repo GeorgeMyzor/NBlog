@@ -18,7 +18,7 @@ namespace MVCNBlog
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            //ModelBinders.Binders.Add(typeof(UserViewModel), new UserModelBinder());
+            ModelBinders.Binders.Add(typeof(UserViewModel), new UserModelBinder());
         }
     }
 }

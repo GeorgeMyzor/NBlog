@@ -34,8 +34,8 @@ namespace MVCNBlog.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[ModelBinder(typeof(UserModelBinder))]
-        public ActionResult Create( UserViewModel userViewModel)
+        
+        public ActionResult Create([ModelBinder(typeof(UserModelBinder))] UserViewModel userViewModel)
         {
             userViewModel.Roles.Add(new AdministratorRole());
             userViewModel.Roles.Add(new VipUserRole());
