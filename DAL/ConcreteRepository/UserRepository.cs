@@ -46,7 +46,14 @@ namespace DAL.ConcreteRepository
         public void Create(DalUser dalUser)
         {
             var ormUser = dalUser.ToOrmUser();
+            List<Role> newRoles = new List<Role>();
 
+            foreach (var role in ormUser.Roles)
+            {
+                var dbRole = context.Set<Role>().Find(role.Id);
+                newRoles.Add(dbRole);
+            }
+            ormUser.Roles = newRoles;
             context.Set<User>().Add(ormUser);
         }
 

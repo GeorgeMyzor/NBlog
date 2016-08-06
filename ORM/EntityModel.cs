@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using ORM.Entities;
 
 namespace ORM
@@ -16,7 +17,6 @@ namespace ORM
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
         }
 
         public virtual DbSet<User> Users { get; set; }

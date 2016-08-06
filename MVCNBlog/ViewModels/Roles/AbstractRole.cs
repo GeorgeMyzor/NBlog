@@ -29,6 +29,8 @@ namespace MVCNBlog.ViewModels.Roles
 
     public class AdministratorRole : ModeratorRole
     {
+        public override int RoleId { get; set; } = 1;
+        public override string RoleName { get; set; } = "Administrator";
         //etc...
     }
 }

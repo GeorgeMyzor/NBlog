@@ -11,6 +11,6 @@ namespace MVCNBlog.ViewModels
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTime? CreationDate { get; set; }
-        public List<IRole> Roles { get; set; } 
+        public List<IRole> Roles { get; set; } = new List<IRole>();
     }
 }

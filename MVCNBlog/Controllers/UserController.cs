@@ -6,7 +6,9 @@ using System.Web.Mvc;
 using BLL.Interface.Entities;
 using BLL.Interface.Services;
 using MVCNBlog.Infrastructure.Mappers;
+using MVCNBlog.Infrastructure.ModelBinders;
 using MVCNBlog.ViewModels;
+using MVCNBlog.ViewModels.Roles;
 
 namespace MVCNBlog.Controllers
 {
@@ -32,8 +34,11 @@ namespace MVCNBlog.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(UserViewModel userViewModel)
+        //[ModelBinder(typeof(UserModelBinder))]
+        public ActionResult Create( UserViewModel userViewModel)
         {
+            userViewModel.Roles.Add(new AdministratorRole());
+            userViewModel.Roles.Add(new VipUserRole());
             service.CreateUser(userViewModel.ToBllUser());
             return RedirectToAction("Index");
         }
