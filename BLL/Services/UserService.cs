@@ -34,6 +34,7 @@ namespace BLL.Services
 
         public void CreateUser(BllUser user)
         {
+            user.CreationDate = DateTime.Today;
             userRepository.Create(user.ToDalUser());
             uow.Commit();
         }

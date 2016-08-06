@@ -54,6 +54,7 @@
     <Compile Include="ConcreteRepository\UserRepository.cs" />
     <Compile Include="Mappers\DalArticleMapper.cs" />
     <Compile Include="Mappers\DalCommentMapper.cs" />
+    <Compile Include="Mappers\DalRoleMapper.cs" />
     <Compile Include="Mappers\DalUserMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

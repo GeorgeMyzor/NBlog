@@ -10,13 +10,14 @@ namespace BLL.Mappers
 {
     public static class BllUserMapper
     {
-        public static DalUser ToDalUser(this BllUser userEntity)
+        public static DalUser ToDalUser(this BllUser bllUser)
         {
             return new DalUser()
             {
-                Id = userEntity.Id,
-                Name = userEntity.Name,
-                CreationDate = userEntity.CreationDate
+                Id = bllUser.Id,
+                Name = bllUser.Name,
+                CreationDate = bllUser.CreationDate,
+                Roles = bllUser.Roles.Select(bllRole => bllRole.ToDalRole()).ToList()
             };
         }
 
@@ -26,7 +27,8 @@ namespace BLL.Mappers
             {
                 Id = dalUser.Id,
                 Name = dalUser.Name,
-                CreationDate = dalUser.CreationDate
+                CreationDate = dalUser.CreationDate,
+                Roles = dalUser.Roles.Select(dalRole => dalRole.ToBllRole()).ToList()
             };
         }
     }

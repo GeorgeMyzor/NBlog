@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using MVCNBlog.ViewModels.Roles;
 
 namespace MVCNBlog.ViewModels
 {
@@ -10,5 +11,6 @@ namespace MVCNBlog.ViewModels
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTime? CreationDate { get; set; }
+        public List<IRole> Roles { get; set; } 
     }
 }

@@ -11,5 +11,6 @@ namespace DAL.Interface.DTO
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTime? CreationDate { get; set; }
+        public List<DalRole> Roles { get; set; } 
     }
 }

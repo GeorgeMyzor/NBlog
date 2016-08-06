@@ -30,7 +30,7 @@ namespace DAL.Mappers
                 Content = dalArticle.Content,
                 PublicationDate = dalArticle.PublicationDate,
                 Author = dalArticle.Author.ToOrmUser(),
-                Comments = dalArticle.Comments.Select(ormComment => ormComment.ToOrmComment()).ToList()
+                Comments = dalArticle.Comments.Select(dalComment => dalComment.ToOrmComment()).ToList()
             };
         }
     }

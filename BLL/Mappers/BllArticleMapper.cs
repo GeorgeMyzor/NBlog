@@ -30,7 +30,7 @@ namespace BLL.Mappers
                 Content = dalArticle.Content,
                 PublicationDate = dalArticle.PublicationDate,
                 Author = dalArticle.Author.ToBllUser(),
-                Comments = dalArticle.Comments.Select(bllComment => bllComment.ToBllComment()).ToList()
+                Comments = dalArticle.Comments.Select(dalComment => dalComment.ToBllComment()).ToList()
             };
         }
     }

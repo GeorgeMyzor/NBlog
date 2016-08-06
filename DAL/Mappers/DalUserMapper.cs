@@ -16,7 +16,8 @@ namespace DAL.Mappers
             {
                 Id = ormUser.Id,
                 Name = ormUser.Name,
-                CreationDate = ormUser.CreationDate
+                CreationDate = ormUser.CreationDate,
+                Roles = ormUser.Roles.Select(ormRole => ormRole.ToDalRole()).ToList()
             };
         }
 
@@ -26,7 +27,8 @@ namespace DAL.Mappers
             {
                 Id = dalUser.Id,
                 Name = dalUser.Name,
-                CreationDate = dalUser.CreationDate
+                CreationDate = dalUser.CreationDate,
+                Roles = dalUser.Roles.Select(dalRole => dalRole.ToOrmRole()).ToList()
             };
         }
     }

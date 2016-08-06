@@ -9,13 +9,14 @@ namespace MVCNBlog.Infrastructure.Mappers
 {
     public static class MvcUserMapper
     {
-        public static UserViewModel ToMvcUser(this BllUser userEntity)
+        public static UserViewModel ToMvcUser(this BllUser bllUser)
         {
             return new UserViewModel()
             {
-                Id = userEntity.Id,
-                Name = userEntity.Name,
-                CreationDate = userEntity.CreationDate
+                Id = bllUser.Id,
+                Name = bllUser.Name,
+                CreationDate = bllUser.CreationDate,
+                Roles = bllUser.Roles.Select(bllRole => bllRole.ToMvcRole()).ToList()
             };
         }
 
@@ -23,9 +24,8 @@ namespace MVCNBlog.Infrastructure.Mappers
         {
             return new BllUser()
             {
-                Id = userViewModel.Id,
                 Name = userViewModel.Name,
-                CreationDate = userViewModel.CreationDate
+                Roles = userViewModel.Roles.Select(mvcRole => mvcRole.ToBllRole()).ToList()
             };
         }
     }

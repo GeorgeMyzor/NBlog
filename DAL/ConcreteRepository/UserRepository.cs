@@ -43,13 +43,11 @@ namespace DAL.ConcreteRepository
             throw new NotImplementedException();
         }
 
-        public void Create(DalUser e)
+        public void Create(DalUser dalUser)
         {
-            var user = new User()
-            {
-                Name = e.Name,
-            };
-            context.Set<User>().Add(user);
+            var ormUser = dalUser.ToOrmUser();
+
+            context.Set<User>().Add(ormUser);
         }
 
         public void Delete(DalUser e)

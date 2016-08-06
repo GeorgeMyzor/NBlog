@@ -11,5 +11,6 @@ namespace BLL.Interface.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTime? CreationDate { get; set; }
+        public List<BllRole> Roles { get; set; } 
     }
 }
