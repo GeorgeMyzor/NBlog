@@ -4,16 +4,24 @@
 }
 
 <h2>All users</h2>
-<table>
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayTextFor(modelItem => item.CreationDate)
-            </td>
-        </tr>
+        <b>User name:</b>
+        @Html.DisplayFor(modelItem => item.Name)
+        <b>Creation date:</b>
+        @Html.DisplayTextFor(modelItem => item.CreationDate)
+        
+        @Html.ActionLink("Edit user","Edit", new { item.Id})
+        @Html.ActionLink("Delete user", "Delete", new { item.Id })
+
+        foreach (var role in item.Roles)
+        {
+            <br/>
+            <b> &nbsp; &nbsp; Role:</b>
+            @Html.DisplayFor(modelItem => role.RoleName)
+        }
+        <br/>
     }
-</table>
+
+<a href="Create">Create user</a>
+<a href="Delete">Delete user</a>

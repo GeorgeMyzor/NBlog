@@ -37,15 +37,34 @@ namespace MVCNBlog.Controllers
         
         public ActionResult Create([ModelBinder(typeof(UserModelBinder))] UserViewModel userViewModel)
         {
-            userViewModel.Roles.Add(new AdministratorRole());
-            userViewModel.Roles.Add(new VipUserRole());
             service.CreateUser(userViewModel.ToBllUser());
             return RedirectToAction("Index");
         }
 
-        public ActionResult Delete(int userId = -1)
+        [HttpGet]
+        public ActionResult Edit(int? id)
         {
-            var deletingUser = service.GetUserEntity(userId);
+            if (id == null)
+                return HttpNotFound("NotFound.");
+
+            var editingUser = service.GetUserEntity(id.Value).ToMvcUser();
+
+            return View(editingUser);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(UserViewModel editingUser)
+        {
+            //TODO update in service and repo
+            return View(editingUser);
+        }
+
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+                return HttpNotFound("NotFound.");
+
+            var deletingUser = service.GetUserEntity(id.Value);
 
             if(deletingUser == null)
                 return HttpNotFound();
@@ -53,8 +72,11 @@ namespace MVCNBlog.Controllers
             return View(deletingUser);
         }
 
+        [HttpPost]
+        [ActionName("Delete")]
         public ActionResult ConfirmDelete(BllUser deletingUser)
         {
+            deletingUser = service.GetUserEntity(deletingUser.Id);
             service.DeleteUser(deletingUser);
             return RedirectToAction("Index");
         }

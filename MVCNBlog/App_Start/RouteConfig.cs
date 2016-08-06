@@ -18,6 +18,12 @@ namespace MVCNBlog
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "Edit",
+                url: "user/edit/{id}",
+                defaults: new { controller = "User", action = "Edit", id = UrlParameter.Optional }
+            );
         }
     }
 }

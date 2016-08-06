@@ -28,13 +28,9 @@ namespace DAL.ConcreteRepository
 
         public DalUser GetById(int key)
         {
-            var ormuser = context.Set<User>().FirstOrDefault(user => user.Id == key);
-            return new DalUser()
-            {
-                Id = ormuser.Id,
-                Name = ormuser.Name
+            var ormUser = context.Set<User>().FirstOrDefault(user => user.Id == key);
 
-            };
+            return ormUser.ToDalUser();
         }
 
         public DalUser GetByPredicate(Expression<Func<DalUser, bool>> f)
@@ -57,15 +53,12 @@ namespace DAL.ConcreteRepository
             context.Set<User>().Add(ormUser);
         }
 
-        public void Delete(DalUser e)
+        public void Delete(DalUser dalUser)
         {
-            var user = new User()
-            {
-                Id = e.Id,
-                Name = e.Name,
-            };
-            user = context.Set<User>().Single(u => u.Id == user.Id);
-            context.Set<User>().Remove(user);
+            var ormUser = dalUser.ToOrmUser();
+
+            ormUser = context.Set<User>().Single(u => u.Id == ormUser.Id);
+            context.Set<User>().Remove(ormUser);
         }
 
         public void Update(DalUser entity)
