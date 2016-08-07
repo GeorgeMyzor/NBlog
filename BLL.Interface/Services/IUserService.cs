@@ -13,5 +13,6 @@ namespace BLL.Interface.Services
         IEnumerable<BllUser> GetAllUserEntities();
         void CreateUser(BllUser user);
         void DeleteUser(BllUser user);
+        void UpdateUser(BllUser user);
     }
 }

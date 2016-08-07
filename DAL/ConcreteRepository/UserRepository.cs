@@ -61,9 +61,18 @@ namespace DAL.ConcreteRepository
             context.Set<User>().Remove(ormUser);
         }
 
-        public void Update(DalUser entity)
+        public void Update(DalUser dalUser)
         {
-            throw new NotImplementedException();
+            var editingUser = dalUser.ToOrmUser();
+            var ormUser = context.Set<User>().Single(u => u.Id == dalUser.Id);
+
+            List<Role> newRoles = new List<Role>();
+
+            var dbRole = context.Set<Role>().Find(editingUser.Roles.First().Id);
+
+            ormUser.Name = editingUser.Name;
+            ormUser.Roles.Clear();
+            ormUser.Roles.Add(dbRole);
         }
     }
 }

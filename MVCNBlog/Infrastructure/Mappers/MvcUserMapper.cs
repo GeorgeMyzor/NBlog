@@ -24,6 +24,7 @@ namespace MVCNBlog.Infrastructure.Mappers
         {
             return new BllUser()
             {
+                Id = userViewModel.Id,
                 Name = userViewModel.Name,
                 Roles = userViewModel.Roles.Select(mvcRole => mvcRole.ToBllRole()).ToList()
             };

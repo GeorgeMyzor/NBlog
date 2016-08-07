@@ -44,5 +44,11 @@ namespace BLL.Services
             userRepository.Delete(user.ToDalUser());
             uow.Commit();
         }
+
+        public void UpdateUser(BllUser user)
+        {
+            userRepository.Update(user.ToDalUser());
+            uow.Commit();
+        }
     }
 }

@@ -53,10 +53,12 @@ namespace MVCNBlog.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(UserViewModel editingUser)
+        [ActionName("Edit")]
+        public ActionResult ConfirmEdit(UserViewModel editingUser)
         {
-            //TODO update in service and repo
-            return View(editingUser);
+            service.UpdateUser(editingUser.ToBllUser());
+
+            return RedirectToAction("Index");
         }
 
         public ActionResult Delete(int? id)
@@ -78,6 +80,7 @@ namespace MVCNBlog.Controllers
         {
             deletingUser = service.GetUserEntity(deletingUser.Id);
             service.DeleteUser(deletingUser);
+
             return RedirectToAction("Index");
         }
     }

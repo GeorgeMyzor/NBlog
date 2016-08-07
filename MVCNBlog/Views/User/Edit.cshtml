@@ -29,6 +29,7 @@
             @Html.LabelFor(model => model.Roles, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <select class="form-control" name="RoleId">
+                    <option selected disabled>@Model.Roles.First().RoleName</option>
                     <option value="1">Admin</option>
                     <option value="4">User</option>
                 </select>
