@@ -23,8 +23,7 @@ namespace BLL.Mappers
         {
             return new DalRole
             {
-                Id = bllRole.Id,
-                Name = bllRole.Name
+                Id = bllRole.Id
             };
         }
     }

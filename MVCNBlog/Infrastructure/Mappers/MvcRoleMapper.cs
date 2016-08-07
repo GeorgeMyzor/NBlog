@@ -57,8 +57,7 @@ namespace MVCNBlog.Infrastructure.Mappers
             }
             return new BllRole
             {
-                Id = id,
-                Name = mvcRole.RoleName,
+                Id = id
             };
         }
     }
