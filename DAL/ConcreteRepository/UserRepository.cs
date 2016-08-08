@@ -67,6 +67,9 @@ namespace DAL.ConcreteRepository
             var ormUser = context.Set<User>().Single(u => u.Id == dalUser.Id);
 
             ormUser.Name = editingUser.Name;
+            var vipRole = ormUser.Roles.Find((role => role.Id == 3));
+            if (vipRole != null)
+                editingUser.Roles.Add(vipRole);
             ormUser.Roles.Clear();
             
             foreach (var role in editingUser.Roles)

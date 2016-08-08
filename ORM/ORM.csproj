@@ -54,6 +54,7 @@
     <Compile Include="Entities\Article.cs" />
     <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\RoleCosts.cs" />
+    <Compile Include="Entities\Tag.cs" />
     <Compile Include="EntityModel.cs" />
     <Compile Include="Migrations\201607271421351_InitialCreate.cs" />
     <Compile Include="Migrations\201607271421351_InitialCreate.Designer.cs">

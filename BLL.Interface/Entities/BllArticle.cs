@@ -10,7 +10,7 @@ namespace BLL.Interface.Entities
     {
         public int Id { get; set; }
         public string Content { get; set; }
-        public DateTime? PublicationDate { get; set; }
+        public DateTime PublicationDate { get; set; }
         public BllUser Author { get; set; }
         public IEnumerable<BllComment> Comments { get; set; } 
     }

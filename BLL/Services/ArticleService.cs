@@ -34,6 +34,7 @@ namespace BLL.Services
 
         public void CreateArticle(BllArticle article)
         {
+            article.PublicationDate = DateTime.Today;
             throw new NotImplementedException();
         }
 
