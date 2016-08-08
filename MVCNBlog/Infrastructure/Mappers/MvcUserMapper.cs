@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using BLL.Interface.Entities;
 using MVCNBlog.ViewModels;
+using MVCNBlog.ViewModels.Roles;
 
 namespace MVCNBlog.Infrastructure.Mappers
 {
@@ -11,22 +12,29 @@ namespace MVCNBlog.Infrastructure.Mappers
     {
         public static UserViewModel ToMvcUser(this BllUser bllUser)
         {
+            var roles = new List<IRole>();
+            roles = bllUser.Roles.Select(bllRole => bllRole.ToMvcRole()).ToList();
             return new UserViewModel()
             {
                 Id = bllUser.Id,
                 Name = bllUser.Name,
                 CreationDate = bllUser.CreationDate,
-                Roles = bllUser.Roles.Select(bllRole => bllRole.ToMvcRole()).ToList()
+                Role = roles.Find((role => role.RoleId != 3)),
+                PayedRole = (IPayedRole) roles.Find((role => role.RoleId == 3))
             };
         }
 
         public static BllUser ToBllUser(this UserViewModel userViewModel)
         {
+            var roles = new List<IRole>();
+            roles.Add(userViewModel.Role);
+            if(userViewModel.PayedRole != null)
+                roles.Add(userViewModel.PayedRole);
             return new BllUser()
             {
                 Id = userViewModel.Id,
                 Name = userViewModel.Name,
-                Roles = userViewModel.Roles.Select(mvcRole => mvcRole.ToBllRole()).ToList()
+                Roles = roles.Select(mvcRole => mvcRole.ToBllRole()).ToList()
             };
         }
     }

@@ -65,13 +65,15 @@ namespace DAL.ConcreteRepository
         {
             var editingUser = dalUser.ToOrmUser();
             var ormUser = context.Set<User>().Single(u => u.Id == dalUser.Id);
-            
-            //TODO vip user role
-            var dbRole = context.Set<Role>().Find(editingUser.Roles.First().Id);
 
             ormUser.Name = editingUser.Name;
             ormUser.Roles.Clear();
-            ormUser.Roles.Add(dbRole);
+            
+            foreach (var role in editingUser.Roles)
+            {
+                var dbRole = context.Set<Role>().Find(role.Id);
+                ormUser.Roles.Add(dbRole);
+            }
         }
     }
 }

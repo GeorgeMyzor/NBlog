@@ -38,26 +38,9 @@ namespace MVCNBlog.Infrastructure.Mappers
 
         public static BllRole ToBllRole(this IRole mvcRole)
         {
-            int id = 0;
-            switch (mvcRole.RoleName)
-            {
-                case AdminRole:
-                    id = 1;
-                    break;
-                case ModerRole:
-                    id = 2;
-                    break;
-                case VipUserRole:
-                    id = 3;
-                    break;
-                case UserRole:
-                default:
-                    id = 4;
-                    break;
-            }
             return new BllRole
             {
-                Id = id
+                Id = mvcRole.RoleId
             };
         }
     }

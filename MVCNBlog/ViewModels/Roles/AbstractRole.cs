@@ -11,15 +11,21 @@ namespace MVCNBlog.ViewModels.Roles
         string RoleName { get; set; }
     }
 
+    public interface IPayedRole : IRole
+    {
+        int Cost { get; set; }
+    }
+
     public class UserRole : IRole
     {
         public virtual int RoleId { get; set; }
         public virtual string RoleName { get; set; }
     }
 
-    public class VipUserRole : UserRole
+    public class VipUserRole : UserRole, IPayedRole
     {
-        //Vip cost
+        public override int RoleId { get; set; } = 3;
+        public int Cost { get; set; } = 322;
     }
 
     public class ModeratorRole : UserRole

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -20,10 +21,26 @@ namespace MVCNBlog.Infrastructure.ModelBinders
                 return;
             }
 
-            if (propertyDescriptor.Name == nameof(UserViewModel.Roles))
+            if (propertyDescriptor.Name == nameof(UserViewModel.Role))
             {
-                int roleId = FromPostedData<int>(bindingContext, "RoleId");
-                propertyDescriptor.SetValue(bindingContext.Model, new List<IRole>() { roleId.ToMvcRole()});
+                int roleId = FromPostedData<int>(bindingContext, "roleId");
+                var role = roleId.ToMvcRole();
+
+                propertyDescriptor.SetValue(bindingContext.Model, role);
+                return;
+            }
+
+            if (propertyDescriptor.Name == nameof(UserViewModel.PayedRole))
+            {
+                string isVipStr = FromPostedData<string>(bindingContext, "isVip");
+                bool isVip = isVipStr == "on";
+                if (isVip)
+                {
+                    IPayedRole payedRole = new VipUserRole();
+
+                    propertyDescriptor.SetValue(bindingContext.Model, payedRole);
+                }
+
                 return;
             }
 
@@ -34,7 +51,7 @@ namespace MVCNBlog.Infrastructure.ModelBinders
         {
             var valueProvider = bindingContext.ValueProvider;
             var valueProviderResult = valueProvider.GetValue(prefix);
-            return (T)valueProviderResult.ConvertTo(typeof(T));
+            return (T)valueProviderResult?.ConvertTo(typeof(T));
         }
     }
 }

@@ -23,7 +23,8 @@ namespace MVCNBlog.Controllers
 
         public ActionResult Index()
         {
-            return View(service.GetAllUserEntities().Select(user => user.ToMvcUser()));
+            var test = service.GetAllUserEntities().Select(user => user.ToMvcUser()).ToList();
+            return View(test);
         }
         
         [HttpGet]

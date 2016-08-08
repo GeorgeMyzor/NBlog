@@ -1,4 +1,5 @@
-﻿@model IEnumerable<MVCNBlog.ViewModels.UserViewModel>
+﻿@using MVCNBlog.ViewModels.Roles
+@model IEnumerable<MVCNBlog.ViewModels.UserViewModel>
 @{
     ViewBag.Title = "Home Page";
 }
@@ -10,16 +11,21 @@
         @Html.DisplayFor(modelItem => item.Name)
         <b>Creation date:</b>
         @Html.DisplayTextFor(modelItem => item.CreationDate)
-        
-        @Html.ActionLink("Edit user","Edit", new { item.Id})
-        @Html.ActionLink("Delete user", "Delete", new { item.Id })
 
-        foreach (var role in item.Roles)
+        @Html.ActionLink("Edit user", "Edit", new {item.Id})
+        @Html.ActionLink("Delete user", "Delete", new {item.Id})
+
+        <br/>
+        <b> &nbsp; &nbsp; Role:</b>
+        @Html.DisplayFor(modelItem => item.Role.RoleName)
+
+        if (item.PayedRole != null)
         {
-            <br/>
-            <b> &nbsp; &nbsp; Role:</b>
-            @Html.DisplayFor(modelItem => role.RoleName)
+            <br />
+            <b> &nbsp; &nbsp; Payed role:</b>
+            @Html.DisplayTextFor(modelItem => ((IRole)item.PayedRole).RoleName)
         }
+
         <br/>
     }
 
