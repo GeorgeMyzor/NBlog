@@ -10,7 +10,7 @@ namespace MVCNBlog.ViewModels
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public DateTime? CreationDate { get; set; }
+        public DateTime CreationDate { get; set; }
         public int SubscriptionCost { get; set; }
         public string Rank { get; set; }
         public IPayedRole PayedRole { get; set; }

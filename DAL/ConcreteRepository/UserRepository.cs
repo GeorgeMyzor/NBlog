@@ -30,7 +30,12 @@ namespace DAL.ConcreteRepository
         {
             var ormUser = context.Set<User>().FirstOrDefault(user => user.Id == key);
 
-            return ormUser.ToDalUser();
+            int ormUserNotes = context.Set<Article>().Count(article => article.Author.Id == ormUser.Id);
+            ormUserNotes += context.Set<Comment>().Count(comment => comment.Author.Id == ormUser.Id);
+
+            var dalUser = ormUser.ToDalUser();
+            dalUser.NotesCount = ormUserNotes;
+            return dalUser;
         }
 
         public DalUser GetByPredicate(Expression<Func<DalUser, bool>> f)

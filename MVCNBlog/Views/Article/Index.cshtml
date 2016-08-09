@@ -10,6 +10,8 @@
         @Html.DisplayFor(modelItem => article.Content)
         <b>Publication date:</b>
         @Html.DisplayTextFor(modelItem => article.PublicationDate)
+        <b>Author:</b>
+        @Html.DisplayTextFor(modelItem => article.Author.Name)
 
         foreach (var comment in article.Comments)
         {
