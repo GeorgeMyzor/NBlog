@@ -188,6 +188,7 @@
     <Compile Include="Infrastructure\Mappers\MvcCommentMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcRoleMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcUserMapper.cs" />
+    <Compile Include="Infrastructure\ModelBinders\AccountModelBinder.cs" />
     <Compile Include="Infrastructure\ModelBinders\UserModelBinder.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -243,6 +244,7 @@
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Article\Create.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

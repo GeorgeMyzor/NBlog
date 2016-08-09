@@ -14,5 +14,6 @@ namespace BLL.Interface.Services
         void CreateUser(BllUser user);
         void DeleteUser(BllUser user);
         void UpdateUser(BllUser user);
+        void UpdateUserPaidRole(BllUser user);
     }
 }

@@ -14,9 +14,9 @@ namespace BLL.Services
     public class UserService : IUserService
     {
         private readonly IUnitOfWork uow;
-        private readonly IRepository<DalUser> userRepository;
+        private readonly IUserRepository userRepository;
 
-        public UserService(IUnitOfWork uow, IRepository<DalUser> repository)
+        public UserService(IUnitOfWork uow, IUserRepository repository)
         {
             this.uow = uow;
             this.userRepository = repository;
@@ -48,6 +48,12 @@ namespace BLL.Services
         public void UpdateUser(BllUser user)
         {
             userRepository.Update(user.ToDalUser());
+            uow.Commit();
+        }
+
+        public void UpdateUserPaidRole(BllUser user)
+        {
+            userRepository.UpdatePaidRole(user.ToDalUser());
             uow.Commit();
         }
     }

@@ -19,6 +19,7 @@ namespace ORM
         {
         }
 
+        public virtual DbSet<Tag> Tags { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Article> Articles { get; set; }

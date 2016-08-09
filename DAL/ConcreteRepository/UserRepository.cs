@@ -12,7 +12,7 @@ using ORM.Entities;
 
 namespace DAL.ConcreteRepository
 {
-    public class UserRepository : IRepository<DalUser>
+    public class UserRepository : IUserRepository
     {
         private readonly DbContext context;
 
@@ -60,23 +60,65 @@ namespace DAL.ConcreteRepository
             ormUser = context.Set<User>().Single(u => u.Id == ormUser.Id);
             context.Set<User>().Remove(ormUser);
         }
-
+        
         public void Update(DalUser dalUser)
         {
             var editingUser = dalUser.ToOrmUser();
             var ormUser = context.Set<User>().Single(u => u.Id == dalUser.Id);
 
             ormUser.Name = editingUser.Name;
-            var vipRole = ormUser.Roles.Find((role => role.Id == 3));
-            if (vipRole != null)
-                editingUser.Roles.Add(vipRole);
+
+            CopyOrmUserPaidRoles(ormUser, editingUser);
+
+            UpdateOrmUserRoles(ormUser, editingUser);
+        }
+        
+        public void UpdatePaidRole(DalUser dalUser)
+        {
+            var editingUser = dalUser.ToOrmUser();
+            var ormUser = context.Set<User>().Single(u => u.Id == dalUser.Id);
+
+            CopyOrmUserNotPaidRoles(ormUser, editingUser);
+
+            UpdateOrmUserRoles(ormUser,editingUser);
+        }
+
+        #region Private methods
+
+        private void CopyOrmUserPaidRoles(User ormUser, User editingUser)
+        {
+            var paidRolesId = context.Set<RoleCosts>().Select((costs => costs.RoleId));
+            foreach (var paidRoleId in paidRolesId)
+            {
+                var paidRole = ormUser.Roles.Find((role => role.Id == paidRoleId));
+
+                if (paidRole != null)
+                    editingUser.Roles.Add(paidRole);
+            }
+        }
+
+        private void CopyOrmUserNotPaidRoles(User ormUser, User editingUser)
+        {
+            var paidRolesId = context.Set<RoleCosts>().Select((costs => costs.RoleId));
+            foreach (var paidRoleId in paidRolesId)
+            {
+                var notPaidRole = ormUser.Roles.Find((role => role.Id != paidRoleId));
+
+                if (notPaidRole != null)
+                    editingUser.Roles.Add(notPaidRole);
+            }
+        }
+
+        private void UpdateOrmUserRoles(User ormUser, User editingUser)
+        {
             ormUser.Roles.Clear();
-            
             foreach (var role in editingUser.Roles)
             {
                 var dbRole = context.Set<Role>().Find(role.Id);
                 ormUser.Roles.Add(dbRole);
             }
         }
+        
+        #endregion
     }
 }

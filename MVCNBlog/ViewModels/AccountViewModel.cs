@@ -13,6 +13,7 @@ namespace MVCNBlog.ViewModels
         public DateTime? CreationDate { get; set; }
         public int SubscriptionCost { get; set; }
         public string Rank { get; set; }
-        public List<IRole> Roles { get; set; } = new List<IRole>();
+        public IPayedRole PayedRole { get; set; }
+        public IRole Role { get; set; }
     }
 }

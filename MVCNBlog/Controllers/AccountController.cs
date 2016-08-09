@@ -24,18 +24,37 @@ namespace MVCNBlog.Controllers
             if (id == null)
                 return HttpNotFound("NotFound.");
 
-            var editingUser = service.GetUserEntity(id.Value).ToMvcUser();
+            var editingAccount = service.GetUserEntity(id.Value).ToMvcAccount();
 
-            return View(editingUser);
+            return View(editingAccount);
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+                return HttpNotFound("NotFound.");
+
+            var editingAccount = service.GetUserEntity(id.Value).ToMvcAccount();
+
+            return View(editingAccount);
         }
 
         [HttpPost]
-        [ActionName("Index")]
-        public ActionResult ConfirmEdit(UserViewModel editingUser)
+        [ActionName("Edit")]
+        public ActionResult ConfirmEdit(AccountViewModel editingUser)
         {
             service.UpdateUser(editingUser.ToBllUser());
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { editingUser.Id });
+        }
+        
+        [HttpPost]
+        public ActionResult EditVipStatus(AccountViewModel editingUser)
+        {
+            service.UpdateUserPaidRole(editingUser.ToBllUser());
+
+            return RedirectToAction("Index", new { editingUser.Id});
         }
     }
 }
