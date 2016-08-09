@@ -17,7 +17,8 @@ namespace MVCNBlog.Infrastructure.Mappers
                 Content = articleEntity.Content,
                 PublicationDate = articleEntity.PublicationDate,
                 Author = articleEntity.Author.ToMvcUser(),
-                Comments = articleEntity.Comments.Select(bllComment => bllComment.ToMvcComment()).ToList()
+                Comments = articleEntity.Comments.Select(bllComment => bllComment.ToMvcComment()).ToList(),
+                Tags = articleEntity.Tags
             };
         }
 
@@ -28,8 +29,7 @@ namespace MVCNBlog.Infrastructure.Mappers
                 Id = dalArticle.Id,
                 Content = dalArticle.Content,
                 PublicationDate = dalArticle.PublicationDate,
-                Author = dalArticle.Author.ToBllUser(),
-                Comments = dalArticle.Comments.Select(dalComment => dalComment.ToBllComment()).ToList()
+                Author = dalArticle.Author.ToBllUser()
             };
         }
     }

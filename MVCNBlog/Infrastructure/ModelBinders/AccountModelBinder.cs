@@ -32,7 +32,7 @@ namespace MVCNBlog.Infrastructure.ModelBinders
 
             if (propertyDescriptor.Name == nameof(AccountViewModel.PayedRole))
             {
-                string isVipStr = request.Form.Get("isVip");
+                string isVipStr = FromPostedData<string>(bindingContext, "isVip");
                 bool isVip = isVipStr == "on";
                 if (isVip)
                 {

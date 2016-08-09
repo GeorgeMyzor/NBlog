@@ -35,7 +35,14 @@ namespace BLL.Services
         public void CreateArticle(BllArticle article)
         {
             article.PublicationDate = DateTime.Today;
-            throw new NotImplementedException();
+            //TODO GET TAGS
+            article.Tags = new List<string>()
+            {
+                "firsttag",
+                "secondtag"
+            };
+            articleRepository.Create(article.ToDalArticle());
+            uow.Commit();
         }
 
         public void DeleteArticle(BllArticle article)

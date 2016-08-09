@@ -42,7 +42,7 @@ namespace DAL.ConcreteRepository
         public void Create(DalUser dalUser)
         {
             var ormUser = dalUser.ToOrmUser();
-            List<Role> newRoles = new List<Role>();
+            var newRoles = new List<Role>();
 
             foreach (var role in ormUser.Roles)
             {

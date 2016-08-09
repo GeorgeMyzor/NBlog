@@ -51,7 +51,9 @@ namespace MVCNBlog.Infrastructure.ModelBinders
         {
             var valueProvider = bindingContext.ValueProvider;
             var valueProviderResult = valueProvider.GetValue(prefix);
-            return (T)valueProviderResult?.ConvertTo(typeof(T));
+            if (valueProviderResult != null)
+                return (T)valueProviderResult.ConvertTo(typeof(T));
+            return default(T);
         }
     }
 }

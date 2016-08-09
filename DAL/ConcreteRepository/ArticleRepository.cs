@@ -36,9 +36,23 @@ namespace DAL.ConcreteRepository
             throw new NotImplementedException();
         }
 
-        public void Create(DalArticle e)
+        public void Create(DalArticle dalArticle)
         {
-            throw new NotImplementedException();
+            var ormArticle = dalArticle.ToOrmArticle();
+
+            foreach (var tag in dalArticle.Tags)
+            {
+                var existingTag = context.Set<Tag>().SingleOrDefault((ormTag => ormTag.Name == tag));
+                if(existingTag != null)
+                    ormArticle.Tags.Add(existingTag);
+                else
+                    ormArticle.Tags.Add(new Tag()
+                    {
+                        Name = tag,
+                    });
+            }
+            ormArticle.Author = context.Set<User>().SingleOrDefault((user => user.Id == ormArticle.Author.Id));
+            context.Set<Article>().Add(ormArticle);
         }
 
         public void Delete(DalArticle e)

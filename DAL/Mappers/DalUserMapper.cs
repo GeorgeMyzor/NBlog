@@ -17,7 +17,7 @@ namespace DAL.Mappers
                 Id = ormUser.Id,
                 Name = ormUser.Name,
                 CreationDate = ormUser.CreationDate,
-                Roles = ormUser.Roles.Select(ormRole => ormRole.ToDalRole()).ToList()
+                Roles = ormUser.Roles.Select(ormRole => ormRole.ToDalRole())
             };
         }
 

@@ -36,7 +36,7 @@ namespace MVCNBlog.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         
-        public ActionResult Create([ModelBinder(typeof(UserModelBinder))] UserViewModel userViewModel)
+        public ActionResult Create(UserViewModel userViewModel)
         {
             service.CreateUser(userViewModel.ToBllUser());
             return RedirectToAction("Index");

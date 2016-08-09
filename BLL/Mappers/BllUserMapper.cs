@@ -17,7 +17,7 @@ namespace BLL.Mappers
                 Id = bllUser.Id,
                 Name = bllUser.Name,
                 CreationDate = bllUser.CreationDate,
-                Roles = bllUser.Roles.Select(bllRole => bllRole.ToDalRole()).ToList()
+                Roles = bllUser.Roles.Select(bllRole => bllRole.ToDalRole())
             };
         }
 
@@ -28,7 +28,7 @@ namespace BLL.Mappers
                 Id = dalUser.Id,
                 Name = dalUser.Name,
                 CreationDate = dalUser.CreationDate,
-                Roles = dalUser.Roles.Select(dalRole => dalRole.ToBllRole()).ToList()
+                Roles = dalUser.Roles.Select(dalRole => dalRole.ToBllRole())
             };
         }
     }

@@ -13,5 +13,6 @@ namespace BLL.Interface.Entities
         public DateTime PublicationDate { get; set; }
         public BllUser Author { get; set; }
         public IEnumerable<BllComment> Comments { get; set; } 
+        public IEnumerable<string> Tags { get; set; } 
     }
 }

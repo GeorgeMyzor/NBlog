@@ -18,7 +18,7 @@ namespace BLL.Mappers
                 Content = articleEntity.Content,
                 PublicationDate = articleEntity.PublicationDate,
                 Author = articleEntity.Author.ToDalUser(),
-                Comments = articleEntity.Comments.Select(bllComment => bllComment.ToDalComment()).ToList()
+                Tags = articleEntity.Tags
             };
         }
 
@@ -30,7 +30,8 @@ namespace BLL.Mappers
                 Content = dalArticle.Content,
                 PublicationDate = dalArticle.PublicationDate,
                 Author = dalArticle.Author.ToBllUser(),
-                Comments = dalArticle.Comments.Select(dalComment => dalComment.ToBllComment()).ToList()
+                Comments = dalArticle.Comments.Select(dalComment => dalComment.ToBllComment()),
+                Tags = dalArticle.Tags
             };
         }
     }
