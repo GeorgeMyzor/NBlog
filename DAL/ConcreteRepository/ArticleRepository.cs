@@ -26,9 +26,11 @@ namespace DAL.ConcreteRepository
             return context.Set<Article>().ToList().Select(ormArticle => ormArticle.ToDalArticle());
         }
 
-        public DalArticle GetById(int key)
+        public DalArticle GetById(int id)
         {
-            throw new NotImplementedException();
+            var ormArticle = context.Set<Article>().FirstOrDefault(article => article.Id == id);
+
+            return ormArticle.ToDalArticle();
         }
 
         public DalArticle GetByPredicate(Expression<Func<DalArticle, bool>> f)
@@ -39,18 +41,9 @@ namespace DAL.ConcreteRepository
         public void Create(DalArticle dalArticle)
         {
             var ormArticle = dalArticle.ToOrmArticle();
+            
+            CopyTags(dalArticle, ormArticle);
 
-            foreach (var tag in dalArticle.Tags)
-            {
-                var existingTag = context.Set<Tag>().SingleOrDefault((ormTag => ormTag.Name == tag));
-                if(existingTag != null)
-                    ormArticle.Tags.Add(existingTag);
-                else
-                    ormArticle.Tags.Add(new Tag()
-                    {
-                        Name = tag,
-                    });
-            }
             ormArticle.Author = context.Set<User>().SingleOrDefault((user => user.Id == ormArticle.Author.Id));
             context.Set<Article>().Add(ormArticle);
         }
@@ -60,9 +53,33 @@ namespace DAL.ConcreteRepository
             throw new NotImplementedException();
         }
 
-        public void Update(DalArticle entity)
+        public void Update(DalArticle dalArticle)
         {
-            throw new NotImplementedException();
+            var ormArticle = context.Set<Article>().Single(u => u.Id == dalArticle.Id);
+
+            ormArticle.Content = dalArticle.Content;
+            ormArticle.Tags.Clear();
+
+            CopyTags(dalArticle, ormArticle);
         }
+
+        #region Private methods
+
+        private void CopyTags(DalArticle dalArticle, Article ormArticle)
+        {
+            foreach (var tag in dalArticle.Tags)
+            {
+                var existingTag = context.Set<Tag>().SingleOrDefault((ormTag => ormTag.Name == tag));
+                if (existingTag != null)
+                    ormArticle.Tags.Add(existingTag);
+                else
+                    ormArticle.Tags.Add(new Tag()
+                    {
+                        Name = tag,
+                    });
+            }
+        }
+
+        #endregion
     }
 }

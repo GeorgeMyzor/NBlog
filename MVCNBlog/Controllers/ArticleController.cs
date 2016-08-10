@@ -48,5 +48,36 @@ namespace MVCNBlog.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+                return HttpNotFound("NotFound.");
+
+            //TODO check for rigths
+            var editingArticle = service.GetArticleEntity(id.Value).ToMvcArticle();
+
+            return View(editingArticle);
+        }
+
+        [HttpPost]
+        [ActionName("Edit")]
+        public ActionResult ConfirmEdit(ArticleViewModel editingArticle)
+        {
+            editingArticle.Author = new UserViewModel()
+            {
+                Id = 7022,
+                Role = new AdministratorRole()
+                {
+                    RoleId = 1
+                }
+
+            };
+
+            service.UpdateArticle(editingArticle.ToBllArticle());
+
+            return RedirectToAction("Index");
+        }
     }
 }

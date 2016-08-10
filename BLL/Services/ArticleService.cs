@@ -24,7 +24,7 @@ namespace BLL.Services
 
         public BllArticle GetArticleEntity(int id)
         {
-            throw new NotImplementedException();
+            return articleRepository.GetById(id).ToBllArticle();
         }
 
         public IEnumerable<BllArticle> GetAllArticleEntities()
@@ -35,19 +35,23 @@ namespace BLL.Services
         public void CreateArticle(BllArticle article)
         {
             article.PublicationDate = DateTime.Today;
-            //TODO GET TAGS
-            article.Tags = new List<string>()
-            {
-                "firsttag",
-                "secondtag"
-            };
+            article.Tags = TagParser.GetTags(article.Content);
+
             articleRepository.Create(article.ToDalArticle());
             uow.Commit();
         }
 
         public void DeleteArticle(BllArticle article)
         {
-            throw new NotImplementedException();
+            articleRepository.Delete(article.ToDalArticle());
+            uow.Commit();
+        }
+
+        public void UpdateArticle(BllArticle article)
+        {
+            article.Tags = TagParser.GetTags(article.Content);
+            articleRepository.Update(article.ToDalArticle());
+            uow.Commit();
         }
     }
 }
