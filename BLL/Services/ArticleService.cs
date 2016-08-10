@@ -43,7 +43,10 @@ namespace BLL.Services
 
         public void DeleteArticle(BllArticle article)
         {
-            articleRepository.Delete(article.ToDalArticle());
+            articleRepository.Delete(new DalArticle()
+            {
+                Id = article.Id
+            });
             uow.Commit();
         }
 

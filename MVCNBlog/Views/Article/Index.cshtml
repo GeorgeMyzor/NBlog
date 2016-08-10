@@ -20,6 +20,11 @@
             <b> &nbsp; &nbsp; Author's comment:</b> @Html.DisplayFor(modelItem => comment.Author.Name)
         }
         <br/>
+
+        @Html.ActionLink("Edit article", "Edit", new { article.Id })
+        @Html.ActionLink("Delete article", "Delete", new { article.Id })
+
+        <br />
     }
 
-@Html.ActionLink("Create ARTICLE", "Create")
+@Html.ActionLink("Create article", "Create")

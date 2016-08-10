@@ -48,9 +48,10 @@ namespace DAL.ConcreteRepository
             context.Set<Article>().Add(ormArticle);
         }
 
-        public void Delete(DalArticle e)
+        public void Delete(DalArticle dalArticle)
         {
-            throw new NotImplementedException();
+            var ormArticle = context.Set<Article>().Single(u => u.Id == dalArticle.Id);
+            context.Set<Article>().Remove(ormArticle);
         }
 
         public void Update(DalArticle dalArticle)

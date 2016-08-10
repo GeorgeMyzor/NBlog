@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BLL.Interface.Entities;
 using BLL.Interface.Services;
 using MVCNBlog.Infrastructure.Mappers;
 using MVCNBlog.ViewModels;
@@ -76,6 +77,30 @@ namespace MVCNBlog.Controllers
             };
 
             service.UpdateArticle(editingArticle.ToBllArticle());
+
+            return RedirectToAction("Index");
+        }
+        
+        [HttpGet]
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+                return HttpNotFound("NotFound.");
+
+            //TODO check for rigths
+            var deletingArticle = service.GetArticleEntity(id.Value).ToMvcArticle();
+
+            return View(deletingArticle);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        public ActionResult ConfirmDelete(ArticleViewModel editingArticle)
+        {
+            service.DeleteArticle(new BllArticle()
+            {
+                Id = editingArticle.Id
+            });
 
             return RedirectToAction("Index");
         }
