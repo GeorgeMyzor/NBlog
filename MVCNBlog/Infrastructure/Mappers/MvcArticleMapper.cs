@@ -16,20 +16,21 @@ namespace MVCNBlog.Infrastructure.Mappers
                 Id = articleEntity.Id,
                 Content = articleEntity.Content,
                 PublicationDate = articleEntity.PublicationDate,
-                Author = articleEntity.Author.ToMvcUser(),
+                Author = articleEntity.Author?.ToMvcUser(),
+                AuthorId = articleEntity.AuthorId,
                 Comments = articleEntity.Comments.Select(bllComment => bllComment.ToMvcComment()).ToList(),
                 Tags = articleEntity.Tags
             };
         }
 
-        public static BllArticle ToBllArticle(this ArticleViewModel dalArticle)
+        public static BllArticle ToBllArticle(this ArticleViewModel mvcArticle)
         {
             return new BllArticle()
             {
-                Id = dalArticle.Id,
-                Content = dalArticle.Content,
-                PublicationDate = dalArticle.PublicationDate,
-                Author = dalArticle.Author.ToBllUser()
+                Id = mvcArticle.Id,
+                Content = mvcArticle.Content,
+                PublicationDate = mvcArticle.PublicationDate,
+                AuthorId = mvcArticle.AuthorId
             };
         }
     }

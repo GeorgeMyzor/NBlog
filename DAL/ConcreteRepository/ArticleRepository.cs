@@ -44,7 +44,7 @@ namespace DAL.ConcreteRepository
             
             CopyTags(dalArticle, ormArticle);
 
-            ormArticle.Author = context.Set<User>().SingleOrDefault((user => user.Id == ormArticle.Author.Id));
+            ormArticle.Author = context.Set<User>().SingleOrDefault((user => user.Id == dalArticle.AuthorId));
             context.Set<Article>().Add(ormArticle);
         }
 

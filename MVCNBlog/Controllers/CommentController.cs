@@ -26,15 +26,7 @@ namespace MVCNBlog.Controllers
         public ActionResult Create(CommentViewModel commentViewModel)
         {
             //TODO auth user
-            commentViewModel.Author = new UserViewModel()
-            {
-                Id = 7022,
-                Role = new AdministratorRole()
-                {
-                    RoleId = 1
-                }
-
-            };
+            commentViewModel.AuthorId = 7022;
             service.CreateComment(commentViewModel.ToBllComment());
 
             int id = commentViewModel.ArticleId;
@@ -57,15 +49,7 @@ namespace MVCNBlog.Controllers
         [ActionName("Edit")]
         public ActionResult ConfirmEdit(CommentViewModel editingComment)
         {
-            editingComment.Author = new UserViewModel()
-            {
-                Id = 7022,
-                Role = new AdministratorRole()
-                {
-                    RoleId = 1
-                }
-
-            };
+            editingComment.AuthorId = 7022;
 
             service.UpdateComment(editingComment.ToBllComment());
 

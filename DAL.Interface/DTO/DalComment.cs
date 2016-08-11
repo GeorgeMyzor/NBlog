@@ -12,6 +12,7 @@ namespace DAL.Interface.DTO
         public string Content { get; set; }
         public int ArticleId { get; set; }
         public DateTime PublicationDate { get; set; }
+        public int? AuthorId { get; set; }
         public DalUser Author { get; set; }
     }
 }

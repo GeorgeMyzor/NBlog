@@ -42,7 +42,7 @@ namespace DAL.ConcreteRepository
         {
             var ormComment = dalComment.ToOrmComment();
 
-            ormComment.Author = context.Set<User>().SingleOrDefault((user => user.Id == dalComment.Author.Id));
+            ormComment.Author = context.Set<User>().SingleOrDefault((user => user.Id == dalComment.AuthorId));
             ormComment.Article = context.Set<Article>().SingleOrDefault((article => article.Id == dalComment.ArticleId));
 
             context.Set<Comment>().Add(ormComment);

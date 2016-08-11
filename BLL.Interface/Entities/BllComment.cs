@@ -12,6 +12,7 @@ namespace BLL.Interface.Entities
         public string Content { get; set; }
         public int ArticleId { get; set; }
         public DateTime PublicationDate { get; set; }
+        public int? AuthorId { get; set; }
         public BllUser Author { get; set; }
     }
 }

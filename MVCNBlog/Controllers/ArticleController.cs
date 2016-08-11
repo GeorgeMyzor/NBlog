@@ -43,15 +43,7 @@ namespace MVCNBlog.Controllers
 
         public ActionResult Create(ArticleViewModel articleViewModel)
         {
-            articleViewModel.Author = new UserViewModel()
-            {
-                Id = 7022,
-                Role = new AdministratorRole()
-                {
-                    RoleId = 1
-                }
-
-            };
+            articleViewModel.AuthorId = 7022;
             service.CreateArticle(articleViewModel.ToBllArticle());
 
             return RedirectToAction("Index");
@@ -73,16 +65,6 @@ namespace MVCNBlog.Controllers
         [ActionName("Edit")]
         public ActionResult ConfirmEdit(ArticleViewModel editingArticle)
         {
-            editingArticle.Author = new UserViewModel()
-            {
-                Id = 7022,
-                Role = new AdministratorRole()
-                {
-                    RoleId = 1
-                }
-
-            };
-
             service.UpdateArticle(editingArticle.ToBllArticle());
 
             return RedirectToAction("Index");
@@ -104,12 +86,9 @@ namespace MVCNBlog.Controllers
         [ActionName("Delete")]
         public ActionResult ConfirmDelete(ArticleViewModel editingArticle)
         {
-            service.DeleteArticle(new BllArticle()
-            {
-                Id = editingArticle.Id
-            });
+            service.DeleteArticle(editingArticle.ToBllArticle());
 
-            return RedirectToAction("Index");
+            return RedirectToAction("All");
         }
     }
 }

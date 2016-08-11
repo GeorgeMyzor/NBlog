@@ -10,18 +10,6 @@ namespace BLL.Mappers
 {
     public static class BllCommentMapper
     {
-        public static DalComment ToDalComment(this BllComment commentEntity)
-        {
-            return new DalComment()
-            {
-                Id = commentEntity.Id,
-                Content = commentEntity.Content,
-                ArticleId = commentEntity.ArticleId,
-                PublicationDate = commentEntity.PublicationDate,
-                Author = commentEntity.Author.ToDalUser()
-            };
-        }
-
         public static BllComment ToBllComment(this DalComment dalComment)
         {
             return new BllComment()
@@ -30,7 +18,20 @@ namespace BLL.Mappers
                 Content = dalComment.Content,
                 ArticleId = dalComment.ArticleId,
                 PublicationDate = dalComment.PublicationDate,
-                Author = dalComment.Author.ToBllUser()
+                AuthorId = dalComment.AuthorId,
+                Author = dalComment.Author?.ToBllUser()
+            };
+        }
+
+        public static DalComment ToDalComment(this BllComment commentEntity)
+        {
+            return new DalComment()
+            {
+                Id = commentEntity.Id,
+                Content = commentEntity.Content,
+                ArticleId = commentEntity.ArticleId,
+                PublicationDate = commentEntity.PublicationDate,
+                AuthorId = commentEntity.AuthorId
             };
         }
     }

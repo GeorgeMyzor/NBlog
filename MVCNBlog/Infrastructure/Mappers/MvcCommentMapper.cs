@@ -17,18 +17,18 @@ namespace MVCNBlog.Infrastructure.Mappers
                 Content = commentEntity.Content,
                 ArticleId = commentEntity.ArticleId,
                 PublicationDate = commentEntity.PublicationDate,
-                Author = commentEntity.Author.ToMvcUser()
+                Author = commentEntity.Author?.ToMvcUser()
             };
         }
 
-        public static BllComment ToBllComment(this CommentViewModel dalComment)
+        public static BllComment ToBllComment(this CommentViewModel mvcComment)
         {
             return new BllComment()
             {
-                Id = dalComment.Id,
-                Content = dalComment.Content,
-                ArticleId = dalComment.ArticleId,
-                Author = dalComment.Author.ToBllUser()
+                Id = mvcComment.Id,
+                Content = mvcComment.Content,
+                AuthorId = mvcComment.AuthorId,
+                ArticleId = mvcComment.ArticleId
             };
         }
     }

@@ -17,7 +17,8 @@ namespace DAL.Mappers
                 Id = ormArticle.Id,
                 Content = ormArticle.Content,
                 PublicationDate = ormArticle.PublicationDate,
-                Author = ormArticle.Author.ToDalUser(),
+                AuthorId = ormArticle.Author?.Id,
+                Author = ormArticle.Author?.ToDalUser(),
                 Comments = ormArticle.Comments.Select(ormComment => ormComment.ToDalComment()),
                 Tags = ormArticle.Tags.Select(ormTag => ormTag.Name)
             };
@@ -30,7 +31,6 @@ namespace DAL.Mappers
                 Id = dalArticle.Id,
                 Content = dalArticle.Content,
                 PublicationDate = dalArticle.PublicationDate,
-                Author = dalArticle.Author.ToOrmUser(),
                 Tags = new List<Tag>()
             };
         }
