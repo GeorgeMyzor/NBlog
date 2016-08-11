@@ -1,30 +1,57 @@
-﻿@model IEnumerable<MVCNBlog.ViewModels.ArticleViewModel>
+﻿@model MVCNBlog.ViewModels.ArticleViewModel
 @{
     ViewBag.Title = "Home Page";
 }
 
-<h2>All articles</h2>
-    @foreach (var article in Model)
-    {
+<h2>Article</h2>
         <b>Content:</b>
-        @Html.DisplayFor(modelItem => article.Content)
+        @Html.DisplayFor(modelItem => Model.Content)
         <b>Publication date:</b>
-        @Html.DisplayTextFor(modelItem => article.PublicationDate)
+        @Html.DisplayTextFor(modelItem => Model.PublicationDate)
         <b>Author:</b>
-        @Html.DisplayTextFor(modelItem => article.Author.Name)
-
-        foreach (var comment in article.Comments)
+        @Html.DisplayTextFor(modelItem => Model.Author.Name)
+        <br />
+        <b>Tags:</b>
+        @foreach (var tag in Model.Tags)
+        {
+            <b> &nbsp;</b> @Html.DisplayFor(modelItem => tag)
+        }
+        
+        @foreach (var comment in Model.Comments)
         {
             <br/>
             <b> &nbsp; &nbsp; Comment:</b> @Html.DisplayFor(modelItem => comment.Content)
             <b> &nbsp; &nbsp; Author's comment:</b> @Html.DisplayFor(modelItem => comment.Author.Name)
+
+            using (Html.BeginForm("Edit", "Comment", FormMethod.Get))
+            {
+                <input type="hidden" name="Id" value="@comment.Id" />
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Details" class="btn btn-default" />
+                    </div>
+                </div>
+            }
         }
         <br/>
+        @using (Html.BeginForm("Create","Comment"))
+        {
+            @Html.AntiForgeryToken()
+            <input type="text" name="Content" placeholder="Type to begin..."/>
+            <input type="hidden" name="ArticleId" value="@Model.Id"/>
 
-        @Html.ActionLink("Edit article", "Edit", new { article.Id })
-        @Html.ActionLink("Delete article", "Delete", new { article.Id })
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Add comment" class="btn btn-default" />
+                </div>
+            </div>
+        }
+
+        @Html.ActionLink("Edit article", "Edit", new { Model.Id }) 
+        @Html.ActionLink("Delete article", "Delete", new { Model.Id })
 
         <br />
-    }
+    
 
 @Html.ActionLink("Create article", "Create")

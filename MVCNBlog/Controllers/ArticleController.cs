@@ -20,7 +20,14 @@ namespace MVCNBlog.Controllers
             this.service = service;
         }
         
-        public ActionResult Index()
+        public ActionResult Index(int? id)
+        {
+            var article = service.GetArticleEntity(id.Value).ToMvcArticle();
+
+            return View(article);
+        }
+
+        public ActionResult All()
         {
             return View(service.GetAllArticleEntities().Select(article => article.ToMvcArticle()));
         }

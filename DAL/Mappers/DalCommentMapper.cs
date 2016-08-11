@@ -16,6 +16,8 @@ namespace DAL.Mappers
             {
                 Id = ormArticle.Id,
                 Content = ormArticle.Content,
+                PublicationDate = ormArticle.PublicationDate,
+                ArticleId = ormArticle.ArticleId,
                 Author = ormArticle.Author.ToDalUser()
             };
         }
@@ -26,6 +28,7 @@ namespace DAL.Mappers
             {
                 Id = dalArticle.Id,
                 Content = dalArticle.Content,
+                PublicationDate = dalArticle.PublicationDate,
                 Author = dalArticle.Author.ToOrmUser()
             };
         }

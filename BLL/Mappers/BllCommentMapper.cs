@@ -16,6 +16,8 @@ namespace BLL.Mappers
             {
                 Id = commentEntity.Id,
                 Content = commentEntity.Content,
+                ArticleId = commentEntity.ArticleId,
+                PublicationDate = commentEntity.PublicationDate,
                 Author = commentEntity.Author.ToDalUser()
             };
         }
@@ -26,6 +28,8 @@ namespace BLL.Mappers
             {
                 Id = dalComment.Id,
                 Content = dalComment.Content,
+                ArticleId = dalComment.ArticleId,
+                PublicationDate = dalComment.PublicationDate,
                 Author = dalComment.Author.ToBllUser()
             };
         }

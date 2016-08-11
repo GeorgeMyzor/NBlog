@@ -15,6 +15,8 @@ namespace MVCNBlog.Infrastructure.Mappers
             {
                 Id = commentEntity.Id,
                 Content = commentEntity.Content,
+                ArticleId = commentEntity.ArticleId,
+                PublicationDate = commentEntity.PublicationDate,
                 Author = commentEntity.Author.ToMvcUser()
             };
         }
@@ -25,6 +27,7 @@ namespace MVCNBlog.Infrastructure.Mappers
             {
                 Id = dalComment.Id,
                 Content = dalComment.Content,
+                ArticleId = dalComment.ArticleId,
                 Author = dalComment.Author.ToBllUser()
             };
         }

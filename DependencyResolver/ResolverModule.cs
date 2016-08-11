@@ -27,10 +27,15 @@ namespace DependencyResolver
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
             kernel.Bind<DbContext>().To<EntityModel>().InRequestScope();
             
+            //Services
             kernel.Bind<IUserService>().To<UserService>();
             kernel.Bind<IArticleService>().To<ArticleService>();
+            kernel.Bind<ICommentService>().To<CommentService>();
+
+            //Repos
             kernel.Bind<IUserRepository>().To<UserRepository>();
             kernel.Bind<IRepository<DalArticle>>().To<ArticleRepository>();
+            kernel.Bind<IRepository<DalComment>>().To<CommentRepository>();
         }
     }
 }
