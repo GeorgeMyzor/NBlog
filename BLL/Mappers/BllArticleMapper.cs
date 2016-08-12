@@ -10,18 +10,6 @@ namespace BLL.Mappers
 {
     public static class BllArticleMapper
     {
-        public static DalArticle ToDalArticle(this BllArticle articleEntity)
-        {
-            return new DalArticle()
-            {
-                Id = articleEntity.Id,
-                Content = articleEntity.Content,
-                PublicationDate = articleEntity.PublicationDate,
-                AuthorId = articleEntity.AuthorId,
-                Tags = articleEntity.Tags
-            };
-        }
-
         public static BllArticle ToBllArticle(this DalArticle dalArticle)
         {
             return new BllArticle()
@@ -33,6 +21,18 @@ namespace BLL.Mappers
                 Author = dalArticle.Author?.ToBllUser(),
                 Comments = dalArticle.Comments.Select(dalComment => dalComment.ToBllComment()),
                 Tags = dalArticle.Tags
+            };
+        }
+
+        public static DalArticle ToDalArticle(this BllArticle articleEntity)
+        {
+            return new DalArticle()
+            {
+                Id = articleEntity.Id,
+                Content = articleEntity.Content,
+                PublicationDate = articleEntity.PublicationDate,
+                AuthorId = articleEntity.AuthorId,
+                Tags = articleEntity.Tags
             };
         }
     }

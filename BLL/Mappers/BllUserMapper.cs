@@ -10,17 +10,6 @@ namespace BLL.Mappers
 {
     public static class BllUserMapper
     {
-        public static DalUser ToDalUser(this BllUser bllUser)
-        {
-            return new DalUser()
-            {
-                Id = bllUser.Id,
-                Name = bllUser.Name,
-                CreationDate = bllUser.CreationDate,
-                Roles = bllUser.Roles.Select(bllRole => bllRole.ToDalRole())
-            };
-        }
-
         public static BllUser ToBllUser(this DalUser dalUser)
         {
             return new BllUser()
@@ -29,6 +18,17 @@ namespace BLL.Mappers
                 Name = dalUser.Name,
                 CreationDate = dalUser.CreationDate,
                 Roles = dalUser.Roles.Select(dalRole => dalRole.ToBllRole())
+            };
+        }
+
+        public static DalUser ToDalUser(this BllUser bllUser)
+        {
+            return new DalUser()
+            {
+                Id = bllUser.Id,
+                Name = bllUser.Name,
+                CreationDate = bllUser.CreationDate,
+                Roles = bllUser.Roles.Select(bllRole => bllRole.ToDalRole())
             };
         }
     }

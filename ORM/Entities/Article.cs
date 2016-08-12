@@ -10,7 +10,7 @@ namespace ORM.Entities
         public DateTime PublicationDate { get; set; }
 
         public virtual User Author { get; set; }
+        public virtual List<Tag> Tags { get; set; }
         public virtual List<Comment> Comments { get; set; }
-        public virtual List<Tag> Tags { get; set; } 
     }
 }
