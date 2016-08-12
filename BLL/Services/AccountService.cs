@@ -6,48 +6,50 @@ using System.Threading.Tasks;
 using BLL.Interface.Entities;
 using BLL.Interface.Services;
 using BLL.Mappers;
-using DAL.Interface.DTO;
 using DAL.Interface.Repository;
 
 namespace BLL.Services
 {
-    public class UserService : IUserService
+    public class AccountService : IAccountService
     {
+        //TODO payment etc..
+
         private readonly IUnitOfWork uow;
         private readonly IUserRepository userRepository;
 
-        public UserService(IUnitOfWork uow, IUserRepository repository)
+        public AccountService(IUnitOfWork uow, IUserRepository repository)
         {
             this.uow = uow;
             this.userRepository = repository;
         }
 
-        public BllUser GetUserEntity(int id)
+        public BllUser GetAccountEntity(int id)
         {
             return userRepository.GetById(id).ToBllUser();
         }
 
-        public IEnumerable<BllUser> GetAllUserEntities()
+        public void CreateAccount(BllUser account)
         {
-            return userRepository.GetAll().Select(user => user.ToBllUser());
-        }
-
-        public void CreateUser(BllUser user)
-        {
-            user.CreationDate = DateTime.Today;
-            userRepository.Create(user.ToDalUser());
+            account.CreationDate = DateTime.Today;
+            userRepository.Create(account.ToDalUser());
             uow.Commit();
         }
 
-        public void DeleteUser(BllUser user)
+        public void DeleteAccount(BllUser account)
         {
-            userRepository.Delete(user.ToDalUser());
+            userRepository.Delete(account.ToDalUser());
             uow.Commit();
         }
 
-        public void UpdateUser(BllUser user)
+        public void UpdateAccount(BllUser account)
         {
-            userRepository.Update(user.ToDalUser());
+            userRepository.Update(account.ToDalUser());
+            uow.Commit();
+        }
+        
+        public void UpdateAccountPaidRole(BllUser user)
+        {
+            userRepository.UpdatePaidRole(user.ToDalUser());
             uow.Commit();
         }
     }

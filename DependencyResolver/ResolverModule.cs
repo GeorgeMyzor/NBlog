@@ -29,6 +29,7 @@ namespace DependencyResolver
             
             //Services
             kernel.Bind<IUserService>().To<UserService>();
+            kernel.Bind<IAccountService>().To<AccountService>();
             kernel.Bind<IArticleService>().To<ArticleService>();
             kernel.Bind<ICommentService>().To<CommentService>();
 

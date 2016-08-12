@@ -11,9 +11,9 @@ namespace MVCNBlog.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly IUserService service;
+        private readonly IAccountService service;
 
-        public AccountController(IUserService service)
+        public AccountController(IAccountService service)
         {
             this.service = service;
         }
@@ -24,7 +24,7 @@ namespace MVCNBlog.Controllers
             if (id == null)
                 return HttpNotFound("NotFound.");
 
-            var editingAccount = service.GetUserEntity(id.Value).ToMvcAccount();
+            var editingAccount = service.GetAccountEntity(id.Value).ToMvcAccount();
 
             return View(editingAccount);
         }
@@ -35,7 +35,7 @@ namespace MVCNBlog.Controllers
             if (id == null)
                 return HttpNotFound("NotFound.");
 
-            var editingAccount = service.GetUserEntity(id.Value).ToMvcAccount();
+            var editingAccount = service.GetAccountEntity(id.Value).ToMvcAccount();
 
             return View(editingAccount);
         }
@@ -44,7 +44,7 @@ namespace MVCNBlog.Controllers
         [ActionName("Edit")]
         public ActionResult ConfirmEdit(AccountViewModel editingUser)
         {
-            service.UpdateUser(editingUser.ToBllUser());
+            service.UpdateAccount(editingUser.ToBllUser());
 
             return RedirectToAction("Index", new { editingUser.Id });
         }
@@ -52,7 +52,7 @@ namespace MVCNBlog.Controllers
         [HttpPost]
         public ActionResult EditVipStatus(AccountViewModel editingUser)
         {
-            service.UpdateUserPaidRole(editingUser.ToBllUser());
+            service.UpdateAccountPaidRole(editingUser.ToBllUser());
 
             return RedirectToAction("Index", new { editingUser.Id});
         }
