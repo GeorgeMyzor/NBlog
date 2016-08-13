@@ -11,7 +11,7 @@ namespace BLL
     {
         public static IEnumerable<string> GetTags(string content)
         {
-            var matches = Regex.Matches(content, "#[a-zA-Z]+");
+            var matches = Regex.Matches(content, "#[a-zA-Z0-9_.-]+");
 
             var tags = new List<string>();
             

@@ -26,11 +26,17 @@ namespace MVCNBlog
            );
 
             routes.MapRoute(
-               name: "AllArticle",
+               name: "AllArticles",
                url: "articles",
                defaults: new { controller = "Article", action = "All" }
            );
-            
+
+            routes.MapRoute(
+               name: "AllUsers",
+               url: "users",
+               defaults: new { controller = "User", action = "Index" }
+           );
+
             routes.MapRoute(
                 name: "Edit",
                 url: "articles/{id}",
