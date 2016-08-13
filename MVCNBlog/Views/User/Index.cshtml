@@ -1,11 +1,11 @@
 ﻿@using MVCNBlog.ViewModels.Roles
-@model IEnumerable<MVCNBlog.ViewModels.UserViewModel>
+@model MVCNBlog.ViewModels.ListViewModel<MVCNBlog.ViewModels.UserViewModel>
 @{
     ViewBag.Title = "Home Page";
 }
 
 <h2>All users</h2>
-    @foreach (var item in Model)
+    @foreach (var item in Model.ViewModels)
     {
         <b>User name:</b>
         @Html.DisplayFor(modelItem => item.Name)
@@ -28,5 +28,9 @@
 
         <br/>
     }
+
+<div class="pager">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new {page = x}))
+</div>
 
 @Html.ActionLink("Create user", "Create")

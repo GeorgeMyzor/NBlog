@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using BLL.Interface.Entities;
 using BLL.Interface.Services;
@@ -14,10 +15,12 @@ namespace MVCNBlog.Controllers
     public class ArticleController : Controller
     {
         private readonly IArticleService service;
+        private readonly int pageSize;
 
         public ArticleController(IArticleService service)
         {
             this.service = service;
+            pageSize = int.Parse(WebConfigurationManager.AppSettings["PageSize"]);
         }
         
         public ActionResult Index(int? id)
@@ -27,9 +30,25 @@ namespace MVCNBlog.Controllers
             return View(article);
         }
 
-        public ActionResult All()
+        public ActionResult All(int page = 1)
         {
-            return View(service.GetAllArticleEntities().Select(article => article.ToMvcArticle()));
+            var articles = new ListViewModel<ArticleViewModel>()
+            {
+                ViewModels =
+                    service.GetAllArticleEntities()
+                        .Select(article => article.ToMvcArticle())
+                        .OrderBy((article => article.Id))
+                        .Skip((page - 1)*pageSize)
+                        .Take(pageSize),
+                PagingInfo = new PagingInfo()
+                {
+                    CurrentPage = page,
+                    ItemsPerPage = pageSize,
+                    TotalItems = service.GetAllArticleEntities().Count()
+                }
+            };
+
+            return View(articles);
         }
 
         [HttpGet]

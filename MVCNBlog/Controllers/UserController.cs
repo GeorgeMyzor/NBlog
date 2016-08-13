@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using BLL.Interface.Entities;
 using BLL.Interface.Services;
@@ -15,16 +16,32 @@ namespace MVCNBlog.Controllers
     public class UserController : Controller
     {
         private readonly IUserService service;
+        private readonly int pageSize;
 
         public UserController(IUserService service)
         {
             this.service = service;
+            pageSize = int.Parse(WebConfigurationManager.AppSettings["PageSize"]);
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
-            var test = service.GetAllUserEntities().Select(user => user.ToMvcUser()).ToList();
-            return View(test);
+            //TODO service get count
+            var users = new ListViewModel<UserViewModel>()
+            {
+               ViewModels = service.GetAllUserEntities().Select(user => user.ToMvcUser())
+                        .OrderBy((article => article.Id))
+                        .Skip((page - 1) * pageSize)
+                        .Take(pageSize),
+                PagingInfo = new PagingInfo()
+                {
+                    CurrentPage = page,
+                    ItemsPerPage = pageSize,
+                    TotalItems = service.GetAllUserEntities().Count()
+                }
+            };
+
+            return View(users);
         }
         
         [HttpGet]

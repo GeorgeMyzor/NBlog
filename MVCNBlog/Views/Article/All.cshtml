@@ -1,10 +1,10 @@
-﻿@model IEnumerable<MVCNBlog.ViewModels.ArticleViewModel>
+﻿@model MVCNBlog.ViewModels.ListViewModel<MVCNBlog.ViewModels.ArticleViewModel>
 @{
     ViewBag.Title = "All";
 }
 
 <h2>All articles</h2>
-@foreach (var article in Model)
+@foreach (var article in Model.ViewModels)
 {
     <b>Content:</b>
     @Html.DisplayFor(modelItem => article.Content)
@@ -34,6 +34,10 @@
 
     <br/>
 }
+
+<div class="pager">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("All", new { page = x }))
+</div>
 
 @Html.ActionLink("Create article", "Create")
 

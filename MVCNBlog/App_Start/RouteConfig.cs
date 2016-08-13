@@ -14,11 +14,23 @@ namespace MVCNBlog
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+              name: null,
+              url: "articles/Page{page}",
+              defaults: new { Controller = "Article", action = "All" }
+            );
+
+            routes.MapRoute(
+             name: null,
+             url: "users/Page{page}",
+             defaults: new { Controller = "User", action = "Index" }
+           );
+
+            routes.MapRoute(
                name: "AllArticle",
                url: "articles",
                defaults: new { controller = "Article", action = "All" }
            );
-
+            
             routes.MapRoute(
                 name: "Edit",
                 url: "articles/{id}",
