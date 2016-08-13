@@ -65,7 +65,7 @@ namespace MVCNBlog.Controllers
             articleViewModel.AuthorId = 7022;
             service.CreateArticle(articleViewModel.ToBllArticle());
 
-            return RedirectToAction("Index");
+            return RedirectToAction("All");
         }
 
         [HttpGet]
@@ -86,7 +86,7 @@ namespace MVCNBlog.Controllers
         {
             service.UpdateArticle(editingArticle.ToBllArticle());
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new {editingArticle.Id});
         }
         
         [HttpGet]
