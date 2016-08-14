@@ -16,7 +16,7 @@ namespace MVCNBlog
             #region Article routes
 
             routes.MapRoute(
-                name: null,
+                name: "PagedArticles",
                 url: "articles/Page{page}",
                 defaults: new {Controller = "Article", action = "All"}
                 );
@@ -24,29 +24,42 @@ namespace MVCNBlog
             routes.MapRoute(
                 name: "ArticleAction",
                 url: "articles/{id}/{action}",
-                defaults: new {controller = "Article", action = "Index"},
-                constraints: new {action = @"Index|Delete|Edit"}
+                defaults: new { controller = "Article", action = "Index" },
+                constraints: new { action = @"Delete|Edit|Index", id = @"\d+" }
                 );
 
             routes.MapRoute(
                 name: "AllArticles",
                 url: "articles/{action}",
-                defaults: new {controller = "Article", action = "All"}
+                defaults: new { controller = "Article", action = "All" },
+                constraints: new { action = @"Create|All" }
                 );
-
+            
             #endregion
 
+            #region User routes
+
             routes.MapRoute(
-                name: null,
-                url: "users/Page{page}",
+                name: "PagedUsers",
+                url: "users/page{page}",
                 defaults: new {Controller = "User", action = "Index"}
+                );
+
+            routes.MapRoute(
+                name: "UserAction",
+                url: "users/{id}/{action}",
+                defaults: new { controller = "User", action = "Edit" },
+                constraints: new { action = @"Delete|Edit", id = @"\d+" }
                 );
 
             routes.MapRoute(
                 name: "AllUsers",
                 url: "users/{action}",
-                defaults: new {controller = "User", action = "Index"}
+                defaults: new { controller = "User", action = "Index" },
+                constraints: new { action = @"Create|Index" }
                 );
+            
+            #endregion
 
             routes.MapRoute(
                 name: "Default",
@@ -56,4 +69,22 @@ namespace MVCNBlog
 
         }
     }
+    /*  URL schema:
+            * 1.  NBlog.com/                                 Главная страница; содержит список статей и навигацией.
+            * Article:
+            * 2.  NBlog.com/articles                         Показывает страницу со списком статей.
+            * 3.  NBlog.com/articles/<article code>          Показывает страницу с информацией о статье с указанным номером,
+            *                                                   там можно найти изменение удаление(для уполнамоченных), 
+            *                                                   комментарии и комментирование.
+            * 4.  NBlog.com/articles/<article code>/edit     Изменяет выбранную статью (отправка формы).     
+            * 5.  NBlog.com/articles/<article code>/delete   Удаляет выбранную статью (отправка формы).   
+            * 6.  NBlog.com/articles/page<page num>          Выводит страницу с статьями по указанному номеру. 
+            *                                                   
+            * User:
+            * 7.  NBlog.com/users                            Показывает страницу со списком пользователей, там же находится
+            *                                                изменение и удаления. (Админ, модератор)
+            * 8.  NBlog.com/users/<user code>/edit           Изменяет выбранного пользователя (отправка формы). (Админ, модератор)
+            * 9.  NBlog.com/users/<user code>/delete         Удаляет выбранного пользователя (отправка формы). (Админ, модератор)
+            * 10. NBlog.com/users/page<page num>             Выводит страницу с пользователями по указанному номеру. (Админ, модератор)
+            */
 }
