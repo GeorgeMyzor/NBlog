@@ -32,7 +32,7 @@ namespace MVCNBlog.Controllers
             int id = commentViewModel.ArticleId;
             return RedirectToAction("Index", "Article", new { id });
         }
-
+        
         [HttpGet]
         public ActionResult Edit(int? id)
         {

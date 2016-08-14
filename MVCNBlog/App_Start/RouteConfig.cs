@@ -17,7 +17,7 @@ namespace MVCNBlog
 
             routes.MapRoute(
                 name: "PagedArticles",
-                url: "articles/Page{page}",
+                url: "articles/page{page}",
                 defaults: new {Controller = "Article", action = "All"}
                 );
 
@@ -58,7 +58,20 @@ namespace MVCNBlog
                 defaults: new { controller = "User", action = "Index" },
                 constraints: new { action = @"Create|Index" }
                 );
-            
+
+            #endregion
+
+            #region Comment routes
+
+
+            routes.MapRoute(
+                name: "CommentAction",
+                url: "comment/{id}",
+                defaults: new { controller = "Comment", action = "Edit" },
+                constraints: new { id = @"\d+" }
+                );
+
+
             #endregion
 
             routes.MapRoute(

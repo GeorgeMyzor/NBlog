@@ -86,7 +86,8 @@ namespace MVCNBlog.Controllers
         {
             service.UpdateArticle(editingArticle.ToBllArticle());
 
-            return RedirectToAction("Index", new {editingArticle.Id});
+            int id = editingArticle.Id;
+            return RedirectToAction("Index", "Article", new { id });
         }
         
         [HttpGet]
