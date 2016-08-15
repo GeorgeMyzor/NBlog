@@ -55,7 +55,7 @@ namespace MVCNBlog.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         
-        public ActionResult Create(UserViewModel userViewModel)
+        public ActionResult Create(CreatingUserViewModel userViewModel)
         {
             var user = service.GetUserEntity(userViewModel.Name);
             if (user != null)

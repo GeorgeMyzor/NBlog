@@ -1,4 +1,4 @@
-﻿@model MVCNBlog.ViewModels.UserViewModel
+﻿@model MVCNBlog.ViewModels.CreatingUserViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -24,8 +24,14 @@
 
             @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Password, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.Password, "", new {@class = "text-danger"})
+            </div>
+
+            @Html.LabelFor(model => model.RePassword, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RePassword, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RePassword, "", new { @class = "text-danger" })
             </div>
         </div>
 
