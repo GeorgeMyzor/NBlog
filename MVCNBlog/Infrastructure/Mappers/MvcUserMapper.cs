@@ -18,6 +18,7 @@ namespace MVCNBlog.Infrastructure.Mappers
             {
                 Id = bllUser.Id,
                 Name = bllUser.Name,
+                Password = bllUser.Password,
                 CreationDate = bllUser.CreationDate,
                 Role = roles.Find((role => role.RoleId != 3)),
                 PayedRole = (IPayedRole) roles.Find((role => role.RoleId == 3))
@@ -34,6 +35,8 @@ namespace MVCNBlog.Infrastructure.Mappers
             {
                 Id = userViewModel.Id,
                 Name = userViewModel.Name,
+                Password = userViewModel.Password,
+                CreationDate = userViewModel.CreationDate,
                 Roles = roles.Select(mvcRole => mvcRole.ToBllRole()).ToList()
             };
         }
@@ -62,6 +65,7 @@ namespace MVCNBlog.Infrastructure.Mappers
             {
                 Id = userViewModel.Id,
                 Name = userViewModel.Name,
+                CreationDate = userViewModel.CreationDate,
                 Roles = roles.Select(mvcRole => mvcRole.ToBllRole()).ToList()
             };
         }

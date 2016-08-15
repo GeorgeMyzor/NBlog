@@ -27,6 +27,11 @@ namespace BLL.Services
             return userRepository.GetById(id).ToBllUser();
         }
 
+        public BllUser GetUserEntity(string name)
+        {
+            return userRepository.GetByPredicate(user => user.Name == name).ToBllUser();
+        }
+
         public IEnumerable<BllUser> GetAllUserEntities()
         {
             return userRepository.GetAll().Select(user => user.ToBllUser());
@@ -34,7 +39,6 @@ namespace BLL.Services
 
         public void CreateUser(BllUser user)
         {
-            user.CreationDate = DateTime.Today;
             userRepository.Create(user.ToDalUser());
             uow.Commit();
         }

@@ -193,6 +193,8 @@
     <Compile Include="Infrastructure\ModelBinders\AccountModelBinder.cs" />
     <Compile Include="Infrastructure\ModelBinders\UserModelBinder.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Infrastructure\ValidationAttributes\CorrectNameAttribute.cs" />
+    <Compile Include="Infrastructure\ValidationAttributes\CorrectPasswordAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\ListViewModel.cs" />

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.Mvc;
@@ -8,6 +9,7 @@ using BLL.Interface.Entities;
 using BLL.Interface.Services;
 using MVCNBlog.Infrastructure.Mappers;
 using MVCNBlog.Infrastructure.ModelBinders;
+using MVCNBlog.Infrastructure.ValidationAttributes;
 using MVCNBlog.ViewModels;
 using MVCNBlog.ViewModels.Roles;
 
@@ -55,8 +57,19 @@ namespace MVCNBlog.Controllers
         
         public ActionResult Create(UserViewModel userViewModel)
         {
-            service.CreateUser(userViewModel.ToBllUser());
-            return RedirectToAction("Index");
+            var user = service.GetUserEntity(userViewModel.Name);
+            if (user != null)
+                ModelState.AddModelError("Name", "A user with the same name already exists");
+
+            if (ModelState.IsValid)
+            {
+                service.CreateUser(userViewModel.ToBllUser());
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpGet]
@@ -101,5 +114,42 @@ namespace MVCNBlog.Controllers
 
             return RedirectToAction("Index");
         }
+
+        #region Remote validation
+
+        public JsonResult ValidateName(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+                return Json("Name should be 3 to 10 length, only letters.", JsonRequestBehavior.AllowGet);
+
+            name = name.ToLower();
+
+            var isValidName = Regex.IsMatch(name, @"^(?=.{3,8}$)(([a-z])\2?(?!\2))+$");
+            if (!isValidName)
+                return Json("Name should be 3 to 10 length, only letters.",
+                    JsonRequestBehavior.AllowGet);
+
+            var user = service.GetUserEntity(name);
+            if(user != null)
+                return Json("A user with the same name already exists",
+                    JsonRequestBehavior.AllowGet);
+
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ValidatePassword(string password)
+        {
+            if (password != null)
+            {
+                var isValidPassword = Regex.IsMatch(password, @"^(?=.{5,15}$)(?=.*[0-9])([a-zA-Z0-9])+$");
+                if (!isValidPassword)
+                    return Json("Password should be 5 to 15 length, at least one digit.",
+                      JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
     }
 }

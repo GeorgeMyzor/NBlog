@@ -17,6 +17,7 @@ namespace BLL.Mappers
                 Id = dalUser.Id,
                 Name = dalUser.Name,
                 CreationDate = dalUser.CreationDate,
+                Password = dalUser.Password,
                 Roles = dalUser.Roles.Select(dalRole => dalRole.ToBllRole())
             };
         }
@@ -28,6 +29,7 @@ namespace BLL.Mappers
                 Id = bllUser.Id,
                 Name = bllUser.Name,
                 CreationDate = bllUser.CreationDate,
+                Password = bllUser.Password,
                 Roles = bllUser.Roles.Select(bllRole => bllRole.ToDalRole())
             };
         }

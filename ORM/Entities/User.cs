@@ -7,6 +7,7 @@ namespace ORM.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Password { get; set; }
         public DateTime CreationDate { get; set; }
 
         public virtual List<Role> Roles { get; set; }

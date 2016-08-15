@@ -10,6 +10,7 @@ namespace BLL.Interface.Services
     public interface IUserService
     {
         BllUser GetUserEntity(int id);
+        BllUser GetUserEntity(string name);
         IEnumerable<BllUser> GetAllUserEntities();
         void CreateUser(BllUser user);
         void DeleteUser(BllUser user);
