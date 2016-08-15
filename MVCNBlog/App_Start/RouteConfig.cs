@@ -23,8 +23,8 @@ namespace MVCNBlog
 
             routes.MapRoute(
                 name: "ArticleAction",
-                url: "articles/{id}/{action}",
-                defaults: new { controller = "Article", action = "Index" },
+                url: "articles/{id}/{title}/{action}",
+                defaults: new { controller = "Article", action = "Index", title = UrlParameter.Optional},
                 constraints: new { action = @"Delete|Edit|Index", id = @"\d+" }
                 );
 

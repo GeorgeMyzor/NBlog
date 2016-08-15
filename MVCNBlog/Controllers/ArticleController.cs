@@ -6,6 +6,7 @@ using System.Web.Configuration;
 using System.Web.Mvc;
 using BLL.Interface.Entities;
 using BLL.Interface.Services;
+using MVCNBlog.Infrastructure;
 using MVCNBlog.Infrastructure.Mappers;
 using MVCNBlog.ViewModels;
 using MVCNBlog.ViewModels.Roles;
@@ -23,10 +24,18 @@ namespace MVCNBlog.Controllers
             pageSize = int.Parse(WebConfigurationManager.AppSettings["PageSize"]);
         }
         
-        public ActionResult Index(int? id)
+        public ActionResult Index(int? id, string title)
         {
             var article = service.GetArticleEntity(id.Value).ToMvcArticle();
-
+            //TODO switch to title
+            string urlWithTitle = article.Content.RemoveSpecialCharacters();
+            urlWithTitle = Url.Encode(urlWithTitle);
+            
+            if (!urlWithTitle.Equals(title))
+            {
+                return RedirectToAction("Index", new { id, title = urlWithTitle });
+            }
+            
             return View(article);
         }
 
