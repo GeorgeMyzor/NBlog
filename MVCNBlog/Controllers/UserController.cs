@@ -78,7 +78,7 @@ namespace MVCNBlog.Controllers
             if (id == null)
                 return HttpNotFound("NotFound.");
 
-            var editingUser = service.GetUserEntity(id.Value).ToMvcUser();
+            var editingUser = service.GetUserEntity(id.Value)?.ToMvcUser();
 
             return View(editingUser);
         }
@@ -97,7 +97,7 @@ namespace MVCNBlog.Controllers
             if (id == null)
                 return HttpNotFound("NotFound.");
 
-            var deletingUser = service.GetUserEntity(id.Value);
+            var deletingUser = service.GetUserEntity(id.Value)?.ToMvcUser();
 
             if(deletingUser == null)
                 return HttpNotFound();

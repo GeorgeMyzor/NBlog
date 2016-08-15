@@ -30,14 +30,18 @@ namespace DAL.ConcreteRepository
         {
             var ormUser = context.Set<User>().FirstOrDefault(user => user.Id == key);
 
-            return ormUser.ToDalUser();
+            return ormUser?.ToDalUser();
         }
 
         public DalUser GetByPredicate(Expression<Func<DalUser, bool>> f)
         {
             //Expression visitor
             //Expression<Func<DalUser, bool>> -> Expression<Func<User, bool>> (!)
-            throw new NotImplementedException();
+
+            var newExpr = Modifier.Convert<DalUser,User>(f);
+
+            var user = context.Set<User>().FirstOrDefault(newExpr);
+            return user?.ToDalUser();
         }
 
         public void Create(DalUser dalUser)

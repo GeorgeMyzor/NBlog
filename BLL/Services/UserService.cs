@@ -24,12 +24,12 @@ namespace BLL.Services
 
         public BllUser GetUserEntity(int id)
         {
-            return userRepository.GetById(id).ToBllUser();
+            return userRepository.GetById(id)?.ToBllUser();
         }
 
         public BllUser GetUserEntity(string name)
         {
-            return userRepository.GetByPredicate(user => user.Name == name).ToBllUser();
+            return userRepository.GetByPredicate(user => user.Name == name)?.ToBllUser();
         }
 
         public IEnumerable<BllUser> GetAllUserEntities()
