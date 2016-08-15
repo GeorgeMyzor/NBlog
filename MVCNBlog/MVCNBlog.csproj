@@ -196,6 +196,7 @@
     <Compile Include="Infrastructure\ValidationAttributes\CorrectNameAttribute.cs" />
     <Compile Include="Infrastructure\ValidationAttributes\CorrectPasswordAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AbstractUser.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\CreatingUserViewModel.cs" />
     <Compile Include="ViewModels\ListViewModel.cs" />

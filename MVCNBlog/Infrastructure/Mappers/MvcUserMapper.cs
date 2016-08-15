@@ -10,6 +10,9 @@ namespace MVCNBlog.Infrastructure.Mappers
 {
     public static class MvcUserMapper
     {
+        //TODO refactor users
+        #region View user
+
         public static UserViewModel ToMvcUser(this BllUser bllUser)
         {
             var roles = new List<IRole>();
@@ -18,7 +21,6 @@ namespace MVCNBlog.Infrastructure.Mappers
             {
                 Id = bllUser.Id,
                 Name = bllUser.Name,
-                Password = bllUser.Password,
                 CreationDate = bllUser.CreationDate,
                 Role = roles.Find((role => role.RoleId != 3)),
                 PayedRole = (IPayedRole) roles.Find((role => role.RoleId == 3))
@@ -35,11 +37,30 @@ namespace MVCNBlog.Infrastructure.Mappers
             {
                 Id = userViewModel.Id,
                 Name = userViewModel.Name,
+                CreationDate = userViewModel.CreationDate,
+                Roles = roles.Select(mvcRole => mvcRole.ToBllRole()).ToList()
+            };
+        }
+
+        #endregion
+
+        #region Create user
+        
+        public static BllUser ToBllUser(this CreatingUserViewModel userViewModel)
+        {
+            var roles = new List<IRole>();
+            roles.Add(userViewModel.Role);
+            return new BllUser()
+            {
+                Id = userViewModel.Id,
+                Name = userViewModel.Name,
                 Password = userViewModel.Password,
                 CreationDate = userViewModel.CreationDate,
                 Roles = roles.Select(mvcRole => mvcRole.ToBllRole()).ToList()
             };
         }
+
+        #endregion
 
         public static AccountViewModel ToMvcAccount(this BllUser bllUser)
         {
