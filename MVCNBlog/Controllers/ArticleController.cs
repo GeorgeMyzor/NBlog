@@ -27,8 +27,8 @@ namespace MVCNBlog.Controllers
         public ActionResult Index(int? id, string title)
         {
             var article = service.GetArticleEntity(id.Value).ToMvcArticle();
-            //TODO switch to title
-            string urlWithTitle = article.Content.RemoveSpecialCharacters();
+
+            string urlWithTitle = article.Title.RemoveSpecialCharacters();
             urlWithTitle = Url.Encode(urlWithTitle);
             
             if (!urlWithTitle.Equals(title))
@@ -74,7 +74,13 @@ namespace MVCNBlog.Controllers
             articleViewModel.AuthorId = 7022;
             service.CreateArticle(articleViewModel.ToBllArticle());
 
-            return RedirectToAction("All");
+            if (ModelState.IsValid)
+            {
+                service.CreateArticle(articleViewModel.ToBllArticle());
+                return RedirectToAction("All");
+            }
+
+            return View();
         }
 
         [HttpGet]
@@ -93,10 +99,15 @@ namespace MVCNBlog.Controllers
         [ActionName("Edit")]
         public ActionResult ConfirmEdit(ArticleViewModel editingArticle)
         {
-            service.UpdateArticle(editingArticle.ToBllArticle());
+            if (ModelState.IsValid)
+            {
+                service.UpdateArticle(editingArticle.ToBllArticle());
 
-            int id = editingArticle.Id;
-            return RedirectToAction("Index", "Article", new { id });
+                int id = editingArticle.Id;
+                return RedirectToAction("Index", "Article", new { id });
+            }
+
+            return View();
         }
         
         [HttpGet]

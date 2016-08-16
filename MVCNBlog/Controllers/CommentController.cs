@@ -25,11 +25,18 @@ namespace MVCNBlog.Controllers
 
         public ActionResult Create(CommentViewModel commentViewModel)
         {
-            //TODO auth user
-            commentViewModel.AuthorId = 7022;
-            service.CreateComment(commentViewModel.ToBllComment());
-
             int id = commentViewModel.ArticleId;
+            if (ModelState.IsValid)
+            {
+                //TODO auth user
+                commentViewModel.AuthorId = 7022;
+                service.CreateComment(commentViewModel.ToBllComment());
+
+                return RedirectToAction("Index", "Article", new { id });
+            }
+            TempData["CommentError"] = string.Join(" ", ModelState.Values
+                                            .SelectMany(v => v.Errors)
+                                            .Select(e => e.ErrorMessage));
             return RedirectToAction("Index", "Article", new { id });
         }
         
@@ -39,10 +46,15 @@ namespace MVCNBlog.Controllers
             if (id == null)
                 return HttpNotFound("NotFound.");
 
-            //TODO check for rigths
-            var editingArticle = service.GetCommentEntity(id.Value).ToMvcComment();
 
-            return View("Index", editingArticle);
+            if (ModelState.IsValid)
+            {
+                //TODO check for rigths
+                var editingArticle = service.GetCommentEntity(id.Value).ToMvcComment();
+                return View("Index", editingArticle);
+            }
+
+            return (View("Index"));
         }
 
         [HttpPost]

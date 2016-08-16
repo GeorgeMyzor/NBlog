@@ -197,15 +197,15 @@
     <Compile Include="Infrastructure\ValidationAttributes\CorrectNameAttribute.cs" />
     <Compile Include="Infrastructure\ValidationAttributes\CorrectPasswordAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\AbstractUser.cs" />
+    <Compile Include="ViewModels\User\AbstractUser.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
-    <Compile Include="ViewModels\CreatingUserViewModel.cs" />
+    <Compile Include="ViewModels\User\CreatingUserViewModel.cs" />
     <Compile Include="ViewModels\ListViewModel.cs" />
     <Compile Include="ViewModels\ArticleViewModel.cs" />
     <Compile Include="ViewModels\CommentViewModel.cs" />
     <Compile Include="ViewModels\PagingInfo.cs" />
     <Compile Include="ViewModels\Roles\AbstractRole.cs" />
-    <Compile Include="ViewModels\UserViewModel.cs" />
+    <Compile Include="ViewModels\User\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />

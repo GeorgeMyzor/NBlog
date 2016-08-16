@@ -35,7 +35,8 @@ namespace BLL.Services
         public void CreateArticle(BllArticle article)
         {
             article.PublicationDate = DateTime.Today;
-            article.Tags = TagParser.GetTags(article.Content);
+            
+            SetTags(article);
 
             articleRepository.Create(article.ToDalArticle());
             uow.Commit();
@@ -49,9 +50,18 @@ namespace BLL.Services
 
         public void UpdateArticle(BllArticle article)
         {
-            article.Tags = TagParser.GetTags(article.Content);
+            SetTags(article);
+
             articleRepository.Update(article.ToDalArticle());
             uow.Commit();
         }
+
+        private static void SetTags(BllArticle article)
+        {
+            var tags = TagParser.GetTags(article.Title).ToList();
+            tags.AddRange(TagParser.GetTags(article.Content));
+            article.Tags = tags;
+        }
+
     }
 }

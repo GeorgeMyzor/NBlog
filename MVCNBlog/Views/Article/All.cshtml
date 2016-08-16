@@ -6,12 +6,18 @@
 <h2>All articles</h2>
 @foreach (var article in Model.ViewModels)
 {
+    <b>Title:</b>
+    @Html.DisplayFor(modelItem => article.Title)
+    <br />
     <b>Content:</b>
     @Html.DisplayFor(modelItem => article.Content)
+    <br />
     <b>Publication date:</b>
     @Html.DisplayTextFor(modelItem => article.PublicationDate)
+    <br />
     <b>Author:</b>
     @Html.DisplayTextFor(modelItem => article.Author.Name)
+    <br />
     <b>Tags:</b>
     foreach (var tag in article.Tags)
     {

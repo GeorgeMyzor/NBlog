@@ -24,8 +24,8 @@ namespace MVCNBlog
             routes.MapRoute(
                 name: "ArticleAction",
                 url: "articles/{id}/{title}/{action}",
-                defaults: new { controller = "Article", action = "Index", title = UrlParameter.Optional},
-                constraints: new { action = @"Delete|Edit|Index", id = @"\d+" }
+                defaults: new {controller = "Article", action = "Index", title = UrlParameter.Optional},
+                constraints: new {action = @"Delete|Edit|Index", id = @"\d+"}
                 );
 
             routes.MapRoute(

@@ -15,6 +15,7 @@ namespace BLL.Mappers
             return new BllArticle()
             {
                 Id = dalArticle.Id,
+                Title = dalArticle.Title,
                 Content = dalArticle.Content,
                 PublicationDate = dalArticle.PublicationDate,
                 AuthorId = dalArticle.AuthorId,
@@ -29,6 +30,7 @@ namespace BLL.Mappers
             return new DalArticle()
             {
                 Id = articleEntity.Id,
+                Title = articleEntity.Title,
                 Content = articleEntity.Content,
                 PublicationDate = articleEntity.PublicationDate,
                 AuthorId = articleEntity.AuthorId,

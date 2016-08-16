@@ -5,10 +5,15 @@
 }
 
 <h2>Article</h2>
+<b>Title:</b>
+@Html.DisplayFor(modelItem => Model.Title)
+<br/>
 <b>Content:</b>
 @Html.DisplayFor(modelItem => Model.Content)
+<br />
 <b>Publication date:</b>
 @Html.DisplayTextFor(modelItem => Model.PublicationDate)
+<br />
 <b>Author:</b>
 @Html.DisplayTextFor(modelItem => Model.Author.Name)
 <br />
@@ -34,14 +39,15 @@
 @using (Html.BeginForm("Create", "Comment"))
 {
     @Html.AntiForgeryToken()
-    <input type="text" name="Content" placeholder="Type to begin..." />
-            <input type="hidden" name="ArticleId" value="@Model.Id" />
+    <input type="text" name="Content" placeholder="Type to begin..."/>
+    <label>@TempData["CommentError"]</label>
+    <input type="hidden" name="ArticleId" value="@Model.Id"/>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Add comment" class="btn btn-default" />
-                </div>
-            </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Add comment" class="btn btn-default"/>
+        </div>
+    </div>
 }
 
 @Html.ActionLink("Edit article", "Edit", new { Model.Id })

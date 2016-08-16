@@ -14,6 +14,7 @@ namespace MVCNBlog.Infrastructure.Mappers
             return new ArticleViewModel()
             {
                 Id = articleEntity.Id,
+                Title = articleEntity.Title,
                 Content = articleEntity.Content,
                 PublicationDate = articleEntity.PublicationDate,
                 Author = articleEntity.Author?.ToMvcUser(),
@@ -28,6 +29,7 @@ namespace MVCNBlog.Infrastructure.Mappers
             return new BllArticle()
             {
                 Id = mvcArticle.Id,
+                Title = mvcArticle.Title,
                 Content = mvcArticle.Content,
                 PublicationDate = mvcArticle.PublicationDate,
                 AuthorId = mvcArticle.AuthorId

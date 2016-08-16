@@ -15,6 +15,7 @@ namespace DAL.Mappers
             return new DalArticle
             {
                 Id = ormArticle.Id,
+                Title = ormArticle.Title,
                 Content = ormArticle.Content,
                 PublicationDate = ormArticle.PublicationDate,
                 AuthorId = ormArticle.Author?.Id,
@@ -29,6 +30,7 @@ namespace DAL.Mappers
             return new Article
             {
                 Id = dalArticle.Id,
+                Title = dalArticle.Title,
                 Content = dalArticle.Content,
                 PublicationDate = dalArticle.PublicationDate,
                 Tags = new List<Tag>()

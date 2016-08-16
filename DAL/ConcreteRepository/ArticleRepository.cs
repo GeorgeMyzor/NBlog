@@ -58,6 +58,7 @@ namespace DAL.ConcreteRepository
         {
             var ormArticle = context.Set<Article>().Single(u => u.Id == dalArticle.Id);
 
+            ormArticle.Title = dalArticle.Title;
             ormArticle.Content = dalArticle.Content;
             ormArticle.Tags.Clear();
 
