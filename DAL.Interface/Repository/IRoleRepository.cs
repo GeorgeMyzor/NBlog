@@ -10,6 +10,7 @@ namespace DAL.Interface.Repository
 {
     public interface IRoleRepository
     {
+        DalRole GetById(int key);
         DalRole GetByPredicate(Expression<Func<DalRole, bool>> f);
     }
 }

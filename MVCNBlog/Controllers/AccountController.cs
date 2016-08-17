@@ -8,6 +8,7 @@ using BLL.Interface.Services;
 using MVCNBlog.Infrastructure.Mappers;
 using MVCNBlog.Providers;
 using MVCNBlog.ViewModels;
+using MVCNBlog.ViewModels.User;
 
 namespace MVCNBlog.Controllers
 {
@@ -24,8 +25,6 @@ namespace MVCNBlog.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            var type = HttpContext.User.GetType();
-            var iden = HttpContext.User.Identity.GetType();
             ViewBag.ReturnUrl = returnUrl;
 
             return View();
@@ -34,15 +33,14 @@ namespace MVCNBlog.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(RegisterUserViewModel viewModel, string returnUrl)
+        public ActionResult Login(LoginUserViewModel viewModel, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 if (Membership.ValidateUser(viewModel.Name, viewModel.Password))
-                //Проверяет учетные данные пользователя и управляет параметрами пользователей
                 {
+                    //TODO remember me
                     FormsAuthentication.SetAuthCookie(viewModel.Name, true);
-                    //Управляет службами проверки подлинности с помощью форм для веб-приложений
                     if (Url.IsLocalUrl(returnUrl))
                     {
                         return Redirect(returnUrl);

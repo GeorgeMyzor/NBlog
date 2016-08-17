@@ -21,6 +21,11 @@ namespace BLL.Services
             this.roleRepository = repository;
         }
 
+        public BllRole GetRoleEntity(int id)
+        {
+            return roleRepository.GetById(id)?.ToBllRole();
+        }
+
         public BllRole GetRoleEntity(string name)
         {
             return roleRepository.GetByPredicate((role => role.Name == "User")).ToBllRole();

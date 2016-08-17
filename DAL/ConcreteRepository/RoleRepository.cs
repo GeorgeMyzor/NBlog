@@ -21,6 +21,13 @@ namespace DAL.ConcreteRepository
             this.context = uow;
         }
 
+        public DalRole GetById(int key)
+        {
+            var ormRole = context.Set<Role>().FirstOrDefault(role => role.Id == key);
+
+            return ormRole?.ToDalRole();
+        }
+
         public DalRole GetByPredicate(Expression<Func<DalRole, bool>> f)
         {
             //TODO
