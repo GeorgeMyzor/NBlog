@@ -48,6 +48,7 @@
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\ArticleService.cs" />
     <Compile Include="Services\CommentService.cs" />
+    <Compile Include="Services\RoleService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="TagParser.cs" />
   </ItemGroup>

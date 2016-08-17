@@ -32,11 +32,13 @@ namespace DependencyResolver
             kernel.Bind<IAccountService>().To<AccountService>();
             kernel.Bind<IArticleService>().To<ArticleService>();
             kernel.Bind<ICommentService>().To<CommentService>();
+            kernel.Bind<IRoleService>().To<RoleService>();
 
             //Repos
             kernel.Bind<IUserRepository>().To<UserRepository>();
             kernel.Bind<IRepository<DalArticle>>().To<ArticleRepository>();
             kernel.Bind<IRepository<DalComment>>().To<CommentRepository>();
+            kernel.Bind<IRoleRepository>().To<RoleRepository>();
         }
     }
 }

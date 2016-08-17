@@ -38,6 +38,7 @@
 <br />
 @using (Html.BeginForm("Create", "Comment"))
 {
+    //TODO not client side
     @Html.AntiForgeryToken()
     <input type="text" name="Content" placeholder="Type to begin..."/>
     <label>@TempData["CommentError"]</label>

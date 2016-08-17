@@ -46,7 +46,7 @@ namespace MVCNBlog.Infrastructure.Mappers
 
         #region Create user
         
-        public static BllUser ToBllUser(this CreatingUserViewModel userViewModel)
+        public static BllUser ToBllUser(this RegisterUserViewModel userViewModel)
         {
             var roles = new List<IRole>();
             roles.Add(userViewModel.Role);

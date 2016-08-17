@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="ConcreteRepository\ArticleRepository.cs" />
     <Compile Include="ConcreteRepository\CommentRepository.cs" />
+    <Compile Include="ConcreteRepository\RoleRepository.cs" />
     <Compile Include="ConcreteRepository\UnitOfWork.cs" />
     <Compile Include="ConcreteRepository\UserRepository.cs" />
     <Compile Include="Mappers\DalArticleMapper.cs" />

@@ -197,9 +197,12 @@
     <Compile Include="Infrastructure\ValidationAttributes\CorrectNameAttribute.cs" />
     <Compile Include="Infrastructure\ValidationAttributes\CorrectPasswordAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\CustomMembershipProvider.cs" />
+    <Compile Include="Providers\CustomRoleProvider.cs" />
     <Compile Include="ViewModels\User\AbstractUser.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
-    <Compile Include="ViewModels\User\CreatingUserViewModel.cs" />
+    <Compile Include="ViewModels\User\LoginUserViewModel.cs" />
+    <Compile Include="ViewModels\User\RegisterUserViewModel.cs" />
     <Compile Include="ViewModels\ListViewModel.cs" />
     <Compile Include="ViewModels\ArticleViewModel.cs" />
     <Compile Include="ViewModels\CommentViewModel.cs" />
@@ -258,6 +261,8 @@
     <Content Include="Views\Article\Delete.cshtml" />
     <Content Include="Views\Article\All.cshtml" />
     <Content Include="Views\Comment\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

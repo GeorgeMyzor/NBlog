@@ -48,6 +48,7 @@
     <Compile Include="Services\IAccountService.cs" />
     <Compile Include="Services\IArticleService.cs" />
     <Compile Include="Services\ICommentService.cs" />
+    <Compile Include="Services\IRoleService.cs" />
     <Compile Include="Services\IUserService.cs" />
   </ItemGroup>
   <ItemGroup />

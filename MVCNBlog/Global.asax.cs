@@ -19,7 +19,7 @@ namespace MVCNBlog
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ModelBinders.Binders.Add(typeof(UserViewModel), new UserModelBinder());
-            ModelBinders.Binders.Add(typeof(CreatingUserViewModel), new UserModelBinder());
+            ModelBinders.Binders.Add(typeof(RegisterUserViewModel), new UserModelBinder());
             ModelBinders.Binders.Add(typeof(AccountViewModel), new AccountModelBinder());
         }
     }

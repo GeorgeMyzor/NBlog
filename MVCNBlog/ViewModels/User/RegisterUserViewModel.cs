@@ -9,7 +9,7 @@ using MVCNBlog.ViewModels.Roles;
 
 namespace MVCNBlog.ViewModels
 {
-    public class CreatingUserViewModel : AbstractUser
+    public class RegisterUserViewModel : AbstractUser
     {
         [Remote("ValidatePassword", "User")]
         [CorrectPassword(ErrorMessage = "Password should be 5 to 15 length, at least one digit.")]
