@@ -7,6 +7,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using MVCNBlog.Infrastructure.ModelBinders;
 using MVCNBlog.ViewModels;
+using MVCNBlog.ViewModels.User;
 
 namespace MVCNBlog
 {

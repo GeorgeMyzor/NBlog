@@ -8,10 +8,11 @@ using BLL.Interface.Services;
 using MVCNBlog.Infrastructure.Mappers;
 using MVCNBlog.Providers;
 using MVCNBlog.ViewModels;
+using MVCNBlog.ViewModels.User;
 
 namespace MVCNBlog.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly IAccountService service;

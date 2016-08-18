@@ -13,6 +13,7 @@ using MVCNBlog.ViewModels.Roles;
 
 namespace MVCNBlog.Controllers
 {
+    [Authorize]
     public class ArticleController : Controller
     {
         private readonly IArticleService service;
@@ -24,6 +25,7 @@ namespace MVCNBlog.Controllers
             pageSize = int.Parse(WebConfigurationManager.AppSettings["PageSize"]);
         }
         
+        [AllowAnonymous]
         public ActionResult Index(int? id, string title)
         {
             var article = service.GetArticleEntity(id.Value).ToMvcArticle();
@@ -39,6 +41,7 @@ namespace MVCNBlog.Controllers
             return View(article);
         }
 
+        [AllowAnonymous]
         public ActionResult All(int page = 1)
         {
             var articles = new ListViewModel<ArticleViewModel>()

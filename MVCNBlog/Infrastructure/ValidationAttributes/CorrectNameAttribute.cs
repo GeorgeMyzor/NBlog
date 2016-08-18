@@ -9,6 +9,11 @@ namespace MVCNBlog.Infrastructure.ValidationAttributes
 {
     public class CorrectNameAttribute : RequiredAttribute
     {
+        public CorrectNameAttribute()
+        {
+            ErrorMessage = "Name should be 3 to 10 length, only letters.";
+        }
+
         public override bool IsValid(object value)
         {
             bool isValidName = false;

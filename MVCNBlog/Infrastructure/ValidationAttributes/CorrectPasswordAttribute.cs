@@ -9,6 +9,11 @@ namespace MVCNBlog.Infrastructure.ValidationAttributes
 {
     public class CorrectPasswordAttribute : RequiredAttribute
     {
+        public CorrectPasswordAttribute()
+        {
+            ErrorMessage = "Password should be 5 to 15 length, at least one digit.";
+        }
+
         public override bool IsValid(object value)
         {
             bool isValidPassword = false;

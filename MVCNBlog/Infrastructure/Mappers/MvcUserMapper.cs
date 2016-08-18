@@ -5,6 +5,7 @@ using System.Web;
 using BLL.Interface.Entities;
 using MVCNBlog.ViewModels;
 using MVCNBlog.ViewModels.Roles;
+using MVCNBlog.ViewModels.User;
 
 namespace MVCNBlog.Infrastructure.Mappers
 {

@@ -11,6 +11,7 @@ using MVCNBlog.ViewModels.Roles;
 
 namespace MVCNBlog.Controllers
 {
+    [Authorize]
     public class CommentController : Controller
     {
         private readonly ICommentService service;
@@ -22,7 +23,6 @@ namespace MVCNBlog.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
         public ActionResult Create(CommentViewModel commentViewModel)
         {
             int id = commentViewModel.ArticleId;

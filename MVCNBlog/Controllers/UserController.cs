@@ -13,10 +13,11 @@ using MVCNBlog.Infrastructure.ModelBinders;
 using MVCNBlog.Infrastructure.ValidationAttributes;
 using MVCNBlog.ViewModels;
 using MVCNBlog.ViewModels.Roles;
+using MVCNBlog.ViewModels.User;
 
 namespace MVCNBlog.Controllers
 {
-    //[Authorize(Roles = "Administrator,Moderator")]
+    [Authorize(Roles = "Administrator,Moderator")]
     public class UserController : Controller
     {
         private readonly IUserService service;

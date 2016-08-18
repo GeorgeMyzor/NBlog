@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using MVCNBlog.Infrastructure.Mappers;
 using MVCNBlog.ViewModels;
 using MVCNBlog.ViewModels.Roles;
+using MVCNBlog.ViewModels.User;
 
 namespace MVCNBlog.Infrastructure.ModelBinders
 {
