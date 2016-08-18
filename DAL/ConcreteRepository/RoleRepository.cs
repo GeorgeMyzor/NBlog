@@ -30,8 +30,10 @@ namespace DAL.ConcreteRepository
 
         public DalRole GetByPredicate(Expression<Func<DalRole, bool>> f)
         {
-            //TODO
-            return context.Set<Role>().FirstOrDefault(role => role.Name == "User").ToDalRole();
+            var newExpr = Modifier.Convert<DalRole, Role>(f);
+
+            var role = context.Set<Role>().FirstOrDefault(newExpr);
+            return role.ToDalRole();
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using MVCNBlog.Infrastructure.ValidationAttributes;
 
-namespace MVCNBlog.ViewModels.User
+namespace MVCNBlog.ViewModels
 {
     public class LoginUserViewModel : AbstractUser
     {

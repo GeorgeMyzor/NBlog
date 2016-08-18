@@ -22,7 +22,13 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>
-                        @Html.ActionLink("Hello, " + User.Identity.Name + "!", "Index", "Home", routeValues: null, htmlAttributes: new { title = "Manage" })
+                        @Html.ActionLink("Hello, " + User.Identity.Name + "!", "Index", "Home", routeValues: null, htmlAttributes: new {title = "Manage"})
+                    </li>
+                    <li>
+                        @Html.ActionLink("Login", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Logoff", "LogOff", "Account", new { area = "" }, new { @class = "navbar-brand" })
                     </li>
                 </ul>
             </div>

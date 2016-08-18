@@ -8,7 +8,6 @@ using BLL.Interface.Services;
 using MVCNBlog.Infrastructure.Mappers;
 using MVCNBlog.Providers;
 using MVCNBlog.ViewModels;
-using MVCNBlog.ViewModels.User;
 
 namespace MVCNBlog.Controllers
 {
@@ -22,6 +21,7 @@ namespace MVCNBlog.Controllers
             this.service = service;
         }
 
+        [HttpGet]
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -47,7 +47,7 @@ namespace MVCNBlog.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("All", "Article");
                     }
                 }
                 else

@@ -20,6 +20,7 @@ namespace MVCNBlog
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ModelBinders.Binders.Add(typeof(UserViewModel), new UserModelBinder());
             ModelBinders.Binders.Add(typeof(RegisterUserViewModel), new UserModelBinder());
+            ModelBinders.Binders.Add(typeof(LoginUserViewModel), new UserModelBinder());
             ModelBinders.Binders.Add(typeof(AccountViewModel), new AccountModelBinder());
         }
     }

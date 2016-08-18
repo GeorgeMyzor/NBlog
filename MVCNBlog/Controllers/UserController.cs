@@ -121,6 +121,7 @@ namespace MVCNBlog.Controllers
 
         #region Remote validation
 
+        [AllowAnonymous]
         public JsonResult ValidateName(string name)
         {
             if (string.IsNullOrEmpty(name))
@@ -141,6 +142,7 @@ namespace MVCNBlog.Controllers
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
+        [AllowAnonymous]
         public JsonResult ValidatePassword(string password)
         {
             if (password != null)
