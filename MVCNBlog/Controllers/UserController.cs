@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Configuration;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using BLL.Interface.Entities;
 using BLL.Interface.Services;
@@ -15,7 +16,7 @@ using MVCNBlog.ViewModels.Roles;
 
 namespace MVCNBlog.Controllers
 {
-    [Authorize(Roles = "Administrator,Moderator")]
+    //[Authorize(Roles = "Administrator,Moderator")]
     public class UserController : Controller
     {
         private readonly IUserService service;
@@ -64,6 +65,8 @@ namespace MVCNBlog.Controllers
 
             if (ModelState.IsValid)
             {
+                //TODO refactor?
+                userViewModel.Password = Crypto.HashPassword(userViewModel.Password);
                 service.CreateUser(userViewModel.ToBllUser());
                 return RedirectToAction("Index");
             }

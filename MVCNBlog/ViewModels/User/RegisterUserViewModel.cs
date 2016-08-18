@@ -13,11 +13,13 @@ namespace MVCNBlog.ViewModels
     {
         [Remote("ValidatePassword", "User")]
         [CorrectPassword(ErrorMessage = "Password should be 5 to 15 length, at least one digit.")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Remote("ValidatePassword", "User")]
         [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Passwords must match")]
         [CorrectPassword(ErrorMessage = "Password should be 5 to 15 length, at least one digit.")]
+        [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
     }
 }

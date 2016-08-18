@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using MVCNBlog.Infrastructure.Mappers;
 using MVCNBlog.ViewModels;
@@ -20,7 +21,7 @@ namespace MVCNBlog.Infrastructure.ModelBinders
                 propertyDescriptor.SetValue(bindingContext.Model, DateTime.Today);
                 return;
             }
-
+            
             if (propertyDescriptor.Name == nameof(UserViewModel.Role))
             {
                 int roleId = FromPostedData<int>(bindingContext, "roleId");

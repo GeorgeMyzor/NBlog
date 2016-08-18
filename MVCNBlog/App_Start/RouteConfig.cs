@@ -62,8 +62,7 @@ namespace MVCNBlog
             #endregion
 
             #region Comment routes
-
-
+            
             routes.MapRoute(
                 name: "CommentAction",
                 url: "comment/{id}",
@@ -74,10 +73,21 @@ namespace MVCNBlog
 
             #endregion
 
+            #region Account routes
+
+            routes.MapRoute(
+               name: "AuthAction",
+               url: "{action}",
+               defaults: new { controller = "Account" },
+                constraints: new { action = @"Login|Register|Logoff" }
+               );
+
+            #endregion
+
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new {controller = "Home", action = "Index", id = UrlParameter.Optional}
+                url: "",
+                defaults: new {controller = "Article", action = "All"}
                 );
 
         }

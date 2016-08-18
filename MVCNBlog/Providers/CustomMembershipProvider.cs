@@ -29,7 +29,7 @@ namespace MVCNBlog.Providers
             var user = new BllUser
             {
                 Name = name,
-                Password = password, //TODO Crypto.HashPassword(password),
+                Password = Crypto.HashPassword(password),
                 CreationDate = DateTime.Now
             };
 
@@ -51,7 +51,7 @@ namespace MVCNBlog.Providers
         {
             var user = UserService.GetUserEntity(name);
 
-            if (user != null) //TODO && Crypto.VerifyHashedPassword(user.Password, password)
+            if (user != null && Crypto.VerifyHashedPassword(user.Password, password))
                               //Определяет, соответствуют ли заданный хэш RFC 2898 и пароль друг другу
             {
                 return true;
