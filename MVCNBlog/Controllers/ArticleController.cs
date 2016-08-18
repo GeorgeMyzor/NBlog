@@ -46,12 +46,7 @@ namespace MVCNBlog.Controllers
         {
             var articles = new ListViewModel<ArticleViewModel>()
             {
-                ViewModels =
-                    service.GetAllArticleEntities()
-                        .Select(article => article.ToMvcArticle())
-                        .OrderBy((article => article.Id))
-                        .Skip((page - 1)*pageSize)
-                        .Take(pageSize),
+                ViewModels = service.GetPagedArticles(page, pageSize).Select(bllArticle => bllArticle.ToMvcArticle()),
                 PagingInfo = new PagingInfo()
                 {
                     CurrentPage = page,

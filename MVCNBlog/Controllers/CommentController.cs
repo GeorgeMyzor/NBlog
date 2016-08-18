@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using BLL.Interface.Entities;
 using BLL.Interface.Services;
 using MVCNBlog.Infrastructure.Mappers;
@@ -14,11 +15,13 @@ namespace MVCNBlog.Controllers
     [Authorize]
     public class CommentController : Controller
     {
-        private readonly ICommentService service;
+        private readonly ICommentService commentService;
+        private readonly IUserService userService;
 
-        public CommentController(ICommentService service)
+        public CommentController(ICommentService commentService, IUserService userService)
         {
-            this.service = service;
+            this.commentService = commentService;
+            this.userService = userService;
         }
 
         [HttpPost]
@@ -28,9 +31,10 @@ namespace MVCNBlog.Controllers
             int id = commentViewModel.ArticleId;
             if (ModelState.IsValid)
             {
-                //TODO auth user
-                commentViewModel.AuthorId = 7022;
-                service.CreateComment(commentViewModel.ToBllComment());
+                var currentUser = userService.GetUserEntity(User.Identity.Name).ToMvcUser();
+                commentViewModel.AuthorId = currentUser.Id;
+
+                commentService.CreateComment(commentViewModel.ToBllComment());
 
                 return RedirectToAction("Index", "Article", new { id });
             }
@@ -45,13 +49,16 @@ namespace MVCNBlog.Controllers
         {
             if (id == null)
                 return HttpNotFound("NotFound.");
-
-
+            
             if (ModelState.IsValid)
             {
-                //TODO check for rigths
-                var editingArticle = service.GetCommentEntity(id.Value).ToMvcComment();
-                return View("Index", editingArticle);
+                var editingComment= commentService.GetCommentEntity(id.Value).ToMvcComment();
+
+                if (editingComment.Author.Name == User.Identity.Name || Roles.IsUserInRole("Moderator") || Roles.IsUserInRole("Administrator"))
+                {
+                    return View("Index", editingComment);
+                }
+                throw new HttpException(403, "No permission ");
             }
 
             return (View("Index"));
@@ -61,9 +68,7 @@ namespace MVCNBlog.Controllers
         [ActionName("Edit")]
         public ActionResult ConfirmEdit(CommentViewModel editingComment)
         {
-            editingComment.AuthorId = 7022;
-
-            service.UpdateComment(editingComment.ToBllComment());
+            commentService.UpdateComment(editingComment.ToBllComment());
 
             int id = editingComment.ArticleId;
             return RedirectToAction("Index","Article", new {id});
@@ -73,7 +78,7 @@ namespace MVCNBlog.Controllers
         [ActionName("Delete")]
         public ActionResult ConfirmDelete(CommentViewModel deletingComment)
         {
-            service.DeleteComment(new BllComment()
+            commentService.DeleteComment(new BllComment()
             {
                 Id = deletingComment.Id
             });

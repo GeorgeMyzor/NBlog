@@ -14,12 +14,17 @@ namespace BLL.Services
     public class ArticleService : IArticleService
     {
         private readonly IUnitOfWork uow;
-        private readonly IRepository<DalArticle> articleRepository;
+        private readonly IArticleRepository articleRepository;
 
-        public ArticleService(IUnitOfWork uow, IRepository<DalArticle> repository)
+        public ArticleService(IUnitOfWork uow, IArticleRepository repository)
         {
             this.uow = uow;
             this.articleRepository = repository;
+        }
+
+        public int GetArticleCount()
+        {
+            return articleRepository.GetCount();
         }
 
         public BllArticle GetArticleEntity(int id)
@@ -30,6 +35,16 @@ namespace BLL.Services
         public IEnumerable<BllArticle> GetAllArticleEntities()
         {
             return articleRepository.GetAll().Select(article => article.ToBllArticle());
+        }
+
+        public IEnumerable<BllArticle> GetPagedArticles(int pageNum, int pageSize)
+        {
+            return articleRepository.GetPagedArticles(pageNum, pageSize).Select(dalArticle => dalArticle.ToBllArticle());
+        }
+
+        public IEnumerable<BllArticle> GetPagedArticles(int pageNum, int pageSize, int userId)
+        {
+            return articleRepository.GetPagedArticles(pageNum, pageSize, userId).Select(dalArticle => dalArticle.ToBllArticle());
         }
 
         public void CreateArticle(BllArticle article)

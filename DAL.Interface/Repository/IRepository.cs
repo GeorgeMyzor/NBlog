@@ -10,8 +10,9 @@ namespace DAL.Interface.Repository
 {
     public interface IRepository<TEntity> where TEntity : IEntity
     {
-        IEnumerable<TEntity> GetAll();
+        int GetCount();
         TEntity GetById(int key);
+        IEnumerable<TEntity> GetAll();
         TEntity GetByPredicate(Expression<Func<TEntity, bool>> f);
         void Create(TEntity e);
         void Delete(TEntity e);

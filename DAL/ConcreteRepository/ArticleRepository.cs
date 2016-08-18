@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.Interface.DTO;
@@ -12,7 +13,7 @@ using ORM.Entities;
 
 namespace DAL.ConcreteRepository
 {
-    public class ArticleRepository : IRepository<DalArticle>
+    public class ArticleRepository : IArticleRepository
     {
         private readonly DbContext context;
 
@@ -21,9 +22,9 @@ namespace DAL.ConcreteRepository
             this.context = uow;
         }
 
-        public IEnumerable<DalArticle> GetAll()
+        public int GetCount()
         {
-            return context.Set<Article>().ToList().Select(ormArticle => ormArticle.ToDalArticle());
+            return context.Set<Article>().Count();
         }
 
         public DalArticle GetById(int id)
@@ -32,9 +33,31 @@ namespace DAL.ConcreteRepository
 
             return ormArticle.ToDalArticle();
         }
+        
+        public IEnumerable<DalArticle> GetAll()
+        {
+            return context.Set<Article>().ToList().Select(ormArticle => ormArticle.ToDalArticle());
+        }
+
+        public IEnumerable<DalArticle> GetPagedArticles(int pageNum, int pageSize)
+        {
+            var ormArticles = context.Set<Article>().OrderByDescending(article => article.PublicationDate).
+                Skip((pageNum - 1) * pageSize).Take(pageSize).ToList();
+
+            return ormArticles.Select(article => article.ToDalArticle());
+        }
+
+        public IEnumerable<DalArticle> GetPagedArticles(int pageNum, int pageSize, int userId)
+        {
+            var ormArticles = context.Set<Article>().OrderByDescending(article => article.PublicationDate).
+                Where(x => x.Author.Id == userId).Skip((pageNum - 1) * pageSize).Take(pageSize).ToList();
+
+            return ormArticles.Select(article => article.ToDalArticle());
+        }
 
         public DalArticle GetByPredicate(Expression<Func<DalArticle, bool>> f)
         {
+            //TODO todo
             throw new NotImplementedException();
         }
 

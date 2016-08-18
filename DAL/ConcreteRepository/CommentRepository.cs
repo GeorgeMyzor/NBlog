@@ -21,9 +21,14 @@ namespace DAL.ConcreteRepository
             this.context = uow;
         }
 
+        public int GetCount()
+        {
+            return context.Set<Comment>().Count();
+        }
+
         public IEnumerable<DalComment> GetAll()
         {
-            throw new NotImplementedException();
+            return context.Set<Comment>().ToList().Select(ormComment => ormComment.ToDalComment());
         }
 
         public DalComment GetById(int id)

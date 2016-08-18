@@ -9,8 +9,11 @@ namespace BLL.Interface.Services
 {
     public interface IArticleService
     {
+        int GetArticleCount();
         BllArticle GetArticleEntity(int id);
         IEnumerable<BllArticle> GetAllArticleEntities();
+        IEnumerable<BllArticle> GetPagedArticles(int pageNum, int pageSize);
+        IEnumerable<BllArticle> GetPagedArticles(int pageNum, int pageSize, int userId);
         void CreateArticle(BllArticle article);
         void DeleteArticle(BllArticle article);
         void UpdateArticle(BllArticle article);
