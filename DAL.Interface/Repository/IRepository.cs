@@ -10,7 +10,7 @@ namespace DAL.Interface.Repository
 {
     public interface IRepository<TEntity> where TEntity : IEntity
     {
-        int GetCount();
+        int GetCount(string userName = null);
         TEntity GetById(int key);
         IEnumerable<TEntity> GetAll();
         TEntity GetByPredicate(Expression<Func<TEntity, bool>> f);

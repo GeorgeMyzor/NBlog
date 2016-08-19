@@ -21,10 +21,12 @@ namespace DAL.ConcreteRepository
         {
             this.context = uow;
         }
-
-        public int GetCount()
+        
+        public int GetCount(string userName = null)
         {
-            return context.Set<Article>().Count();
+            return userName == null
+                ? context.Set<Article>().Count()
+                : context.Set<Article>().Count(article => article.Author.Name == userName);
         }
 
         public DalArticle GetById(int id)

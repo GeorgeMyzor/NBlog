@@ -22,9 +22,14 @@ namespace BLL.Services
             this.articleRepository = repository;
         }
 
-        public int GetArticleCount()
+        public int GetArticlesCount()
         {
             return articleRepository.GetCount();
+        }
+
+        public int GetArticlesCount(string userName)
+        {
+            return articleRepository.GetCount(userName);
         }
 
         public BllArticle GetArticleEntity(int id)
@@ -49,7 +54,7 @@ namespace BLL.Services
 
         public void CreateArticle(BllArticle article)
         {
-            article.PublicationDate = DateTime.Today;
+            article.PublicationDate = DateTime.Now;
             
             SetTags(article);
 

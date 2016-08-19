@@ -9,6 +9,7 @@ namespace BLL.Interface.Services
 {
     public interface ICommentService
     {
+        int GetCommentsCount(string userName);
         BllComment GetCommentEntity(int id);
         void CreateComment(BllComment comment);
         void DeleteComment(BllComment comment);

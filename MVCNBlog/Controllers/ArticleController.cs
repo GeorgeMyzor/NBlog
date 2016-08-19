@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.Mvc;
+using System.Web.Security;
 using BLL.Interface.Entities;
 using BLL.Interface.Services;
 using MVCNBlog.Infrastructure;
@@ -16,29 +17,35 @@ namespace MVCNBlog.Controllers
     [Authorize]
     public class ArticleController : Controller
     {
-        private readonly IArticleService service;
+        private readonly IArticleService articleService;
+        private readonly IUserService userService;
         private readonly int pageSize;
 
-        public ArticleController(IArticleService service)
+        public ArticleController(IArticleService articleService, IUserService userService)
         {
-            this.service = service;
+            this.articleService = articleService;
+            this.userService = userService;
             pageSize = int.Parse(WebConfigurationManager.AppSettings["PageSize"]);
         }
         
         [AllowAnonymous]
         public ActionResult Index(int? id, string title)
         {
-            var article = service.GetArticleEntity(id.Value).ToMvcArticle();
-
-            string urlWithTitle = article.Title.RemoveSpecialCharacters();
-            urlWithTitle = Url.Encode(urlWithTitle);
-            
-            if (!urlWithTitle.Equals(title))
+            if (id != null)
             {
-                return RedirectToAction("Index", new { id, title = urlWithTitle });
-            }
+                var article = articleService.GetArticleEntity(id.Value).ToMvcArticle();
+
+                string urlWithTitle = article.Title.RemoveSpecialCharacters();
+                urlWithTitle = Url.Encode(urlWithTitle);
             
-            return View(article);
+                if (!urlWithTitle.Equals(title))
+                {
+                    return RedirectToAction("Index", new { id, title = urlWithTitle });
+                }
+            
+                return View(article);
+            }
+            return HttpNotFound("Not found.");
         }
 
         [AllowAnonymous]
@@ -46,12 +53,12 @@ namespace MVCNBlog.Controllers
         {
             var articles = new ListViewModel<ArticleViewModel>()
             {
-                ViewModels = service.GetPagedArticles(page, pageSize).Select(bllArticle => bllArticle.ToMvcArticle()),
+                ViewModels = articleService.GetPagedArticles(page, pageSize).Select(bllArticle => bllArticle.ToMvcArticle()),
                 PagingInfo = new PagingInfo()
                 {
                     CurrentPage = page,
                     ItemsPerPage = pageSize,
-                    TotalItems = service.GetAllArticleEntities().Count()
+                    TotalItems = articleService.GetArticlesCount()
                 }
             };
 
@@ -69,12 +76,12 @@ namespace MVCNBlog.Controllers
 
         public ActionResult Create(ArticleViewModel articleViewModel)
         {
-            articleViewModel.AuthorId = 7022;
-            service.CreateArticle(articleViewModel.ToBllArticle());
-
+            var currentUser = userService.GetUserEntity(User.Identity.Name).ToMvcUser();
+            articleViewModel.AuthorId = currentUser.Id;
+            
             if (ModelState.IsValid)
             {
-                service.CreateArticle(articleViewModel.ToBllArticle());
+                articleService.CreateArticle(articleViewModel.ToBllArticle());
                 return RedirectToAction("All");
             }
 
@@ -86,11 +93,16 @@ namespace MVCNBlog.Controllers
         {
             if (id == null)
                 return HttpNotFound("NotFound.");
+            
+            var editingArticle = articleService.GetArticleEntity(id.Value).ToMvcArticle();
 
-            //TODO check for rigths
-            var editingArticle = service.GetArticleEntity(id.Value).ToMvcArticle();
+            if (editingArticle.Author?.Name == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
+                Roles.IsUserInRole("Administrator"))
+            {
+                return View(editingArticle);
+            }
 
-            return View(editingArticle);
+            throw new HttpException(403, "No permission ");
         }
 
         [HttpPost]
@@ -99,7 +111,7 @@ namespace MVCNBlog.Controllers
         {
             if (ModelState.IsValid)
             {
-                service.UpdateArticle(editingArticle.ToBllArticle());
+                articleService.UpdateArticle(editingArticle.ToBllArticle());
 
                 int id = editingArticle.Id;
                 return RedirectToAction("Index", "Article", new { id });
@@ -113,18 +125,23 @@ namespace MVCNBlog.Controllers
         {
             if (id == null)
                 return HttpNotFound("NotFound.");
+            
+            var deletingArticle = articleService.GetArticleEntity(id.Value).ToMvcArticle();
 
-            //TODO check for rigths
-            var deletingArticle = service.GetArticleEntity(id.Value).ToMvcArticle();
+            if (deletingArticle.Author?.Name == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
+                Roles.IsUserInRole("Administrator"))
+            {
+                return View(deletingArticle);
+            }
 
-            return View(deletingArticle);
+            throw new HttpException(403, "No permission ");
         }
 
         [HttpPost]
         [ActionName("Delete")]
         public ActionResult ConfirmDelete(ArticleViewModel editingArticle)
         {
-            service.DeleteArticle(editingArticle.ToBllArticle());
+            articleService.DeleteArticle(editingArticle.ToBllArticle());
 
             return RedirectToAction("All");
         }

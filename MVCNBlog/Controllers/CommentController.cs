@@ -54,10 +54,11 @@ namespace MVCNBlog.Controllers
             {
                 var editingComment= commentService.GetCommentEntity(id.Value).ToMvcComment();
 
-                if (editingComment.Author.Name == User.Identity.Name || Roles.IsUserInRole("Moderator") || Roles.IsUserInRole("Administrator"))
+                if (editingComment.Author?.Name == User.Identity.Name || Roles.IsUserInRole("Moderator") || Roles.IsUserInRole("Administrator"))
                 {
                     return View("Index", editingComment);
                 }
+
                 throw new HttpException(403, "No permission ");
             }
 

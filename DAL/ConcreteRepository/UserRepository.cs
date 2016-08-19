@@ -25,10 +25,12 @@ namespace DAL.ConcreteRepository
         {
             return context.Set<User>().ToList().Select(ormUser => ormUser.ToDalUser());
         }
-
-        public int GetCount()
+        
+        public int GetCount(string userName = null)
         {
-            return context.Set<User>().Count();
+            return userName == null
+                ? context.Set<User>().Count()
+                : context.Set<User>().Count(user => user.Name == userName);
         }
 
         public DalUser GetById(int key)

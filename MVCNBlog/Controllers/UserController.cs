@@ -42,7 +42,7 @@ namespace MVCNBlog.Controllers
                 {
                     CurrentPage = page,
                     ItemsPerPage = pageSize,
-                    TotalItems = service.GetAllUserEntities().Count()
+                    TotalItems = service.GetUsersCount()
                 }
             };
 

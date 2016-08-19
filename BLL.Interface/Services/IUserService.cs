@@ -9,6 +9,7 @@ namespace BLL.Interface.Services
 {
     public interface IUserService
     {
+        int GetUsersCount();
         BllUser GetUserEntity(int id);
         BllUser GetUserEntity(string name);
         IEnumerable<BllUser> GetAllUserEntities();

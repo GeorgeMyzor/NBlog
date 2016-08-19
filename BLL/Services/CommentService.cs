@@ -22,6 +22,11 @@ namespace BLL.Services
             this.commentRepository = repository;
         }
 
+        public int GetCommentsCount(string userName)
+        {
+            return commentRepository.GetCount(userName);
+        }
+
         public BllComment GetCommentEntity(int id)
         {
             return commentRepository.GetById(id).ToBllComment();
@@ -29,7 +34,7 @@ namespace BLL.Services
 
         public void CreateComment(BllComment comment)
         {
-            comment.PublicationDate = DateTime.Today;
+            comment.PublicationDate = DateTime.Now;
 
             commentRepository.Create(comment.ToDalComment());
             uow.Commit();
