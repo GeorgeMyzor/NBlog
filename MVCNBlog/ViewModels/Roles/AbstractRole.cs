@@ -16,23 +16,14 @@ namespace MVCNBlog.ViewModels.Roles
         int Cost { get; set; }
     }
 
-    public class UserRole : IRole
+    public class Role : IRole
     {
         public virtual int RoleId { get; set; }
         public virtual string RoleName { get; set; }
     }
 
-    public class VipUserRole : UserRole, IPayedRole
+    public class PayedRole : Role, IPayedRole
     {
         public int Cost { get; set; }
-    }
-
-    public class ModeratorRole : UserRole
-    {
-        //Moder rules
-    }
-
-    public class AdministratorRole : ModeratorRole
-    {
     }
 }

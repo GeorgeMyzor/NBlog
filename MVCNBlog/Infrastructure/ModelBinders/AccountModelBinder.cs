@@ -29,7 +29,10 @@ namespace MVCNBlog.Infrastructure.ModelBinders
                 bool isVip = isVipStr == "on";
                 if (isVip)
                 {
-                    IPayedRole payedRole = new VipUserRole();
+                    IPayedRole payedRole = new PayedRole()
+                    {
+                        RoleId = 3
+                    };
 
                     propertyDescriptor.SetValue(bindingContext.Model, payedRole);
                 }

@@ -15,15 +15,10 @@ namespace MVCNBlog.Infrastructure.Mappers
             string roleName = bllRole.Name;
             switch (roleId)
             {
-                case 1:
-                    return new AdministratorRole() { RoleId = roleId, RoleName = roleName };
-                case 2:
-                    return new ModeratorRole() { RoleId = roleId, RoleName = roleName };
                 case 3:
-                    return new VipUserRole() { RoleId = roleId, RoleName = roleName };
-                case 4:
+                    return new PayedRole() { RoleId = roleId, RoleName = roleName };
                 default:
-                    return new UserRole() { RoleId = roleId, RoleName = roleName };
+                    return new Role() { RoleId = roleId, RoleName = roleName };
             }
         }
 
@@ -31,15 +26,10 @@ namespace MVCNBlog.Infrastructure.Mappers
         {
             switch (roleId)
             {
-                case 1:
-                    return new AdministratorRole() { RoleId = roleId };
-                case 2:
-                    return new ModeratorRole() { RoleId = roleId };
                 case 3:
-                    return new VipUserRole() { RoleId = roleId };
-                case 4:
+                    return new PayedRole() { RoleId = roleId };
                 default:
-                    return new UserRole() { RoleId = roleId };
+                    return new Role() { RoleId = roleId };
             }
         }
 
