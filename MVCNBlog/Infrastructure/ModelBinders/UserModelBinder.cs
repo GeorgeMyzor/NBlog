@@ -31,21 +31,7 @@ namespace MVCNBlog.Infrastructure.ModelBinders
                 propertyDescriptor.SetValue(bindingContext.Model, role);
                 return;
             }
-
-            if (propertyDescriptor.Name == nameof(UserViewModel.PayedRole))
-            {
-                string isVipStr = FromPostedData<string>(bindingContext, "isVip");
-                bool isVip = isVipStr == "on";
-                if (isVip)
-                {
-                    IPayedRole payedRole = new VipUserRole();
-
-                    propertyDescriptor.SetValue(bindingContext.Model, payedRole);
-                }
-
-                return;
-            }
-
+            
             base.BindProperty(controllerContext, bindingContext, propertyDescriptor);
         }
 

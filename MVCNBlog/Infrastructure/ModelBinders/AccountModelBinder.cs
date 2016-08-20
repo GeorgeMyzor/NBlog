@@ -12,15 +12,8 @@ namespace MVCNBlog.Infrastructure.ModelBinders
 {
     public class AccountModelBinder : DefaultModelBinder
     {
-        //TODO same code as usermodelbinder
         protected override void BindProperty(ControllerContext controllerContext, ModelBindingContext bindingContext, PropertyDescriptor propertyDescriptor)
         {
-            if (propertyDescriptor.Name == nameof(AccountViewModel.CreationDate))
-            {
-                propertyDescriptor.SetValue(bindingContext.Model, DateTime.Today);
-                return;
-            }
-
             if (propertyDescriptor.Name == nameof(AccountViewModel.Role))
             {
                 int roleId = FromPostedData<int>(bindingContext, "roleId");

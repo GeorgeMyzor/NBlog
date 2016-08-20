@@ -21,6 +21,22 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.SubscriptionCost, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.DisplayTextFor(model => model.SubscriptionCost)
+                @Html.ValidationMessageFor(model => model.SubscriptionCost, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Rank, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.DisplayTextFor(model => model.Rank)
+                @Html.ValidationMessageFor(model => model.Rank, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.Role, htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10">
                 <select class="form-control" name="roleId">

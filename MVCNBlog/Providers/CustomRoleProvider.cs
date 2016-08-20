@@ -19,6 +19,7 @@ namespace MVCNBlog.Providers
 
         public override bool IsUserInRole(string name, string roleName)
         {
+            throw new NotImplementedException();
             var user = UserService.GetAllUserEntities().FirstOrDefault(u => u.Name == name).ToMvcUser();
 
             if (user == null) return false;
@@ -41,10 +42,11 @@ namespace MVCNBlog.Providers
             var user = UserService.GetAllUserEntities().FirstOrDefault(u => u.Name == name).ToMvcUser();
 
             var userRole = user.Role;
+            var userPayedRole = user.PayedRole;
 
             if (userRole != null)
             {
-                roles = new string[] { userRole.RoleName };
+                roles = new string[] { userRole.RoleName, userPayedRole?.RoleName};
             }
             return roles;
         }

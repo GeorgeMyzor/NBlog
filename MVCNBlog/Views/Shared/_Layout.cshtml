@@ -20,6 +20,10 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <li>U are admin PogChamp</li>
+                    }
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>
                         @Html.ActionLink("Hello, " + User.Identity.Name + "!", "Index", "Home", routeValues: null, htmlAttributes: new {title = "Manage"})

@@ -35,5 +35,12 @@ namespace DAL.ConcreteRepository
             var role = context.Set<Role>().FirstOrDefault(newExpr);
             return role.ToDalRole();
         }
+
+        public int GetRoleCost(int roleId)
+        {
+            var roleCost = context.Set<RoleCosts>().FirstOrDefault(dbRoleCost => dbRoleCost.RoleId == roleId);
+
+            return roleCost?.Cost ?? 0;
+        }
     }
 }

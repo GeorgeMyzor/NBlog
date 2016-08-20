@@ -11,7 +11,6 @@ namespace BLL.Interface.Services
     {
         BllUser GetAccountEntity(int id);
         IEnumerable<BllUser> GetAllUserEntities();
-        void CreateAccount(BllUser user);
         void DeleteAccount(BllUser user);
         void UpdateAccount(BllUser user);
         void UpdateAccountPaidRole(BllUser user);

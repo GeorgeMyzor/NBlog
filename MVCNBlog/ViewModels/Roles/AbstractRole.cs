@@ -24,8 +24,7 @@ namespace MVCNBlog.ViewModels.Roles
 
     public class VipUserRole : UserRole, IPayedRole
     {
-        public override int RoleId { get; set; } = 3;
-        public int Cost { get; set; } = 322;
+        public int Cost { get; set; }
     }
 
     public class ModeratorRole : UserRole

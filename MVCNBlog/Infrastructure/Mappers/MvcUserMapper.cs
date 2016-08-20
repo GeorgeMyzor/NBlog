@@ -11,13 +11,11 @@ namespace MVCNBlog.Infrastructure.Mappers
 {
     public static class MvcUserMapper
     {
-        //TODO refactor users
         #region View user
 
         public static UserViewModel ToMvcUser(this BllUser bllUser)
         {
-            var roles = new List<IRole>();
-            roles = bllUser.Roles.Select(bllRole => bllRole.ToMvcRole()).ToList();
+            var roles = bllUser.Roles.Select(bllRole => bllRole.ToMvcRole()).ToList();
             return new UserViewModel()
             {
                 Id = bllUser.Id,
@@ -63,15 +61,18 @@ namespace MVCNBlog.Infrastructure.Mappers
 
         #endregion
 
+        #region View account
+
         public static AccountViewModel ToMvcAccount(this BllUser bllUser)
         {
-            var roles = new List<IRole>();
-            roles = bllUser.Roles.Select(bllRole => bllRole.ToMvcRole()).ToList();
+            var roles = bllUser.Roles.Select(bllRole => bllRole.ToMvcRole()).ToList();
             return new AccountViewModel()
             {
                 Id = bllUser.Id,
                 Name = bllUser.Name,
                 CreationDate = bllUser.CreationDate,
+                Rank = bllUser.Rank,
+                SubscriptionCost = bllUser.SubscriptionCost,
                 Role = roles.Find((role => role.RoleId != 3)),
                 PayedRole = (IPayedRole)roles.Find((role => role.RoleId == 3))
             };
@@ -91,5 +92,8 @@ namespace MVCNBlog.Infrastructure.Mappers
                 Roles = roles.Select(mvcRole => mvcRole.ToBllRole()).ToList()
             };
         }
+
+        #endregion
+
     }
 }

@@ -12,5 +12,6 @@ namespace DAL.Interface.Repository
     {
         DalRole GetById(int key);
         DalRole GetByPredicate(Expression<Func<DalRole, bool>> f);
+        int GetRoleCost(int roleId);
     }
 }
