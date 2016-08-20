@@ -19,7 +19,6 @@ namespace MVCNBlog.Providers
 
         public override bool IsUserInRole(string name, string roleName)
         {
-            throw new NotImplementedException();
             var user = UserService.GetAllUserEntities().FirstOrDefault(u => u.Name == name).ToMvcUser();
 
             if (user == null) return false;

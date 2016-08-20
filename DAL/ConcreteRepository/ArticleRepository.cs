@@ -59,8 +59,10 @@ namespace DAL.ConcreteRepository
 
         public DalArticle GetByPredicate(Expression<Func<DalArticle, bool>> f)
         {
-            //TODO todo
-            throw new NotImplementedException();
+            var newExpr = Modifier.Convert<DalArticle, Article>(f);
+
+            var article = context.Set<Article>().FirstOrDefault(newExpr);
+            return article?.ToDalArticle();
         }
 
         public void Create(DalArticle dalArticle)

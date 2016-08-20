@@ -42,9 +42,6 @@ namespace DAL.ConcreteRepository
 
         public DalUser GetByPredicate(Expression<Func<DalUser, bool>> f)
         {
-            //Expression visitor
-            //Expression<Func<DalUser, bool>> -> Expression<Func<User, bool>> (!)
-
             var newExpr = Modifier.Convert<DalUser,User>(f);
 
             var user = context.Set<User>().FirstOrDefault(newExpr);

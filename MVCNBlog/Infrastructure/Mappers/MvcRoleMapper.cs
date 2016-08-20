@@ -9,15 +9,22 @@ namespace MVCNBlog.Infrastructure.Mappers
 {
     public static class MvcRoleMapper
     {
-        //TODO mb config?
-        private const string AdminRole = "Administrator";
-        private const string ModerRole = "Moderator";
-        private const string VipUserRole = "VipUser";
-        private const string UserRole = "User";
-
         public static IRole ToMvcRole(this BllRole bllRole)
         {
-            return bllRole.Id.ToMvcRole();
+            int roleId = bllRole.Id;
+            string roleName = bllRole.Name;
+            switch (roleId)
+            {
+                case 1:
+                    return new AdministratorRole() { RoleId = roleId, RoleName = roleName };
+                case 2:
+                    return new ModeratorRole() { RoleId = roleId, RoleName = roleName };
+                case 3:
+                    return new VipUserRole() { RoleId = roleId, RoleName = roleName };
+                case 4:
+                default:
+                    return new UserRole() { RoleId = roleId, RoleName = roleName };
+            }
         }
 
         public static IRole ToMvcRole(this int roleId)
@@ -25,14 +32,14 @@ namespace MVCNBlog.Infrastructure.Mappers
             switch (roleId)
             {
                 case 1:
-                    return new AdministratorRole() { RoleId = roleId, RoleName = AdminRole };
+                    return new AdministratorRole() { RoleId = roleId };
                 case 2:
-                    return new ModeratorRole() { RoleId = roleId, RoleName = ModerRole };
+                    return new ModeratorRole() { RoleId = roleId };
                 case 3:
-                    return new VipUserRole() { RoleId = roleId, RoleName = VipUserRole };
+                    return new VipUserRole() { RoleId = roleId };
                 case 4:
                 default:
-                    return new UserRole() { RoleId = roleId, RoleName = UserRole };
+                    return new UserRole() { RoleId = roleId };
             }
         }
 

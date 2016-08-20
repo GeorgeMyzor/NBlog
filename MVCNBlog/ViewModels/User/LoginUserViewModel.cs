@@ -10,6 +10,6 @@ namespace MVCNBlog.ViewModels.User
         [Remote("ValidatePassword", "User")]
         [CorrectPassword]
         public string Password { get; set; }
-        //TODO remember me?
+        public bool RememberMe { get; set; }
     }
 }

@@ -40,8 +40,7 @@ namespace MVCNBlog.Controllers
             {
                 if (Membership.ValidateUser(viewModel.Name, viewModel.Password))
                 {
-                    //TODO remember me
-                    FormsAuthentication.SetAuthCookie(viewModel.Name, true);
+                    FormsAuthentication.SetAuthCookie(viewModel.Name, viewModel.RememberMe);
                     if (Url.IsLocalUrl(returnUrl))
                     {
                         return Redirect(returnUrl);

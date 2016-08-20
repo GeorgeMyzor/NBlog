@@ -31,7 +31,6 @@ namespace MVCNBlog.Controllers
 
         public ActionResult Index(int page = 1)
         {
-            //TODO service get count
             var users = new ListViewModel<UserViewModel>()
             {
                ViewModels = service.GetAllUserEntities().Select(user => user.ToMvcUser())
@@ -62,19 +61,16 @@ namespace MVCNBlog.Controllers
         {
             var user = service.GetUserEntity(userViewModel.Name);
             if (user != null)
-                ModelState.AddModelError("Name", "A user with the same name already exists");
+                ModelState.AddModelError(nameof(RegisterUserViewModel.Name), "A user with the same name already exists");
 
             if (ModelState.IsValid)
             {
-                //TODO refactor?
                 userViewModel.Password = Crypto.HashPassword(userViewModel.Password);
                 service.CreateUser(userViewModel.ToBllUser());
                 return RedirectToAction("Index");
             }
-            else
-            {
-                return View();
-            }
+
+            return View();
         }
 
         [HttpGet]
