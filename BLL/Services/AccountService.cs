@@ -15,18 +15,13 @@ namespace BLL.Services
     {
         private readonly IUnitOfWork uow;
         private readonly IUserRepository userRepository;
-        private readonly IArticleRepository articleRepository;
         private readonly IRoleRepository roleRepository;
-        private readonly IRepository<DalComment> commentRepository;
 
-        public AccountService(IUnitOfWork uow, IUserRepository userRepository, IArticleRepository articleRepository,
-            IRoleRepository roleRepository, IRepository<DalComment> commentRepository)
+        public AccountService(IUnitOfWork uow, IUserRepository userRepository, IRoleRepository roleRepository)
         {
             this.uow = uow;
             this.userRepository = userRepository;
-            this.articleRepository = articleRepository;
             this.roleRepository = roleRepository;
-            this.commentRepository = commentRepository;
         }
 
         public BllUser GetAccountEntity(int id)
@@ -35,8 +30,7 @@ namespace BLL.Services
 
             if (user != null)
             {
-                int userActivity = articleRepository.GetCount(user.Name);
-                userActivity += commentRepository.GetCount(user.Name);
+                int userActivity = userRepository.GetUserActivity(id);
                 user.Rank = RankDistributor.GetRank(userActivity);
 
                 int subCost = user.Roles.Sum(role => roleRepository.GetRoleCost(role.Id));

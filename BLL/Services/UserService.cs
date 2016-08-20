@@ -16,10 +16,10 @@ namespace BLL.Services
         private readonly IUnitOfWork uow;
         private readonly IUserRepository userRepository;
 
-        public UserService(IUnitOfWork uow, IUserRepository repository)
+        public UserService(IUnitOfWork uow, IUserRepository userRepository)
         {
             this.uow = uow;
-            this.userRepository = repository;
+            this.userRepository = userRepository;
         }
 
         public int GetUsersCount()
@@ -29,7 +29,15 @@ namespace BLL.Services
 
         public BllUser GetUserEntity(int id)
         {
-            return userRepository.GetById(id)?.ToBllUser();
+            var user = userRepository.GetById(id)?.ToBllUser();
+
+            if (user != null)
+            {
+                int userActivity = userRepository.GetUserActivity(id);
+                user.Rank = RankDistributor.GetRank(userActivity);
+            }
+
+            return user;
         }
 
         public BllUser GetUserEntity(string name)

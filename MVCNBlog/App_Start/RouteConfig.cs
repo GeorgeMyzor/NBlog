@@ -47,16 +47,16 @@ namespace MVCNBlog
 
             routes.MapRoute(
                 name: "UserAction",
-                url: "users/{id}/{action}",
-                defaults: new { controller = "User", action = "Edit" },
-                constraints: new { action = @"Delete|Edit", id = @"\d+" }
+                url: "users/{id}/{name}/{action}",
+                defaults: new { controller = "User", action = "Index", name = UrlParameter.Optional },
+                constraints: new { action = @"Delete|Edit|Index", id = @"\d+" }
                 );
 
             routes.MapRoute(
                 name: "AllUsers",
                 url: "users/{action}",
-                defaults: new { controller = "User", action = "Index" },
-                constraints: new { action = @"Create|Index" }
+                defaults: new { controller = "User", action = "All" },
+                constraints: new { action = @"Create|All" }
                 );
 
             #endregion

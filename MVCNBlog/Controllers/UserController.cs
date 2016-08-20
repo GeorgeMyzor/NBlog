@@ -8,6 +8,7 @@ using System.Web.Helpers;
 using System.Web.Mvc;
 using BLL.Interface.Entities;
 using BLL.Interface.Services;
+using MVCNBlog.Infrastructure;
 using MVCNBlog.Infrastructure.Mappers;
 using MVCNBlog.Infrastructure.ModelBinders;
 using MVCNBlog.Infrastructure.ValidationAttributes;
@@ -29,11 +30,33 @@ namespace MVCNBlog.Controllers
             pageSize = int.Parse(WebConfigurationManager.AppSettings["PageSize"]);
         }
 
-        public ActionResult Index(int page = 1)
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult Index(int? id, string name)
         {
+            if (id != null)
+            {
+                var user = service.GetUserEntity(id.Value).ToMvcUser();
+
+                string urlWithName = user.Name.RemoveSpecialCharacters();
+                urlWithName = Url.Encode(urlWithName);
+
+                if (!urlWithName.Equals(name))
+                {
+                    return RedirectToAction("Index", new { id, name = urlWithName });
+                }
+
+                return View(user);
+            }
+            return HttpNotFound("Not found.");
+        }
+
+        public ActionResult All(int page = 1)
+        {
+            //TODO user get paged
             var users = new ListViewModel<UserViewModel>()
             {
-               ViewModels = service.GetAllUserEntities().Select(user => user.ToMvcUser())
+                ViewModels = service.GetAllUserEntities().Select(user => user.ToMvcUser())
                         .OrderBy((article => article.Id))
                         .Skip((page - 1) * pageSize)
                         .Take(pageSize),
@@ -47,7 +70,7 @@ namespace MVCNBlog.Controllers
 
             return View(users);
         }
-        
+
         [HttpGet]
         public ActionResult Create()
         {

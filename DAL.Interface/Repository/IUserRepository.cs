@@ -9,6 +9,7 @@ namespace DAL.Interface.Repository
 {
     public interface IUserRepository : IRepository<DalUser>
     {
+        int GetUserActivity(int id);
         void UpdatePaidRole(DalUser user);
     }
 }

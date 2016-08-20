@@ -4,6 +4,7 @@ using MVCNBlog.ViewModels.Roles;
 
 namespace MVCNBlog.ViewModels.User
 {
+    //TODO refactor
     public abstract class AbstractUser
     {
         public int Id { get; set; }

@@ -1,36 +1,62 @@
-﻿@using MVCNBlog.ViewModels.Roles
-@model MVCNBlog.ViewModels.ListViewModel<MVCNBlog.ViewModels.User.UserViewModel>
+﻿@model MVCNBlog.ViewModels.User.UserViewModel
+
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Index";
 }
 
-<h2>All users</h2>
-    @foreach (var item in Model.ViewModels)
-    {
-        <b>User name:</b>
-        @Html.DisplayFor(modelItem => item.Name)
-        <b>Creation date:</b>
-        @Html.DisplayTextFor(modelItem => item.CreationDate)
+<h2>Index</h2>
 
-        @Html.ActionLink("Edit user", "Edit", new {item.Id})
-        @Html.ActionLink("Delete user", "Delete", new {item.Id})
+<div class="form-horizontal">
+    <h4>User</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
 
-        <br/>
-        <b> &nbsp; &nbsp; Role:</b>
-        @Html.DisplayFor(modelItem => item.Role.RoleName)
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayTextFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-        if (item.PayedRole != null)
-        {
-            <br />
-            <b> &nbsp; &nbsp; Payed role:</b>
-            @Html.DisplayTextFor(modelItem => ((IRole)item.PayedRole).RoleName)
-        }
+    <div class="form-group">
+        @Html.LabelFor(model => model.Rank, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayTextFor(model => model.Rank)
+            @Html.ValidationMessageFor(model => model.Rank, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-        <br/>
-    }
+    <div class="form-group">
+        @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <select class="form-control" name="roleId">
+                <option value="@Model.Role.RoleId" selected>@Model.Role.RoleName</option>
+            </select>
+        </div>
+    </div>
 
-<div class="pager">
-    @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new {page = x}))
+    <div class="form-group">
+        <label class="control-label col-md-2">Is VIP</label>
+        <div class="col-md-10">
+            @if (Model.PayedRole != null)
+            {
+                <input type="checkbox" name="isVip" checked />
+            }
+            else
+            {
+                <input type="checkbox" name="isVip" />
+            }
+        </div>
+    </div>
 </div>
 
-@Html.ActionLink("Create user", "Create")
+
+<div>
+    @Html.ActionLink("Edit", "Edit", new { Model.Id })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

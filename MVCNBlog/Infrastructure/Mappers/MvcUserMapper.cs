@@ -20,6 +20,7 @@ namespace MVCNBlog.Infrastructure.Mappers
             {
                 Id = bllUser.Id,
                 Name = bllUser.Name,
+                Rank = bllUser.Rank,
                 CreationDate = bllUser.CreationDate,
                 Role = roles.Find((role => role.RoleId != 3)),
                 PayedRole = (IPayedRole) roles.Find((role => role.RoleId == 3))

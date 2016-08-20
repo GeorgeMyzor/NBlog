@@ -48,6 +48,14 @@ namespace DAL.ConcreteRepository
             return user?.ToDalUser();
         }
 
+        public int GetUserActivity(int id)
+        {
+            int activity = context.Set<Article>().Count(article => article.Author.Id == id);
+            activity += context.Set<Comment>().Count(article => article.Author.Id == id);
+
+            return activity;
+        }
+
         public void Create(DalUser dalUser)
         {
             var ormUser = dalUser.ToOrmUser();
