@@ -34,9 +34,9 @@
         @Html.DisplayFor(modelItem => comment.Author.Name)
     }
     <br/>
-
-    @Html.ActionLink("Edit article", "Edit", new {article.Id})
-    @Html.ActionLink("Delete article", "Delete", new {article.Id})
+    @Html.RouteLink("View article", "ArticleAction", new { action = "Index", title = article.Title, id = article.Id })
+    @Html.RouteLink("Edit article", "ArticleAction", new {action = "Edit", title = article.Title, id = article.Id})
+    @Html.RouteLink("Delete article", "ArticleAction", new { action = "Delete", title = article.Title, id = article.Id })
 
     <br/>
 }
@@ -45,7 +45,7 @@
     @Html.PageLinks(Model.PagingInfo, x => Url.Action("All", new { page = x }))
 </div>
 
-@Html.ActionLink("Create article", "Create")
+@Html.RouteLink("Create article", "AllArticles", new { action = "Create"})
 
 
 

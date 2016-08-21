@@ -56,8 +56,16 @@
 <div>
     @if (User.IsInRole("Administrator") || User.IsInRole("Moderator"))
     {
-        @Html.ActionLink("Edit", "Edit", new {Model.Id});
+        @Html.RouteLink("Edit user", "UserAction", new { action = "Edit", name = Model.Name, id = Model.Id },
+       new { @class = "btn btn-default" })
+        @Html.RouteLink("Delete user", "UserAction", new { action = "Delete", name = Model.Name, id = Model.Id },
+       new { @class = "btn btn-default" })
     }
+</div>
+
+<div>
+    @Html.RouteLink("Back to users", "AllUsers", new { action = "All" },
+        new { @class = "btn btn-default" })
 </div>
 
 @section Scripts {

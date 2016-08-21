@@ -30,7 +30,7 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.RouteLink("Back to users", "AllUsers", new { action = "All" }, new { @class = "btn btn-default" })
         </div>
     }
 </div>

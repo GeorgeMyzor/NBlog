@@ -42,7 +42,7 @@ namespace MVCNBlog
             routes.MapRoute(
                 name: "PagedUsers",
                 url: "users/page{page}",
-                defaults: new {Controller = "User", action = "Index"}
+                defaults: new {Controller = "User", action = "All" }
                 );
 
             routes.MapRoute(
@@ -64,12 +64,17 @@ namespace MVCNBlog
             #region Comment routes
             
             routes.MapRoute(
-                name: "CommentAction",
-                url: "comment/{id}",
-                defaults: new { controller = "Comment", action = "Edit" },
-                constraints: new { id = @"\d+" }
-                );
+               name: "CommentAction",
+               url: "comment/{id}/{action}",
+               defaults: new { controller = "Comment", action = "Edit" },
+               constraints: new { action = "Delete|Edit", id = @"\d+" }
+               );
 
+            routes.MapRoute(
+                name: "CommentCreate",
+                url: "comment/{action}",
+                defaults: new { controller = "Comment", action = "Create" }
+                );
 
             #endregion
 
@@ -79,11 +84,11 @@ namespace MVCNBlog
                name: "AuthAction",
                url: "{action}",
                defaults: new { controller = "Account" },
-                constraints: new { action = @"Login|Register|Logoff" }
+               constraints: new { action = @"Login|Register|Logoff" }
                );
 
             routes.MapRoute(
-               name: "Account",
+               name: "ViewAccount",
                url: "account",
                defaults: new { controller = "Account", action = "Index" }
                );
@@ -91,23 +96,28 @@ namespace MVCNBlog
             routes.MapRoute(
                 name: "AccountAction",
                 url: "account/{action}",
-                defaults: new {controller = "Account"},
-                constraints: new {action = @"Edit|Delete"}
+                defaults: new {controller = "Account", action = "Index"},
+                constraints: new {action = @"Edit|Delete|Index"}
                 );
             #endregion
 
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
-            /*
+               name: "Default",
+               url: "{controller}/{action}/{id}",
+               defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+               );
+
             routes.MapRoute(
-                name: "Default",
+                name: "Main",
                 url: "",
                 defaults: new {controller = "Article", action = "All"}
                 );
-                */
+
+            routes.MapRoute(
+                "NotFound",
+                "{*url}",
+                new { controller = "Error", action = "NotFound" }
+            );
         }
     }
     /*  URL schema:

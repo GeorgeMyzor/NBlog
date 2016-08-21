@@ -12,8 +12,8 @@
         <b>Creation date:</b>
         @Html.DisplayTextFor(modelItem => item.CreationDate)
 
-        @Html.ActionLink("View user", "Index", new {item.Id})
-        @Html.ActionLink("Delete user", "Delete", new {item.Id})
+        @Html.RouteLink("View user", "UserAction", new { action = "Index", name = item.Name, id = item.Id },
+            new { @class = "btn btn-default" })
 
         <br/>
         <b> &nbsp; &nbsp; Role:</b>
@@ -30,7 +30,7 @@
     }
 
 <div class="pager">
-    @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new {page = x}))
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("All", new {page = x}))
 </div>
 
-@Html.ActionLink("Create user", "Create")
+@Html.RouteLink("Create user", "AllUsers", new { action = "Create" }, new { @class = "btn btn-default" })

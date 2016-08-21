@@ -46,7 +46,8 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.RouteLink("Back to user", "UserAction", new { action = "Index" , name = Model.Name, id = Model.Id },
+        new { @class = "btn btn-default" })
 </div>
 
 @section Scripts {

@@ -62,10 +62,10 @@
 
 
 <div>
-    @Html.ActionLink("Edit", "Edit")
+    @Html.RouteLink("Edit account", "AccountAction", new { action = "Edit"}, new { @class = "btn btn-default" })
 </div>
 <div>
-    @Html.ActionLink("Delete", "Delete")
+    @Html.RouteLink("Delete account", "AccountAction", new { action = "Delete" }, new { @class = "btn btn-default" })
 </div>
 
 @section Scripts {

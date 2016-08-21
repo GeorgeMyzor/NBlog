@@ -31,7 +31,7 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    @Html.ActionLink("Edit","Edit", "Comment", new { comment.Id}, new { @class = "btn btn-default" })
+                    @Html.RouteLink("Edit comment", "CommentAction", new { id = comment.Id }, new { @class = "btn btn-default" })
                 </div>
             </div>
 }
@@ -51,10 +51,15 @@
     </div>
 }
 
-@Html.ActionLink("Edit article", "Edit", new { Model.Id })
-@Html.ActionLink("Delete article", "Delete", new { Model.Id })
+<br />
+@Html.RouteLink("Edit article", "ArticleAction", new { action = "Edit", title = Model.Title, id = Model.Id },
+    new { @class = "btn btn-default" })
+@Html.RouteLink("Delete article", "ArticleAction", new { action = "Delete", title = Model.Title, id = Model.Id },
+    new { @class = "btn btn-default" })
 
 <br />
 
-
-@Html.ActionLink("Create article", "Create")
+<div>
+    @Html.RouteLink("Back to articles", "AllArticles", new { action = "All" },
+    new { @class = "btn btn-default" })
+</div>

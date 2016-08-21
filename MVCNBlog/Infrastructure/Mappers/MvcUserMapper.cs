@@ -15,6 +15,8 @@ namespace MVCNBlog.Infrastructure.Mappers
 
         public static UserViewModel ToMvcUser(this BllUser bllUser)
         {
+            if (bllUser == null)
+                return null;
             var roles = bllUser.Roles.Select(bllRole => bllRole.ToMvcRole()).ToList();
             return new UserViewModel()
             {

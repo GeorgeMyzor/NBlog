@@ -25,10 +25,10 @@ namespace MVCNBlog
             ModelBinders.Binders.Add(typeof(AccountViewModel), new AccountModelBinder());
         }
 
-        protected void Application_Error(object sender, EventArgs e)
-        {
-            Server.ClearError();
-            Response.Redirect("/Error/NotFound");
-        }
+        //protected void Application_Error(object sender, EventArgs e)
+        //{
+        //    Server.ClearError();
+        //    Response.Redirect("/Error/NotFound");
+        //}
     }
 }

@@ -186,6 +186,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\CustomAuthorize.cs" />
     <Compile Include="Infrastructure\Helpers\PagingHelper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcArticleMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcCommentMapper.cs" />

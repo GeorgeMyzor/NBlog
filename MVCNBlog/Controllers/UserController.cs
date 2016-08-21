@@ -34,21 +34,20 @@ namespace MVCNBlog.Controllers
         [AllowAnonymous]
         public ActionResult Index(int? id, string name)
         {
-            if (id != null)
+            var user = service.GetUserEntity(id ?? 0).ToMvcUser();
+
+            if (user == null)
+                throw new HttpException(404, "Not found");
+
+            string urlWithName = user.Name.RemoveSpecialCharacters();
+            urlWithName = Url.Encode(urlWithName);
+
+            if (!urlWithName.Equals(name))
             {
-                var user = service.GetUserEntity(id.Value).ToMvcUser();
-
-                string urlWithName = user.Name.RemoveSpecialCharacters();
-                urlWithName = Url.Encode(urlWithName);
-
-                if (!urlWithName.Equals(name))
-                {
-                    return RedirectToAction("Index", new { id, name = urlWithName });
-                }
-
-                return View(user);
+                return RedirectToAction("Index", new { id, name = urlWithName });
             }
-            return HttpNotFound("Not found.");
+
+            return View(user);
         }
 
         public ActionResult All(int page = 1)
@@ -75,7 +74,6 @@ namespace MVCNBlog.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        
         public ActionResult Create(RegisterUserViewModel userViewModel)
         {
             var user = service.GetUserEntity(userViewModel.Name);
@@ -86,7 +84,7 @@ namespace MVCNBlog.Controllers
             {
                 userViewModel.Password = Crypto.HashPassword(userViewModel.Password);
                 service.CreateUser(userViewModel.ToBllUser());
-                return RedirectToAction("Index");
+                return RedirectToAction("All");
             }
 
             return View();
@@ -95,10 +93,10 @@ namespace MVCNBlog.Controllers
         [HttpGet]
         public ActionResult Edit(int? id)
         {
-            if (id == null)
-                return HttpNotFound("NotFound.");
+            var editingUser = service.GetUserEntity(id ?? 0)?.ToMvcUser();
 
-            var editingUser = service.GetUserEntity(id.Value)?.ToMvcUser();
+            if (editingUser == null)
+                throw new HttpException(404, "Not found");
 
             return View(editingUser);
         }
@@ -114,13 +112,10 @@ namespace MVCNBlog.Controllers
 
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-                return HttpNotFound("NotFound.");
+            var deletingUser = service.GetUserEntity(id ?? 0)?.ToMvcUser();
 
-            var deletingUser = service.GetUserEntity(id.Value)?.ToMvcUser();
-
-            if(deletingUser == null)
-                return HttpNotFound();
+            if (deletingUser == null)
+                throw new HttpException(404, "Not found");
 
             return View(deletingUser);
         }
@@ -137,6 +132,7 @@ namespace MVCNBlog.Controllers
 
         #region Remote validation
 
+        [HttpGet]
         [AllowAnonymous]
         public JsonResult ValidateName(string name)
         {
@@ -158,6 +154,7 @@ namespace MVCNBlog.Controllers
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
         [AllowAnonymous]
         public JsonResult ValidatePassword(string password)
         {

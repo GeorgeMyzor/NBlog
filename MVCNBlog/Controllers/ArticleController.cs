@@ -73,7 +73,6 @@ namespace MVCNBlog.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
         public ActionResult Create(ArticleViewModel articleViewModel)
         {
             var currentUser = userService.GetUserEntity(User.Identity.Name).ToMvcUser();
@@ -91,10 +90,10 @@ namespace MVCNBlog.Controllers
         [HttpGet]
         public ActionResult Edit(int? id)
         {
-            if (id == null)
-                return HttpNotFound("NotFound.");
+            var editingArticle = articleService.GetArticleEntity(id ?? 0).ToMvcArticle();
             
-            var editingArticle = articleService.GetArticleEntity(id.Value).ToMvcArticle();
+            if (editingArticle == null)
+                throw new HttpException(404, "Not found");
 
             if (editingArticle.Author?.Name == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
                 Roles.IsUserInRole("Administrator"))
@@ -102,7 +101,7 @@ namespace MVCNBlog.Controllers
                 return View(editingArticle);
             }
 
-            throw new HttpException(403, "No permission ");
+            throw new HttpException(403, "No permissions");
         }
 
         [HttpPost]
@@ -123,10 +122,10 @@ namespace MVCNBlog.Controllers
         [HttpGet]
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-                return HttpNotFound("NotFound.");
-            
-            var deletingArticle = articleService.GetArticleEntity(id.Value).ToMvcArticle();
+            var deletingArticle = articleService.GetArticleEntity(id ?? 0).ToMvcArticle();
+
+            if (deletingArticle == null)
+                throw new HttpException(404, "Not found");
 
             if (deletingArticle.Author?.Name == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
                 Roles.IsUserInRole("Administrator"))
@@ -134,7 +133,7 @@ namespace MVCNBlog.Controllers
                 return View(deletingArticle);
             }
 
-            throw new HttpException(403, "No permission ");
+            throw new HttpException(403, "No permissions");
         }
 
         [HttpPost]
