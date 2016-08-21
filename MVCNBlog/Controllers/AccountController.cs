@@ -72,9 +72,9 @@ namespace MVCNBlog.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterUserViewModel viewModel)
         {
-            var anyUser = service.GetAllUserEntities().Any(u => u.Name.Contains(viewModel.Name));
+            var anyUser = service.GetAccountEntity(viewModel.Name);
 
-            if (anyUser)
+            if (anyUser != null)
             {
                 ModelState.AddModelError("", "User with this address already registered.");
                 return View(viewModel);
@@ -117,6 +117,8 @@ namespace MVCNBlog.Controllers
             return View(currentAccount);
         }
 
+        #region Editing account
+
         [HttpGet]
         public ActionResult Edit()
         {
@@ -133,7 +135,7 @@ namespace MVCNBlog.Controllers
         {
             service.UpdateAccount(editingUser.ToBllUser());
 
-            return RedirectToAction("Index", new { editingUser.Id });
+            return RedirectToAction("Index");
         }
         
         [HttpPost]
@@ -141,7 +143,29 @@ namespace MVCNBlog.Controllers
         {
             service.UpdateAccountPaidRole(editingUser.ToBllUser());
 
-            return RedirectToAction("Index", new { editingUser.Id});
+            return RedirectToAction("Index");
+        }
+
+        #endregion
+
+        [HttpGet]
+        public ActionResult Delete()
+        {
+            var currentAccount = service.GetAccountEntity(User.Identity.Name).ToMvcAccount();
+            if (currentAccount == null)
+                return HttpNotFound("NotFound.");
+
+            return View(currentAccount);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        public ActionResult ConfirmDelete()
+        {
+            var currentAccount = service.GetAccountEntity(User.Identity.Name);
+            service.DeleteAccount(currentAccount);
+
+            return RedirectToAction("LogOff");
         }
     }
 }

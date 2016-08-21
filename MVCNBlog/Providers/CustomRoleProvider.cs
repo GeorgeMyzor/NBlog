@@ -37,19 +37,20 @@ namespace MVCNBlog.Providers
         //for logon user. ^ for any
         public override string[] GetRolesForUser(string name)
         {
-            var roles = new string[] { };
 
             var user = UserService.GetAllUserEntities().FirstOrDefault(u => u.Name == name).ToMvcUser();
 
             var userRole = user.Role;
             var userPayedRole = user.PayedRole;
 
-            if (userRole != null)
-            {
-                //TODO NULL CHECK
-                roles = new string[] { userRole.RoleName, userPayedRole?.RoleName};
-            }
+            var roles = GetRolesName(userRole?.RoleName, userPayedRole?.RoleName);
+
             return roles;
+        }
+
+        private string[] GetRolesName(params string[] roles)
+        {
+            return roles.Where(role => role != null).ToArray();
         }
 
         public override void CreateRole(string roleName)

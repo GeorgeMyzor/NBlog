@@ -88,6 +88,12 @@ namespace MVCNBlog
                defaults: new { controller = "Account", action = "Index" }
                );
 
+            routes.MapRoute(
+                name: "AccountAction",
+                url: "account/{action}",
+                defaults: new {controller = "Account"},
+                constraints: new {action = @"Edit|Delete"}
+                );
             #endregion
 
             routes.MapRoute(
