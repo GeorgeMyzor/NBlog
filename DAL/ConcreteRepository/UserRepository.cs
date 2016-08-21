@@ -100,6 +100,14 @@ namespace DAL.ConcreteRepository
             UpdateOrmUserRoles(ormUser,editingUser);
         }
 
+        public IEnumerable<DalUser> GetPagedUsers(int pageNum, int pageSize)
+        {
+            var ormUser = context.Set<User>().OrderByDescending(user => user.Name).
+                Skip((pageNum - 1) * pageSize).Take(pageSize).ToList();
+
+            return ormUser.Select(user => user.ToDalUser());
+        }
+
         #region Private methods
 
         private void CopyOrmUserPaidRoles(User ormUser, User editingUser)

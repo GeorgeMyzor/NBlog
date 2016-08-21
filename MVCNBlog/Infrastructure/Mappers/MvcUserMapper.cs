@@ -52,7 +52,6 @@ namespace MVCNBlog.Infrastructure.Mappers
             roles.Add(userViewModel.Role);
             return new BllUser()
             {
-                Id = userViewModel.Id,
                 Name = userViewModel.Name,
                 Password = userViewModel.Password,
                 CreationDate = userViewModel.CreationDate,

@@ -11,5 +11,6 @@ namespace DAL.Interface.Repository
     {
         int GetUserActivity(int id);
         void UpdatePaidRole(DalUser user);
+        IEnumerable<DalUser> GetPagedUsers(int pageNum, int pageSize);
     }
 }

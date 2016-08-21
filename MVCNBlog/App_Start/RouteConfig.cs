@@ -82,6 +82,12 @@ namespace MVCNBlog
                 constraints: new { action = @"Login|Register|Logoff" }
                );
 
+            routes.MapRoute(
+               name: "Account",
+               url: "account",
+               defaults: new { controller = "Account", action = "Index" }
+               );
+
             #endregion
 
             routes.MapRoute(

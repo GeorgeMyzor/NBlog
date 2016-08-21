@@ -22,6 +22,8 @@ namespace MVCNBlog.Controllers
             this.service = service;
         }
 
+        #region Auth
+
         [HttpGet]
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -103,26 +105,26 @@ namespace MVCNBlog.Controllers
             return RedirectToAction("Login", "Account");
         }
 
+        #endregion
+
         [HttpGet]
-        public ActionResult Index(int? id)
+        public ActionResult Index()
         {
-            if (id == null)
+            var currentAccount = service.GetAccountEntity(User.Identity.Name).ToMvcAccount();
+            if (currentAccount == null)
                 return HttpNotFound("NotFound.");
-
-            var editingAccount = service.GetAccountEntity(id.Value).ToMvcAccount();
-
-            return View(editingAccount);
+            
+            return View(currentAccount);
         }
 
         [HttpGet]
-        public ActionResult Edit(int? id)
+        public ActionResult Edit()
         {
-            if (id == null)
+            var currentAccount = service.GetAccountEntity(User.Identity.Name).ToMvcAccount();
+            if (currentAccount == null)
                 return HttpNotFound("NotFound.");
 
-            var editingAccount = service.GetAccountEntity(id.Value).ToMvcAccount();
-
-            return View(editingAccount);
+            return View(currentAccount);
         }
 
         [HttpPost]

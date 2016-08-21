@@ -50,6 +50,11 @@ namespace BLL.Services
             return userRepository.GetAll().Select(user => user.ToBllUser());
         }
 
+        public IEnumerable<BllUser> GetPagedUsers(int pageNum, int pageSize)
+        {
+            return userRepository.GetPagedUsers(pageNum, pageSize).Select(dalUser => dalUser.ToBllUser());
+        }
+
         public void CreateUser(BllUser user)
         {
             userRepository.Create(user.ToDalUser());

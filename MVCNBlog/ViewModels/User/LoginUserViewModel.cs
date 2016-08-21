@@ -1,11 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using MVCNBlog.Infrastructure.ValidationAttributes;
+using MVCNBlog.ViewModels.Roles;
 
 namespace MVCNBlog.ViewModels.User
 {
-    public class LoginUserViewModel : AbstractUser
+    public class LoginUserViewModel
     {
+        [CorrectName]
+        [Remote("ValidateName", "User")]
+        public string Name { get; set; }
+        public DateTime CreationDate { get; set; }
+        public IRole Role { get; set; }
+
         [DataType(DataType.Password)]
         [Remote("ValidatePassword", "User")]
         [CorrectPassword]

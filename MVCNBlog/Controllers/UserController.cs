@@ -53,13 +53,9 @@ namespace MVCNBlog.Controllers
 
         public ActionResult All(int page = 1)
         {
-            //TODO user get paged
             var users = new ListViewModel<UserViewModel>()
             {
-                ViewModels = service.GetAllUserEntities().Select(user => user.ToMvcUser())
-                        .OrderBy((article => article.Id))
-                        .Skip((page - 1) * pageSize)
-                        .Take(pageSize),
+                ViewModels = service.GetPagedUsers(page,pageSize).Select(user => user.ToMvcUser()),
                 PagingInfo = new PagingInfo()
                 {
                     CurrentPage = page,

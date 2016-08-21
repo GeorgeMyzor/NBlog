@@ -24,13 +24,13 @@ namespace BLL.Services
             this.roleRepository = roleRepository;
         }
 
-        public BllUser GetAccountEntity(int id)
+        public BllUser GetAccountEntity(string name)
         {
-            var user = userRepository.GetById(id)?.ToBllUser();
+            var user = userRepository.GetByPredicate(dalUser => dalUser.Name == name)?.ToBllUser();
 
             if (user != null)
             {
-                int userActivity = userRepository.GetUserActivity(id);
+                int userActivity = userRepository.GetUserActivity(user.Id);
                 user.Rank = RankDistributor.GetRank(userActivity);
 
                 int subCost = user.Roles.Sum(role => roleRepository.GetRoleCost(role.Id));

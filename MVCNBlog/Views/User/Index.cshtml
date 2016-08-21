@@ -54,7 +54,10 @@
 
 
 <div>
-    @Html.ActionLink("Edit", "Edit", new { Model.Id })
+    @if (User.IsInRole("Administrator") || User.IsInRole("Moderator"))
+    {
+        @Html.ActionLink("Edit", "Edit", new {Model.Id});
+    }
 </div>
 
 @section Scripts {

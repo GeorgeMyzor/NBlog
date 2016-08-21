@@ -9,7 +9,7 @@ namespace BLL.Interface.Services
 {
     public interface IAccountService
     {
-        BllUser GetAccountEntity(int id);
+        BllUser GetAccountEntity(string name);
         IEnumerable<BllUser> GetAllUserEntities();
         void DeleteAccount(BllUser user);
         void UpdateAccount(BllUser user);
