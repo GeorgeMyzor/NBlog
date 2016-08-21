@@ -46,6 +46,7 @@ namespace MVCNBlog.Providers
 
             if (userRole != null)
             {
+                //TODO NULL CHECK
                 roles = new string[] { userRole.RoleName, userPayedRole?.RoleName};
             }
             return roles;

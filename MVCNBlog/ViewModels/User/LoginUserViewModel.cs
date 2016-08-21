@@ -9,7 +9,6 @@ namespace MVCNBlog.ViewModels.User
     public class LoginUserViewModel
     {
         [CorrectName]
-        [Remote("ValidateName", "User")]
         public string Name { get; set; }
         public DateTime CreationDate { get; set; }
         public IRole Role { get; set; }
