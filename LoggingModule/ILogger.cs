@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LoggingModule
 {
-    internal interface ILogger
+    public interface ILogger
     {
         void Trace(Exception exception);
         void Trace(string format, params object[] args);

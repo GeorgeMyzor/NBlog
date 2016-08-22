@@ -9,7 +9,7 @@ namespace LoggingModule
 {
     public class NLogAdapter : ILogger
     {
-        private static NLog.Logger NLogger = LogManager.GetCurrentClassLogger();
+        private static readonly NLog.Logger NLogger = LogManager.GetCurrentClassLogger();
 
         public void Trace(Exception exception)
         {

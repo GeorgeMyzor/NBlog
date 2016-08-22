@@ -46,10 +46,6 @@
       <HintPath>..\packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.3.7\lib\net45\NLog.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -80,6 +76,10 @@
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{2cce36f9-57da-4e22-8938-3f1c51e62f2c}</Project>
       <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LoggingModule\LoggingModule.csproj">
+      <Project>{16e4639c-dbe7-431a-85b4-ca4042f15a42}</Project>
+      <Name>LoggingModule</Name>
     </ProjectReference>
     <ProjectReference Include="..\ORM\ORM.csproj">
       <Project>{0f49981b-f86b-424c-b27f-e453cb112ce5}</Project>

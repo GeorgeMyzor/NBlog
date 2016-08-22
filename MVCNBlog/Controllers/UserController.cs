@@ -23,11 +23,13 @@ namespace MVCNBlog.Controllers
     public class UserController : Controller
     {
         private readonly IUserService service;
+        private readonly ILogger logger;
         private readonly int pageSize;
 
-        public UserController(IUserService service)
+        public UserController(IUserService service, ILogger logger)
         {
             this.service = service;
+            this.logger = logger;
             pageSize = int.Parse(WebConfigurationManager.AppSettings["PageSize"]);
         }
 
@@ -53,9 +55,6 @@ namespace MVCNBlog.Controllers
 
         public ActionResult All(int page = 1)
         {
-            NLogAdapter logger = new NLogAdapter();
-            logger.Debug("test {0} test2 {1}", 1, 2);
-            logger.Fatal("Test fatal");
             var users = new ListViewModel<UserViewModel>()
             {
                 ViewModels = service.GetPagedUsers(page,pageSize).Select(user => user.ToMvcUser()),

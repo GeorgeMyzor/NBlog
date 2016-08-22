@@ -9,6 +9,7 @@ using BLL.Services;
 using DAL.ConcreteRepository;
 using DAL.Interface.DTO;
 using DAL.Interface.Repository;
+using LoggingModule;
 using Ninject;
 using Ninject.Web.Common;
 using ORM;
@@ -39,6 +40,8 @@ namespace DependencyResolver
             kernel.Bind<IArticleRepository>().To<ArticleRepository>();
             kernel.Bind<IRepository<DalComment>>().To<CommentRepository>();
             kernel.Bind<IRoleRepository>().To<RoleRepository>();
+
+            kernel.Bind<ILogger>().To<NLogAdapter>();
         }
     }
 }
