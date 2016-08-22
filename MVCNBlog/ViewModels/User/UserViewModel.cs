@@ -9,7 +9,6 @@ namespace MVCNBlog.ViewModels.User
     {
         public int Id { get; set; }
         [CorrectName]
-        [Remote("ValidateName", "User")]
         public string Name { get; set; }
         public DateTime CreationDate { get; set; }
         public string Rank { get; set; }

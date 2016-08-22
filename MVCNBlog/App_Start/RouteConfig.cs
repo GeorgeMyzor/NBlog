@@ -59,10 +59,16 @@ namespace MVCNBlog
                 constraints: new { action = @"Create|All" }
                 );
 
+            routes.MapRoute(
+               name: "UserValidation",
+               url: "{controller}/{action}",
+               defaults: new { controller = "User" },
+                constraints: new { action = @"ValidateName|ValidatePassword" }
+               );
             #endregion
 
             #region Comment routes
-            
+
             routes.MapRoute(
                name: "CommentAction",
                url: "comment/{id}/{action}",
@@ -101,11 +107,11 @@ namespace MVCNBlog
                 );
             #endregion
 
-            routes.MapRoute(
-               name: "Default",
-               url: "{controller}/{action}/{id}",
-               defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-               );
+            //routes.MapRoute(
+            //   name: "Default",
+            //   url: "{controller}/{action}/{id}",
+            //   defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+            //   );
 
             routes.MapRoute(
                 name: "Main",
