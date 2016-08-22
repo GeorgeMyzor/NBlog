@@ -132,7 +132,7 @@ namespace MVCNBlog.Controllers
 
         #region Remote validation
 
-        [HttpGet]
+        [HttpPost]
         [AllowAnonymous]
         public JsonResult ValidateName(string name)
         {
@@ -148,13 +148,13 @@ namespace MVCNBlog.Controllers
 
             var user = service.GetUserEntity(name);
             if(user != null)
-                return Json("A user with the same name already exists",
+                return Json("A user with the same name already exists.",
                     JsonRequestBehavior.AllowGet);
 
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpGet]
+        [HttpPost]
         [AllowAnonymous]
         public JsonResult ValidatePassword(string password)
         {

@@ -65,6 +65,7 @@ namespace MVCNBlog
                defaults: new { controller = "User" },
                 constraints: new { action = @"ValidateName|ValidatePassword" }
                );
+
             #endregion
 
             #region Comment routes

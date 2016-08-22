@@ -9,17 +9,17 @@ namespace MVCNBlog.ViewModels.User
     public class RegisterUserViewModel
     {
         [CorrectName]
-        [Remote("ValidateName", "User")]
+        [Remote("ValidateName", "User", HttpMethod = "POST")]
         public string Name { get; set; }
         public DateTime CreationDate { get; set; }
         public IRole Role { get; set; }
 
-        [Remote("ValidatePassword", "User")]
+        [Remote("ValidatePassword", "User", HttpMethod = "POST")]
         [CorrectPassword]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Remote("ValidatePassword", "User")]
+        [Remote("ValidatePassword", "User", HttpMethod = "POST")]
         [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Passwords must match")]
         [CorrectPassword]
         [DataType(DataType.Password)]

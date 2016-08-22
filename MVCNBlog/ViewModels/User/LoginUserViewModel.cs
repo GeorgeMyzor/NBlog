@@ -9,13 +9,13 @@ namespace MVCNBlog.ViewModels.User
     public class LoginUserViewModel
     {
         [CorrectName]
-        [Remote("ValidateName", "User")]
+        [Remote("ValidateName", "User", HttpMethod = "POST")]
         public string Name { get; set; }
         public DateTime CreationDate { get; set; }
         public IRole Role { get; set; }
 
         [DataType(DataType.Password)]
-        [Remote("ValidatePassword", "User")]
+        [Remote("ValidatePassword", "User", HttpMethod = "POST")]
         [CorrectPassword]
         public string Password { get; set; }
         public bool RememberMe { get; set; }
