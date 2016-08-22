@@ -8,6 +8,7 @@ using System.Web.Helpers;
 using System.Web.Mvc;
 using BLL.Interface.Entities;
 using BLL.Interface.Services;
+using LoggingModule;
 using MVCNBlog.Infrastructure;
 using MVCNBlog.Infrastructure.Mappers;
 using MVCNBlog.Infrastructure.ModelBinders;
@@ -52,6 +53,7 @@ namespace MVCNBlog.Controllers
 
         public ActionResult All(int page = 1)
         {
+            MyLogger.Test("Test");
             var users = new ListViewModel<UserViewModel>()
             {
                 ViewModels = service.GetPagedUsers(page,pageSize).Select(user => user.ToMvcUser()),

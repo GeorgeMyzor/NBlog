@@ -271,6 +271,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Logs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Fonts\glyphicons-halflings-regular.woff" />
@@ -287,6 +288,10 @@
     <ProjectReference Include="..\DependencyResolver\DependencyResolver.csproj">
       <Project>{8fcdb01f-08e4-466b-b45d-9b042fc87f08}</Project>
       <Name>DependencyResolver</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LoggingModule\LoggingModule.csproj">
+      <Project>{16e4639c-dbe7-431a-85b4-ca4042f15a42}</Project>
+      <Name>LoggingModule</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
