@@ -9,72 +9,72 @@ namespace LoggingModule
 {
     public class NLogAdapter : ILogger
     {
-        private static readonly NLog.Logger NLogger = LogManager.GetCurrentClassLogger();
+        private readonly NLog.Logger nLogger = LogManager.GetCurrentClassLogger();
 
         public void Trace(Exception exception)
         {
-            NLogger.Trace(exception);
+            nLogger.Trace(exception);
         }
 
         public void Trace(string format, params object[] args)
         {
             var output = string.Format(format, args);
-            NLogger.Trace(output);
+            nLogger.Trace(output);
         }
 
         public void Debug(Exception exception)
         {
-            NLogger.Debug(exception);
+            nLogger.Debug(exception);
         }
 
         public void Debug(string format, params object[] args)
         {
             var output = string.Format(format, args);
-            NLogger.Debug(output);
+            nLogger.Debug(output);
         }
 
         public void Info(Exception exception)
         {
-            NLogger.Info(exception);
+            nLogger.Info(exception);
         }
 
         public void Info(string format, params object[] args)
         {
             var output = string.Format(format, args);
-            NLogger.Info(output);
+            nLogger.Info(output);
         }
 
         public void Warn(Exception exception)
         {
-            NLogger.Warn(exception);
+            nLogger.Warn(exception);
         }
 
         public void Warn(string format, params object[] args)
         {
             var output = string.Format(format, args);
-            NLogger.Warn(output);
+            nLogger.Warn(output);
         }
 
         public void Error(Exception exception)
         {
-            NLogger.Error(exception);
+            nLogger.Error(exception);
         }
 
         public void Error(string format, params object[] args)
         {
             var output = string.Format(format, args);
-            NLogger.Error(output);
+            nLogger.Error(output);
         }
 
         public void Fatal(Exception exception)
         {
-            NLogger.Fatal(exception);
+            nLogger.Fatal(exception);
         }
 
         public void Fatal(string format, params object[] args)
         {
             var output = string.Format(format, args);
-            NLogger.Fatal(output);
+            nLogger.Fatal(output);
         }
     }
 }

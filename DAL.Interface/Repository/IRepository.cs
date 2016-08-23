@@ -13,7 +13,7 @@ namespace DAL.Interface.Repository
         int GetCount(string userName = null);
         TEntity GetById(int key);
         IEnumerable<TEntity> GetAll();
-        TEntity GetByPredicate(Expression<Func<TEntity, bool>> f);
+        TEntity GetByPredicate(Expression<Func<TEntity, bool>> expression);
         void Create(TEntity e);
         void Delete(TEntity e);
         void Update(TEntity entity);

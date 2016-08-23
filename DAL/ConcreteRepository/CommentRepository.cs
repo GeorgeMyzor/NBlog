@@ -16,9 +16,11 @@ namespace DAL.ConcreteRepository
     {
         private readonly DbContext context;
 
-        public CommentRepository(DbContext uow)
+        public CommentRepository(DbContext context)
         {
-            this.context = uow;
+            this.context = context;
+            if (context == null)
+                throw new ArgumentNullException(nameof(context), "Context is null.");
         }
         
         public int GetCount(string userName = null)
@@ -35,18 +37,25 @@ namespace DAL.ConcreteRepository
 
         public DalComment GetById(int id)
         {
+            ValidateId(id);
+
             var ormComment = context.Set<Comment>().FirstOrDefault(comment => comment.Id == id);
 
             return ormComment.ToDalComment();
         }
-
-        public DalComment GetByPredicate(Expression<Func<DalComment, bool>> f)
+        
+        public DalComment GetByPredicate(Expression<Func<DalComment, bool>> expression)
         {
-            throw new NotImplementedException();
+            var newExpr = Modifier.Convert<DalComment, Comment>(expression);
+
+            var comment = context.Set<Comment>().FirstOrDefault(newExpr);
+            return comment?.ToDalComment();
         }
 
         public void Create(DalComment dalComment)
         {
+            ValidateComment(dalComment);
+
             var ormComment = dalComment.ToOrmComment();
 
             ormComment.Author = context.Set<User>().SingleOrDefault((user => user.Id == dalComment.AuthorId));
@@ -57,15 +66,40 @@ namespace DAL.ConcreteRepository
 
         public void Delete(DalComment dalComment)
         {
+            ValidateComment(dalComment);
+
             var ormComment = context.Set<Comment>().Single(u => u.Id == dalComment.Id);
             context.Set<Comment>().Remove(ormComment);
         }
 
         public void Update(DalComment dalComment)
         {
+            ValidateComment(dalComment);
+
             var ormComment = context.Set<Comment>().Single(u => u.Id == dalComment.Id);
 
             ormComment.Content = dalComment.Content;
         }
+
+        #region Private methods
+        
+        private static void ValidateComment(DalComment dalComment)
+        {
+            if (dalComment == null)
+            {
+                //TODO logg
+                throw new ArgumentNullException(nameof(dalComment), $"{nameof(dalComment)} is null.");
+            }
+        }
+
+        private static void ValidateId(int id)
+        {
+            if (id < 0)
+            {
+                //TODO logg
+                throw new ArgumentOutOfRangeException(nameof(id), $"{nameof(id)} must be positive.");
+            }
+        }
+        #endregion
     }
 }

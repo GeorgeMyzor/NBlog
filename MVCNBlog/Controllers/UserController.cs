@@ -55,6 +55,8 @@ namespace MVCNBlog.Controllers
 
         public ActionResult All(int page = 1)
         {
+            logger.Warn("test {0} test2 {1}", 1, 2);
+            logger.Fatal("Test fatal");
             var users = new ListViewModel<UserViewModel>()
             {
                 ViewModels = service.GetPagedUsers(page,pageSize).Select(user => user.ToMvcUser()),

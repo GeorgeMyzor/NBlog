@@ -17,9 +17,11 @@ namespace DAL.ConcreteRepository
     {
         private readonly DbContext context;
 
-        public ArticleRepository(DbContext uow)
+        public ArticleRepository(DbContext context)
         {
-            this.context = uow;
+            this.context = context;
+            if (context == null)
+                throw new ArgumentNullException(nameof(context), "Context is null.");
         }
         
         public int GetCount(string userName = null)
@@ -31,6 +33,8 @@ namespace DAL.ConcreteRepository
 
         public DalArticle GetById(int id)
         {
+            ValidateParams(userId: id);
+
             var ormArticle = context.Set<Article>().FirstOrDefault(article => article.Id == id);
 
             return ormArticle.ToDalArticle();
@@ -43,6 +47,8 @@ namespace DAL.ConcreteRepository
 
         public IEnumerable<DalArticle> GetPagedArticles(int pageNum, int pageSize)
         {
+            ValidateParams(pageNum, pageSize);
+
             var ormArticles = context.Set<Article>().OrderByDescending(article => article.PublicationDate).
                 Skip((pageNum - 1) * pageSize).Take(pageSize).ToList();
 
@@ -51,15 +57,17 @@ namespace DAL.ConcreteRepository
 
         public IEnumerable<DalArticle> GetPagedArticles(int pageNum, int pageSize, int userId)
         {
+            ValidateParams(pageNum, pageSize, userId);
+
             var ormArticles = context.Set<Article>().OrderByDescending(article => article.PublicationDate).
-                Where(x => x.Author.Id == userId).Skip((pageNum - 1) * pageSize).Take(pageSize).ToList();
+                Where(x => x.Author.Id == userId).Skip((pageNum - 1)*pageSize).Take(pageSize).ToList();
 
             return ormArticles.Select(article => article.ToDalArticle());
         }
-
-        public DalArticle GetByPredicate(Expression<Func<DalArticle, bool>> f)
+        
+        public DalArticle GetByPredicate(Expression<Func<DalArticle, bool>> expression)
         {
-            var newExpr = Modifier.Convert<DalArticle, Article>(f);
+            var newExpr = Modifier.Convert<DalArticle, Article>(expression);
 
             var article = context.Set<Article>().FirstOrDefault(newExpr);
             return article?.ToDalArticle();
@@ -67,6 +75,8 @@ namespace DAL.ConcreteRepository
 
         public void Create(DalArticle dalArticle)
         {
+            ValidateArticle(dalArticle);
+
             var ormArticle = dalArticle.ToOrmArticle();
             
             CopyTags(dalArticle, ormArticle);
@@ -77,12 +87,16 @@ namespace DAL.ConcreteRepository
 
         public void Delete(DalArticle dalArticle)
         {
+            ValidateArticle(dalArticle);
+
             var ormArticle = context.Set<Article>().Single(u => u.Id == dalArticle.Id);
             context.Set<Article>().Remove(ormArticle);
         }
 
         public void Update(DalArticle dalArticle)
         {
+            ValidateArticle(dalArticle);
+
             var ormArticle = context.Set<Article>().Single(u => u.Id == dalArticle.Id);
 
             ormArticle.Title = dalArticle.Title;
@@ -106,6 +120,32 @@ namespace DAL.ConcreteRepository
                     {
                         Name = tag,
                     });
+            }
+        }
+
+        private static void ValidateArticle(DalArticle dalArticle)
+        {
+            if (dalArticle == null)
+            {
+                //TODO logg
+                throw new ArgumentNullException(nameof(dalArticle), $"{nameof(dalArticle)} is null.");
+            }
+        }
+
+        private static void ValidateParams(int pageNum = 1, int pageSize = 1, int userId = 0)
+        {
+            if (pageNum < 1)
+            {
+                //TODO logg
+                throw new ArgumentOutOfRangeException(nameof(pageNum), $"{nameof(pageNum)} must be greator then 0.");
+            }
+            else if (pageSize < 1)
+            {
+                throw new ArgumentOutOfRangeException(nameof(pageSize), $"{nameof(pageSize)} must be greator then 0.");
+            }
+            else if (userId < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(pageSize), $"{nameof(pageSize)} must be positive.");
             }
         }
 

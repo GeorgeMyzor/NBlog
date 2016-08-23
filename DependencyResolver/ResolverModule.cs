@@ -41,7 +41,7 @@ namespace DependencyResolver
             kernel.Bind<IRepository<DalComment>>().To<CommentRepository>();
             kernel.Bind<IRoleRepository>().To<RoleRepository>();
 
-            kernel.Bind<ILogger>().To<NLogAdapter>();
+            kernel.Bind<ILogger>().To<NLogAdapter>().InSingletonScope();
         }
     }
 }

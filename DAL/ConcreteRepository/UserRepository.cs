@@ -16,9 +16,11 @@ namespace DAL.ConcreteRepository
     {
         private readonly DbContext context;
 
-        public UserRepository(DbContext uow)
+        public UserRepository(DbContext context)
         {
-            this.context = uow;
+            this.context = context;
+            if (context == null)
+                throw new ArgumentNullException(nameof(context),"Context is null.");
         }
 
         public IEnumerable<DalUser> GetAll()
@@ -33,16 +35,18 @@ namespace DAL.ConcreteRepository
                 : context.Set<User>().Count(user => user.Name == userName);
         }
 
-        public DalUser GetById(int key)
+        public DalUser GetById(int id)
         {
-            var ormUser = context.Set<User>().FirstOrDefault(user => user.Id == key);
+            ValidateId(id);
+
+            var ormUser = context.Set<User>().FirstOrDefault(user => user.Id == id);
 
             return ormUser?.ToDalUser();
         }
-
-        public DalUser GetByPredicate(Expression<Func<DalUser, bool>> f)
+        
+        public DalUser GetByPredicate(Expression<Func<DalUser, bool>> expression)
         {
-            var newExpr = Modifier.Convert<DalUser,User>(f);
+            var newExpr = Modifier.Convert<DalUser,User>(expression);
 
             var user = context.Set<User>().FirstOrDefault(newExpr);
             return user?.ToDalUser();
@@ -50,14 +54,28 @@ namespace DAL.ConcreteRepository
 
         public int GetUserActivity(int id)
         {
+            ValidateId(id);
+
             int activity = context.Set<Article>().Count(article => article.Author.Id == id);
             activity += context.Set<Comment>().Count(article => article.Author.Id == id);
 
             return activity;
         }
 
+        public IEnumerable<DalUser> GetPagedUsers(int pageNum, int pageSize)
+        {
+            ValidatePageParams(pageNum, pageSize);
+
+            var ormUser = context.Set<User>().OrderByDescending(user => user.Name).
+                Skip((pageNum - 1) * pageSize).Take(pageSize).ToList();
+
+            return ormUser.Select(user => user.ToDalUser());
+        }
+        
         public void Create(DalUser dalUser)
         {
+            ValidateUser(dalUser);
+
             var ormUser = dalUser.ToOrmUser();
             var newRoles = new List<Role>();
 
@@ -72,6 +90,8 @@ namespace DAL.ConcreteRepository
 
         public void Delete(DalUser dalUser)
         {
+            ValidateUser(dalUser);
+
             var ormUser = dalUser.ToOrmUser();
 
             ormUser = context.Set<User>().Single(u => u.Id == ormUser.Id);
@@ -80,6 +100,8 @@ namespace DAL.ConcreteRepository
         
         public void Update(DalUser dalUser)
         {
+            ValidateUser(dalUser);
+
             var editingUser = dalUser.ToOrmUser();
             var ormUser = context.Set<User>().Single(u => u.Id == dalUser.Id);
 
@@ -92,20 +114,14 @@ namespace DAL.ConcreteRepository
         
         public void UpdatePaidRole(DalUser dalUser)
         {
+            ValidateUser(dalUser);
+
             var editingUser = dalUser.ToOrmUser();
             var ormUser = context.Set<User>().Single(u => u.Id == dalUser.Id);
 
             CopyOrmUserNotPaidRoles(ormUser, editingUser);
 
             UpdateOrmUserRoles(ormUser,editingUser);
-        }
-
-        public IEnumerable<DalUser> GetPagedUsers(int pageNum, int pageSize)
-        {
-            var ormUser = context.Set<User>().OrderByDescending(user => user.Name).
-                Skip((pageNum - 1) * pageSize).Take(pageSize).ToList();
-
-            return ormUser.Select(user => user.ToDalUser());
         }
 
         #region Private methods
@@ -143,7 +159,37 @@ namespace DAL.ConcreteRepository
                 ormUser.Roles.Add(dbRole);
             }
         }
-        
+
+        private static void ValidateUser(DalUser dalUser)
+        {
+            if (dalUser == null)
+            {
+                //TODO logg
+                throw new ArgumentNullException(nameof(dalUser), $"{nameof(dalUser)} is null.");
+            }
+        }
+
+        private static void ValidateId(int id)
+        {
+            if (id < 0)
+            {
+                //TODO logg
+                throw new ArgumentNullException(nameof(id), "Id must be positive.");
+            }
+        }
+
+        private static void ValidatePageParams(int pageNum, int pageSize)
+        {
+            if (pageNum < 1)
+            {
+                //TODO logg
+                throw new ArgumentOutOfRangeException(nameof(pageNum), $"{nameof(pageNum)} must be greator then 0.");
+            }
+            else if (pageSize < 1)
+            {
+                throw new ArgumentOutOfRangeException(nameof(pageSize), $"{nameof(pageSize)} must be greator then 0.");
+            }
+        }
         #endregion
     }
 }

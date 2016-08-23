@@ -54,6 +54,7 @@
     <Compile Include="ConcreteRepository\RoleRepository.cs" />
     <Compile Include="ConcreteRepository\UnitOfWork.cs" />
     <Compile Include="ConcreteRepository\UserRepository.cs" />
+    <Compile Include="Exceptions\UnitOfWorkException.cs" />
     <Compile Include="Mappers\DalArticleMapper.cs" />
     <Compile Include="Mappers\DalCommentMapper.cs" />
     <Compile Include="Mappers\DalRoleMapper.cs" />

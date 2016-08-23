@@ -16,31 +16,51 @@ namespace DAL.ConcreteRepository
     {
         private readonly DbContext context;
 
-        public RoleRepository(DbContext uow)
+        public RoleRepository(DbContext context)
         {
-            this.context = uow;
+            this.context = context;
+            if (context == null)
+                throw new ArgumentNullException(nameof(context), "Context is null.");
         }
 
-        public DalRole GetById(int key)
+        public DalRole GetById(int id)
         {
-            var ormRole = context.Set<Role>().FirstOrDefault(role => role.Id == key);
+            ValidateParams(id);
+
+            var ormRole = context.Set<Role>().FirstOrDefault(role => role.Id == id);
 
             return ormRole?.ToDalRole();
         }
 
-        public DalRole GetByPredicate(Expression<Func<DalRole, bool>> f)
+        public DalRole GetByPredicate(Expression<Func<DalRole, bool>> expression)
         {
-            var newExpr = Modifier.Convert<DalRole, Role>(f);
+            var newExpr = Modifier.Convert<DalRole, Role>(expression);
 
             var role = context.Set<Role>().FirstOrDefault(newExpr);
             return role.ToDalRole();
         }
 
-        public int GetRoleCost(int roleId)
+        public int GetRoleCost(int id)
         {
-            var roleCost = context.Set<RoleCosts>().FirstOrDefault(dbRoleCost => dbRoleCost.RoleId == roleId);
+            ValidateParams(id);
+
+            var roleCost = context.Set<RoleCosts>().FirstOrDefault(dbRoleCost => dbRoleCost.RoleId == id);
 
             return roleCost?.Cost ?? 0;
         }
+
+        #region Private methods
+
+        private void ValidateParams(int id)
+        {
+            if (id < 0)
+            {
+                //TODO logg
+                throw new ArgumentOutOfRangeException(nameof(id), $"{nameof(id)} must be positive.");
+            }    
+        }
+
+
+        #endregion
     }
 }

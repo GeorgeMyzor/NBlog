@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.Exceptions;
 using DAL.Interface.Repository;
 
 namespace DAL.ConcreteRepository
@@ -14,12 +17,26 @@ namespace DAL.ConcreteRepository
 
         public UnitOfWork(DbContext context)
         {
+            if (context == null)
+                throw new ArgumentNullException(nameof(context), "Context is null." );
             Context = context;
         }
 
         public void Commit()
         {
-            Context?.SaveChanges();
+            try
+            {
+                Context?.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                //TODO log
+                throw new UnitOfWorkException("Failed to update db", ex);
+            }
+            catch (DbEntityValidationException ex)
+            {
+                throw new ArgumentException("Failed to add entity", ex);
+            }
         }
 
         public void Dispose()

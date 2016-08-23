@@ -2,3 +2,5 @@
 2016-08-22 19:36:59.8423|FATAL|LoggingModule.NLogAdapter|Test fatal
 2016-08-22 20:01:39.7604|WARN|LoggingModule.NLogAdapter|test 1 test2 2
 2016-08-22 20:01:39.7764|FATAL|LoggingModule.NLogAdapter|Test fatal
+2016-08-22 21:50:25.6357|WARN|LoggingModule.NLogAdapter|test 1 test2 2
+2016-08-22 21:50:25.6567|FATAL|LoggingModule.NLogAdapter|Test fatal
