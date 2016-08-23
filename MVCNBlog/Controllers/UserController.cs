@@ -40,7 +40,11 @@ namespace MVCNBlog.Controllers
             var user = service.GetUserEntity(id ?? 0).ToMvcUser();
 
             if (user == null)
-                throw new HttpException(404, "Not found");
+            {
+                var httpException = new HttpException(404, "Not found");
+                logger.Warn(httpException, $"{nameof(user)} wasnt found.");
+                throw httpException;
+            }
 
             string urlWithName = user.Name.RemoveSpecialCharacters();
             urlWithName = Url.Encode(urlWithName);
@@ -55,8 +59,6 @@ namespace MVCNBlog.Controllers
 
         public ActionResult All(int page = 1)
         {
-            logger.Warn("test {0} test2 {1}", 1, 2);
-            logger.Fatal("Test fatal");
             var users = new ListViewModel<UserViewModel>()
             {
                 ViewModels = service.GetPagedUsers(page,pageSize).Select(user => user.ToMvcUser()),
@@ -101,7 +103,11 @@ namespace MVCNBlog.Controllers
             var editingUser = service.GetUserEntity(id ?? 0)?.ToMvcUser();
 
             if (editingUser == null)
-                throw new HttpException(404, "Not found");
+            {
+                var httpException = new HttpException(404, "Not found");
+                logger.Warn(httpException, $"{nameof(editingUser)} wasnt found.");
+                throw httpException;
+            }
 
             return View(editingUser);
         }
@@ -120,7 +126,11 @@ namespace MVCNBlog.Controllers
             var deletingUser = service.GetUserEntity(id ?? 0)?.ToMvcUser();
 
             if (deletingUser == null)
-                throw new HttpException(404, "Not found");
+            {
+                var httpException = new HttpException(404, "Not found");
+                logger.Warn(httpException, $"{nameof(deletingUser)} wasnt found.");
+                throw httpException;
+            }
 
             return View(deletingUser);
         }

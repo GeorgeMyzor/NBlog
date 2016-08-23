@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using BLL.Interface.Entities;
 using BLL.Interface.Services;
+using LoggingModule;
 using MVCNBlog.Infrastructure.Mappers;
 using MVCNBlog.ViewModels;
 using MVCNBlog.ViewModels.Roles;
@@ -17,9 +18,11 @@ namespace MVCNBlog.Controllers
     {
         private readonly ICommentService commentService;
         private readonly IUserService userService;
+        private readonly ILogger logger;
 
-        public CommentController(ICommentService commentService, IUserService userService)
+        public CommentController(ICommentService commentService, IUserService userService, ILogger logger)
         {
+            this.logger = logger;
             this.commentService = commentService;
             this.userService = userService;
         }
@@ -47,19 +50,27 @@ namespace MVCNBlog.Controllers
         [HttpGet]
         public ActionResult Edit(int? id)
         {
-            if (id == null)
-                return HttpNotFound("NotFound.");
-            
             if (ModelState.IsValid)
             {
-                var editingComment= commentService.GetCommentEntity(id.Value).ToMvcComment();
+                var editingComment= commentService.GetCommentEntity(id ?? 0)?.ToMvcComment();
+
+                if (editingComment == null)
+                {
+                    var httpException = new HttpException(404, "Not found");
+                    logger.Warn(httpException, $"{nameof(editingComment)} wasnt found.");
+                    throw httpException;
+                }
 
                 if (editingComment.Author?.Name == User.Identity.Name || Roles.IsUserInRole("Moderator") || Roles.IsUserInRole("Administrator"))
                 {
                     return View("Index", editingComment);
                 }
 
-                throw new HttpException(403, "No permission ");
+                var httpNoPermissionsException = new HttpException(403, "No permissions");
+                logger.Warn(httpNoPermissionsException, $"User with name - {User.Identity.Name} " +
+                                                        $"don't have permissions to edit or delete" +
+                                                        $" comment with id {editingComment.Id}.");
+                throw httpNoPermissionsException;
             }
 
             return (View("Index"));

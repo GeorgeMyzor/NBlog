@@ -22,6 +22,12 @@ namespace LoggingModule
             nLogger.Trace(output);
         }
 
+        public void Trace(Exception exception, string format, params object[] args)
+        {
+            var output = string.Format(format, args);
+            nLogger.Trace(exception, output);
+        }
+
         public void Debug(Exception exception)
         {
             nLogger.Debug(exception);
@@ -31,6 +37,12 @@ namespace LoggingModule
         {
             var output = string.Format(format, args);
             nLogger.Debug(output);
+        }
+
+        public void Debug(Exception exception, string format, params object[] args)
+        {
+            var output = string.Format(format, args);
+            nLogger.Debug(exception, output);
         }
 
         public void Info(Exception exception)
@@ -44,6 +56,12 @@ namespace LoggingModule
             nLogger.Info(output);
         }
 
+        public void Info(Exception exception, string format, params object[] args)
+        {
+            var output = string.Format(format, args);
+            nLogger.Info(exception, output);
+        }
+
         public void Warn(Exception exception)
         {
             nLogger.Warn(exception);
@@ -53,6 +71,12 @@ namespace LoggingModule
         {
             var output = string.Format(format, args);
             nLogger.Warn(output);
+        }
+
+        public void Warn(Exception exception, string format, params object[] args)
+        {
+            var output = string.Format(format, args);
+            nLogger.Warn(exception, output);
         }
 
         public void Error(Exception exception)
@@ -66,6 +90,12 @@ namespace LoggingModule
             nLogger.Error(output);
         }
 
+        public void Error(Exception exception, string format, params object[] args)
+        {
+            var output = string.Format(format, args);
+            nLogger.Error(exception, output);
+        }
+
         public void Fatal(Exception exception)
         {
             nLogger.Fatal(exception);
@@ -75,6 +105,12 @@ namespace LoggingModule
         {
             var output = string.Format(format, args);
             nLogger.Fatal(output);
+        }
+
+        public void Fatal(Exception exception, string format, params object[] args)
+        {
+            var output = string.Format(format, args);
+            nLogger.Fatal(exception, output);
         }
     }
 }

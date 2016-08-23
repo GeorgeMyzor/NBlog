@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,6 +37,10 @@ namespace DAL.ConcreteRepository
             catch (DbEntityValidationException ex)
             {
                 throw new ArgumentException("Failed to add entity", ex);
+            }
+            catch (SqlException ex)
+            {
+                throw new UnitOfWorkException("Db not working.", ex);
             }
         }
 

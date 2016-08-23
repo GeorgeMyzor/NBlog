@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using BLL.Interface.Entities;
 using BLL.Interface.Services;
+using LoggingModule;
 using MVCNBlog.Infrastructure;
 using MVCNBlog.Infrastructure.Mappers;
 using MVCNBlog.ViewModels;
@@ -19,33 +20,38 @@ namespace MVCNBlog.Controllers
     {
         private readonly IArticleService articleService;
         private readonly IUserService userService;
+        private readonly ILogger logger;
         private readonly int pageSize;
 
-        public ArticleController(IArticleService articleService, IUserService userService)
+        public ArticleController(IArticleService articleService, IUserService userService, ILogger logger)
         {
+            this.logger = logger;
             this.articleService = articleService;
             this.userService = userService;
             pageSize = int.Parse(WebConfigurationManager.AppSettings["PageSize"]);
         }
-        
+
         [AllowAnonymous]
         public ActionResult Index(int? id, string title)
         {
-            if (id != null)
-            {
-                var article = articleService.GetArticleEntity(id.Value).ToMvcArticle();
+            var article = articleService.GetArticleEntity(id ?? 0).ToMvcArticle();
 
-                string urlWithTitle = article.Title.RemoveSpecialCharacters();
-                urlWithTitle = Url.Encode(urlWithTitle);
-            
-                if (!urlWithTitle.Equals(title))
-                {
-                    return RedirectToAction("Index", new { id, title = urlWithTitle });
-                }
-            
-                return View(article);
+            if (article == null)
+            {
+                var httpException = new HttpException(404, "Not found");
+                logger.Warn(httpException, $"Article with id {nameof(article)} wasnt found.");
+                throw httpException;
             }
-            return HttpNotFound("Not found.");
+
+            string urlWithTitle = article.Title.RemoveSpecialCharacters();
+            urlWithTitle = Url.Encode(urlWithTitle);
+
+            if (!urlWithTitle.Equals(title))
+            {
+                return RedirectToAction("Index", new {id, title = urlWithTitle});
+            }
+
+            return View(article);
         }
 
         [AllowAnonymous]
@@ -75,7 +81,14 @@ namespace MVCNBlog.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ArticleViewModel articleViewModel)
         {
-            var currentUser = userService.GetUserEntity(User.Identity.Name).ToMvcUser();
+            var currentUser = userService.GetUserEntity(User.Identity.Name)?.ToMvcUser();
+            if(currentUser == null)
+            {
+                var httpException = new HttpException(404, "Not found");
+                logger.Warn(httpException, $"{nameof(currentUser)} wasnt found. When trying to add new atricle.");
+                throw httpException;
+            }
+
             articleViewModel.AuthorId = currentUser.Id;
             
             if (ModelState.IsValid)
@@ -91,9 +104,13 @@ namespace MVCNBlog.Controllers
         public ActionResult Edit(int? id)
         {
             var editingArticle = articleService.GetArticleEntity(id ?? 0).ToMvcArticle();
-            
+
             if (editingArticle == null)
-                throw new HttpException(404, "Not found");
+            {
+                var httpException = new HttpException(404, "Not found");
+                logger.Warn(httpException, $"{nameof(editingArticle)} wasnt found. When trying to edit atricle.");
+                throw httpException;
+            }
 
             if (editingArticle.Author?.Name == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
                 Roles.IsUserInRole("Administrator"))
@@ -101,7 +118,10 @@ namespace MVCNBlog.Controllers
                 return View(editingArticle);
             }
 
-            throw new HttpException(403, "No permissions");
+            var httpNoPermissionsException = new HttpException(403, "No permissions");
+            logger.Warn(httpNoPermissionsException, $"User with name - {User.Identity.Name} " +
+                                                    $"don't have permissions to edit article with id {editingArticle.Id}.");
+            throw httpNoPermissionsException;
         }
 
         [HttpPost]
@@ -125,7 +145,11 @@ namespace MVCNBlog.Controllers
             var deletingArticle = articleService.GetArticleEntity(id ?? 0).ToMvcArticle();
 
             if (deletingArticle == null)
-                throw new HttpException(404, "Not found");
+            {
+                var httpException = new HttpException(404, "Not found");
+                logger.Warn(httpException, $"{nameof(deletingArticle)} wasnt found. When trying to delte atricle.");
+                throw httpException;
+            }
 
             if (deletingArticle.Author?.Name == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
                 Roles.IsUserInRole("Administrator"))
@@ -133,7 +157,10 @@ namespace MVCNBlog.Controllers
                 return View(deletingArticle);
             }
 
-            throw new HttpException(403, "No permissions");
+            var httpNoPermissionsException = new HttpException(403, "No permissions");
+            logger.Warn(httpNoPermissionsException, $"User with name - {User.Identity.Name} " +
+                                                    $"don't have permissions to delete article with id {deletingArticle.Id}.");
+            throw httpNoPermissionsException;
         }
 
         [HttpPost]
