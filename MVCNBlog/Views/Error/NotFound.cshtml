@@ -1,7 +1,11 @@
-﻿
+﻿@model  MVCNBlog.ViewModels.ErrorViewModel
 @{
-    ViewBag.Title = "NotFound";
+    ViewBag.Title = Model.StatusCode;
 }
 
-<h2>NotFound</h2>
+<h1 class="error">@Model.StatusCode</h1>
+
+@Model.StatusDescription<br />
+@Model.Message<br />
+@Model.DateTime
 

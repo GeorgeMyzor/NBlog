@@ -79,7 +79,7 @@ namespace MVCNBlog
 
             routes.MapRoute(
                 name: "CommentCreate",
-                url: "comment/{action}",
+                url: "comment/create",
                 defaults: new { controller = "Comment", action = "Create" }
                 );
 
@@ -123,7 +123,7 @@ namespace MVCNBlog
             routes.MapRoute(
                 "NotFound",
                 "{*url}",
-                new { controller = "Error", action = "NotFound" }
+                new { controller = "Error", action = "Error" }
             );
         }
     }
