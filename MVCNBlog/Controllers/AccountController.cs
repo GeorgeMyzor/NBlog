@@ -31,6 +31,11 @@ namespace MVCNBlog.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (Request.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Account");
+            }
+
             ViewBag.ReturnUrl = returnUrl;
 
             return View();
@@ -41,6 +46,11 @@ namespace MVCNBlog.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginUserViewModel viewModel, string returnUrl)
         {
+            if (Request.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Account");
+            }
+
             if (ModelState.IsValid)
             {
                 if (Membership.ValidateUser(viewModel.Name, viewModel.Password))
@@ -64,6 +74,11 @@ namespace MVCNBlog.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            if (Request.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Account");
+            }
+
             return View();
         }
 
@@ -72,6 +87,11 @@ namespace MVCNBlog.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterUserViewModel viewModel)
         {
+            if (Request.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Account");
+            }
+
             var anyUser = service.GetAccountEntity(viewModel.Name);
 
             if (anyUser != null)

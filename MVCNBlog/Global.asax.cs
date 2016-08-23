@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using MVCNBlog.Controllers;
 using MVCNBlog.Infrastructure.ModelBinders;
 using MVCNBlog.ViewModels;
 using MVCNBlog.ViewModels.User;
@@ -25,10 +26,30 @@ namespace MVCNBlog
             ModelBinders.Binders.Add(typeof(AccountViewModel), new AccountModelBinder());
         }
 
-        //protected void Application_Error(object sender, EventArgs e)
-        //{
-        //    Server.ClearError();
-        //    Response.Redirect("/Error/NotFound");
-        //}
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            var exception = Server.GetLastError();
+            Response.Clear();
+            var httpException = exception as HttpException;
+            if (httpException != null && httpException.GetHttpCode() == 404)
+            {
+                var routeData = new RouteData();
+                routeData.Values.Add("controller", "Error");
+                routeData.Values.Add("action", "NotFound");
+                Server.ClearError();
+                IController errorController = new ErrorController();
+                errorController.Execute(new RequestContext(new HttpContextWrapper(Context), routeData));
+            }
+
+            if (httpException != null && httpException.GetHttpCode() == 403)
+            {
+                var routeData = new RouteData();
+                routeData.Values.Add("controller", "Error");
+                routeData.Values.Add("action", "NoPermissions");
+                Server.ClearError();
+                IController errorController = new ErrorController();
+                errorController.Execute(new RequestContext(new HttpContextWrapper(Context), routeData));
+            }
+        }
     }
 }

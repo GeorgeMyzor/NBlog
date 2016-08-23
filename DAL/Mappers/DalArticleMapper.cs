@@ -12,7 +12,8 @@ namespace DAL.Mappers
     {
         public static DalArticle ToDalArticle(this Article ormArticle)
         {
-            return new DalArticle
+            
+            return ormArticle == null ? null : new DalArticle
             {
                 Id = ormArticle.Id,
                 Title = ormArticle.Title,

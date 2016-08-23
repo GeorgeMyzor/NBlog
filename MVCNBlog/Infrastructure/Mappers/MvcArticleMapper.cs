@@ -11,7 +11,7 @@ namespace MVCNBlog.Infrastructure.Mappers
     {
         public static ArticleViewModel ToMvcArticle(this BllArticle articleEntity)
         {
-            return new ArticleViewModel()
+            return articleEntity == null ? null : new ArticleViewModel()
             {
                 Id = articleEntity.Id,
                 Title = articleEntity.Title,

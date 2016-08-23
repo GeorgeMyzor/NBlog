@@ -12,7 +12,7 @@ namespace BLL.Mappers
     {
         public static BllArticle ToBllArticle(this DalArticle dalArticle)
         {
-            return new BllArticle()
+            return dalArticle == null ? null : new BllArticle()
             {
                 Id = dalArticle.Id,
                 Title = dalArticle.Title,

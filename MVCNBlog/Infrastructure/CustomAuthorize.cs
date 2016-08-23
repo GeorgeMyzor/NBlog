@@ -4,22 +4,21 @@ using System.Linq;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace MVCNBlog.Infrastructure
 {
     public class CustomAuthorizeAttribute : AuthorizeAttribute
     {
-        protected override void HandleUnauthorizedRequest(AuthorizationContext ctx)
+        protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
-            if (!ctx.RequestContext.HttpContext.User.Identity.IsAuthenticated)
-                base.HandleUnauthorizedRequest(ctx);
+            if (!filterContext.HttpContext.User.Identity.IsAuthenticated)
+            {
+                filterContext.Result = new HttpUnauthorizedResult();
+            }
             else
             {
-                ctx.RequestContext.HttpContext.Response.StatusCode = 403;
-                ctx.RequestContext.HttpContext.Response.Status = "Forbidden";
-                ctx.RequestContext.HttpContext.Response.StatusDescription = "Forbidden";
-                ctx.RequestContext.HttpContext.Response.End();
-                ctx.RequestContext.HttpContext.Response.Close();
+                filterContext.Result = new RedirectToRouteResult("ViewAccount", new RouteValueDictionary());
             }
         }
     }

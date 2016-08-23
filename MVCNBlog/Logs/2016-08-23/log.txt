@@ -1,0 +1,16 @@
+2016-08-23 13:13:27.7023|WARN|LoggingModule.NLogAdapter|User with name - user don't have permissions to edit article with id 11017.
+2016-08-23 13:22:26.9564 User with name - user don't have permissions to edit article with id 11017. System.Web.HttpException (0x80004005): No permissions
+2016-08-23 13:23:38.6256 User with name - user don't have permissions to edit article with id 11017. System.Web.HttpException (0x80004005): No permissions
+2016-08-23 13:51:00.9564 User with name - user don't have permissions to edit article with id 11017. System.Web.HttpException (0x80004005): No permissions
+2016-08-23 13:52:46.8034 User with name - user don't have permissions to edit article with id 11017. System.Web.HttpException (0x80004005): No permissions
+2016-08-23 13:55:22.4291 User with name - user don't have permissions to edit article with id 11017. System.Web.HttpException (0x80004005): No permissions
+2016-08-23 13:58:55.9825 User with name - user don't have permissions to edit article with id 11017. System.Web.HttpException (0x80004005): No permissions
+2016-08-23 14:00:03.0958 User with name - user don't have permissions to edit article with id 11017. System.Web.HttpException (0x80004005): No permissions
+2016-08-23 14:00:41.4437 User with name - user don't have permissions to edit article with id 11017. System.Web.HttpException (0x80004005): No permissions
+2016-08-23 14:04:36.3064 User with name - user don't have permissions to edit article with id 11017. System.Web.HttpException (0x80004005): No permissions
+2016-08-23 14:05:06.1472 User with name - user don't have permissions to edit article with id 11017. System.Web.HttpException (0x80004005): No permissions
+2016-08-23 14:11:31.4579 User with name - user don't have permissions to edit article with id 11017. System.Web.HttpException (0x80004005): No permissions
+2016-08-23 14:41:01.2194 User with name - user don't have permissions to edit article with id 11017. System.Web.HttpException (0x80004005): No permissions
+2016-08-23 14:44:18.5294 User with name - user don't have permissions to edit article with id 1. System.Web.HttpException (0x80004005): No permissions
+2016-08-23 14:55:04.3454 editingArticle wasnt found. When trying to edit atricle. System.Web.HttpException (0x80004005): Not found
+2016-08-23 15:32:36.3942 User with name - user don't have permissions to edit article with id 11017. System.Web.HttpException (0x80004005): No permissions
