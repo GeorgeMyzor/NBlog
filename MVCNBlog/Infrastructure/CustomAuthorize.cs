@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using MVCNBlog.Controllers;
 
 namespace MVCNBlog.Infrastructure
 {

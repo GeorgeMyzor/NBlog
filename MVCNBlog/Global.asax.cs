@@ -31,24 +31,45 @@ namespace MVCNBlog
             var exception = Server.GetLastError();
             Response.Clear();
             var httpException = exception as HttpException;
-            if (httpException != null && httpException.GetHttpCode() == 404)
+            if (httpException != null )
             {
-                var routeData = new RouteData();
-                routeData.Values.Add("controller", "Error");
-                routeData.Values.Add("action", "NotFound");
-                Server.ClearError();
-                IController errorController = new ErrorController();
-                errorController.Execute(new RequestContext(new HttpContextWrapper(Context), routeData));
-            }
+                if (httpException.GetHttpCode() == 404)
+                {
+                    var routeData = new RouteData();
+                    routeData.Values.Add("controller", "Error");
+                    routeData.Values.Add("action", "Error");
+                    routeData.Values.Add("exception", exception);
+                    routeData.Values.Add("statusCode", 404);
+                    Server.ClearError();
+                    IController errorController = new ErrorController();
+                    errorController.Execute(new RequestContext(new HttpContextWrapper(Context), routeData));
+                    Response.End();
+                }
 
-            if (httpException != null && httpException.GetHttpCode() == 403)
+                if (httpException.GetHttpCode() == 403)
+                {
+                    var routeData = new RouteData();
+                    routeData.Values.Add("controller", "Error");
+                    routeData.Values.Add("action", "Error");
+                    routeData.Values.Add("exception", exception);
+                    routeData.Values.Add("statusCode", 403);
+                    Server.ClearError();
+                    IController errorController = new ErrorController();
+                    errorController.Execute(new RequestContext(new HttpContextWrapper(Context), routeData));
+                }
+            }
+            else
             {
                 var routeData = new RouteData();
                 routeData.Values.Add("controller", "Error");
-                routeData.Values.Add("action", "NoPermissions");
-                Server.ClearError();
-                IController errorController = new ErrorController();
-                errorController.Execute(new RequestContext(new HttpContextWrapper(Context), routeData));
+                routeData.Values.Add("action", "Error");
+                routeData.Values.Add("exception", exception);
+                routeData.Values.Add("statusCode", 500);
+
+                Response.TrySkipIisCustomErrors = true;
+                IController controller = new ErrorController();
+                controller.Execute(new RequestContext(new HttpContextWrapper(Context), routeData));
+                Response.End();
             }
         }
     }
