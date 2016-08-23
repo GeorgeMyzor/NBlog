@@ -266,8 +266,6 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\Error\NotFound.cshtml" />
-    <Content Include="Views\Error\NoPermissions.cshtml" />
     <Content Include="Views\Account\Delete.cshtml" />
     <Content Include="Views\Error\Error.cshtml" />
   </ItemGroup>

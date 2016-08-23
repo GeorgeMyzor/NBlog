@@ -11,7 +11,7 @@ namespace MVCNBlog.Infrastructure.Mappers
     {
         public static CommentViewModel ToMvcComment(this BllComment commentEntity)
         {
-            return new CommentViewModel()
+            return commentEntity == null ? null : new CommentViewModel()
             {
                 Id = commentEntity.Id,
                 Content = commentEntity.Content,

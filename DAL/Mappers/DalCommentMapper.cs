@@ -10,26 +10,26 @@ namespace DAL.Mappers
 {
     public static class DalCommentMapper
     {
-        public static DalComment ToDalComment(this Comment ormArticle)
+        public static DalComment ToDalComment(this Comment ormComment)
         {
-            return new DalComment
+            return ormComment == null ? null : new DalComment
             {
-                Id = ormArticle.Id,
-                Content = ormArticle.Content,
-                PublicationDate = ormArticle.PublicationDate,
-                ArticleId = ormArticle.ArticleId,
-                AuthorId = ormArticle.Author?.Id,
-                Author = ormArticle.Author.ToDalUser()
+                Id = ormComment.Id,
+                Content = ormComment.Content,
+                PublicationDate = ormComment.PublicationDate,
+                ArticleId = ormComment.ArticleId,
+                AuthorId = ormComment.Author?.Id,
+                Author = ormComment.Author.ToDalUser()
             };
         }
 
-        public static Comment ToOrmComment(this DalComment dalArticle)
+        public static Comment ToOrmComment(this DalComment dalComment)
         {
             return new Comment
             {
-                Id = dalArticle.Id,
-                Content = dalArticle.Content,
-                PublicationDate = dalArticle.PublicationDate
+                Id = dalComment.Id,
+                Content = dalComment.Content,
+                PublicationDate = dalComment.PublicationDate
             };
         }
     }

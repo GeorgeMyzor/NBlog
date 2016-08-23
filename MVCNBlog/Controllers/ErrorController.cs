@@ -42,11 +42,16 @@ namespace MVCNBlog.Controllers
             {
                 StatusCode = code.ToString(),
                 StatusDescription = HttpWorkerRequest.GetStatusDescription(code),
-                Message = exception?.Message ?? "Not found.",
+                Message = FirstCharToUpper(exception?.Message ?? "Not found."),
                 DateTime = DateTime.Now
             };
 
             return View(error);
+        }
+
+        private static string FirstCharToUpper(string input)
+        {
+            return input.First().ToString().ToUpper() + input.Substring(1);
         }
     }
 }

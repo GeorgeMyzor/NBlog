@@ -12,7 +12,7 @@ namespace BLL.Mappers
     {
         public static BllUser ToBllUser(this DalUser dalUser)
         {
-            return new BllUser()
+            return dalUser == null ? null : new BllUser()
             {
                 Id = dalUser.Id,
                 Name = dalUser.Name,

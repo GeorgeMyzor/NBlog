@@ -20,12 +20,10 @@ namespace MVCNBlog.Controllers
     {
         private readonly IArticleService articleService;
         private readonly IUserService userService;
-        private readonly ILogger logger;
         private readonly int pageSize;
 
-        public ArticleController(IArticleService articleService, IUserService userService, ILogger logger)
+        public ArticleController(IArticleService articleService, IUserService userService)
         {
-            this.logger = logger;
             this.articleService = articleService;
             this.userService = userService;
             pageSize = int.Parse(WebConfigurationManager.AppSettings["PageSize"]);
@@ -38,8 +36,7 @@ namespace MVCNBlog.Controllers
 
             if (article == null)
             {
-                var httpException = new HttpException(404, "Not found");
-                logger.Warn(httpException, $"Article with id {nameof(article)} wasnt found.");
+                var httpException = new HttpException(404, $"{nameof(article)} with id - {id} wasnt found.");
                 throw httpException;
             }
 
@@ -84,8 +81,8 @@ namespace MVCNBlog.Controllers
             var currentUser = userService.GetUserEntity(User.Identity.Name)?.ToMvcUser();
             if(currentUser == null)
             {
-                var httpException = new HttpException(404, "Not found");
-                logger.Warn(httpException, $"{nameof(currentUser)} wasnt found. When trying to add new atricle.");
+                var outputString = $"{nameof(currentUser)} wasnt found. When trying to add new atricle.";
+                var httpException = new HttpException(404, outputString);
                 throw httpException;
             }
 
@@ -107,8 +104,8 @@ namespace MVCNBlog.Controllers
 
             if (editingArticle == null)
             {
-                var httpException = new HttpException(404, "Not found");
-                logger.Warn(httpException, $"{nameof(editingArticle)} wasnt found. When trying to edit atricle.");
+                var outputString = $"{nameof(editingArticle)} wasnt found. When trying to edit atricle.";
+                var httpException = new HttpException(404, outputString);
                 throw httpException;
             }
 
@@ -119,8 +116,7 @@ namespace MVCNBlog.Controllers
             }
 
             var httpNoPermissionsException = new HttpException(403, "No permissions");
-            logger.Warn(httpNoPermissionsException, $"User with name - {User.Identity.Name} " +
-                                                    $"don't have permissions to edit article with id {editingArticle.Id}.");
+
             throw httpNoPermissionsException;
         }
 
@@ -146,8 +142,8 @@ namespace MVCNBlog.Controllers
 
             if (deletingArticle == null)
             {
-                var httpException = new HttpException(404, "Not found");
-                logger.Warn(httpException, $"{nameof(deletingArticle)} wasnt found. When trying to delte atricle.");
+                var outputString = $"{nameof(deletingArticle)} wasnt found. When trying to delete atricle.";
+                var httpException = new HttpException(404, outputString);
                 throw httpException;
             }
 
@@ -157,8 +153,7 @@ namespace MVCNBlog.Controllers
                 return View(deletingArticle);
             }
 
-            var httpNoPermissionsException = new HttpException(403, "No permissions");
-            logger.Warn(httpNoPermissionsException, $"User with name - {User.Identity.Name} " +
+            var httpNoPermissionsException = new HttpException(403, $"User with name - {User.Identity.Name} " +
                                                     $"don't have permissions to delete article with id {deletingArticle.Id}.");
             throw httpNoPermissionsException;
         }

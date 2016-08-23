@@ -174,3 +174,182 @@
    в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) Exceptions: Not found
 2016-08-23 20:46:51.5748 Warn Message: user wasnt found. Exceptions: Not found
 2016-08-23 20:46:51.6168 Warn Message: Not found Exceptions: 
+2016-08-23 21:42:23.6294 Warn Message: Resources not found. 
+2016-08-23 21:42:24.5794 Warn Message: Resources not found. 
+2016-08-23 21:43:53.4005 Warn Message: Resources not found. 
+2016-08-23 21:44:54.6970 Warn Message: Resources not found. 
+2016-08-23 21:44:55.0990 Warn Message: Resources not found. 
+2016-08-23 21:45:51.2832 Warn Message: Resources not found. 
+2016-08-23 21:46:09.5733 Warn Message: Resources not found. 
+2016-08-23 21:46:20.0059 Warn Message: A public action method 'Create' was not found on controller 'MVCNBlog.Controllers.CommentController'. 
+2016-08-23 21:51:31.8004 Warn Message: Resources not found. 
+2016-08-23 21:51:53.6896 Warn Message: Resources not found. 
+2016-08-23 21:54:35.6002 Warn Message: Resources not found. 
+2016-08-23 21:54:49.8411 Warn Message: Resources not found. 
+2016-08-23 21:56:30.0711 Warn Message: Resources not found. 
+2016-08-23 21:56:48.5837 Warn Message: Resources not found. 
+2016-08-23 21:56:51.9588 Warn Message: Resources not found. 
+2016-08-23 21:58:10.0091 Warn Message: Resources not found. 
+2016-08-23 21:59:42.2787 Warn Message: Resources not found. 
+2016-08-23 22:00:48.8695 Warn Message: Resources not found. 
+2016-08-23 22:01:23.2574 Warn Message: Resources not found. 
+2016-08-23 22:02:15.6554 Warn Message: The controller for path '/Account/Login' was not found or does not implement IController. 
+2016-08-23 22:04:32.4983 Warn Message: user wasnt found. user wasnt found.
+2016-08-23 22:04:32.5323 Warn Message: user wasnt found. 
+2016-08-23 22:05:23.4702 Warn Message: User wasnt found. User wasnt found.
+2016-08-23 22:05:23.5142 Warn Message: User wasnt found. 
+2016-08-23 22:08:10.9168 Warn Message: Article with id article wasnt found. Not found
+2016-08-23 22:08:10.9538 Warn Message: Not found 
+2016-08-23 22:09:26.5951 Warn Message: Article with id article wasnt found. Article with id article wasnt found.
+2016-08-23 22:09:26.6601 Warn Message: Article with id article wasnt found. 
+2016-08-23 22:12:31.3176 Warn Message: Article with id article wasnt found. Article with id article wasnt found.
+2016-08-23 22:12:31.3787 Warn Message: Article with id article wasnt found. 
+2016-08-23 22:13:46.4779 Warn Message: article with id 432432 wasnt found. article with id 432432 wasnt found.
+2016-08-23 22:13:46.5169 Warn Message: article with id 432432 wasnt found. 
+2016-08-23 22:13:58.6096 Warn Message: article with id 432432 wasnt found. article with id 432432 wasnt found.
+2016-08-23 22:13:58.6096 Warn Message: article with id 432432 wasnt found. 
+2016-08-23 22:14:00.0957 Warn Message: article with id 432432 wasnt found. article with id 432432 wasnt found.
+2016-08-23 22:14:00.0977 Warn Message: article with id 432432 wasnt found. 
+2016-08-23 22:18:22.1887 Warn Message: article with id - 432432 wasnt found. article with id - 432432 wasnt found.
+2016-08-23 22:18:22.2657 Warn Message: article with id - 432432 wasnt found. 
+2016-08-23 22:19:18.0719 Warn Message: user wasnt found. user wasnt found.
+2016-08-23 22:19:18.0739 Warn Message: user wasnt found. 
+2016-08-23 22:19:20.6421 Warn Message: deletingUser wasn't found. deletingUser wasn't found.
+2016-08-23 22:19:20.6421 Warn Message: deletingUser wasn't found. 
+2016-08-23 22:33:27.2515 Warn Message: user wasnt found. 
+2016-08-23 22:34:04.7956 Error Message: System.NullReferenceException: Ссылка на объект не указывает на экземпляр объекта.
+   в DAL.Mappers.DalCommentMapper.ToDalComment(Comment ormArticle) в D:\VS Projects\NBlog\DAL\Mappers\DalCommentMapper.cs:строка 15
+   в DAL.ConcreteRepository.CommentRepository.GetById(Int32 id) в D:\VS Projects\NBlog\DAL\ConcreteRepository\CommentRepository.cs:строка 44
+   в BLL.Services.CommentService.GetCommentEntity(Int32 id) в D:\VS Projects\NBlog\BLL\Services\CommentService.cs:строка 32
+   в MVCNBlog.Controllers.CommentController.Edit(Nullable`1 id) в D:\VS Projects\NBlog\MVCNBlog\Controllers\CommentController.cs:строка 53
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) Ссылка на объект не указывает на экземпляр объекта.
+2016-08-23 22:34:38.5626 Error Message: System.NullReferenceException: Ссылка на объект не указывает на экземпляр объекта.
+   в DAL.Mappers.DalCommentMapper.ToDalComment(Comment ormArticle) в D:\VS Projects\NBlog\DAL\Mappers\DalCommentMapper.cs:строка 15
+   в DAL.ConcreteRepository.CommentRepository.GetById(Int32 id) в D:\VS Projects\NBlog\DAL\ConcreteRepository\CommentRepository.cs:строка 44
+   в BLL.Services.CommentService.GetCommentEntity(Int32 id) в D:\VS Projects\NBlog\BLL\Services\CommentService.cs:строка 32
+   в MVCNBlog.Controllers.CommentController.Edit(Nullable`1 id) в D:\VS Projects\NBlog\MVCNBlog\Controllers\CommentController.cs:строка 53
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) Ссылка на объект не указывает на экземпляр объекта.
+2016-08-23 22:37:50.9784 Error Message: System.NullReferenceException: Ссылка на объект не указывает на экземпляр объекта.
+   в DAL.Mappers.DalCommentMapper.ToDalComment(Comment ormArticle) в D:\VS Projects\NBlog\DAL\Mappers\DalCommentMapper.cs:строка 15
+   в DAL.ConcreteRepository.CommentRepository.GetById(Int32 id) в D:\VS Projects\NBlog\DAL\ConcreteRepository\CommentRepository.cs:строка 44
+   в BLL.Services.CommentService.GetCommentEntity(Int32 id) в D:\VS Projects\NBlog\BLL\Services\CommentService.cs:строка 32
+   в MVCNBlog.Controllers.CommentController.Edit(Nullable`1 id) в D:\VS Projects\NBlog\MVCNBlog\Controllers\CommentController.cs:строка 53
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) Ссылка на объект не указывает на экземпляр объекта.
+2016-08-23 22:38:41.5082 Error Message: System.NullReferenceException: Ссылка на объект не указывает на экземпляр объекта.
+   в DAL.Mappers.DalCommentMapper.ToDalComment(Comment ormArticle) в D:\VS Projects\NBlog\DAL\Mappers\DalCommentMapper.cs:строка 15
+   в DAL.ConcreteRepository.CommentRepository.GetById(Int32 id) в D:\VS Projects\NBlog\DAL\ConcreteRepository\CommentRepository.cs:строка 44
+   в BLL.Services.CommentService.GetCommentEntity(Int32 id) в D:\VS Projects\NBlog\BLL\Services\CommentService.cs:строка 32
+   в MVCNBlog.Controllers.CommentController.Edit(Nullable`1 id) в D:\VS Projects\NBlog\MVCNBlog\Controllers\CommentController.cs:строка 53
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) Ссылка на объект не указывает на экземпляр объекта.
+2016-08-23 22:39:43.9238 Error Message: System.NullReferenceException: Ссылка на объект не указывает на экземпляр объекта.
+   в DAL.Mappers.DalCommentMapper.ToDalComment(Comment ormArticle) в D:\VS Projects\NBlog\DAL\Mappers\DalCommentMapper.cs:строка 15
+   в DAL.ConcreteRepository.CommentRepository.GetById(Int32 id) в D:\VS Projects\NBlog\DAL\ConcreteRepository\CommentRepository.cs:строка 44
+   в BLL.Services.CommentService.GetCommentEntity(Int32 id) в D:\VS Projects\NBlog\BLL\Services\CommentService.cs:строка 32
+   в MVCNBlog.Controllers.CommentController.Edit(Nullable`1 id) в D:\VS Projects\NBlog\MVCNBlog\Controllers\CommentController.cs:строка 53
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) Ссылка на объект не указывает на экземпляр объекта.
+2016-08-23 22:45:17.5312 Warn Message: editingComment wasn't found. 

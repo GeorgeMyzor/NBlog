@@ -12,7 +12,7 @@ namespace BLL.Mappers
     {
         public static BllComment ToBllComment(this DalComment dalComment)
         {
-            return new BllComment()
+            return dalComment == null ? null : new BllComment()
             {
                 Id = dalComment.Id,
                 Content = dalComment.Content,

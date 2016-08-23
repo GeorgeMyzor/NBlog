@@ -19,18 +19,15 @@ using MVCNBlog.ViewModels.User;
 
 namespace MVCNBlog.Controllers
 {
-    //[Authorize(Roles = "Administrator,Moderator")]
     [CustomAuthorize(Roles = "Administrator,Moderator")]
     public class UserController : Controller
     {
         private readonly IUserService service;
-        private readonly ILogger logger;
         private readonly int pageSize;
 
-        public UserController(IUserService service, ILogger logger)
+        public UserController(IUserService service)
         {
             this.service = service;
-            this.logger = logger;
             pageSize = int.Parse(WebConfigurationManager.AppSettings["PageSize"]);
         }
 
@@ -42,8 +39,9 @@ namespace MVCNBlog.Controllers
 
             if (user == null)
             {
-                var httpException = new HttpException(404, "Not found");
-                logger.Warn(httpException, $"{nameof(user)} wasnt found.");
+                string outputString = $"{nameof(user)} wasnt found.";
+                var httpException = new HttpException(404, outputString);
+
                 throw httpException;
             }
 
@@ -105,8 +103,9 @@ namespace MVCNBlog.Controllers
 
             if (editingUser == null)
             {
-                var httpException = new HttpException(404, "Not found");
-                logger.Warn(httpException, $"{nameof(editingUser)} wasnt found.");
+                string outputString = $"{nameof(editingUser)} wasn't found.";
+                var httpException = new HttpException(404, outputString);
+
                 throw httpException;
             }
 
@@ -128,8 +127,9 @@ namespace MVCNBlog.Controllers
 
             if (deletingUser == null)
             {
-                var httpException = new HttpException(404, "Not found");
-                logger.Warn(httpException, $"{nameof(deletingUser)} wasnt found.");
+                string outputString = $"{nameof(deletingUser)} wasn't found.";
+                var httpException = new HttpException(404, outputString);
+
                 throw httpException;
             }
 

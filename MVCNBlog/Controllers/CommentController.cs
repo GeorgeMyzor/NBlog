@@ -18,11 +18,9 @@ namespace MVCNBlog.Controllers
     {
         private readonly ICommentService commentService;
         private readonly IUserService userService;
-        private readonly ILogger logger;
 
-        public CommentController(ICommentService commentService, IUserService userService, ILogger logger)
+        public CommentController(ICommentService commentService, IUserService userService)
         {
-            this.logger = logger;
             this.commentService = commentService;
             this.userService = userService;
         }
@@ -46,34 +44,29 @@ namespace MVCNBlog.Controllers
                                             .Select(e => e.ErrorMessage));
             return RedirectToAction("Index", "Article", new { id });
         }
-        
+
         [HttpGet]
         public ActionResult Edit(int? id)
         {
-            if (ModelState.IsValid)
+            var editingComment = commentService.GetCommentEntity(id ?? 0)?.ToMvcComment();
+
+            if (editingComment == null)
             {
-                var editingComment= commentService.GetCommentEntity(id ?? 0)?.ToMvcComment();
-
-                if (editingComment == null)
-                {
-                    var httpException = new HttpException(404, "Not found");
-                    logger.Warn(httpException, $"{nameof(editingComment)} wasnt found.");
-                    throw httpException;
-                }
-
-                if (editingComment.Author?.Name == User.Identity.Name || Roles.IsUserInRole("Moderator") || Roles.IsUserInRole("Administrator"))
-                {
-                    return View("Index", editingComment);
-                }
-
-                var httpNoPermissionsException = new HttpException(403, "No permissions");
-                logger.Warn(httpNoPermissionsException, $"User with name - {User.Identity.Name} " +
-                                                        $"don't have permissions to edit or delete" +
-                                                        $" comment with id {editingComment.Id}.");
-                throw httpNoPermissionsException;
+                var outputString = $"{nameof(editingComment)} wasn't found.";
+                var httpException = new HttpException(404, outputString);
+                throw httpException;
             }
 
-            return (View("Index"));
+            if (editingComment.Author?.Name == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
+                Roles.IsUserInRole("Administrator"))
+            {
+                return View("Index", editingComment);
+            }
+
+            var httpNoPermissionsException = new HttpException(403, $"User with name - {User.Identity.Name} " +
+                                                                    $"don't have permissions to edit or delete" +
+                                                                    $" comment with id {editingComment.Id}.");
+            throw httpNoPermissionsException;
         }
 
         [HttpPost]

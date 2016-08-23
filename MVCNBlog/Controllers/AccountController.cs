@@ -17,11 +17,9 @@ namespace MVCNBlog.Controllers
     public class AccountController : Controller
     {
         private readonly IAccountService service;
-        private readonly ILogger logger;
 
-        public AccountController(IAccountService service, ILogger logger)
+        public AccountController(IAccountService service)
         {
-            this.logger = logger;
             this.service = service;
         }
 
@@ -63,8 +61,7 @@ namespace MVCNBlog.Controllers
 
                     return RedirectToAction("All", "Article");
                 }
-
-                logger.Info($"Can not login with name: {viewModel.Name}");
+                
                 ModelState.AddModelError("", "Incorrect login or password.");
             }
             return View(viewModel);
@@ -110,7 +107,7 @@ namespace MVCNBlog.Controllers
                     FormsAuthentication.SetAuthCookie(viewModel.Name, false);
                     return RedirectToAction("All", "Article");
                 }
-                logger.Info($"Can not register with name: {viewModel.Name}");
+
                 ModelState.AddModelError("", "Error registration.");
             }
             return View(viewModel);
@@ -131,8 +128,8 @@ namespace MVCNBlog.Controllers
             var currentAccount = service.GetAccountEntity(User.Identity.Name).ToMvcAccount();
             if (currentAccount == null)
             {
-                var httpException = new HttpException(404, "Not found");
-                logger.Warn(httpException, $"{nameof(currentAccount)} wasnt found.");
+                string outputString = $"Account wasn't found.";
+                var httpException = new HttpException(404, outputString);
                 throw httpException;
             }
 
@@ -145,12 +142,13 @@ namespace MVCNBlog.Controllers
         public ActionResult Edit()
         {
             var currentAccount = service.GetAccountEntity(User.Identity.Name).ToMvcAccount();
-            if (currentAccount == null) if (currentAccount == null)
-                {
-                    var httpException = new HttpException(404, "Not found");
-                    logger.Warn(httpException, $"{nameof(currentAccount)} wasnt found.");
-                    throw httpException;
-                }
+            if (currentAccount == null)
+            {
+                var outputString = $"{nameof(currentAccount)} wasnt found.";
+                var httpException = new HttpException(404, outputString);
+
+                throw httpException;
+            }
 
             return View(currentAccount);
         }
@@ -180,8 +178,8 @@ namespace MVCNBlog.Controllers
             var currentAccount = service.GetAccountEntity(User.Identity.Name).ToMvcAccount();
             if (currentAccount == null)
             {
-                var httpException = new HttpException(404, "Not found");
-                logger.Warn(httpException, $"{nameof(currentAccount)} wasnt found.");
+                string outputString = $"Account wasn't found.";
+                var httpException = new HttpException(404, outputString);
                 throw httpException;
             }
 
@@ -195,8 +193,8 @@ namespace MVCNBlog.Controllers
             var currentAccount = service.GetAccountEntity(User.Identity.Name);
             if (currentAccount == null)
             {
-                var httpException = new HttpException(404, "Not found");
-                logger.Warn(httpException, $"{nameof(currentAccount)} wasnt found.");
+                string outputString = $"Account wasn't found.";
+                var httpException = new HttpException(404, outputString);
                 throw httpException;
             }
 
