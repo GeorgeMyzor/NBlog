@@ -13,6 +13,7 @@ namespace BLL.Interface.Services
         int GetArticlesCount(string userName);
         BllArticle GetArticleEntity(int id);
         IEnumerable<BllArticle> GetAllArticleEntities();
+        IEnumerable<BllArticle> FindArticleEntities(string findString);
         IEnumerable<BllArticle> GetPagedArticles(int pageNum, int pageSize);
         IEnumerable<BllArticle> GetPagedArticles(int pageNum, int pageSize, int userId);
         void CreateArticle(BllArticle article);

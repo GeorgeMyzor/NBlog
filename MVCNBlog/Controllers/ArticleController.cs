@@ -28,6 +28,21 @@ namespace MVCNBlog.Controllers
             this.userService = userService;
             pageSize = int.Parse(WebConfigurationManager.AppSettings["PageSize"]);
         }
+        
+        public ActionResult Find(string term)
+        {
+            var articles = articleService.FindArticleEntities(term).ToList();
+            var projection = from article in articles
+                             select new
+                             {
+                                 id = article.Id,
+                                 label = article.Title,
+                             };
+
+            return Json(projection, JsonRequestBehavior.AllowGet);
+        }
+
+        #region CRUD
 
         [AllowAnonymous]
         public ActionResult Index(int? id, string title)
@@ -166,5 +181,7 @@ namespace MVCNBlog.Controllers
 
             return RedirectToAction("All");
         }
+
+        #endregion
     }
 }

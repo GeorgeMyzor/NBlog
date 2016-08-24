@@ -2,6 +2,25 @@
 @{
     ViewBag.Title = "All";
 }
+<link rel="stylesheet" href="/Content/themes/base/jquery-ui.css">
+<script type="text/javascript">
+    $(function () {
+        var autocompleteUrl = '@Url.RouteUrl("AllArticles", new {action = "Find"})';
+        $("input#city").autocomplete({
+            source: autocompleteUrl,
+            minLength: 2,
+            select: function(event, ui) {
+                alert("Selected " + ui.item.label);
+            }
+        });
+    });
+</script>
+
+<h2>Find</h2>
+<p>
+    <label for="city">City</label>
+    <input type="text" id="city"/>
+</p>
 
 <h2>All articles</h2>
 @foreach (var article in Model.ViewModels)

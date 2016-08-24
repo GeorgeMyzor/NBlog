@@ -42,6 +42,13 @@ namespace BLL.Services
             return articleRepository.GetAll().Select(article => article.ToBllArticle());
         }
 
+        public IEnumerable<BllArticle> FindArticleEntities(string findString)
+        {
+            var allArticles = articleRepository.GetAll().Where(article => article.Content.Contains(findString));
+
+            return allArticles.Select(article => article.ToBllArticle());
+        }
+
         public IEnumerable<BllArticle> GetPagedArticles(int pageNum, int pageSize)
         {
             return articleRepository.GetPagedArticles(pageNum, pageSize).Select(dalArticle => dalArticle.ToBllArticle());

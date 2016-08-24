@@ -32,7 +32,7 @@ namespace MVCNBlog
                 name: "AllArticles",
                 url: "articles/{action}",
                 defaults: new { controller = "Article", action = "All" },
-                constraints: new { action = @"Create|All" }
+                constraints: new { action = @"Create|All|Find" }
                 );
             
             #endregion
