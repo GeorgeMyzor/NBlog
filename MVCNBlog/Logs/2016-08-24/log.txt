@@ -1,0 +1,30 @@
+2016-08-24 13:31:44.2945 Warn Message: user wasnt found. 
+2016-08-24 13:32:21.2787 Warn Message: editingUser wasn't found. 
+2016-08-24 13:32:25.1279 Warn Message: deletingUser wasn't found. 
+2016-08-24 13:32:28.0810 Warn Message: Resources not found. 
+2016-08-24 13:57:03.4914 Warn Message: deletingUser wasn't found. 
+2016-08-24 14:08:24.5184 Warn Message: Resources not found. 
+2016-08-24 14:08:36.1220 Warn Message: editingUser wasn't found. 
+2016-08-24 14:08:41.7944 Warn Message: Resources not found. 
+2016-08-24 14:08:55.2971 Warn Message: Resources not found. 
+2016-08-24 14:09:12.5761 Warn Message: Resources not found. 
+2016-08-24 14:09:22.4977 Warn Message: Resources not found. 
+2016-08-24 14:14:49.8824 Warn Message: Resources not found. 
+2016-08-24 14:15:03.1122 Warn Message: article with id - 555 wasnt found. 
+2016-08-24 14:15:08.5215 Warn Message: editingArticle wasnt found. When trying to edit atricle. 
+2016-08-24 14:15:14.7629 Warn Message: Resources not found. 
+2016-08-24 14:15:19.2601 Warn Message: deletingArticle wasnt found. When trying to delete atricle. 
+2016-08-24 14:15:36.8671 Warn Message: article with id - 555 wasnt found. 
+2016-08-24 14:15:40.2513 Warn Message: article with id - 555 wasnt found. 
+2016-08-24 14:15:57.7203 Warn Message: A public action method 'ValidateName' was not found on controller 'MVCNBlog.Controllers.UserController'. 
+2016-08-24 14:16:21.7427 Warn Message: editingComment wasn't found. 
+2016-08-24 14:16:24.8809 Warn Message: editingComment wasn't found. 
+2016-08-24 14:16:29.3371 Warn Message: Resources not found. 
+2016-08-24 14:16:34.7784 Warn Message: A public action method 'delete' was not found on controller 'MVCNBlog.Controllers.CommentController'. 
+2016-08-24 14:16:40.0857 Warn Message: editingComment wasn't found. 
+2016-08-24 14:16:42.2549 Warn Message: Resources not found. 
+2016-08-24 14:16:50.7913 Warn Message: A public action method 'delete' was not found on controller 'MVCNBlog.Controllers.CommentController'. 
+2016-08-24 14:17:29.1635 Warn Message: Resources not found. 
+2016-08-24 14:17:37.3510 Warn Message: Resources not found. 
+2016-08-24 15:04:17.7633 Warn Message: Page not found. 
+2016-08-24 15:04:36.4673 Warn Message: Page not found. 

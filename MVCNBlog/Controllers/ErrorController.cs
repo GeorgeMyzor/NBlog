@@ -22,7 +22,7 @@ namespace MVCNBlog.Controllers
             if (statusCode == null)
             {
                 code = 404;
-                exception = new HttpException(code, "Resources not found.");
+                exception = new HttpException(code, "Page not found.");
                 logger.Warn(exception.Message);
             }
             else if(statusCode == 500)
@@ -42,16 +42,18 @@ namespace MVCNBlog.Controllers
             {
                 StatusCode = code.ToString(),
                 StatusDescription = HttpWorkerRequest.GetStatusDescription(code),
-                Message = FirstCharToUpper(exception?.Message ?? "Not found."),
+                Message = FirstCharToUpper(exception?.Message),
                 DateTime = DateTime.Now
             };
 
             return View(error);
         }
 
-        private static string FirstCharToUpper(string input)
+        private static string FirstCharToUpper(string errorString)
         {
-            return input.First().ToString().ToUpper() + input.Substring(1);
+            if (string.IsNullOrEmpty(errorString))
+                return "Page not found.";
+            return errorString.First().ToString().ToUpper() + errorString.Substring(1);
         }
     }
 }

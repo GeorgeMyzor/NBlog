@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Login";
 }
-@using (Html.BeginForm("Login", "Account", FormMethod.Post,
+@using (Html.BeginForm("Login", "Account", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post,
     new {@class = "form-horizontal", role = "form"}))
 {
     @Html.AntiForgeryToken()
