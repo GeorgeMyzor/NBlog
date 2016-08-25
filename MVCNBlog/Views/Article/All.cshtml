@@ -6,20 +6,29 @@
 <script type="text/javascript">
     $(function () {
         var autocompleteUrl = '@Url.RouteUrl("AllArticles", new {action = "Find"})';
-        $("input#city").autocomplete({
+        $("input#article").autocomplete({
             source: autocompleteUrl,
             minLength: 2,
-            select: function(event, ui) {
-                alert("Selected " + ui.item.label);
+            select: function (event, ui) {
+                window.location.href = '@Url.RouteUrl("AllArticles", new {action = "All" })/' + ui.item.id ;
             }
-        });
+        })
+        .data("autocomplete")._renderItem = function (ul, item) {
+            return $("<li>")
+                .data("item.autocomplete", item)
+                .append("<a> Title: " + item.label + "<br> Tags: " + item.tags + "</a>")
+                .appendTo(ul);
+        }
     });
 </script>
 
 <h2>Find</h2>
 <p>
-    <label for="city">City</label>
-    <input type="text" id="city"/>
+    @using (Html.BeginForm("Find", "Article"))
+    { 
+        <label for="article">Find article:</label>
+        <input type="text" name="term" id="article" placeholder="start with # to find by tag" />
+    }
 </p>
 
 <h2>All articles</h2>
@@ -54,7 +63,7 @@
     }
     <br/>
     @Html.RouteLink("View article", "ArticleAction", new { action = "Index", title = article.Title, id = article.Id })
-    @Html.RouteLink("Edit article", "ArticleAction", new {action = "Edit", title = article.Title, id = article.Id})
+    @Html.RouteLink("Edit article", "ArticleAction", new { action = "Edit", title = article.Title, id = article.Id })
     @Html.RouteLink("Delete article", "ArticleAction", new { action = "Delete", title = article.Title, id = article.Id })
 
     <br/>

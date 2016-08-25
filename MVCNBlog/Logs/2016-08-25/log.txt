@@ -1,0 +1,559 @@
+2016-08-25 12:50:19.7350 Warn Message: Page not found. 
+2016-08-25 13:26:16.6414 Error Message: System.ArgumentException: Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+   в System.Linq.Expressions.Expression.ValidateOneArgument(MethodBase method, ExpressionType nodeKind, Expression arg, ParameterInfo pi)
+   в System.Linq.Expressions.Expression.ValidateArgumentTypes(MethodBase method, ExpressionType nodeKind, ReadOnlyCollection`1& arguments)
+   в System.Linq.Expressions.Expression.Call(Expression instance, MethodInfo method, IEnumerable`1 arguments)
+   в System.Linq.Expressions.MethodCallExpressionN.Rewrite(Expression instance, IList`1 args)
+   в DAL.Modifier.ParameterTypeVisitor`2.VisitLambda[T](Expression`1 node) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 28
+   в DAL.Modifier.Convert[TSource,TTarget](Expression`1 root) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 44
+   в DAL.ConcreteRepository.ArticleRepository.GetArticlesByPredicate(Expression`1 expression) в D:\VS Projects\NBlog\DAL\ConcreteRepository\ArticleRepository.cs:строка 78
+   в BLL.Services.ArticleService.FindArticleEntities(String findString) в D:\VS Projects\NBlog\BLL\Services\ArticleService.cs:строка 50
+   в MVCNBlog.Controllers.ArticleController.Find(String term) в D:\VS Projects\NBlog\MVCNBlog\Controllers\ArticleController.cs:строка 34
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.ActionInvocation.InvokeSynchronousActionMethod()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   в System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecute>b__15(IAsyncResult asyncResult, Controller controller)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   в System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   в System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+2016-08-25 13:27:08.5984 Error Message: System.ArgumentException: Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+   в System.Linq.Expressions.Expression.ValidateOneArgument(MethodBase method, ExpressionType nodeKind, Expression arg, ParameterInfo pi)
+   в System.Linq.Expressions.Expression.ValidateArgumentTypes(MethodBase method, ExpressionType nodeKind, ReadOnlyCollection`1& arguments)
+   в System.Linq.Expressions.Expression.Call(Expression instance, MethodInfo method, IEnumerable`1 arguments)
+   в System.Linq.Expressions.MethodCallExpressionN.Rewrite(Expression instance, IList`1 args)
+   в DAL.Modifier.ParameterTypeVisitor`2.VisitLambda[T](Expression`1 node) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 28
+   в DAL.Modifier.Convert[TSource,TTarget](Expression`1 root) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 44
+   в DAL.ConcreteRepository.ArticleRepository.GetArticlesByPredicate(Expression`1 expression) в D:\VS Projects\NBlog\DAL\ConcreteRepository\ArticleRepository.cs:строка 78
+   в BLL.Services.ArticleService.FindArticleEntities(String findString) в D:\VS Projects\NBlog\BLL\Services\ArticleService.cs:строка 50
+   в MVCNBlog.Controllers.ArticleController.Find(String term) в D:\VS Projects\NBlog\MVCNBlog\Controllers\ArticleController.cs:строка 34
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.ActionInvocation.InvokeSynchronousActionMethod()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   в System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecute>b__15(IAsyncResult asyncResult, Controller controller)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   в System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   в System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+2016-08-25 13:30:20.9164 Error Message: System.ArgumentException: Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+   в System.Linq.Expressions.Expression.ValidateOneArgument(MethodBase method, ExpressionType nodeKind, Expression arg, ParameterInfo pi)
+   в System.Linq.Expressions.Expression.ValidateArgumentTypes(MethodBase method, ExpressionType nodeKind, ReadOnlyCollection`1& arguments)
+   в System.Linq.Expressions.Expression.Call(Expression instance, MethodInfo method, IEnumerable`1 arguments)
+   в System.Linq.Expressions.MethodCallExpressionN.Rewrite(Expression instance, IList`1 args)
+   в DAL.Modifier.ParameterTypeVisitor`2.VisitLambda[T](Expression`1 node) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 28
+   в DAL.Modifier.Convert[TSource,TTarget](Expression`1 root) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 44
+   в DAL.ConcreteRepository.ArticleRepository.GetArticlesByPredicate(Expression`1 expression) в D:\VS Projects\NBlog\DAL\ConcreteRepository\ArticleRepository.cs:строка 78
+   в BLL.Services.ArticleService.FindArticleEntities(String findString) в D:\VS Projects\NBlog\BLL\Services\ArticleService.cs:строка 50
+   в MVCNBlog.Controllers.ArticleController.Find(String term) в D:\VS Projects\NBlog\MVCNBlog\Controllers\ArticleController.cs:строка 34
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+2016-08-25 13:30:22.6475 Error Message: System.ArgumentException: Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+   в System.Linq.Expressions.Expression.ValidateOneArgument(MethodBase method, ExpressionType nodeKind, Expression arg, ParameterInfo pi)
+   в System.Linq.Expressions.Expression.ValidateArgumentTypes(MethodBase method, ExpressionType nodeKind, ReadOnlyCollection`1& arguments)
+   в System.Linq.Expressions.Expression.Call(Expression instance, MethodInfo method, IEnumerable`1 arguments)
+   в System.Linq.Expressions.MethodCallExpressionN.Rewrite(Expression instance, IList`1 args)
+   в DAL.Modifier.ParameterTypeVisitor`2.VisitLambda[T](Expression`1 node) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 28
+   в DAL.Modifier.Convert[TSource,TTarget](Expression`1 root) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 44
+   в DAL.ConcreteRepository.ArticleRepository.GetArticlesByPredicate(Expression`1 expression) в D:\VS Projects\NBlog\DAL\ConcreteRepository\ArticleRepository.cs:строка 78
+   в BLL.Services.ArticleService.FindArticleEntities(String findString) в D:\VS Projects\NBlog\BLL\Services\ArticleService.cs:строка 50
+   в MVCNBlog.Controllers.ArticleController.Find(String term) в D:\VS Projects\NBlog\MVCNBlog\Controllers\ArticleController.cs:строка 34
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+2016-08-25 13:30:23.7905 Error Message: System.ArgumentException: Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+   в System.Linq.Expressions.Expression.ValidateOneArgument(MethodBase method, ExpressionType nodeKind, Expression arg, ParameterInfo pi)
+   в System.Linq.Expressions.Expression.ValidateArgumentTypes(MethodBase method, ExpressionType nodeKind, ReadOnlyCollection`1& arguments)
+   в System.Linq.Expressions.Expression.Call(Expression instance, MethodInfo method, IEnumerable`1 arguments)
+   в System.Linq.Expressions.MethodCallExpressionN.Rewrite(Expression instance, IList`1 args)
+   в DAL.Modifier.ParameterTypeVisitor`2.VisitLambda[T](Expression`1 node) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 28
+   в DAL.Modifier.Convert[TSource,TTarget](Expression`1 root) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 44
+   в DAL.ConcreteRepository.ArticleRepository.GetArticlesByPredicate(Expression`1 expression) в D:\VS Projects\NBlog\DAL\ConcreteRepository\ArticleRepository.cs:строка 78
+   в BLL.Services.ArticleService.FindArticleEntities(String findString) в D:\VS Projects\NBlog\BLL\Services\ArticleService.cs:строка 50
+   в MVCNBlog.Controllers.ArticleController.Find(String term) в D:\VS Projects\NBlog\MVCNBlog\Controllers\ArticleController.cs:строка 34
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+2016-08-25 13:30:25.7656 Error Message: System.ArgumentException: Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+   в System.Linq.Expressions.Expression.ValidateOneArgument(MethodBase method, ExpressionType nodeKind, Expression arg, ParameterInfo pi)
+   в System.Linq.Expressions.Expression.ValidateArgumentTypes(MethodBase method, ExpressionType nodeKind, ReadOnlyCollection`1& arguments)
+   в System.Linq.Expressions.Expression.Call(Expression instance, MethodInfo method, IEnumerable`1 arguments)
+   в System.Linq.Expressions.MethodCallExpressionN.Rewrite(Expression instance, IList`1 args)
+   в DAL.Modifier.ParameterTypeVisitor`2.VisitLambda[T](Expression`1 node) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 28
+   в DAL.Modifier.Convert[TSource,TTarget](Expression`1 root) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 44
+   в DAL.ConcreteRepository.ArticleRepository.GetArticlesByPredicate(Expression`1 expression) в D:\VS Projects\NBlog\DAL\ConcreteRepository\ArticleRepository.cs:строка 78
+   в BLL.Services.ArticleService.FindArticleEntities(String findString) в D:\VS Projects\NBlog\BLL\Services\ArticleService.cs:строка 50
+   в MVCNBlog.Controllers.ArticleController.Find(String term) в D:\VS Projects\NBlog\MVCNBlog\Controllers\ArticleController.cs:строка 34
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+2016-08-25 13:30:28.1018 Error Message: System.ArgumentException: Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+   в System.Linq.Expressions.Expression.ValidateOneArgument(MethodBase method, ExpressionType nodeKind, Expression arg, ParameterInfo pi)
+   в System.Linq.Expressions.Expression.ValidateArgumentTypes(MethodBase method, ExpressionType nodeKind, ReadOnlyCollection`1& arguments)
+   в System.Linq.Expressions.Expression.Call(Expression instance, MethodInfo method, IEnumerable`1 arguments)
+   в System.Linq.Expressions.MethodCallExpressionN.Rewrite(Expression instance, IList`1 args)
+   в DAL.Modifier.ParameterTypeVisitor`2.VisitLambda[T](Expression`1 node) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 28
+   в DAL.Modifier.Convert[TSource,TTarget](Expression`1 root) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 44
+   в DAL.ConcreteRepository.ArticleRepository.GetArticlesByPredicate(Expression`1 expression) в D:\VS Projects\NBlog\DAL\ConcreteRepository\ArticleRepository.cs:строка 78
+   в BLL.Services.ArticleService.FindArticleEntities(String findString) в D:\VS Projects\NBlog\BLL\Services\ArticleService.cs:строка 50
+   в MVCNBlog.Controllers.ArticleController.Find(String term) в D:\VS Projects\NBlog\MVCNBlog\Controllers\ArticleController.cs:строка 34
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+2016-08-25 13:30:35.2722 Error Message: System.ArgumentException: Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+   в System.Linq.Expressions.Expression.ValidateOneArgument(MethodBase method, ExpressionType nodeKind, Expression arg, ParameterInfo pi)
+   в System.Linq.Expressions.Expression.ValidateArgumentTypes(MethodBase method, ExpressionType nodeKind, ReadOnlyCollection`1& arguments)
+   в System.Linq.Expressions.Expression.Call(Expression instance, MethodInfo method, IEnumerable`1 arguments)
+   в System.Linq.Expressions.MethodCallExpressionN.Rewrite(Expression instance, IList`1 args)
+   в DAL.Modifier.ParameterTypeVisitor`2.VisitLambda[T](Expression`1 node) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 28
+   в DAL.Modifier.Convert[TSource,TTarget](Expression`1 root) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 44
+   в DAL.ConcreteRepository.ArticleRepository.GetArticlesByPredicate(Expression`1 expression) в D:\VS Projects\NBlog\DAL\ConcreteRepository\ArticleRepository.cs:строка 78
+   в BLL.Services.ArticleService.FindArticleEntities(String findString) в D:\VS Projects\NBlog\BLL\Services\ArticleService.cs:строка 50
+   в MVCNBlog.Controllers.ArticleController.Find(String term) в D:\VS Projects\NBlog\MVCNBlog\Controllers\ArticleController.cs:строка 34
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+2016-08-25 13:30:35.6482 Error Message: System.ArgumentException: Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+   в System.Linq.Expressions.Expression.ValidateOneArgument(MethodBase method, ExpressionType nodeKind, Expression arg, ParameterInfo pi)
+   в System.Linq.Expressions.Expression.ValidateArgumentTypes(MethodBase method, ExpressionType nodeKind, ReadOnlyCollection`1& arguments)
+   в System.Linq.Expressions.Expression.Call(Expression instance, MethodInfo method, IEnumerable`1 arguments)
+   в System.Linq.Expressions.MethodCallExpressionN.Rewrite(Expression instance, IList`1 args)
+   в DAL.Modifier.ParameterTypeVisitor`2.VisitLambda[T](Expression`1 node) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 28
+   в DAL.Modifier.Convert[TSource,TTarget](Expression`1 root) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 44
+   в DAL.ConcreteRepository.ArticleRepository.GetArticlesByPredicate(Expression`1 expression) в D:\VS Projects\NBlog\DAL\ConcreteRepository\ArticleRepository.cs:строка 78
+   в BLL.Services.ArticleService.FindArticleEntities(String findString) в D:\VS Projects\NBlog\BLL\Services\ArticleService.cs:строка 50
+   в MVCNBlog.Controllers.ArticleController.Find(String term) в D:\VS Projects\NBlog\MVCNBlog\Controllers\ArticleController.cs:строка 34
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+2016-08-25 13:30:38.5924 Error Message: System.ArgumentException: Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+   в System.Linq.Expressions.Expression.ValidateOneArgument(MethodBase method, ExpressionType nodeKind, Expression arg, ParameterInfo pi)
+   в System.Linq.Expressions.Expression.ValidateArgumentTypes(MethodBase method, ExpressionType nodeKind, ReadOnlyCollection`1& arguments)
+   в System.Linq.Expressions.Expression.Call(Expression instance, MethodInfo method, IEnumerable`1 arguments)
+   в System.Linq.Expressions.MethodCallExpressionN.Rewrite(Expression instance, IList`1 args)
+   в DAL.Modifier.ParameterTypeVisitor`2.VisitLambda[T](Expression`1 node) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 28
+   в DAL.Modifier.Convert[TSource,TTarget](Expression`1 root) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 44
+   в DAL.ConcreteRepository.ArticleRepository.GetArticlesByPredicate(Expression`1 expression) в D:\VS Projects\NBlog\DAL\ConcreteRepository\ArticleRepository.cs:строка 78
+   в BLL.Services.ArticleService.FindArticleEntities(String findString) в D:\VS Projects\NBlog\BLL\Services\ArticleService.cs:строка 50
+   в MVCNBlog.Controllers.ArticleController.Find(String term) в D:\VS Projects\NBlog\MVCNBlog\Controllers\ArticleController.cs:строка 34
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+2016-08-25 13:30:38.9054 Error Message: System.ArgumentException: Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+   в System.Linq.Expressions.Expression.ValidateOneArgument(MethodBase method, ExpressionType nodeKind, Expression arg, ParameterInfo pi)
+   в System.Linq.Expressions.Expression.ValidateArgumentTypes(MethodBase method, ExpressionType nodeKind, ReadOnlyCollection`1& arguments)
+   в System.Linq.Expressions.Expression.Call(Expression instance, MethodInfo method, IEnumerable`1 arguments)
+   в System.Linq.Expressions.MethodCallExpressionN.Rewrite(Expression instance, IList`1 args)
+   в DAL.Modifier.ParameterTypeVisitor`2.VisitLambda[T](Expression`1 node) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 28
+   в DAL.Modifier.Convert[TSource,TTarget](Expression`1 root) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 44
+   в DAL.ConcreteRepository.ArticleRepository.GetArticlesByPredicate(Expression`1 expression) в D:\VS Projects\NBlog\DAL\ConcreteRepository\ArticleRepository.cs:строка 78
+   в BLL.Services.ArticleService.FindArticleEntities(String findString) в D:\VS Projects\NBlog\BLL\Services\ArticleService.cs:строка 50
+   в MVCNBlog.Controllers.ArticleController.Find(String term) в D:\VS Projects\NBlog\MVCNBlog\Controllers\ArticleController.cs:строка 34
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+2016-08-25 13:30:39.7694 Error Message: System.ArgumentException: Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+   в System.Linq.Expressions.Expression.ValidateOneArgument(MethodBase method, ExpressionType nodeKind, Expression arg, ParameterInfo pi)
+   в System.Linq.Expressions.Expression.ValidateArgumentTypes(MethodBase method, ExpressionType nodeKind, ReadOnlyCollection`1& arguments)
+   в System.Linq.Expressions.Expression.Call(Expression instance, MethodInfo method, IEnumerable`1 arguments)
+   в System.Linq.Expressions.MethodCallExpressionN.Rewrite(Expression instance, IList`1 args)
+   в DAL.Modifier.ParameterTypeVisitor`2.VisitLambda[T](Expression`1 node) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 28
+   в DAL.Modifier.Convert[TSource,TTarget](Expression`1 root) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 44
+   в DAL.ConcreteRepository.ArticleRepository.GetArticlesByPredicate(Expression`1 expression) в D:\VS Projects\NBlog\DAL\ConcreteRepository\ArticleRepository.cs:строка 78
+   в BLL.Services.ArticleService.FindArticleEntities(String findString) в D:\VS Projects\NBlog\BLL\Services\ArticleService.cs:строка 50
+   в MVCNBlog.Controllers.ArticleController.Find(String term) в D:\VS Projects\NBlog\MVCNBlog\Controllers\ArticleController.cs:строка 34
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+2016-08-25 13:30:40.8665 Error Message: System.ArgumentException: Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+   в System.Linq.Expressions.Expression.ValidateOneArgument(MethodBase method, ExpressionType nodeKind, Expression arg, ParameterInfo pi)
+   в System.Linq.Expressions.Expression.ValidateArgumentTypes(MethodBase method, ExpressionType nodeKind, ReadOnlyCollection`1& arguments)
+   в System.Linq.Expressions.Expression.Call(Expression instance, MethodInfo method, IEnumerable`1 arguments)
+   в System.Linq.Expressions.MethodCallExpressionN.Rewrite(Expression instance, IList`1 args)
+   в DAL.Modifier.ParameterTypeVisitor`2.VisitLambda[T](Expression`1 node) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 28
+   в DAL.Modifier.Convert[TSource,TTarget](Expression`1 root) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 44
+   в DAL.ConcreteRepository.ArticleRepository.GetArticlesByPredicate(Expression`1 expression) в D:\VS Projects\NBlog\DAL\ConcreteRepository\ArticleRepository.cs:строка 78
+   в BLL.Services.ArticleService.FindArticleEntities(String findString) в D:\VS Projects\NBlog\BLL\Services\ArticleService.cs:строка 50
+   в MVCNBlog.Controllers.ArticleController.Find(String term) в D:\VS Projects\NBlog\MVCNBlog\Controllers\ArticleController.cs:строка 34
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+2016-08-25 13:32:25.2095 Error Message: System.ArgumentException: Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+   в System.Linq.Expressions.Expression.ValidateOneArgument(MethodBase method, ExpressionType nodeKind, Expression arg, ParameterInfo pi)
+   в System.Linq.Expressions.Expression.ValidateArgumentTypes(MethodBase method, ExpressionType nodeKind, ReadOnlyCollection`1& arguments)
+   в System.Linq.Expressions.Expression.Call(Expression instance, MethodInfo method, IEnumerable`1 arguments)
+   в System.Linq.Expressions.MethodCallExpressionN.Rewrite(Expression instance, IList`1 args)
+   в DAL.Modifier.ParameterTypeVisitor`2.VisitLambda[T](Expression`1 node) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 28
+   в DAL.Modifier.Convert[TSource,TTarget](Expression`1 root) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 44
+   в DAL.ConcreteRepository.ArticleRepository.GetArticlesByPredicate(Expression`1 expression) в D:\VS Projects\NBlog\DAL\ConcreteRepository\ArticleRepository.cs:строка 78
+   в BLL.Services.ArticleService.FindArticleEntities(String findString) в D:\VS Projects\NBlog\BLL\Services\ArticleService.cs:строка 50
+   в MVCNBlog.Controllers.ArticleController.Find(String term) в D:\VS Projects\NBlog\MVCNBlog\Controllers\ArticleController.cs:строка 34
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+2016-08-25 13:34:13.4477 Error Message: System.ArgumentException: Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+   в System.Linq.Expressions.Expression.ValidateOneArgument(MethodBase method, ExpressionType nodeKind, Expression arg, ParameterInfo pi)
+   в System.Linq.Expressions.Expression.ValidateArgumentTypes(MethodBase method, ExpressionType nodeKind, ReadOnlyCollection`1& arguments)
+   в System.Linq.Expressions.Expression.Call(Expression instance, MethodInfo method, IEnumerable`1 arguments)
+   в System.Linq.Expressions.MethodCallExpressionN.Rewrite(Expression instance, IList`1 args)
+   в DAL.Modifier.ParameterTypeVisitor`2.VisitLambda[T](Expression`1 node) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 28
+   в DAL.Modifier.Convert[TSource,TTarget](Expression`1 root) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 44
+   в DAL.ConcreteRepository.ArticleRepository.GetArticlesByPredicate(Expression`1 expression) в D:\VS Projects\NBlog\DAL\ConcreteRepository\ArticleRepository.cs:строка 78
+   в BLL.Services.ArticleService.FindArticleEntities(String findString) в D:\VS Projects\NBlog\BLL\Services\ArticleService.cs:строка 50
+   в MVCNBlog.Controllers.ArticleController.Find(String term) в D:\VS Projects\NBlog\MVCNBlog\Controllers\ArticleController.cs:строка 34
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+2016-08-25 13:34:14.4907 Error Message: System.ArgumentException: Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+   в System.Linq.Expressions.Expression.ValidateOneArgument(MethodBase method, ExpressionType nodeKind, Expression arg, ParameterInfo pi)
+   в System.Linq.Expressions.Expression.ValidateArgumentTypes(MethodBase method, ExpressionType nodeKind, ReadOnlyCollection`1& arguments)
+   в System.Linq.Expressions.Expression.Call(Expression instance, MethodInfo method, IEnumerable`1 arguments)
+   в System.Linq.Expressions.MethodCallExpressionN.Rewrite(Expression instance, IList`1 args)
+   в DAL.Modifier.ParameterTypeVisitor`2.VisitLambda[T](Expression`1 node) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 28
+   в DAL.Modifier.Convert[TSource,TTarget](Expression`1 root) в D:\VS Projects\NBlog\DAL\ToDalModifier.cs:строка 44
+   в DAL.ConcreteRepository.ArticleRepository.GetArticlesByPredicate(Expression`1 expression) в D:\VS Projects\NBlog\DAL\ConcreteRepository\ArticleRepository.cs:строка 78
+   в BLL.Services.ArticleService.FindArticleEntities(String findString) в D:\VS Projects\NBlog\BLL\Services\ArticleService.cs:строка 50
+   в MVCNBlog.Controllers.ArticleController.Find(String term) в D:\VS Projects\NBlog\MVCNBlog\Controllers\ArticleController.cs:строка 34
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"

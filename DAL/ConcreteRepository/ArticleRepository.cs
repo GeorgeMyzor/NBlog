@@ -73,6 +73,16 @@ namespace DAL.ConcreteRepository
             return article?.ToDalArticle();
         }
 
+        public IEnumerable<DalArticle> GetArticlesByPredicate(Expression<Func<DalArticle, bool>> expression)
+        {
+            var articles = context.Set<Article>().ToList().Select(ormArticle => ormArticle.ToDalArticle());
+
+            var dalArticles = articles as IList<DalArticle> ?? articles.ToList();
+            var findedArticles = dalArticles.Where(expression.Compile());
+
+            return findedArticles;
+        }
+
         public void Create(DalArticle dalArticle)
         {
             ValidateArticle(dalArticle);

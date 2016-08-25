@@ -31,15 +31,22 @@ namespace MVCNBlog.Controllers
         
         public ActionResult Find(string term)
         {
-            var articles = articleService.FindArticleEntities(term).ToList();
-            var projection = from article in articles
-                             select new
-                             {
-                                 id = article.Id,
-                                 label = article.Title,
-                             };
+            var findedArticles = articleService.FindArticleEntities(term).ToList();
 
-            return Json(projection, JsonRequestBehavior.AllowGet);
+            if (Request.IsAjaxRequest())
+            {
+
+                var projection = findedArticles.Select(article => new
+                {
+                    id = article.Id,
+                    label = article.Title,
+                    tags = string.Join(",", article.Tags),
+                });
+
+                return Json(projection, JsonRequestBehavior.AllowGet);
+            }
+
+            return View(findedArticles.Select(article => article.ToMvcArticle()));
         }
 
         #region CRUD

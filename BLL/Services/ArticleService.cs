@@ -44,7 +44,15 @@ namespace BLL.Services
 
         public IEnumerable<BllArticle> FindArticleEntities(string findString)
         {
-            var allArticles = articleRepository.GetAll().Where(article => article.Content.Contains(findString));
+            IEnumerable<DalArticle> allArticles;
+            if (findString.StartsWith("#"))
+            {
+                allArticles = articleRepository.GetArticlesByPredicate(article => article.Tags.Any(tag => tag.StartsWith(findString)));
+            }
+            else
+            {
+                allArticles = articleRepository.GetArticlesByPredicate(article => article.Content.Contains(findString));
+            }
 
             return allArticles.Select(article => article.ToBllArticle());
         }
