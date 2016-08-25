@@ -2,25 +2,6 @@
 @{
     ViewBag.Title = "All";
 }
-<link rel="stylesheet" href="/Content/themes/base/jquery-ui.css">
-<script type="text/javascript">
-    $(function () {
-        var autocompleteUrl = '@Url.RouteUrl("AllArticles", new {action = "Find"})';
-        $("input#article").autocomplete({
-            source: autocompleteUrl,
-            minLength: 2,
-            select: function (event, ui) {
-                window.location.href = '@Url.RouteUrl("AllArticles", new {action = "All" })/' + ui.item.id ;
-            }
-        })
-        .data("autocomplete")._renderItem = function (ul, item) {
-            return $("<li>")
-                .data("item.autocomplete", item)
-                .append("<a> Title: " + item.label + "<br> Tags: " + item.tags + "</a>")
-                .appendTo(ul);
-        }
-    });
-</script>
 
 <h2>Find</h2>
 <p>
@@ -75,6 +56,27 @@
 
 @Html.RouteLink("Create article", "AllArticles", new { action = "Create"})
 
-
+@section scripts
+{
+    <link rel="stylesheet" href="/Content/themes/base/jquery-ui.css">
+    <script type="text/javascript">
+        $(function() {
+            var autocompleteUrl = '@Url.RouteUrl("AllArticles", new {action = "Find"})';
+            $("input#article").autocomplete({
+                    source: autocompleteUrl,
+                    minLength: 2,
+                    select: function(event, ui) {
+                        window.location.href = '@Url.RouteUrl("AllArticles", new {action = "All"})/' + ui.item.id;
+                    }
+                })
+                .data("autocomplete")._renderItem = function(ul, item) {
+                    return $("<li>")
+                        .data("item.autocomplete", item)
+                        .append("<a> Title: " + item.label + "<br> Tags: " + item.tags + "</a>")
+                        .appendTo(ul);
+                }
+        });
+    </script>
+}
 
 

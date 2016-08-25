@@ -15,10 +15,12 @@ namespace BLL.Services
     {
         private readonly IUnitOfWork uow;
         private readonly IUserRepository userRepository;
+        private readonly IArticleRepository articleRepository;
 
-        public UserService(IUnitOfWork uow, IUserRepository userRepository)
+        public UserService(IUnitOfWork uow, IUserRepository userRepository, IArticleRepository articleRepository)
         {
             this.uow = uow;
+            this.articleRepository = articleRepository;
             this.userRepository = userRepository;
         }
 
@@ -35,6 +37,9 @@ namespace BLL.Services
             {
                 int userActivity = userRepository.GetUserActivity(id);
                 user.Rank = RankDistributor.GetRank(userActivity);
+                user.Articles =
+                    articleRepository.GetArticlesByPredicate(article => article.AuthorId == id)
+                        .Select(dalArticle => dalArticle.ToBllArticle());
             }
 
             return user;

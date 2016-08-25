@@ -52,7 +52,7 @@ namespace MVCNBlog.Controllers
             {
                 return RedirectToAction("Index", new { id, name = urlWithName });
             }
-
+            
             return View(user);
         }
 

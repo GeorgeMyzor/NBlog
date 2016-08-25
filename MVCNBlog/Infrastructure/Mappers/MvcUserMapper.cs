@@ -25,7 +25,8 @@ namespace MVCNBlog.Infrastructure.Mappers
                 Rank = bllUser.Rank,
                 CreationDate = bllUser.CreationDate,
                 Role = roles.Find((role => role.RoleId != 3)),
-                PayedRole = (IPayedRole) roles.Find((role => role.RoleId == 3))
+                PayedRole = (IPayedRole) roles.Find((role => role.RoleId == 3)),
+                Articles = bllUser.Articles?.Select(article => article.ToMvcArticle())
             };
         }
 

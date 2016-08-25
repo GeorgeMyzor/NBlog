@@ -14,6 +14,7 @@ namespace BLL.Interface.Entities
         public DateTime CreationDate { get; set; }
         public string Rank { get; set; }
         public int SubscriptionCost { get; set; }
-        public IEnumerable<BllRole> Roles { get; set; } 
+        public IEnumerable<BllRole> Roles { get; set; }
+        public IEnumerable<BllArticle> Articles { get; set; }
     }
 }
