@@ -2,7 +2,31 @@
 @model MVCNBlog.ViewModels.ArticleViewModel
 @{
     ViewBag.Title = "Home Page";
+    AjaxOptions ajaxOpts = new AjaxOptions
+    {
+        UpdateTargetId = "tableBody",
+        //LoadingElementId = "loading",
+        //LoadingElementDuration = 1000,
+        OnSuccess = "processData"
+    };
 }
+@section scripts {
+    <script type="text/javascript" src="@Url.Content("~/scripts/jquery.unobtrusive-ajax.js")"></script>
+}
+
+<script type="text/javascript">
+    function processData(data) {
+        var target = $("#tableBody");
+        var comment = data;
+
+        $('<br/> <b> &nbsp; &nbsp; Comment: </b>' + comment.CommentContent + '<b> &nbsp; &nbsp; Author\'s comment: </b>'
+                + comment.AuthorName + ' <b> &nbsp; &nbsp; Publication time: </b>' + comment.PublicTime + '<br/>'
+                + '<div class="form-group"> <div class="col-md-offset-2 col-md-10">' +
+                '<a href=\'comment/' + comment.CommentId + '\' class = "btn btn-default"> Edit comment </a>' +
+                '</div> </div> ').insertAfter(target);
+
+    }
+</script>
 
 <h2>Article</h2>
 <b>Title:</b>
@@ -16,6 +40,9 @@
 <br />
 <b>Author:</b>
 @Html.DisplayTextFor(modelItem => Model.Author.Name)
+
+@Html.RouteLink("View user", "UserAction", new { action = "Index", name = Model.Author?.Name, id = Model.Author?.Id },
+            new { @class = "btn btn-default" })
 <br />
 <b>Tags:</b>
 @foreach (var tag in Model.Tags)
@@ -23,43 +50,55 @@
     <b> &nbsp;</b> @Html.DisplayFor(modelItem => tag)
 }
 
-@foreach (var comment in Model.Comments)
-{
-    <br />
-            <b> &nbsp; &nbsp; Comment:</b> @Html.DisplayFor(modelItem => comment.Content)
-            <b> &nbsp; &nbsp; Author's comment:</b> @Html.DisplayFor(modelItem => comment.Author.Name)
+<div id="tableBody"></div>
+
+    @foreach (var comment in Model.Comments)
+    {
+        <br />
+        <b> &nbsp; &nbsp; Comment:</b>
+            @Html.DisplayFor(modelItem => comment.Content)
+            <b> &nbsp; &nbsp; Author's comment:</b>
+            @Html.DisplayFor(modelItem => comment.Author.Name)
+
+        @Html.RouteLink("View user", "UserAction", new { action = "Index", name = Model.Author?.Name, id = Model.Author?.Id },
+            new { @class = "btn btn-default" })
+            <b> &nbsp; &nbsp; Publication time:</b>
+            @Html.DisplayFor(modelItem => comment.PublicationDate)
+
+         if (User.IsInRole("Administrator"))
+         {
+             <div class="form-group">
+                 <div class="col-md-offset-2 col-md-10">
+                     @Html.RouteLink("Edit comment", "CommentAction", new {id = comment.Id}, new {@class = "btn btn-default"})
+                 </div>
+             </div>
+         }
+    }
+    <br/>
+    @using (Ajax.BeginForm("Create","Comment", new AjaxOptions { UpdateTargetId = "tableBody", InsertionMode = InsertionMode.InsertBefore }))
+    {
+        //TODO not client side
+        @Html.AntiForgeryToken()
+        <input type="text" name="Content" placeholder="Type to begin..." />
+            <label>@TempData["CommentError"]</label>
+            <input type="hidden" name="ArticleId" value="@Model.Id" />
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    @Html.RouteLink("Edit comment", "CommentAction", new { id = comment.Id }, new { @class = "btn btn-default" })
+                    <input type="submit" value="Add comment" class="btn btn-default" />
                 </div>
             </div>
-}
-<br />
-@using (Html.BeginForm("Create", "Comment"))
-{
-    //TODO not client side
-    @Html.AntiForgeryToken()
-    <input type="text" name="Content" placeholder="Type to begin..."/>
-    <label>@TempData["CommentError"]</label>
-    <input type="hidden" name="ArticleId" value="@Model.Id"/>
+    }
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Add comment" class="btn btn-default"/>
-        </div>
+    <br />
+    @Html.RouteLink("Edit article", "ArticleAction", new { action = "Edit", title = Model.Title, id = Model.Id },
+    new { @class = "btn btn-default" })
+    @Html.RouteLink("Delete article", "ArticleAction", new { action = "Delete", title = Model.Title, id = Model.Id },
+    new { @class = "btn btn-default" })
+
+    <br />
+
+    <div>
+        @Html.RouteLink("Back to articles", "AllArticles", new { action = "All" },
+    new { @class = "btn btn-default" })
     </div>
-}
-
-<br />
-@Html.RouteLink("Edit article", "ArticleAction", new { action = "Edit", title = Model.Title, id = Model.Id },
-    new { @class = "btn btn-default" })
-@Html.RouteLink("Delete article", "ArticleAction", new { action = "Delete", title = Model.Title, id = Model.Id },
-    new { @class = "btn btn-default" })
-
-<br />
-
-<div>
-    @Html.RouteLink("Back to articles", "AllArticles", new { action = "All" },
-    new { @class = "btn btn-default" })
-</div>

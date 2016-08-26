@@ -11,7 +11,7 @@ namespace BLL.Interface.Services
     {
         int GetCommentsCount(string userName);
         BllComment GetCommentEntity(int id);
-        void CreateComment(BllComment comment);
+        int CreateComment(BllComment comment);
         void DeleteComment(BllComment comment);
         void UpdateComment(BllComment comment);
     }

@@ -34,7 +34,14 @@ namespace BLL.Services
 
         public BllArticle GetArticleEntity(int id)
         {
-            return articleRepository.GetById(id).ToBllArticle();
+            var bllArticle = articleRepository.GetById(id).ToBllArticle();
+
+            if (bllArticle != null)
+            {
+                bllArticle.Comments = new List<BllComment>(bllArticle.Comments.OrderByDescending(comment => comment.PublicationDate));
+            }
+
+            return bllArticle;
         }
 
         public IEnumerable<BllArticle> GetAllArticleEntities()

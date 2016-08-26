@@ -32,12 +32,14 @@ namespace BLL.Services
             return commentRepository.GetById(id).ToBllComment();
         }
 
-        public void CreateComment(BllComment comment)
+        public int CreateComment(BllComment comment)
         {
             comment.PublicationDate = DateTime.Now;
 
-            commentRepository.Create(comment.ToDalComment());
+            int addId = commentRepository.Create(comment.ToDalComment());
             uow.Commit();
+
+            return addId;
         }
 
         public void DeleteComment(BllComment comment)

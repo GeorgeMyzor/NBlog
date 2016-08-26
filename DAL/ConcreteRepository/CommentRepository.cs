@@ -32,7 +32,11 @@ namespace DAL.ConcreteRepository
 
         public IEnumerable<DalComment> GetAll()
         {
-            return context.Set<Comment>().ToList().Select(ormComment => ormComment.ToDalComment());
+            return
+                context.Set<Comment>()
+                    .OrderBy(comment => comment.PublicationDate)
+                    .ToList()
+                    .Select(ormComment => ormComment.ToDalComment());
         }
 
         public DalComment GetById(int id)
@@ -52,7 +56,7 @@ namespace DAL.ConcreteRepository
             return comment?.ToDalComment();
         }
 
-        public void Create(DalComment dalComment)
+        public int Create(DalComment dalComment)
         {
             ValidateComment(dalComment);
 
@@ -62,6 +66,9 @@ namespace DAL.ConcreteRepository
             ormComment.Article = context.Set<Article>().SingleOrDefault((article => article.Id == dalComment.ArticleId));
 
             context.Set<Comment>().Add(ormComment);
+            context.SaveChanges();
+
+            return ormComment.Id;
         }
 
         public void Delete(DalComment dalComment)

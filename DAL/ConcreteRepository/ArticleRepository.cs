@@ -83,7 +83,7 @@ namespace DAL.ConcreteRepository
             return findedArticles;
         }
 
-        public void Create(DalArticle dalArticle)
+        public int Create(DalArticle dalArticle)
         {
             ValidateArticle(dalArticle);
 
@@ -93,6 +93,8 @@ namespace DAL.ConcreteRepository
 
             ormArticle.Author = context.Set<User>().SingleOrDefault((user => user.Id == dalArticle.AuthorId));
             context.Set<Article>().Add(ormArticle);
+            
+            return ormArticle.Id;
         }
 
         public void Delete(DalArticle dalArticle)
