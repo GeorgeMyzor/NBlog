@@ -13,9 +13,9 @@ namespace MVCNBlog.ViewModels.User
         public DateTime CreationDate { get; set; }
         public IRole Role { get; set; }
 
+        [CorrectPassword]
         [DataType(DataType.Password)]
         [Remote("ValidatePassword", "User")]
-        [CorrectPassword]
         public string Password { get; set; }
         public bool RememberMe { get; set; }
     }

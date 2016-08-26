@@ -19,7 +19,7 @@ namespace MVCNBlog.Infrastructure.ModelBinders
         {
             if (propertyDescriptor.Name == nameof(UserViewModel.CreationDate))
             {
-                propertyDescriptor.SetValue(bindingContext.Model, DateTime.Today);
+                propertyDescriptor.SetValue(bindingContext.Model, DateTime.Now);
                 return;
             }
             

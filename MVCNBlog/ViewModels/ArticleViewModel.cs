@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using MVCNBlog.ViewModels.User;
 
 namespace MVCNBlog.ViewModels
@@ -16,6 +17,7 @@ namespace MVCNBlog.ViewModels
         [Required(ErrorMessage = "Content should be 5 to 400 length.")]
         [StringLength(400, ErrorMessage = "Content should be 5 to 400 length.", MinimumLength = 5)]
         public string Content { get; set; }
+        [DataType(DataType.Date)]
         public DateTime PublicationDate { get; set; }
         public int? AuthorId { get; set; }
         public UserViewModel Author { get; set; }

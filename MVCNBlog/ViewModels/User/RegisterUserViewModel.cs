@@ -14,14 +14,14 @@ namespace MVCNBlog.ViewModels.User
         public DateTime CreationDate { get; set; }
         public IRole Role { get; set; }
 
-        [Remote("ValidatePassword", "User")]
         [CorrectPassword]
         [DataType(DataType.Password)]
+        [Remote("ValidatePassword", "User")]
         public string Password { get; set; }
 
+        [CorrectPassword]
         [Remote("ValidatePassword", "User")]
         [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Passwords must match")]
-        [CorrectPassword]
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
     }
