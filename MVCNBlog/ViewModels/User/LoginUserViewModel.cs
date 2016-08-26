@@ -14,7 +14,7 @@ namespace MVCNBlog.ViewModels.User
         public IRole Role { get; set; }
 
         [DataType(DataType.Password)]
-        [Remote("ValidatePassword", "User", HttpMethod = "POST")]
+        [Remote("ValidatePassword", "User")]
         [CorrectPassword]
         public string Password { get; set; }
         public bool RememberMe { get; set; }

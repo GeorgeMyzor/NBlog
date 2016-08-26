@@ -35,7 +35,6 @@ namespace MVCNBlog.Controllers
 
             if (Request.IsAjaxRequest())
             {
-
                 var projection = findedArticles.Select(article => new
                 {
                     id = article.Id,

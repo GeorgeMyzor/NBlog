@@ -148,10 +148,13 @@ namespace MVCNBlog.Controllers
 
         #region Remote validation
 
-        [HttpPost]
+        [HttpGet]
         [AllowAnonymous]
         public JsonResult ValidateName(string name)
         {
+            if(!Request.IsAjaxRequest())
+                throw new HttpException(404, "Page not found.");
+
             if (string.IsNullOrEmpty(name))
                 return Json("Name should be 3 to 10 length, only letters.", JsonRequestBehavior.AllowGet);
 
@@ -170,10 +173,14 @@ namespace MVCNBlog.Controllers
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
+
+        [HttpGet]
         [AllowAnonymous]
         public JsonResult ValidatePassword(string password)
         {
+            if (!Request.IsAjaxRequest())
+                throw new HttpException(404, "Page not found.");
+
             if (password != null)
             {
                 var isValidPassword = Regex.IsMatch(password, @"^(?=.{5,15}$)(?=.*[0-9])([a-zA-Z0-9])+$");

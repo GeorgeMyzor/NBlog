@@ -557,3 +557,27 @@
    в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
    в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
    в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) Не удается использовать выражение типа "System.Collections.Generic.List`1[ORM.Entities.Tag]" для параметра типа "System.Collections.Generic.IEnumerable`1[System.String]" метода "Boolean Contains[String](System.Collections.Generic.IEnumerable`1[System.String], System.String)"
+2016-08-25 21:08:13.1484 Warn Message: A public action method 'ValidateName' was not found on controller 'MVCNBlog.Controllers.UserController'. 
+2016-08-25 21:09:58.8928 Error Message: System.InvalidOperationException: The action 'ValidateName' is accessible only by a child request.
+   в System.Web.Mvc.ChildActionOnlyAttribute.OnAuthorization(AuthorizationContext filterContext)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeAuthorizationFilters(ControllerContext controllerContext, IList`1 filters, ActionDescriptor actionDescriptor)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__19(AsyncCallback asyncCallback, Object asyncState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeAction(ControllerContext controllerContext, String actionName, AsyncCallback callback, Object state)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1c(AsyncCallback asyncCallback, Object asyncState, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   в System.Web.Mvc.Controller.BeginExecuteCore(AsyncCallback callback, Object state)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   в System.Web.Mvc.Controller.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__4(AsyncCallback asyncCallback, Object asyncState, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   в System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) The action 'ValidateName' is accessible only by a child request.
+2016-08-25 21:10:43.8701 Warn Message: A public action method 'ValidateName' was not found on controller 'MVCNBlog.Controllers.UserController'. 
+2016-08-25 21:12:38.0464 Warn Message: A public action method 'ValidateName' was not found on controller 'MVCNBlog.Controllers.UserController'. 
+2016-08-25 21:13:41.7749 Warn Message: A public action method 'ValidateName' was not found on controller 'MVCNBlog.Controllers.UserController'. 
+2016-08-25 21:14:20.1761 Warn Message: A public action method 'ValidateName' was not found on controller 'MVCNBlog.Controllers.UserController'. 
+2016-08-25 21:14:50.8660 Warn Message: A public action method 'ValidateName' was not found on controller 'MVCNBlog.Controllers.UserController'. 
