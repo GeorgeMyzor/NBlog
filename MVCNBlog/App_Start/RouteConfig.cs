@@ -34,7 +34,13 @@ namespace MVCNBlog
                 defaults: new { controller = "Article", action = "All" },
                 constraints: new { action = @"Create|All|Find" }
                 );
-            
+
+            routes.MapRoute(
+                name: "FindArticle",
+                url: "articles/find/{term}/{page}",
+                defaults: new { controller = "Article", action = "Find", page = UrlParameter.Optional }
+                );
+
             #endregion
 
             #region User routes

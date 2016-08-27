@@ -7,74 +7,81 @@
 <p>
     @using (Html.BeginForm("Find", "Article"))
     { 
-        <label for="article">Find article:</label>
-        <input type="text" name="term" id="article" placeholder="start with # to find by tag" />
+        <label for="findArticle">Find article:</label>
+        <input type="text" name="term" id="findArticle" placeholder="start with # to find by tag" />
     }
 </p>
 
-<h2>All articles</h2>
-@foreach (var article in Model.ViewModels)
-{
-    <b>Title:</b>
-    @Html.DisplayFor(modelItem => article.Title)
-    <br />
-    <b>Content:</b>
-    @Html.DisplayFor(modelItem => article.Content)
-    <br />
-    <b>Publication date:</b>
-    @Html.DisplayFor(modelItem => article.PublicationDate)
-    <br />
-    <b>Author:</b>
-    @Html.DisplayTextFor(modelItem => article.Author.Name)
-    <br />
-    <b>Tags:</b>
-    foreach (var tag in article.Tags)
+<div id="allArticles">
+    <h2>All articles</h2>
+
+    @foreach (var article in Model.ViewModels)
     {
-        <b> &nbsp;</b>
-        @Html.DisplayFor(modelItem => tag)
+        <b>Title:</b>
+        @Html.DisplayFor(modelItem => article.Title)
+        <br />
+        <b>Content:</b>
+        @Html.DisplayFor(modelItem => article.Content)
+        <br />
+        <b>Publication date:</b>
+        @Html.DisplayFor(modelItem => article.PublicationDate)
+        <br />
+        <b>Author:</b>
+        @Html.DisplayTextFor(modelItem => article.Author.Name)
+        <br />
+        <b>Tags:</b>
+        foreach (var tag in article.Tags)
+        {
+            <b> &nbsp;</b>
+            @Html.DisplayFor(modelItem => tag)
+        }
+
+        foreach (var comment in article.Comments)
+        {
+            <br />
+            <b> &nbsp; &nbsp; Comment:</b>
+            @Html.DisplayFor(modelItem => comment.Content)
+            <b> &nbsp; &nbsp; Author's comment:</b>
+            @Html.DisplayFor(modelItem => comment.Author.Name)
+        }
+        <br />
+        @Html.RouteLink("View article", "ArticleAction", new { action = "Index", title = article.Title, id = article.Id })
+        @Html.RouteLink("Edit article", "ArticleAction", new { action = "Edit", title = article.Title, id = article.Id })
+        @Html.RouteLink("Delete article", "ArticleAction", new { action = "Delete", title = article.Title, id = article.Id })
+
+        <br />
     }
 
-    foreach (var comment in article.Comments)
-    {
-        <br/>
-        <b> &nbsp; &nbsp; Comment:</b>
-        @Html.DisplayFor(modelItem => comment.Content)
-        <b> &nbsp; &nbsp; Author's comment:</b>
-        @Html.DisplayFor(modelItem => comment.Author.Name)
-    }
-    <br/>
-    @Html.RouteLink("View article", "ArticleAction", new { action = "Index", title = article.Title, id = article.Id })
-    @Html.RouteLink("Edit article", "ArticleAction", new { action = "Edit", title = article.Title, id = article.Id })
-    @Html.RouteLink("Delete article", "ArticleAction", new { action = "Delete", title = article.Title, id = article.Id })
+    <div class="pager">
+        @Html.PageLinks(Model.PagingInfo, x => Url.Action("All", new { page = x }))
+    </div>
 
-    <br/>
-}
-
-<div class="pager">
-    @Html.PageLinks(Model.PagingInfo, x => Url.Action("All", new { page = x }))
 </div>
-
 @Html.RouteLink("Create article", "AllArticles", new { action = "Create"})
 
 @section scripts
 {
     <link rel="stylesheet" href="/Content/themes/base/jquery-ui.css">
     <script type="text/javascript">
-        $(function() {
-            var autocompleteUrl = '@Url.RouteUrl("AllArticles", new {action = "Find"})';
-            $("input#article").autocomplete({
-                    source: autocompleteUrl,
-                    minLength: 2,
-                    select: function(event, ui) {
-                        window.location.href = '@Url.RouteUrl("AllArticles", new {action = "All"})/' + ui.item.id;
+        $(function(ready) {
+            $("#findArticle").keyup(function () {
+                var findInputVal = $("#findArticle").val();
+                var url = 'articles/find/' + findInputVal;
+
+                $.ajax({
+                    url: url,
+                    cache: false,
+                    type: "POST",
+                    success: function(data) {
+
+                        $('#allArticles').html(data);
+
+                    },
+                    error: function(reponse) {
+                        alert("error : " + reponse);
                     }
-                })
-                .data("autocomplete")._renderItem = function(ul, item) {
-                    return $("<li>")
-                        .data("item.autocomplete", item)
-                        .append("<a> Title: " + item.label + "<br> Tags: " + item.tags + "</a>")
-                        .appendTo(ul);
-                }
+                });
+            });
         });
     </script>
 }

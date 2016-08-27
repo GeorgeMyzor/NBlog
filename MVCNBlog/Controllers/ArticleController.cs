@@ -29,23 +29,56 @@ namespace MVCNBlog.Controllers
             pageSize = int.Parse(WebConfigurationManager.AppSettings["PageSize"]);
         }
         
-        public ActionResult Find(string term)
+        [AllowAnonymous]
+        public ActionResult Find(string term, int page = 1)
         {
-            var findedArticles = articleService.FindArticleEntities(term).ToList();
+            ListViewModel<ArticleViewModel> findedArticles;
+            if (string.IsNullOrEmpty(term))
+            {
+                var articles =
+                    articleService.GetPagedArticles(page, pageSize).Select(bllArticle => bllArticle.ToMvcArticle()).ToList();
+                findedArticles = new ListViewModel<ArticleViewModel>()
+                {
+                    ViewModels = articles,
+                    PagingInfo = new PagingInfo()
+                    {
+                        CurrentPage = page,
+                        ItemsPerPage = pageSize,
+                        TotalItems = articles.Count()
+                    }
+                };
+                
+                ViewBag.GroupName = "All articles";
+            }
+            else
+            {
+                ViewBag.Term = term;
+                var articles = articleService.FindArticleEntities(term).ToList();
+                var filtredArticles = articles.OrderByDescending(article => article.PublicationDate)
+                    .Skip((page - 1) * pageSize).Take(pageSize).Select(article => article.ToMvcArticle()).ToList();
+                findedArticles = new ListViewModel<ArticleViewModel>()
+                {
+                    ViewModels = filtredArticles,
+                    PagingInfo = new PagingInfo()
+                    {
+                        CurrentPage = page,
+                        ItemsPerPage = pageSize,
+                        TotalItems = articles.Count()
+                    }
+                };
+
+                if (!findedArticles.ViewModels.Any())
+                    ViewBag.GroupName = "Nothing was found";
+                else
+                    ViewBag.GroupName = "Finded articles";
+            }
 
             if (Request.IsAjaxRequest())
             {
-                var projection = findedArticles.Select(article => new
-                {
-                    id = article.Id,
-                    label = article.Title,
-                    tags = string.Join(",", article.Tags),
-                });
-
-                return Json(projection, JsonRequestBehavior.AllowGet);
+                return PartialView(findedArticles);
             }
 
-            return View(findedArticles.Select(article => article.ToMvcArticle()));
+            return View(findedArticles);
         }
 
         #region CRUD
