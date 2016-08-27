@@ -24,6 +24,7 @@ namespace MVCNBlog.Infrastructure.Mappers
                 Name = bllUser.Name,
                 Rank = bllUser.Rank,
                 CreationDate = bllUser.CreationDate,
+                UserPic = bllUser.UserPic,
                 Role = roles.Find((role => role.RoleId != 3)),
                 PayedRole = (IPayedRole) roles.Find((role => role.RoleId == 3)),
                 Articles = bllUser.Articles?.Select(article => article.ToMvcArticle())
@@ -41,6 +42,7 @@ namespace MVCNBlog.Infrastructure.Mappers
                 Id = userViewModel.Id,
                 Name = userViewModel.Name,
                 CreationDate = userViewModel.CreationDate,
+                UserPic = userViewModel.UserPic,
                 Roles = roles.Select(mvcRole => mvcRole.ToBllRole()).ToList()
             };
         }
@@ -76,6 +78,7 @@ namespace MVCNBlog.Infrastructure.Mappers
                 CreationDate = bllUser.CreationDate,
                 Rank = bllUser.Rank,
                 SubscriptionCost = bllUser.SubscriptionCost,
+                UserPic = bllUser.UserPic,
                 Role = roles.Find((role => role.RoleId != 3)),
                 PayedRole = (IPayedRole)roles.Find((role => role.RoleId == 3))
             };
@@ -92,6 +95,7 @@ namespace MVCNBlog.Infrastructure.Mappers
                 Id = userViewModel.Id,
                 Name = userViewModel.Name,
                 CreationDate = userViewModel.CreationDate,
+                UserPic = userViewModel.UserPic,
                 Roles = roles.Select(mvcRole => mvcRole.ToBllRole()).ToList()
             };
         }

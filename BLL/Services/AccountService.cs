@@ -62,5 +62,11 @@ namespace BLL.Services
             userRepository.UpdatePaidRole(user.ToDalUser());
             uow.Commit();
         }
+
+        public void UpdateAccountPicture(BllUser user)
+        {
+            userRepository.UpdateUserPicture(user.ToDalUser());
+            uow.Commit();
+        }
     }
 }

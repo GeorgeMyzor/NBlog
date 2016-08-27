@@ -1,6 +1,6 @@
 ﻿@model MVCNBlog.ViewModels.ListViewModel<MVCNBlog.ViewModels.ArticleViewModel>
 
-<h2>Finded articles:</h2>
+<h2>@ViewBag.GroupName</h2>
 @foreach (var article in Model.ViewModels)
 {
     <b>Title:</b>

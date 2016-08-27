@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -157,17 +158,46 @@ namespace MVCNBlog.Controllers
         [ActionName("Edit")]
         public ActionResult ConfirmEdit(AccountViewModel editingUser)
         {
-            service.UpdateAccount(editingUser.ToBllUser());
+            //TODO account name editing fucked up auth name
+            if (ModelState.IsValid)
+            {
+                service.UpdateAccount(editingUser.ToBllUser());
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+
+            return View();
         }
-        
+
         [HttpPost]
+        [ActionName("EditVipStatus")]
         public ActionResult EditVipStatus(AccountViewModel editingUser)
         {
             service.UpdateAccountPaidRole(editingUser.ToBllUser());
 
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult UploadPicture(AccountViewModel editingUser, HttpPostedFileBase uploadImage)
+        {
+            if (uploadImage != null)
+            {
+                byte[] imageData = null;
+
+                using (var binaryReader = new BinaryReader(uploadImage.InputStream))
+                {
+                    imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
+                }
+
+                editingUser.UserPic = imageData;
+
+                service.UpdateAccountPicture(editingUser.ToBllUser());
+
+                return RedirectToAction("Index");
+            }
+
+            return View("Index");
         }
 
         #endregion

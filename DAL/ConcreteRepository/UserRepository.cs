@@ -62,6 +62,16 @@ namespace DAL.ConcreteRepository
             return activity;
         }
 
+        public void UpdateUserPicture(DalUser dalUser)
+        {
+            ValidateUser(dalUser);
+
+            var editingUser = dalUser.ToOrmUser();
+            var ormUser = context.Set<User>().Single(u => u.Id == dalUser.Id);
+
+            ormUser.UserPic = editingUser.UserPic;
+        }
+
         public IEnumerable<DalUser> GetPagedUsers(int pageNum, int pageSize)
         {
             ValidatePageParams(pageNum, pageSize);
@@ -166,7 +176,6 @@ namespace DAL.ConcreteRepository
         {
             if (dalUser == null)
             {
-                //TODO logg
                 throw new ArgumentNullException(nameof(dalUser), $"{nameof(dalUser)} is null.");
             }
         }
@@ -175,7 +184,6 @@ namespace DAL.ConcreteRepository
         {
             if (id < 0)
             {
-                //TODO logg
                 throw new ArgumentNullException(nameof(id), "Id must be positive.");
             }
         }
@@ -184,7 +192,6 @@ namespace DAL.ConcreteRepository
         {
             if (pageNum < 1)
             {
-                //TODO logg
                 throw new ArgumentOutOfRangeException(nameof(pageNum), $"{nameof(pageNum)} must be greator then 0.");
             }
             else if (pageSize < 1)

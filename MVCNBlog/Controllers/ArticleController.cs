@@ -47,11 +47,10 @@ namespace MVCNBlog.Controllers
                     }
                 };
                 
-                ViewBag.GroupName = "All articles";
+                ViewBag.GroupName = "All articles:";
             }
             else
             {
-                ViewBag.Term = term;
                 var articles = articleService.FindArticleEntities(term).ToList();
                 var filtredArticles = articles.OrderByDescending(article => article.PublicationDate)
                     .Skip((page - 1) * pageSize).Take(pageSize).Select(article => article.ToMvcArticle()).ToList();
@@ -67,9 +66,9 @@ namespace MVCNBlog.Controllers
                 };
 
                 if (!findedArticles.ViewModels.Any())
-                    ViewBag.GroupName = "Nothing was found";
+                    ViewBag.GroupName = "Nothing was found.";
                 else
-                    ViewBag.GroupName = "Finded articles";
+                    ViewBag.GroupName = "Finded articles:";
             }
 
             if (Request.IsAjaxRequest())

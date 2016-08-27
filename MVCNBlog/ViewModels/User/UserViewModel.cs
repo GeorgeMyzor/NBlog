@@ -14,6 +14,7 @@ namespace MVCNBlog.ViewModels.User
         public DateTime CreationDate { get; set; }
         public string Rank { get; set; }
         public IRole Role { get; set; }
+        public byte[] UserPic { get; set; }
         public IPayedRole PayedRole { get; set; }
         public IEnumerable<ArticleViewModel> Articles { get; set; }
     }

@@ -34,7 +34,7 @@
     </div>
 }
 
-@using (Html.BeginForm("EditVipStatus", "Account"))
+@using (Html.BeginRouteForm("EditAccount", new { action = "EditVipStatus" }))
 {
     @Html.HiddenFor(model => model.Id)
     <input type="hidden" name="roleId" value="@Model.Role.RoleId"/>
@@ -60,8 +60,26 @@
         </div>
     </div>
 }
+
+@using (Html.BeginRouteForm("EditAccount", new { action = "UploadPicture" } , FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.Id)
+    <fieldset>
+        <legend>Add image</legend>
+
+        <div class="editor-label">Picture file</div>
+        <div class="editor-field">
+            <input type="file" name="uploadImage" />
+        </div>
+
+        <p>
+            <input type="submit" value="Add" />
+        </p>
+    </fieldset>
+}
 <div>
-    @Html.RouteLink("Go back", "ViewAccount", new { }, new { @class = "btn btn-default" });
+    @Html.RouteLink("Go back", "ViewAccount", new { }, new { @class = "btn btn-default" })
 </div>
 
 @section Scripts {

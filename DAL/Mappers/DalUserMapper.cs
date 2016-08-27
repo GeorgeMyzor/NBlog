@@ -18,6 +18,7 @@ namespace DAL.Mappers
                 Name = ormUser.Name,
                 CreationDate = ormUser.CreationDate,
                 Password = ormUser.Password,
+                UserPic = ormUser.UserPic,
                 Roles = ormUser.Roles.Select(ormRole => ormRole.ToDalRole())
             };
         }
@@ -30,6 +31,7 @@ namespace DAL.Mappers
                 Name = dalUser.Name,
                 CreationDate = dalUser.CreationDate,
                 Password = dalUser.Password,
+                UserPic = dalUser.UserPic,
                 Roles = dalUser.Roles.Select(dalRole => dalRole.ToOrmRole()).ToList()
             };
         }

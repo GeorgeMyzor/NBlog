@@ -17,6 +17,7 @@ namespace MVCNBlog.ViewModels
         public DateTime CreationDate { get; set; }
         public string Rank { get; set; }
         public int SubscriptionCost { get; set; }
+        public byte[] UserPic { get; set; }
         public IPayedRole PayedRole { get; set; }
         public IRole Role { get; set; }
     }
