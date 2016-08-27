@@ -35,16 +35,15 @@ namespace MVCNBlog.Controllers
             ListViewModel<ArticleViewModel> findedArticles;
             if (string.IsNullOrEmpty(term))
             {
-                var articles =
-                    articleService.GetPagedArticles(page, pageSize).Select(bllArticle => bllArticle.ToMvcArticle()).ToList();
                 findedArticles = new ListViewModel<ArticleViewModel>()
                 {
-                    ViewModels = articles,
+                    ViewModels =
+                    articleService.GetPagedArticles(page, pageSize).Select(bllArticle => bllArticle.ToMvcArticle()).ToList(),
                     PagingInfo = new PagingInfo()
                     {
                         CurrentPage = page,
                         ItemsPerPage = pageSize,
-                        TotalItems = articles.Count()
+                        TotalItems = articleService.GetArticlesCount()
                     }
                 };
                 
