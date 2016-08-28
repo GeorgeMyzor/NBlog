@@ -24,5 +24,7 @@ namespace MVCNBlog.ViewModels.User
         [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Passwords must match")]
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
+
+        public byte[] UserPic { get; set; }
     }
 }

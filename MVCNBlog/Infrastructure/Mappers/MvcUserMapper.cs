@@ -13,6 +13,7 @@ namespace MVCNBlog.Infrastructure.Mappers
     {
         #region View user
 
+        //TODO hardcode 3 belowe
         public static UserViewModel ToMvcUser(this BllUser bllUser)
         {
             if (bllUser == null)
@@ -60,6 +61,7 @@ namespace MVCNBlog.Infrastructure.Mappers
                 Name = userViewModel.Name,
                 Password = userViewModel.Password,
                 CreationDate = userViewModel.CreationDate,
+                UserPic = userViewModel.UserPic,
                 Roles = roles.Select(mvcRole => mvcRole.ToBllRole()).ToList()
             };
         }

@@ -1,0 +1,131 @@
+2016-08-29 00:33:28.2861 Warn Message: The controller for path '/articles/validatename' was not found or does not implement IController. 
+2016-08-29 00:33:37.5324 Warn Message: A public action method 'validatename' was not found on controller 'MVCNBlog.Controllers.ArticleController'. 
+2016-08-29 00:33:42.0574 Warn Message: The controller for path '/articles/validatename' was not found or does not implement IController. 
+2016-08-29 00:33:47.6125 Warn Message: Page not found. 
+2016-08-29 00:34:38.6765 Warn Message: Page not found. 
+2016-08-29 00:34:47.4697 Warn Message: Page not found. 
+2016-08-29 00:34:50.9067 Warn Message: Page not found. 
+2016-08-29 00:36:30.3607 Error Message: System.ArgumentNullException: «начение не может быть неопределенным.
+»м€ параметра: inArray
+   в System.Convert.ToBase64String(Byte[] inArray)
+   в ASP._Page_Views_User_AllUsers_cshtml.Execute() в D:\VS Projects\NBlog\MVCNBlog\Views\User\AllUsers.cshtml:строка 10
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   в System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   в System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
+   в ASP._Page_Views_User_All_cshtml.Execute() в D:\VS Projects\NBlog\MVCNBlog\Views\User\All.cshtml:строка 9
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   в System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   в System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   в System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) «начение не может быть неопределенным.
+»м€ параметра: inArray
+2016-08-29 00:36:44.9389 Error Message: System.ArgumentNullException: «начение не может быть неопределенным.
+»м€ параметра: inArray
+   в System.Convert.ToBase64String(Byte[] inArray)
+   в ASP._Page_Views_User_AllUsers_cshtml.Execute() в D:\VS Projects\NBlog\MVCNBlog\Views\User\AllUsers.cshtml:строка 10
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   в System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   в System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
+   в ASP._Page_Views_User_All_cshtml.Execute() в D:\VS Projects\NBlog\MVCNBlog\Views\User\All.cshtml:строка 9
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   в System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   в System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   в System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) «начение не может быть неопределенным.
+»м€ параметра: inArray
+2016-08-29 00:36:47.3879 Error Message: System.ArgumentNullException: «начение не может быть неопределенным.
+»м€ параметра: inArray
+   в System.Convert.ToBase64String(Byte[] inArray)
+   в ASP._Page_Views_User_AllUsers_cshtml.Execute() в D:\VS Projects\NBlog\MVCNBlog\Views\User\AllUsers.cshtml:строка 10
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   в System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   в System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
+   в ASP._Page_Views_User_All_cshtml.Execute() в D:\VS Projects\NBlog\MVCNBlog\Views\User\All.cshtml:строка 9
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   в System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   в System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   в System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) «начение не может быть неопределенным.
+»м€ параметра: inArray
+2016-08-29 00:41:33.9967 Error Message: System.ArgumentNullException: «начение не может быть неопределенным.
+»м€ параметра: inArray
+   в System.Convert.ToBase64String(Byte[] inArray)
+   в ASP._Page_Views_User_AllUsers_cshtml.Execute() в D:\VS Projects\NBlog\MVCNBlog\Views\User\AllUsers.cshtml:строка 10
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   в System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   в System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
+   в ASP._Page_Views_User_All_cshtml.Execute() в D:\VS Projects\NBlog\MVCNBlog\Views\User\All.cshtml:строка 9
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   в System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   в System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   в System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) «начение не может быть неопределенным.
+»м€ параметра: inArray
+2016-08-29 00:45:07.8347 Warn Message: user wasnt found. 
+2016-08-29 00:45:20.2115 Warn Message: deletingUser wasn't found. 
+2016-08-29 00:45:26.2386 Warn Message: editingUser wasn't found. 
+2016-08-29 00:45:40.8579 Warn Message: user wasnt found. 

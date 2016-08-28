@@ -68,7 +68,7 @@ namespace MVCNBlog
 
             routes.MapRoute(
                name: "UserValidation",
-               url: "{controller}/{action}",
+               url: "user/{action}",
                defaults: new { controller = "User" },
                 constraints: new { action = @"ValidateName|ValidatePassword" }
                );

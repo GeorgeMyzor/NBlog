@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -94,6 +96,16 @@ namespace MVCNBlog.Controllers
             if (ModelState.IsValid)
             {
                 userViewModel.Password = Crypto.HashPassword(userViewModel.Password);
+
+                string path = System.Web.HttpContext.Current.Server.MapPath("~/Content/no-profile-img.gif");
+                FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read);
+                Image image = Image.FromStream(stream);
+                using (var ms = new MemoryStream())
+                {
+                    image.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
+                    userViewModel.UserPic = ms.ToArray();
+                }
+
                 service.CreateUser(userViewModel.ToBllUser());
                 return RedirectToAction("All");
             }
@@ -148,11 +160,12 @@ namespace MVCNBlog.Controllers
             deletingUser = service.GetUserEntity(deletingUser.Id);
             service.DeleteUser(deletingUser);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("All");
         }
 
         #region Remote validation
 
+        //TODO validate login name(all but name copy check)
         [HttpGet]
         [AllowAnonymous]
         public JsonResult ValidateName(string name)

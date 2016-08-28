@@ -33,7 +33,7 @@ namespace MVCNBlog.Infrastructure.ModelBinders
                 propertyDescriptor.SetValue(bindingContext.Model, role);
                 return;
             }
-
+            
             base.BindProperty(controllerContext, bindingContext, propertyDescriptor);
         }
 
