@@ -1,7 +1,7 @@
-﻿@model MVCNBlog.ViewModels.ListViewModel<MVCNBlog.ViewModels.ArticleViewModel>
+﻿@model IEnumerable<MVCNBlog.ViewModels.ArticleViewModel>
 
 <h2>@ViewBag.GroupName</h2>
-@foreach (var article in Model.ViewModels)
+@foreach (var article in Model)
 {
     <b>Title:</b>
     @Html.DisplayFor(modelItem => article.Title)
@@ -37,7 +37,3 @@
 
     <br />
 }
-
-<div class="pager">
-    @Html.PageLinks(Model.PagingInfo, x => Url.RouteUrl("FindArticle", new { term = ViewBag.Term , page = x }))
-</div>

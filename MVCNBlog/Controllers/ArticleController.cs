@@ -30,42 +30,32 @@ namespace MVCNBlog.Controllers
         }
         
         [AllowAnonymous]
-        public ActionResult Find(string term, int page = 1)
+        public ActionResult Find(string term)
         {
-            ListViewModel<ArticleViewModel> findedArticles;
+            IEnumerable<ArticleViewModel> findedArticles;
             if (string.IsNullOrEmpty(term))
             {
-                findedArticles = new ListViewModel<ArticleViewModel>()
+                var articles = new ListViewModel<ArticleViewModel>()
                 {
-                    ViewModels =
-                    articleService.GetPagedArticles(page, pageSize).Select(bllArticle => bllArticle.ToMvcArticle()).ToList(),
+                    ViewModels = articleService.GetPagedArticles(1, pageSize).Select(bllArticle => bllArticle.ToMvcArticle()),
                     PagingInfo = new PagingInfo()
                     {
-                        CurrentPage = page,
+                        CurrentPage = 1,
                         ItemsPerPage = pageSize,
                         TotalItems = articleService.GetArticlesCount()
                     }
                 };
-                
-                ViewBag.GroupName = "All articles:";
+
+                if (Request.IsAjaxRequest())
+                    return PartialView("AllArticles", articles);
+                else
+                    return RedirectToAction("All");
             }
             else
             {
-                var articles = articleService.FindArticleEntities(term).ToList();
-                var filtredArticles = articles.OrderByDescending(article => article.PublicationDate)
-                    .Skip((page - 1) * pageSize).Take(pageSize).Select(article => article.ToMvcArticle()).ToList();
-                findedArticles = new ListViewModel<ArticleViewModel>()
-                {
-                    ViewModels = filtredArticles,
-                    PagingInfo = new PagingInfo()
-                    {
-                        CurrentPage = page,
-                        ItemsPerPage = pageSize,
-                        TotalItems = articles.Count()
-                    }
-                };
+                findedArticles = articleService.FindArticleEntities(term).Select(bllArticle => bllArticle.ToMvcArticle()).ToList();
 
-                if (!findedArticles.ViewModels.Any())
+                if (!findedArticles.Any())
                     ViewBag.GroupName = "Nothing was found.";
                 else
                     ViewBag.GroupName = "Finded articles:";
@@ -116,6 +106,11 @@ namespace MVCNBlog.Controllers
                     TotalItems = articleService.GetArticlesCount()
                 }
             };
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView(articles);
+            }
 
             return View(articles);
         }

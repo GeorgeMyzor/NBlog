@@ -329,6 +329,7 @@
     <Content Include="Views\Error\Error.cshtml" />
     <Content Include="Views\Article\Find.cshtml" />
     <Content Include="Views\Comment\Create.cshtml" />
+    <Content Include="Views\Article\AllArticles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

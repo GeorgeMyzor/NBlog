@@ -1,0 +1,47 @@
+﻿@model MVCNBlog.ViewModels.ListViewModel<MVCNBlog.ViewModels.ArticleViewModel>
+<div id="allArticles">
+    <h2>All articles</h2>
+
+    @foreach (var article in Model.ViewModels)
+    {
+        <b>Title:</b>
+            @Html.DisplayFor(modelItem => article.Title)
+            <br />
+            <b>Content:</b>
+            @Html.DisplayFor(modelItem => article.Content)
+            <br />
+            <b>Publication date:</b>
+            @Html.DisplayFor(modelItem => article.PublicationDate)
+            <br />
+            <b>Author:</b>
+            @Html.DisplayTextFor(modelItem => article.Author.Name)
+            <br />
+            <b>Tags:</b>
+        foreach (var tag in article.Tags)
+        {
+            <b> &nbsp;</b>
+                @Html.DisplayFor(modelItem => tag)
+        }
+
+        foreach (var comment in article.Comments)
+        {
+            <br />
+                <b> &nbsp; &nbsp; Comment:</b>
+                @Html.DisplayFor(modelItem => comment.Content)
+                <b> &nbsp; &nbsp; Author's comment:</b>
+                @Html.DisplayFor(modelItem => comment.Author.Name)
+        }
+        <br />
+            @Html.RouteLink("View article", "ArticleAction", new { action = "Index", title = article.Title, id = article.Id })
+            @Html.RouteLink("Edit article", "ArticleAction", new { action = "Edit", title = article.Title, id = article.Id })
+            @Html.RouteLink("Delete article", "ArticleAction", new { action = "Delete", title = article.Title, id = article.Id })
+
+            <br />
+    }
+
+    <div class="pager">
+        @Html.PageLinks(Model.PagingInfo, x => Url.Action("All", new { page = x }))
+    </div>
+
+</div>
+

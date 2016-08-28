@@ -16,9 +16,9 @@ namespace MVCNBlog
             #region Article routes
 
             routes.MapRoute(
-                name: "PagedArticles",
-                url: "articles/page{page}",
-                defaults: new {Controller = "Article", action = "All"}
+                name: "FindArticle",
+                url: "articles/find/{term}",
+                defaults: new { controller = "Article", action = "Find" }
                 );
 
             routes.MapRoute(
@@ -34,12 +34,13 @@ namespace MVCNBlog
                 defaults: new { controller = "Article", action = "All" },
                 constraints: new { action = @"Create|All|Find" }
                 );
-
+            
             routes.MapRoute(
-                name: "FindArticle",
-                url: "articles/find/{term}/{page}",
-                defaults: new { controller = "Article", action = "Find", page = UrlParameter.Optional }
+                name: "PagedArticles",
+                url: "articles/page{page}",
+                defaults: new { Controller = "Article", action = "All" }
                 );
+
 
             #endregion
 

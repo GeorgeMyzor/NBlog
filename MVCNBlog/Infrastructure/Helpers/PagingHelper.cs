@@ -22,6 +22,8 @@ namespace MVCNBlog.Infrastructure.Helpers
                 tag.InnerHtml = i.ToString();
                 if (i == pagingInfo.CurrentPage)
                     tag.AddCssClass("selected");
+                tag.AddCssClass("page");
+                tag.MergeAttribute("value",i.ToString());
                 result.Append(tag.ToString());
             }
 
