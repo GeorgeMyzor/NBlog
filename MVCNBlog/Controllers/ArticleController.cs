@@ -28,16 +28,19 @@ namespace MVCNBlog.Controllers
             this.userService = userService;
             pageSize = int.Parse(WebConfigurationManager.AppSettings["PageSize"]);
         }
-        
+
         [AllowAnonymous]
         public ActionResult Find(string term)
         {
-            IEnumerable<ArticleViewModel> findedArticles;
             if (string.IsNullOrEmpty(term))
             {
+                if (!Request.IsAjaxRequest())
+                    return RedirectToAction("All");
+
                 var articles = new ListViewModel<ArticleViewModel>()
                 {
-                    ViewModels = articleService.GetPagedArticles(1, pageSize).Select(bllArticle => bllArticle.ToMvcArticle()),
+                    ViewModels =
+                        articleService.GetPagedArticles(1, pageSize).Select(bllArticle => bllArticle.ToMvcArticle()),
                     PagingInfo = new PagingInfo()
                     {
                         CurrentPage = 1,
@@ -46,21 +49,14 @@ namespace MVCNBlog.Controllers
                     }
                 };
 
-                if (Request.IsAjaxRequest())
-                    return PartialView("AllArticles", articles);
-                else
-                    return RedirectToAction("All");
-            }
-            else
-            {
-                findedArticles = articleService.FindArticleEntities(term).Select(bllArticle => bllArticle.ToMvcArticle()).ToList();
-
-                if (!findedArticles.Any())
-                    ViewBag.GroupName = "Nothing was found.";
-                else
-                    ViewBag.GroupName = "Finded articles:";
+                return PartialView("AllArticles", articles);
             }
 
+            var findedArticles =
+                articleService.FindArticleEntities(term).Select(bllArticle => bllArticle.ToMvcArticle()).ToList();
+
+            ViewBag.GroupName = !findedArticles.Any() ? "Nothing was found." : "Finded articles:";
+            
             if (Request.IsAjaxRequest())
             {
                 return PartialView(findedArticles);

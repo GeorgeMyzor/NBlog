@@ -166,7 +166,7 @@ namespace MVCNBlog.Controllers
                     JsonRequestBehavior.AllowGet);
 
             var user = service.GetUserEntity(name);
-            if(user != null)
+            if(user != null && name != User.Identity.Name)
                 return Json("A user with the same name already exists.",
                     JsonRequestBehavior.AllowGet);
 

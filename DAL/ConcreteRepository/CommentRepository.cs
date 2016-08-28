@@ -94,7 +94,6 @@ namespace DAL.ConcreteRepository
         {
             if (dalComment == null)
             {
-                //TODO logg
                 throw new ArgumentNullException(nameof(dalComment), $"{nameof(dalComment)} is null.");
             }
         }
@@ -103,7 +102,6 @@ namespace DAL.ConcreteRepository
         {
             if (id < 0)
             {
-                //TODO logg
                 throw new ArgumentOutOfRangeException(nameof(id), $"{nameof(id)} must be positive.");
             }
         }

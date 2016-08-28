@@ -24,6 +24,20 @@ namespace MVCNBlog.Controllers
             this.service = service;
         }
 
+        [HttpGet]
+        public ActionResult Index()
+        {
+            var currentAccount = service.GetAccountEntity(User.Identity.Name).ToMvcAccount();
+            if (currentAccount == null)
+            {
+                string outputString = $"Account wasn't found.";
+                var httpException = new HttpException(404, outputString);
+                throw httpException;
+            }
+
+            return View(currentAccount);
+        }
+
         #region Auth
 
         [HttpGet]
@@ -124,20 +138,6 @@ namespace MVCNBlog.Controllers
 
         #endregion
 
-        [HttpGet]
-        public ActionResult Index()
-        {
-            var currentAccount = service.GetAccountEntity(User.Identity.Name).ToMvcAccount();
-            if (currentAccount == null)
-            {
-                string outputString = $"Account wasn't found.";
-                var httpException = new HttpException(404, outputString);
-                throw httpException;
-            }
-
-            return View(currentAccount);
-        }
-
         #region Editing account
 
         [HttpGet]
@@ -155,20 +155,24 @@ namespace MVCNBlog.Controllers
             return View(currentAccount);
         }
 
-        [HttpPost]
-        [ActionName("Edit")]
-        public ActionResult ConfirmEdit(AccountViewModel editingUser)
-        {
-            //TODO account name editing fucked up auth name
-            if (ModelState.IsValid)
-            {
-                service.UpdateAccount(editingUser.ToBllUser());
+        //TODO membership providet cant change name, only pass
+        //[HttpPost]
+        //[ActionName("Edit")]
+        //public ActionResult ConfirmEdit(AccountViewModel editingUser)
+        //{
+        //    var user = service.GetAccountEntity(editingUser.Name);
+        //    if (user != null && editingUser.Name != User.Identity.Name)
+        //        ModelState.AddModelError(nameof(AccountViewModel.Name), "A user with the same name already exists");
 
-                return RedirectToAction("Index");
-            }
+        //    if (ModelState.IsValid)
+        //    {
+        //        service.UpdateAccount(editingUser.ToBllUser());
 
-            return View();
-        }
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    return View();
+        //}
 
         [HttpPost]
         [ActionName("EditVipStatus")]
@@ -182,7 +186,7 @@ namespace MVCNBlog.Controllers
         [HttpPost]
         public ActionResult UploadPicture(HttpPostedFileBase uploadImage)
         {
-            if (Request.Files.Count > 0)
+            if (Request.Files.Count > 0 && uploadImage == null)
             {
                 uploadImage = Request.Files[0];
             }
@@ -215,6 +219,8 @@ namespace MVCNBlog.Controllers
 
         #endregion
 
+        #region Delete account
+
         [HttpGet]
         public ActionResult Delete()
         {
@@ -245,5 +251,7 @@ namespace MVCNBlog.Controllers
 
             return RedirectToAction("LogOff");
         }
+
+        #endregion
     }
 }

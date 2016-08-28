@@ -139,7 +139,6 @@ namespace DAL.ConcreteRepository
         {
             if (dalArticle == null)
             {
-                //TODO logg
                 throw new ArgumentNullException(nameof(dalArticle), $"{nameof(dalArticle)} is null.");
             }
         }
@@ -148,7 +147,6 @@ namespace DAL.ConcreteRepository
         {
             if (pageNum < 1)
             {
-                //TODO logg
                 throw new ArgumentOutOfRangeException(nameof(pageNum), $"{nameof(pageNum)} must be greator then 0.");
             }
             else if (pageSize < 1)

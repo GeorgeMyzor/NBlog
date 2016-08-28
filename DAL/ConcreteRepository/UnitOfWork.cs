@@ -31,7 +31,6 @@ namespace DAL.ConcreteRepository
             }
             catch (DbUpdateException ex)
             {
-                //TODO log
                 throw new UnitOfWorkException("Failed to update db", ex);
             }
             catch (DbEntityValidationException ex)
