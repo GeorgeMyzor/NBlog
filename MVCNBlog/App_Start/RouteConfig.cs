@@ -45,13 +45,7 @@ namespace MVCNBlog
             #endregion
 
             #region User routes
-
-            routes.MapRoute(
-                name: "PagedUsers",
-                url: "users/page{page}",
-                defaults: new {Controller = "User", action = "All" }
-                );
-
+            
             routes.MapRoute(
                 name: "UserAction",
                 url: "users/{id}/{name}/{action}",
@@ -64,6 +58,12 @@ namespace MVCNBlog
                 url: "users/{action}",
                 defaults: new { controller = "User", action = "All" },
                 constraints: new { action = @"Create|All" }
+                );
+
+            routes.MapRoute(
+                name: "PagedUsers",
+                url: "users/page{page}",
+                defaults: new { Controller = "User", action = "All" }
                 );
 
             routes.MapRoute(

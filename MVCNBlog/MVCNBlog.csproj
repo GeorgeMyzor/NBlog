@@ -331,6 +331,7 @@
     <Content Include="Views\Article\Find.cshtml" />
     <Content Include="Views\Comment\Create.cshtml" />
     <Content Include="Views\Article\AllArticles.cshtml" />
+    <Content Include="Views\User\AllUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

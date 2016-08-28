@@ -69,6 +69,11 @@ namespace MVCNBlog.Controllers
                 }
             };
 
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView(users);
+            }
+
             return View(users);
         }
 

@@ -930,3 +930,5 @@ System.Web.Mvc.ActionResult UploadPicture(System.Web.HttpPostedFileBase) on type
    в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
    в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) Ссылка на объект не указывает на экземпляр объекта.
 2016-08-28 21:52:20.4345 Warn Message: A public action method 'Edit' was not found on controller 'MVCNBlog.Controllers.AccountController'. 
+2016-08-28 22:35:19.3381 Warn Message: Page not found. 
+2016-08-28 22:35:21.4852 Warn Message: Page not found. 
