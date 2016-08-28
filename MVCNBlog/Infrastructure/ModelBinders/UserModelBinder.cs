@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Helpers;
@@ -31,7 +33,7 @@ namespace MVCNBlog.Infrastructure.ModelBinders
                 propertyDescriptor.SetValue(bindingContext.Model, role);
                 return;
             }
-            
+
             base.BindProperty(controllerContext, bindingContext, propertyDescriptor);
         }
 

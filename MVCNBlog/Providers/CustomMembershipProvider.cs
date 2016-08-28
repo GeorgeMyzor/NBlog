@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Helpers;
@@ -40,6 +42,15 @@ namespace MVCNBlog.Providers
                 {
                     role
                 };
+            }
+
+            string path = HttpContext.Current.Server.MapPath("~/Content/no-profile-img.gif");
+            FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read);
+            Image image = Image.FromStream(stream);
+            using (var ms = new MemoryStream())
+            {
+                image.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
+                user.UserPic = ms.ToArray();
             }
 
             UserService.CreateUser(user);

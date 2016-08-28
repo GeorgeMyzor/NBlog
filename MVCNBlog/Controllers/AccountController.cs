@@ -114,6 +114,7 @@ namespace MVCNBlog.Controllers
             return View(viewModel);
         }
         
+        [AllowAnonymous]
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
@@ -179,9 +180,14 @@ namespace MVCNBlog.Controllers
         }
 
         [HttpPost]
-        public ActionResult UploadPicture(AccountViewModel editingUser, HttpPostedFileBase uploadImage)
+        public ActionResult UploadPicture(HttpPostedFileBase uploadImage)
         {
-            if (uploadImage != null)
+            if (Request.Files.Count > 0)
+            {
+                uploadImage = Request.Files[0];
+            }
+
+            if (uploadImage != null && uploadImage.ContentLength/1024 < 200)
             {
                 byte[] imageData = null;
 
@@ -190,14 +196,21 @@ namespace MVCNBlog.Controllers
                     imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
                 }
 
-                editingUser.UserPic = imageData;
+                var currentAccount = service.GetAccountEntity(User.Identity.Name);
+                currentAccount.UserPic = imageData;
 
-                service.UpdateAccountPicture(editingUser.ToBllUser());
+                service.UpdateAccountPicture(currentAccount);
 
-                return RedirectToAction("Index");
+                if (Request.IsAjaxRequest())
+                {
+                    var imageBytesStr = Convert.ToBase64String(imageData);
+                    return Json(new {ProfilePicture = imageBytesStr}, JsonRequestBehavior.AllowGet);
+                }
+
+                return RedirectToAction("Edit");
             }
 
-            return View("Index");
+            return RedirectToAction("Edit");
         }
 
         #endregion

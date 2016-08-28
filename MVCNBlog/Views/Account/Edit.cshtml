@@ -2,6 +2,15 @@
 
 @{
     ViewBag.Title = "Edit";
+    AjaxOptions ajaxOpts = new AjaxOptions
+    {
+        OnSuccess = "OnSuccess",
+        HttpMethod = "Post",
+        UpdateTargetId = "userPic",
+        Url = Url.Action("UploadPicture"),
+        LoadingElementId = "loading",
+        LoadingElementDuration = 1000,
+    };
 }
 
 <h2>Edit</h2>
@@ -15,6 +24,14 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
+
+        <div id="userPic">
+            @Html.Raw("<img style='width:80px; height:60px;' src=\"data:image/jpeg;base64,"
+                      + Convert.ToBase64String(Model.UserPic) + "\" />")
+
+        </div>
+            <b>User name:</b>
+            @Html.DisplayFor(modelItem => modelItem.Name)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -61,7 +78,10 @@
     </div>
 }
 
-@using (Html.BeginRouteForm("EditAccount", new { action = "UploadPicture" } , FormMethod.Post, new { enctype = "multipart/form-data" }))
+<div id="loading" class="load" style="display: none">
+    <p>Loading Picture...</p>
+</div>
+@using (Html.BeginRouteForm("EditAccount", new { action = "UploadPicture" }, FormMethod.Post, new { id = "uploadForm", enctype = "multipart/form-data" }))
 {
     @Html.ValidationSummary(true)
     @Html.HiddenFor(model => model.Id)
@@ -70,11 +90,11 @@
 
         <div class="editor-label">Picture file</div>
         <div class="editor-field">
-            <input type="file" name="uploadImage" />
+            <input type="file" id="uploadImage" name="uploadImage" />
         </div>
 
         <p>
-            <input type="submit" value="Add" />
+            <input type="submit" id="picSubmit" value="Add" />
         </p>
     </fieldset>
 }
@@ -83,5 +103,46 @@
 </div>
 
 @section Scripts {
+
+    <script type="text/javascript" src="@Url.Content("~/scripts/jquery.unobtrusive-ajax.js")"></script>
+    <script>
+
+        $(document).ready(function() {
+            $('#uploadForm').submit(function(e) {
+                if (window.FormData !== undefined) {
+
+                    var fileUpload = $("#uploadImage").get(0);
+                    var files = fileUpload.files;
+
+                    var fileData = new FormData();
+
+                    for (var i = 0; i < files.length; i++) {
+                        fileData.append(files[i].name, files[i]);
+                    }
+
+                    e.preventDefault();
+                    $.ajax({
+                        url: '/Account/UploadPicture',
+                        type: "POST",
+                        contentType: false,
+                        processData: false,
+                        data: fileData,
+                        success: function(result) {
+                            var results = $('#userPic');
+                            results.empty();
+
+                            results.append("<img style='width:80px; height:60px;' src=\"data:image/jpeg;base64,"
+                                + result.ProfilePicture + "\" />");
+                        },
+                        error: function(err) {
+                            alert("Cannot upload image.");
+                        }
+                    });
+                } else {
+                    alert("FormData is not supported.");
+                }
+            });
+        });
+    </script>
     @Scripts.Render("~/bundles/jqueryval")
 }
