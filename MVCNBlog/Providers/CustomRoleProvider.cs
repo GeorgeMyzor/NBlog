@@ -35,10 +35,10 @@ namespace MVCNBlog.Providers
         }
 
         //for logon user. ^ for any
-        public override string[] GetRolesForUser(string name)
+        public override string[] GetRolesForUser(string email)
         {
 
-            var user = UserService.GetAllUserEntities().FirstOrDefault(u => u.Name == name).ToMvcUser();
+            var user = UserService.GetAllUserEntities().FirstOrDefault(u => u.Email == email).ToMvcUser();
 
             var userRole = user.Role;
             var userPayedRole = user.PayedRole;

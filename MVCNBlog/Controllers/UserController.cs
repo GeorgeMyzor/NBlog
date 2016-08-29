@@ -62,12 +62,13 @@ namespace MVCNBlog.Controllers
         {
             var users = new ListViewModel<UserViewModel>()
             {
-                ViewModels = service.GetPagedUsers(page,pageSize).Select(user => user.ToMvcUser()),
+                ViewModels = service.GetPagedUsers(page,pageSize).Select(user => user.ToMvcUser())
+                .SkipWhile(user => user.Email == User.Identity.Name),
                 PagingInfo = new PagingInfo()
                 {
                     CurrentPage = page,
                     ItemsPerPage = pageSize,
-                    TotalItems = service.GetUsersCount()
+                    TotalItems = service.GetUsersCount() - 1
                 }
             };
 
