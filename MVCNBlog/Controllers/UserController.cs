@@ -169,13 +169,27 @@ namespace MVCNBlog.Controllers
         }
 
         #region Remote validation
-
-        //TODO validate login name(all but name copy check)
+        
         [HttpGet]
         [AllowAnonymous]
         public JsonResult ValidateName(string name)
         {
-            if(!Request.IsAjaxRequest())
+            if (!Request.IsAjaxRequest())
+                throw new HttpException(404, "Page not found.");
+
+            var user = service.GetUserEntity(name);
+            if(user != null && user.Email != User.Identity.Name)
+                return Json("A user with the same name already exists.",
+                    JsonRequestBehavior.AllowGet);
+
+            return ValidateLoginName(name);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public JsonResult ValidateLoginName(string name)
+        {
+            if (!Request.IsAjaxRequest())
                 throw new HttpException(404, "Page not found.");
 
             if (string.IsNullOrEmpty(name))
@@ -188,21 +202,32 @@ namespace MVCNBlog.Controllers
                 return Json("Name should be 3 to 15 length, only letters.",
                     JsonRequestBehavior.AllowGet);
 
-            var user = service.GetUserEntity(name);
-            if(user != null && user.Email != User.Identity.Name)
-                return Json("A user with the same name already exists.",
-                    JsonRequestBehavior.AllowGet);
-
             return Json(true, JsonRequestBehavior.AllowGet);
         }
-        
+
         [HttpGet]
         [AllowAnonymous]
         public JsonResult ValidateEmail(string email)
         {
-            var errorString = "Email should be 5 to 30 length.";
             if (!Request.IsAjaxRequest())
                 throw new HttpException(404, "Page not found.");
+
+            var user = service.GetUserEntityByEmail(email);
+            if (user != null && user.Email != User.Identity.Name)
+                return Json("User with the same email already exists.",
+                    JsonRequestBehavior.AllowGet);
+
+            return ValidateLoginEmail(email);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public JsonResult ValidateLoginEmail(string email)
+        {
+            if (!Request.IsAjaxRequest())
+                throw new HttpException(404, "Page not found.");
+
+            var errorString = "Email should be 5 to 30 length.";
 
             if (string.IsNullOrEmpty(email))
                 return Json("", JsonRequestBehavior.AllowGet);
@@ -212,11 +237,6 @@ namespace MVCNBlog.Controllers
             var isValidName = Regex.IsMatch(email,
                 @"^(?=.{5,30}$)[a-z0-9!#$%&'*+=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
             if (!isValidName)
-                return Json(errorString,
-                    JsonRequestBehavior.AllowGet);
-
-            var user = service.GetUserEntityByEmail(email);
-            if (user != null && user.Email != User.Identity.Name)
                 return Json(errorString,
                     JsonRequestBehavior.AllowGet);
 

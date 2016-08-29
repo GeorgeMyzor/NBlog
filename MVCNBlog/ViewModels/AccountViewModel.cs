@@ -15,7 +15,7 @@ namespace MVCNBlog.ViewModels
         [Remote("ValidateEmail", "User")]
         public string Email { get; set; }
         [CorrectName]
-        [Remote("ValidateName", "User")]
+        [Remote("ValidateLoginName", "User")]
         public string Name { get; set; }
         public DateTime CreationDate { get; set; }
         public string Rank { get; set; }

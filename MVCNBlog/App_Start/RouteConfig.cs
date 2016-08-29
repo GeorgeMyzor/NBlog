@@ -70,7 +70,7 @@ namespace MVCNBlog
                name: "UserValidation",
                url: "user/{action}",
                defaults: new { controller = "User" },
-                constraints: new { action = @"ValidateName|ValidatePassword|ValidateEmail" }
+                constraints: new { action = @"ValidateName|ValidatePassword|ValidateEmail|ValidateLoginEmail|ValidateLoginName" }
                );
 
             #endregion

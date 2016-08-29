@@ -104,11 +104,14 @@ namespace MVCNBlog.Controllers
                 return RedirectToAction("Index", "Account");
             }
 
-            var anyUser = service.GetAccountEntity(viewModel.Name);
+            var anyUser = service.GetAccountEntity(viewModel.Email);
 
             if (anyUser != null)
             {
-                ModelState.AddModelError("", "User with this address already registered.");
+                ModelState.AddModelError(nameof(viewModel.Email), "User with same email already registered.");
+                if(anyUser.Name == viewModel.Name)
+                    ModelState.AddModelError(nameof(viewModel.Name), "User with same name already registered.");
+
                 return View(viewModel);
             }
 
