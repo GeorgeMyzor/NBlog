@@ -12,8 +12,7 @@ namespace MVCNBlog.Infrastructure.Mappers
     public static class MvcUserMapper
     {
         #region View user
-
-        //TODO hardcode 3 belowe
+        
         public static UserViewModel ToMvcUser(this BllUser bllUser)
         {
             if (bllUser == null)
@@ -27,8 +26,8 @@ namespace MVCNBlog.Infrastructure.Mappers
                 Rank = bllUser.Rank,
                 CreationDate = bllUser.CreationDate,
                 UserPic = bllUser.UserPic,
-                Role = roles.Find((role => role.RoleId != 3)),
-                PayedRole = (IPayedRole) roles.Find((role => role.RoleId == 3)),
+                Role = roles.Find((role => role.RoleName != "VipUser")),
+                PayedRole = (IPayedRole) roles.Find((role => role.RoleName == "VipUser")),
                 Articles = bllUser.Articles?.Select(article => article.ToMvcArticle())
             };
         }
@@ -85,8 +84,8 @@ namespace MVCNBlog.Infrastructure.Mappers
                 Rank = bllUser.Rank,
                 SubscriptionCost = bllUser.SubscriptionCost,
                 UserPic = bllUser.UserPic,
-                Role = roles.Find((role => role.RoleId != 3)),
-                PayedRole = (IPayedRole)roles.Find((role => role.RoleId == 3))
+                Role = roles.Find((role => role.RoleName != "VipUser")),
+                PayedRole = (IPayedRole)roles.Find((role => role.RoleName == "VipUser"))
             };
         }
 

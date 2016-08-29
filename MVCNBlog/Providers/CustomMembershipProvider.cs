@@ -43,6 +43,7 @@ namespace MVCNBlog.Providers
                 };
             }
 
+            //TODO static method?
             string path = HttpContext.Current.Server.MapPath("~/Content/no-profile-img.gif");
             FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read);
             Image image = Image.FromStream(stream);

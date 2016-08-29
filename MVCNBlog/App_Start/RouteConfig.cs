@@ -124,7 +124,7 @@ namespace MVCNBlog
                name: "EditAccount",
                url: "account/{action}",
                defaults: new { controller = "Account", action = "Edit" },
-               constraints: new {action = @"UpdatePicture|Edit" }
+               constraints: new {action = @"UpdatePicture|Edit|EditVipStatus" }
                );
 
             #endregion

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -179,7 +180,6 @@ namespace MVCNBlog.Controllers
         }
 
         [HttpPost]
-        [ActionName("EditVipStatus")]
         public ActionResult EditVipStatus(AccountViewModel editingUser)
         {
             service.UpdateAccountPaidRole(editingUser.ToBllUser());
@@ -197,6 +197,18 @@ namespace MVCNBlog.Controllers
         [ActionName("UpdatePicture")]
         public ActionResult UpdatePictureConfirm(HttpPostedFileBase uploadImage)
         {
+            if (!User.IsInRole("VipUser"))
+            {
+                if (Request.IsAjaxRequest())
+                {
+                    return Json(new {ErrorMessage = "Please buy VIP."}, JsonRequestBehavior.AllowGet);
+                }
+
+                TempData["PicError"] = "Please buy VIP.";
+
+                return RedirectToAction("Edit");
+            }
+
             if (Request.Files.Count > 0 && uploadImage == null)
             {
                 uploadImage = Request.Files[0];
@@ -224,6 +236,13 @@ namespace MVCNBlog.Controllers
 
                 return RedirectToAction("Edit");
             }
+            
+            if (Request.IsAjaxRequest())
+            {
+                return Json(new { ErrorMessage = "Inavalid image."}, JsonRequestBehavior.AllowGet);
+            }
+
+            TempData["PicError"] = "Inavalid image.";
 
             return RedirectToAction("Edit");
         }

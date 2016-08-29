@@ -57,7 +57,7 @@
 {
     @Html.ValidationSummary(true)
 
-    <input type="hidden" name="id" id="id" value="@Model.Id"/>
+    <input type="hidden" name="id" id="userId" value="@Model.Id"/>
     <fieldset>
         <legend>Add image</legend>
 
@@ -72,10 +72,11 @@
     </fieldset>
 }
 
-    <div>
-        @Html.RouteLink("Back to user", "UserAction", new { action = "Index", name = Model.Name, id = Model.Id },
-        new { @class = "btn btn-default" })
-    </div>
+<label id="picError">@TempData["PicError"]</label>
+<div>
+    @Html.RouteLink("Back to user", "UserAction", new {action = "Index", name = Model.Name, id = Model.Id},
+        new {@class = "btn btn-default"})
+</div>
 
 @section Scripts {
     <script type="text/javascript" src="@Url.Content("~/scripts/jquery.unobtrusive-ajax.js")"></script>
@@ -84,6 +85,7 @@
         $(document).ready(function() {
             $('#uploadForm').submit(function(e) {
                 if (window.FormData !== undefined) {
+                    var id = $("#userId").val();
                     var fileUpload = $("#uploadImage").get(0);
                     var files = fileUpload.files;
 
@@ -103,11 +105,15 @@
                         processData: false,
                         data: fileData,
                         success: function(result) {
-                            var results = $('#userPic');
-                            results.empty();
+                            if ($.type(result.ProfilePicture) !== "undefined") {
+                                var results = $('#userPic');
+                                results.empty();
 
-                            results.append("<img style='width:80px; height:60px;' src=\"data:image/jpeg;base64,"
-                                + result.ProfilePicture + "\" />");
+                                results.append("<img style='width:80px; height:60px;' src=\"data:image/jpeg;base64,"
+                                    + result.ProfilePicture + "\" />");
+                            }
+
+                            $('#picError').text(result.ErrorMessage);
                         },
                         error: function(err) {
                             alert("Cannot upload image.");
@@ -122,5 +128,5 @@
             });
         });
     </script>
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+    @Scripts.Render("~/bundles/jqueryval")
+}

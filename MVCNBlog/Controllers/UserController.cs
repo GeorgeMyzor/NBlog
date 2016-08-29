@@ -194,6 +194,13 @@ namespace MVCNBlog.Controllers
                 return View("Edit", currentUser.ToMvcUser());
             }
 
+            if (Request.IsAjaxRequest())
+            {
+                return Json(new { ErrorMessage = "Inavalid image." }, JsonRequestBehavior.AllowGet);
+            }
+
+            TempData["PicError"] = "Inavalid image.";
+
             return RedirectToAction("Edit", id);
         }
 
