@@ -89,9 +89,13 @@ namespace MVCNBlog.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(RegisterUserViewModel userViewModel)
         {
-            var user = service.GetUserEntity(userViewModel.Name);
+            var user = service.GetUserEntityByEmail(userViewModel.Email);
             if (user != null)
-                ModelState.AddModelError(nameof(RegisterUserViewModel.Name), "A user with the same name already exists");
+            {
+                if(user.Name == userViewModel.Name)
+                    ModelState.AddModelError(nameof(RegisterUserViewModel.Name), "A user with the same name already exists");
+                ModelState.AddModelError(nameof(RegisterUserViewModel.Email), "A user with the same email already exists");
+            }
 
             if (ModelState.IsValid)
             {
@@ -174,23 +178,49 @@ namespace MVCNBlog.Controllers
                 throw new HttpException(404, "Page not found.");
 
             if (string.IsNullOrEmpty(name))
-                return Json("Name should be 3 to 10 length, only letters.", JsonRequestBehavior.AllowGet);
+                return Json("Name should be 3 to 15 length, only letters.", JsonRequestBehavior.AllowGet);
 
             name = name.ToLower();
 
-            var isValidName = Regex.IsMatch(name, @"^(?=.{3,8}$)(([a-z])\2?(?!\2))+$");
+            var isValidName = Regex.IsMatch(name, @"^(?=.{3,15}$)(([a-z])\2?(?!\2))+$");
             if (!isValidName)
-                return Json("Name should be 3 to 10 length, only letters.",
+                return Json("Name should be 3 to 15 length, only letters.",
                     JsonRequestBehavior.AllowGet);
 
             var user = service.GetUserEntity(name);
-            if(user != null && name != User.Identity.Name)
+            if(user != null && user.Email != User.Identity.Name)
                 return Json("A user with the same name already exists.",
                     JsonRequestBehavior.AllowGet);
 
             return Json(true, JsonRequestBehavior.AllowGet);
         }
+        
+        [HttpGet]
+        [AllowAnonymous]
+        public JsonResult ValidateEmail(string email)
+        {
+            var errorString = "Email should be 5 to 30 length.";
+            if (!Request.IsAjaxRequest())
+                throw new HttpException(404, "Page not found.");
 
+            if (string.IsNullOrEmpty(email))
+                return Json("", JsonRequestBehavior.AllowGet);
+
+            email = email.ToLower();
+
+            var isValidName = Regex.IsMatch(email,
+                @"^(?=.{5,30}$)[a-z0-9!#$%&'*+=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
+            if (!isValidName)
+                return Json(errorString,
+                    JsonRequestBehavior.AllowGet);
+
+            var user = service.GetUserEntityByEmail(email);
+            if (user != null && user.Email != User.Identity.Name)
+                return Json(errorString,
+                    JsonRequestBehavior.AllowGet);
+
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
 
         [HttpGet]
         [AllowAnonymous]

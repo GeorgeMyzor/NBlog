@@ -11,7 +11,7 @@ namespace MVCNBlog.Infrastructure.ValidationAttributes
     {
         public CorrectNameAttribute()
         {
-            ErrorMessage = "Name should be 3 to 10 length, only letters.";
+            ErrorMessage = "Name should be 3 to 15 length, only letters.";
         }
 
         public override bool IsValid(object value)
@@ -21,7 +21,7 @@ namespace MVCNBlog.Infrastructure.ValidationAttributes
             {
                 string name = value.ToString().ToLower();
 
-                isValidName = Regex.IsMatch(name, @"^(?=.{3,8}$)(([a-z])\2?(?!\2))+$");
+                isValidName = Regex.IsMatch(name, @"^(?=.{3,15}$)(([a-z])\2?(?!\2))+$");
             }
 
             return base.IsValid(value) && (isValidName);

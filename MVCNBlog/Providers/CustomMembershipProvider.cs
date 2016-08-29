@@ -18,10 +18,9 @@ namespace MVCNBlog.Providers
         public IRoleService RoleService
             => (IRoleService)System.Web.Mvc.DependencyResolver.Current.GetService(typeof (IRoleService));
 
-
-        public MembershipUser CreateUser(string name, string password)
+        public MembershipUser CreateUser(string email, string password)
         {
-            MembershipUser membershipUser = GetUser(name, false);
+            MembershipUser membershipUser = GetUser(email, false);
 
             if (membershipUser != null)
             {
@@ -30,7 +29,7 @@ namespace MVCNBlog.Providers
 
             var user = new BllUser
             {
-                Name = name,
+                Email = email,
                 Password = Crypto.HashPassword(password),
                 CreationDate = DateTime.Now
             };
@@ -54,13 +53,13 @@ namespace MVCNBlog.Providers
             }
 
             UserService.CreateUser(user);
-            membershipUser = GetUser(name, false);
+            membershipUser = GetUser(email, false);
             return membershipUser;
         }
 
-        public override bool ValidateUser(string name, string password)
+        public override bool ValidateUser(string email, string password)
         {
-            var user = UserService.GetUserEntity(name);
+            var user = UserService.GetUserEntityByEmail(email);
 
             if (user != null && Crypto.VerifyHashedPassword(user.Password, password))
             {
@@ -69,29 +68,67 @@ namespace MVCNBlog.Providers
             return false;
         }
 
-        public override MembershipUser GetUser(string name, bool userIsOnline)
+        public override MembershipUser GetUser(string email, bool userIsOnline)
         {
-            var user = UserService.GetUserEntity(name);
+            var user = UserService.GetUserEntityByEmail(email);
 
             if (user == null) return null;
 
             var memberUser = new MembershipUser("CustomMembershipProvider", user.Name,
-                null, null, null, null,
+                null, user.Email, null, null,
                 false, false, user.CreationDate,
                 DateTime.MinValue, DateTime.MinValue,
                 DateTime.MinValue, DateTime.MinValue);
 
             return memberUser;
         }
-
-        #region Stabs
-
+        
         public override MembershipUser CreateUser(string username, string password, string email,
             string passwordQuestion,
             string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status)
         {
-            throw new NotImplementedException();
+            MembershipUser membershipUser = GetUser(email, false);
+
+            if (membershipUser != null)
+            {
+                status = MembershipCreateStatus.DuplicateEmail;
+                return null;
+            }
+
+            var user = new BllUser
+            {
+                Email = email,
+                Name = username,
+                Password = Crypto.HashPassword(password),
+                CreationDate = DateTime.Now
+            };
+
+            var role = RoleService.GetRoleEntity("User");
+            if (role != null)
+            {
+                user.Roles = new List<BllRole>()
+                {
+                    role
+                };
+            }
+
+            string path = HttpContext.Current.Server.MapPath("~/Content/no-profile-img.gif");
+            FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read);
+            Image image = Image.FromStream(stream);
+            using (var ms = new MemoryStream())
+            {
+                image.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
+                user.UserPic = ms.ToArray();
+            }
+
+            UserService.CreateUser(user);
+            membershipUser = GetUser(email, false);
+            status = MembershipCreateStatus.Success;
+
+            return membershipUser;
         }
+
+        #region Stabs
 
         public override bool ChangePasswordQuestionAndAnswer(string username, string password,
             string newPasswordQuestion,

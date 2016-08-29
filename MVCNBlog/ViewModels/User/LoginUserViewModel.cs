@@ -8,8 +8,8 @@ namespace MVCNBlog.ViewModels.User
 {
     public class LoginUserViewModel
     {
-        [CorrectName]
-        public string Name { get; set; }
+        [CorrectEmail]
+        public string Email { get; set; }
         public DateTime CreationDate { get; set; }
         public IRole Role { get; set; }
 

@@ -15,6 +15,7 @@ namespace DAL.Mappers
             return new DalUser
             {
                 Id = ormUser.Id,
+                Email = ormUser.Email,
                 Name = ormUser.Name,
                 CreationDate = ormUser.CreationDate,
                 Password = ormUser.Password,
@@ -28,6 +29,7 @@ namespace DAL.Mappers
             return new User
             {
                 Id = dalUser.Id,
+                Email = dalUser.Email,
                 Name = dalUser.Name,
                 CreationDate = dalUser.CreationDate,
                 Password = dalUser.Password,

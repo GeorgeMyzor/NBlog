@@ -121,7 +121,7 @@ namespace MVCNBlog.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ArticleViewModel articleViewModel)
         {
-            var currentUser = userService.GetUserEntity(User.Identity.Name)?.ToMvcUser();
+            var currentUser = userService.GetUserEntityByEmail(User.Identity.Name)?.ToMvcUser();
             if(currentUser == null)
             {
                 var outputString = $"{nameof(currentUser)} wasnt found. When trying to add new atricle.";

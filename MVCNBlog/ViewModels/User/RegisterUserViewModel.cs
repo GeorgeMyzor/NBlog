@@ -8,6 +8,9 @@ namespace MVCNBlog.ViewModels.User
 {
     public class RegisterUserViewModel
     {
+        [CorrectEmail]
+        [Remote("ValidateEmail", "User")]
+        public string Email { get; set; }
         [CorrectName]
         [Remote("ValidateName", "User")]
         public string Name { get; set; }

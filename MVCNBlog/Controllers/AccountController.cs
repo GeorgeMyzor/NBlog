@@ -66,9 +66,9 @@ namespace MVCNBlog.Controllers
 
             if (ModelState.IsValid)
             {
-                if (Membership.ValidateUser(viewModel.Name, viewModel.Password))
+                if (Membership.ValidateUser(viewModel.Email, viewModel.Password))
                 {
-                    FormsAuthentication.SetAuthCookie(viewModel.Name, viewModel.RememberMe);
+                    FormsAuthentication.SetAuthCookie(viewModel.Email, viewModel.RememberMe);
                     if (Url.IsLocalUrl(returnUrl))
                     {
                         return Redirect(returnUrl);
@@ -114,12 +114,13 @@ namespace MVCNBlog.Controllers
 
             if (ModelState.IsValid)
             {
+                MembershipCreateStatus status;
                 var membershipUser = ((CustomMembershipProvider)Membership.Provider)
-                    .CreateUser(viewModel.Name, viewModel.Password);
+                    .CreateUser(viewModel.Name, viewModel.Password, viewModel.Email, null, null, false, null, out status);
 
                 if (membershipUser != null)
                 {
-                    FormsAuthentication.SetAuthCookie(viewModel.Name, false);
+                    FormsAuthentication.SetAuthCookie(viewModel.Email, false);
                     return RedirectToAction("All", "Article");
                 }
 
@@ -156,23 +157,24 @@ namespace MVCNBlog.Controllers
         }
 
         //TODO membership providet cant change name, only pass
-        //[HttpPost]
-        //[ActionName("Edit")]
-        //public ActionResult ConfirmEdit(AccountViewModel editingUser)
-        //{
-        //    var user = service.GetAccountEntity(editingUser.Name);
-        //    if (user != null && editingUser.Name != User.Identity.Name)
-        //        ModelState.AddModelError(nameof(AccountViewModel.Name), "A user with the same name already exists");
+        [HttpPost]
+        [ActionName("Edit")]
+        public ActionResult ConfirmEdit(AccountViewModel editingUser)
+        {
+            var user = service.GetAccountEntityByName(editingUser.Name);
+            if (user != null && user.Email != User.Identity.Name)
+                ModelState.AddModelError(nameof(AccountViewModel.Name), "A user with the same name already exists");
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        service.UpdateAccount(editingUser.ToBllUser());
+            if (ModelState.IsValid)
+            {
+                service.UpdateAccount(editingUser.ToBllUser());
 
-        //        return RedirectToAction("Index");
-        //    }
+                return RedirectToAction("Index");
+            }
+            var outputUser = service.GetAccountEntity(User.Identity.Name).ToMvcAccount();
 
-        //    return View();
-        //}
+            return View(outputUser);
+        }
 
         [HttpPost]
         [ActionName("EditVipStatus")]

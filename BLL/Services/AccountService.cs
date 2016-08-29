@@ -24,9 +24,9 @@ namespace BLL.Services
             this.roleRepository = roleRepository;
         }
 
-        public BllUser GetAccountEntity(string name)
+        public BllUser GetAccountEntity(string email)
         {
-            var user = userRepository.GetByPredicate(dalUser => dalUser.Name == name)?.ToBllUser();
+            var user = userRepository.GetByPredicate(dalUser => dalUser.Email == email)?.ToBllUser();
 
             if (user != null)
             {
@@ -38,6 +38,11 @@ namespace BLL.Services
             }
 
             return user;
+        }
+
+        public BllUser GetAccountEntityByName(string name)
+        {
+            return userRepository.GetByPredicate(dalUser => dalUser.Name == name)?.ToBllUser();
         }
 
         public IEnumerable<BllUser> GetAllUserEntities()

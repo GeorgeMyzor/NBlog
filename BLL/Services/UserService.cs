@@ -50,6 +50,11 @@ namespace BLL.Services
             return userRepository.GetByPredicate(user => user.Name == name)?.ToBllUser();
         }
 
+        public BllUser GetUserEntityByEmail(string email)
+        {
+            return userRepository.GetByPredicate(user => user.Email == email)?.ToBllUser();
+        }
+
         public IEnumerable<BllUser> GetAllUserEntities()
         {
             return userRepository.GetAll().Select(user => user.ToBllUser());

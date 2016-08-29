@@ -9,6 +9,8 @@ namespace MVCNBlog.ViewModels.User
     public class UserViewModel
     {
         public int Id { get; set; }
+        [CorrectEmail]
+        public string Email { get; set; }
         [CorrectName]
         public string Name { get; set; }
         public DateTime CreationDate { get; set; }

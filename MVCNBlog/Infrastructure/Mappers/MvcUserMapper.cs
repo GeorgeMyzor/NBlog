@@ -22,6 +22,7 @@ namespace MVCNBlog.Infrastructure.Mappers
             return new UserViewModel()
             {
                 Id = bllUser.Id,
+                Email = bllUser.Email,
                 Name = bllUser.Name,
                 Rank = bllUser.Rank,
                 CreationDate = bllUser.CreationDate,
@@ -41,6 +42,7 @@ namespace MVCNBlog.Infrastructure.Mappers
             return new BllUser()
             {
                 Id = userViewModel.Id,
+                Email = userViewModel.Email,
                 Name = userViewModel.Name,
                 CreationDate = userViewModel.CreationDate,
                 UserPic = userViewModel.UserPic,
@@ -58,6 +60,7 @@ namespace MVCNBlog.Infrastructure.Mappers
             roles.Add(userViewModel.Role);
             return new BllUser()
             {
+                Email = userViewModel.Email,
                 Name = userViewModel.Name,
                 Password = userViewModel.Password,
                 CreationDate = userViewModel.CreationDate,
@@ -76,6 +79,7 @@ namespace MVCNBlog.Infrastructure.Mappers
             return new AccountViewModel()
             {
                 Id = bllUser.Id,
+                Email = bllUser.Email,
                 Name = bllUser.Name,
                 CreationDate = bllUser.CreationDate,
                 Rank = bllUser.Rank,
@@ -96,7 +100,6 @@ namespace MVCNBlog.Infrastructure.Mappers
             {
                 Id = userViewModel.Id,
                 Name = userViewModel.Name,
-                CreationDate = userViewModel.CreationDate,
                 UserPic = userViewModel.UserPic,
                 Roles = roles.Select(mvcRole => mvcRole.ToBllRole()).ToList()
             };

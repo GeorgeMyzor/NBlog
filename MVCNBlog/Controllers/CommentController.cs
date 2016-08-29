@@ -32,7 +32,7 @@ namespace MVCNBlog.Controllers
             int id = commentViewModel.ArticleId;
             if (ModelState.IsValid)
             {
-                var currentUser = userService.GetUserEntity(User.Identity.Name).ToMvcUser();
+                var currentUser = userService.GetUserEntityByEmail(User.Identity.Name).ToMvcUser();
                 commentViewModel.AuthorId = currentUser.Id;
 
                 int addedId = commentService.CreateComment(commentViewModel.ToBllComment());

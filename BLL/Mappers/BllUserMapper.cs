@@ -15,6 +15,7 @@ namespace BLL.Mappers
             return dalUser == null ? null : new BllUser()
             {
                 Id = dalUser.Id,
+                Email = dalUser.Email,
                 Name = dalUser.Name,
                 CreationDate = dalUser.CreationDate,
                 Password = dalUser.Password,
@@ -28,6 +29,7 @@ namespace BLL.Mappers
             return new DalUser()
             {
                 Id = bllUser.Id,
+                Email = bllUser.Email,
                 Name = bllUser.Name,
                 CreationDate = bllUser.CreationDate,
                 Password = bllUser.Password,
