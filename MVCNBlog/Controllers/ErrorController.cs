@@ -19,7 +19,7 @@ namespace MVCNBlog.Controllers
         public ActionResult Error(int? statusCode, Exception exception)
         {
             int code;
-            if (statusCode == null)
+            if (statusCode == null || string.IsNullOrEmpty(exception.Message))
             {
                 code = 404;
                 exception = new HttpException(code, "Page not found.");

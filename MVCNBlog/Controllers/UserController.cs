@@ -138,9 +138,53 @@ namespace MVCNBlog.Controllers
         [ActionName("Edit")]
         public ActionResult ConfirmEdit(UserViewModel editingUser)
         {
-            service.UpdateUser(editingUser.ToBllUser());
+            if (ModelState.IsValidField(nameof(editingUser.Name)) && ModelState.IsValidField(nameof(editingUser.Role)))
+            {
+                service.UpdateUser(editingUser.ToBllUser());
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+
+            var outUser = service.GetUserEntity(editingUser.Id)?.ToMvcUser();
+
+            return View(outUser);
+        }
+
+        [HttpPost]
+        public ActionResult UpdatePicture(int? id, HttpPostedFileBase uploadImage)
+        {
+            if (Request.Files.Count > 0 && uploadImage == null)
+            {
+                uploadImage = Request.Files[0];
+            }
+
+            if(id == null)
+                throw new HttpException(404, "");
+
+            if (uploadImage != null && uploadImage.ContentLength / 1024 < 200)
+            {
+                byte[] imageData = null;
+
+                using (var binaryReader = new BinaryReader(uploadImage.InputStream))
+                {
+                    imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
+                }
+
+                var currentUser = service.GetUserEntity(id.Value);
+                currentUser.UserPic = imageData;
+
+                service.UpdateUserPicture(currentUser);
+
+                if (Request.IsAjaxRequest())
+                {
+                    var imageBytesStr = Convert.ToBase64String(imageData);
+                    return Json(new { ProfilePicture = imageBytesStr }, JsonRequestBehavior.AllowGet);
+                }
+
+                return View("Edit", currentUser.ToMvcUser());
+            }
+
+            return RedirectToAction("Edit", id);
         }
 
         public ActionResult Delete(int? id)

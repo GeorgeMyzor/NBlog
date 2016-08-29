@@ -82,5 +82,11 @@ namespace BLL.Services
             userRepository.Update(user.ToDalUser());
             uow.Commit();
         }
+
+        public void UpdateUserPicture(BllUser user)
+        {
+            userRepository.UpdateUserPicture(user.ToDalUser());
+            uow.Commit();
+        }
     }
 }

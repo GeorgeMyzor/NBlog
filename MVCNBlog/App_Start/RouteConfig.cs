@@ -47,6 +47,12 @@ namespace MVCNBlog
             #region User routes
             
             routes.MapRoute(
+               name: "EditUser",
+               url: "users/{id}/UpdatePicture",
+               defaults: new { controller = "User", action = "UpdatePicture" }
+               );
+
+            routes.MapRoute(
                 name: "UserAction",
                 url: "users/{id}/{name}/{action}",
                 defaults: new { controller = "User", action = "Index", name = UrlParameter.Optional },
@@ -117,7 +123,8 @@ namespace MVCNBlog
             routes.MapRoute(
                name: "EditAccount",
                url: "account/{action}",
-               defaults: new { controller = "Account", action = "Edit" }
+               defaults: new { controller = "Account", action = "Edit" },
+               constraints: new {action = @"UpdatePicture|Edit" }
                );
 
             #endregion

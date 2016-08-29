@@ -76,7 +76,7 @@ namespace MVCNBlog.Controllers
 
                     return RedirectToAction("All", "Article");
                 }
-                
+
                 ModelState.AddModelError("", "Incorrect login or password.");
             }
             return View(viewModel);
@@ -109,7 +109,7 @@ namespace MVCNBlog.Controllers
             if (anyUser != null)
             {
                 ModelState.AddModelError(nameof(viewModel.Email), "User with same email already registered.");
-                if(anyUser.Name == viewModel.Name)
+                if (anyUser.Name == viewModel.Name)
                     ModelState.AddModelError(nameof(viewModel.Name), "User with same name already registered.");
 
                 return View(viewModel);
@@ -118,7 +118,7 @@ namespace MVCNBlog.Controllers
             if (ModelState.IsValid)
             {
                 MembershipCreateStatus status;
-                var membershipUser = ((CustomMembershipProvider)Membership.Provider)
+                var membershipUser = ((CustomMembershipProvider) Membership.Provider)
                     .CreateUser(viewModel.Name, viewModel.Password, viewModel.Email, null, null, false, null, out status);
 
                 if (membershipUser != null)
@@ -131,7 +131,7 @@ namespace MVCNBlog.Controllers
             }
             return View(viewModel);
         }
-        
+
         [AllowAnonymous]
         public ActionResult LogOff()
         {
@@ -159,7 +159,6 @@ namespace MVCNBlog.Controllers
             return View(currentAccount);
         }
 
-        //TODO membership providet cant change name, only pass
         [HttpPost]
         [ActionName("Edit")]
         public ActionResult ConfirmEdit(AccountViewModel editingUser)
@@ -188,8 +187,15 @@ namespace MVCNBlog.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public ActionResult UpdatePicture(HttpPostedFileBase uploadImage)
+        {
+            return RedirectToAction("Index");
+        }
+
         [HttpPost]
-        public ActionResult UploadPicture(HttpPostedFileBase uploadImage)
+        [ActionName("UpdatePicture")]
+        public ActionResult UpdatePictureConfirm(HttpPostedFileBase uploadImage)
         {
             if (Request.Files.Count > 0 && uploadImage == null)
             {

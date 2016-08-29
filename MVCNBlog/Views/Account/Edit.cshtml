@@ -84,7 +84,7 @@
 <div id="loading" class="load" style="display: none">
     <p>Loading Picture...</p>
 </div>
-@using (Html.BeginRouteForm("EditAccount", new { action = "UploadPicture" }, FormMethod.Post, new { id = "uploadForm", enctype = "multipart/form-data" }))
+@using (Html.BeginRouteForm("EditAccount", new { action = "UpdatePicture" }, FormMethod.Post, new { id = "uploadForm", enctype = "multipart/form-data" }))
 {
     @Html.ValidationSummary(true)
     @Html.HiddenFor(model => model.Id)
@@ -127,7 +127,7 @@
 
                     e.preventDefault();
                     $.ajax({
-                        url: '/Account/UploadPicture',
+                        url: '/Account/UpdatePicture',
                         type: "POST",
                         contentType: false,
                         processData: false,

@@ -10,23 +10,28 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>UserViewModel</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <hr/>
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
         @Html.HiddenFor(model => model.Id)
 
+        <div id="userPic">
+            @Html.Raw("<img style='width:80px; height:60px;' src=\"data:image/jpeg;base64,"
+                      + Convert.ToBase64String(Model.UserPic) + "\" />")
+        </div>
+
         <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Name, htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Name, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Role, htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10">
                 <select class="form-control" name="roleId">
                     <option value="@Model.Role.RoleId" selected>@Model.Role.RoleName</option>
@@ -39,17 +44,83 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default"/>
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.RouteLink("Back to user", "UserAction", new { action = "Index" , name = Model.Name, id = Model.Id },
-        new { @class = "btn btn-default" })
+<div id="loading" class="load" style="display: none">
+    <p>Loading Picture...</p>
 </div>
+@using (Html.BeginRouteForm("EditUser", new { id = Model.Id }, FormMethod.Post, new { id = "uploadForm", enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+
+    <input type="hidden" name="id" id="id" value="@Model.Id"/>
+    <fieldset>
+        <legend>Add image</legend>
+
+        <div class="editor-label">Picture file</div>
+        <div class="editor-field">
+            <input type="file" id="uploadImage" name="uploadImage" />
+        </div>
+
+        <p>
+            <input type="submit" id="picSubmit" value="Add" />
+        </p>
+    </fieldset>
+}
+
+    <div>
+        @Html.RouteLink("Back to user", "UserAction", new { action = "Index", name = Model.Name, id = Model.Id },
+        new { @class = "btn btn-default" })
+    </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    <script type="text/javascript" src="@Url.Content("~/scripts/jquery.unobtrusive-ajax.js")"></script>
+    <script>
+
+        $(document).ready(function() {
+            $('#uploadForm').submit(function(e) {
+                if (window.FormData !== undefined) {
+                    var fileUpload = $("#uploadImage").get(0);
+                    var files = fileUpload.files;
+
+                    var fileData = new FormData();
+
+                    for (var i = 0; i < files.length; i++) {
+                        fileData.append(files[i].name, files[i]);
+                    }
+
+                    $("#loading").show('slow');
+
+                    e.preventDefault();
+                    $.ajax({
+                        url: '/Users/' + id + '/UpdatePicture',
+                        type: "POST",
+                        contentType: false,
+                        processData: false,
+                        data: fileData,
+                        success: function(result) {
+                            var results = $('#userPic');
+                            results.empty();
+
+                            results.append("<img style='width:80px; height:60px;' src=\"data:image/jpeg;base64,"
+                                + result.ProfilePicture + "\" />");
+                        },
+                        error: function(err) {
+                            alert("Cannot upload image.");
+                        }
+                    });
+
+                } else {
+                    alert("FormData is not supported.");
+                }
+
+                $("#loading").hide('slow');
+            });
+        });
+    </script>
+        @Scripts.Render("~/bundles/jqueryval")
+    }
