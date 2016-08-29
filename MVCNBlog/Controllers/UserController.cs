@@ -60,6 +60,10 @@ namespace MVCNBlog.Controllers
 
         public ActionResult All(int page = 1)
         {
+            var totalItems = service.GetUsersCount() - 1;
+            if (page > (totalItems + pageSize - 1) / pageSize)
+                throw new HttpException(404, "");
+
             var users = new ListViewModel<UserViewModel>()
             {
                 ViewModels = service.GetPagedUsers(page,pageSize).Select(user => user.ToMvcUser())
@@ -68,7 +72,7 @@ namespace MVCNBlog.Controllers
                 {
                     CurrentPage = page,
                     ItemsPerPage = pageSize,
-                    TotalItems = service.GetUsersCount() - 1
+                    TotalItems = totalItems
                 }
             };
 
@@ -148,6 +152,12 @@ namespace MVCNBlog.Controllers
             var outUser = service.GetUserEntity(editingUser.Id)?.ToMvcUser();
 
             return View(outUser);
+        }
+
+        [HttpGet]
+        public ActionResult UpdatePicture()
+        {
+            return RedirectToAction("Index");
         }
 
         [HttpPost]

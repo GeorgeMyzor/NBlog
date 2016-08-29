@@ -188,7 +188,7 @@ namespace MVCNBlog.Controllers
         }
 
         [HttpGet]
-        public ActionResult UpdatePicture(HttpPostedFileBase uploadImage)
+        public ActionResult UpdatePicture()
         {
             return RedirectToAction("Index");
         }

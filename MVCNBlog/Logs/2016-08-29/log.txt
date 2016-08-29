@@ -752,3 +752,7 @@
    â System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
    â System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) No route in the route table matches the supplied values.
 2016-08-29 16:36:18.8814 Warn Message: A public action method 'UpdatePicture' was not found on controller 'MVCNBlog.Controllers.UserController'. 
+2016-08-29 16:43:44.5739 Warn Message: user wasnt found. 
+2016-08-29 18:23:01.0136 Warn Message: Page not found. 
+2016-08-29 18:23:09.0340 Warn Message: Page not found. 
+2016-08-29 18:23:21.7168 Warn Message: Page not found. 

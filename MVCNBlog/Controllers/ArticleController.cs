@@ -92,14 +92,19 @@ namespace MVCNBlog.Controllers
         [AllowAnonymous]
         public ActionResult All(int page = 1)
         {
+            var totalItems = articleService.GetArticlesCount();
+            if (page > (totalItems + pageSize - 1)/pageSize)
+                throw new HttpException(404, "");
+
             var articles = new ListViewModel<ArticleViewModel>()
             {
-                ViewModels = articleService.GetPagedArticles(page, pageSize).Select(bllArticle => bllArticle.ToMvcArticle()),
+                ViewModels =
+                    articleService.GetPagedArticles(page, pageSize).Select(bllArticle => bllArticle.ToMvcArticle()),
                 PagingInfo = new PagingInfo()
                 {
                     CurrentPage = page,
                     ItemsPerPage = pageSize,
-                    TotalItems = articleService.GetArticlesCount()
+                    TotalItems = totalItems
                 }
             };
 
