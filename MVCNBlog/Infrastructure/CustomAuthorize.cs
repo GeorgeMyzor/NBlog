@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using LoggingModule;
 using MVCNBlog.Controllers;
 
 namespace MVCNBlog.Infrastructure
@@ -19,7 +20,9 @@ namespace MVCNBlog.Infrastructure
             }
             else
             {
-                filterContext.Result = new RedirectToRouteResult("ViewAccount", new RouteValueDictionary());
+                var httpNoPermissionsException = new HttpException(403, "No permissions");
+
+                throw httpNoPermissionsException;
             }
         }
     }

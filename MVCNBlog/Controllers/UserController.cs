@@ -21,7 +21,7 @@ using MVCNBlog.ViewModels.User;
 
 namespace MVCNBlog.Controllers
 {
-    [CustomAuthorize(Roles = "Administrator,Moderator")]
+    [CustomAuthorize(Roles = "Administrator")]
     public class UserController : Controller
     {
         private readonly IUserService service;
