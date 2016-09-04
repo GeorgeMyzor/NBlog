@@ -333,6 +333,7 @@
     <Content Include="Views\Comment\Create.cshtml" />
     <Content Include="Views\Article\AllArticles.cshtml" />
     <Content Include="Views\User\AllUsers.cshtml" />
+    <Content Include="Views\Article\Comments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

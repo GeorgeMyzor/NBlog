@@ -19,12 +19,6 @@ namespace MVCNBlog.Infrastructure.ModelBinders
     {
         protected override void BindProperty(ControllerContext controllerContext, ModelBindingContext bindingContext, PropertyDescriptor propertyDescriptor)
         {
-            if (propertyDescriptor.Name == nameof(UserViewModel.CreationDate))
-            {
-                propertyDescriptor.SetValue(bindingContext.Model, DateTime.Now);
-                return;
-            }
-            
             if (propertyDescriptor.Name == nameof(UserViewModel.Role))
             {
                 int roleId = FromPostedData<int>(bindingContext, "roleId");

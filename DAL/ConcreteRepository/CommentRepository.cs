@@ -12,7 +12,7 @@ using ORM.Entities;
 
 namespace DAL.ConcreteRepository
 {
-    public class CommentRepository : IRepository<DalComment>
+    public class CommentRepository : ICommentRepository
     {
         private readonly DbContext context;
 
@@ -35,8 +35,15 @@ namespace DAL.ConcreteRepository
             return
                 context.Set<Comment>()
                     .OrderBy(comment => comment.PublicationDate)
-                    .ToList()
                     .Select(ormComment => ormComment.ToDalComment());
+        }
+
+        public IEnumerable<DalComment> GetArticleComments(int articleId)
+        {
+            var comments = context.Set<Comment>().Where(comment => comment.ArticleId == articleId).
+                OrderByDescending(comment => comment.PublicationDate);
+
+            return comments.Select(ormComment => ormComment.ToDalComment());
         }
 
         public DalComment GetById(int id)
@@ -56,7 +63,7 @@ namespace DAL.ConcreteRepository
             return comment?.ToDalComment();
         }
 
-        public int Create(DalComment dalComment)
+        public void Create(DalComment dalComment)
         {
             ValidateComment(dalComment);
 
@@ -67,8 +74,6 @@ namespace DAL.ConcreteRepository
 
             context.Set<Comment>().Add(ormComment);
             context.SaveChanges();
-
-            return ormComment.Id;
         }
 
         public void Delete(DalComment dalComment)
@@ -87,6 +92,7 @@ namespace DAL.ConcreteRepository
 
             ormComment.Content = dalComment.Content;
         }
+
 
         #region Private methods
         

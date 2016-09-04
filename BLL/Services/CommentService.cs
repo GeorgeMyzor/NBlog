@@ -14,9 +14,9 @@ namespace BLL.Services
     public class CommentService : ICommentService
     {
         private readonly IUnitOfWork uow;
-        private readonly IRepository<DalComment> commentRepository;
+        private readonly ICommentRepository commentRepository;
 
-        public CommentService(IUnitOfWork uow, IRepository<DalComment> repository)
+        public CommentService(IUnitOfWork uow, ICommentRepository repository)
         {
             this.uow = uow;
             this.commentRepository = repository;
@@ -32,14 +32,17 @@ namespace BLL.Services
             return commentRepository.GetById(id).ToBllComment();
         }
 
-        public int CreateComment(BllComment comment)
+        public IEnumerable<BllComment> GetArticleComments(int articleId)
+        {
+            return commentRepository.GetArticleComments(articleId).Select(comment => comment.ToBllComment());
+        }
+        
+        public void CreateComment(BllComment comment)
         {
             comment.PublicationDate = DateTime.Now;
 
-            int addId = commentRepository.Create(comment.ToDalComment());
+            commentRepository.Create(comment.ToDalComment());
             uow.Commit();
-
-            return addId;
         }
 
         public void DeleteComment(BllComment comment)

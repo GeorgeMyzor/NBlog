@@ -30,8 +30,7 @@ namespace MVCNBlog.Providers
             var user = new BllUser
             {
                 Email = email,
-                Password = Crypto.HashPassword(password),
-                CreationDate = DateTime.Now
+                Password = Crypto.HashPassword(password)
             };
 
             var role = RoleService.GetRoleEntity("User");

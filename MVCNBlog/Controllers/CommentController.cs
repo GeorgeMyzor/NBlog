@@ -35,23 +35,14 @@ namespace MVCNBlog.Controllers
                 var currentUser = userService.GetUserEntityByEmail(User.Identity.Name).ToMvcUser();
                 commentViewModel.AuthorId = currentUser.Id;
 
-                int addedId = commentService.CreateComment(commentViewModel.ToBllComment());
+                commentService.CreateComment(commentViewModel.ToBllComment());
 
                 if (Request.IsAjaxRequest())
                 {
-                    var comment = commentService.GetCommentEntity(addedId).ToMvcComment();
-
-                    return PartialView(comment);
-                    /*
-                    return Json(new
-                    {
-                        CommentId = stringId,
-                        CommentContent = commentViewModel.Content,
-                        AuthorName = currentUser.Name,
-                        PublicTime = stringDate
-
-                    }, JsonRequestBehavior.AllowGet);
-                    */
+                    var comments = commentService.GetArticleComments(commentViewModel.ArticleId)
+                        .Select(comment => comment.ToMvcComment());
+                    
+                    return PartialView("~/Views/Article/Comments.cshtml", comments);
                 }
 
                 return RedirectToAction("Index", "Article", new { id });

@@ -38,7 +38,7 @@ namespace DependencyResolver
             //Repos
             kernel.Bind<IUserRepository>().To<UserRepository>();
             kernel.Bind<IArticleRepository>().To<ArticleRepository>();
-            kernel.Bind<IRepository<DalComment>>().To<CommentRepository>();
+            kernel.Bind<ICommentRepository>().To<CommentRepository>();
             kernel.Bind<IRoleRepository>().To<RoleRepository>();
 
             kernel.Bind<ILogger>().To<NLogAdapter>().InSingletonScope();

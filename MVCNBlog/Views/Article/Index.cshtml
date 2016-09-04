@@ -12,21 +12,15 @@
 }
 @section scripts {
     <script type="text/javascript" src="@Url.Content("~/scripts/jquery.unobtrusive-ajax.js")"></script>
+
+    <script type="text/javascript">
+        function processData(data) {
+            var target = $("#tableBody");
+            $(target).html(data);
+        }
+    </script>
 }
 
-<script type="text/javascript">
-    function processData(data) {
-        var target = $("#tableBody");
-        var comment = data;
-
-        $('<br/> <b> &nbsp; &nbsp; Comment: </b>' + comment.CommentContent + '<b> &nbsp; &nbsp; Author\'s comment: </b>'
-                + comment.AuthorName + ' <b> &nbsp; &nbsp; Publication time: </b>' + comment.PublicTime + '<br/>'
-                + '<div class="form-group"> <div class="col-md-offset-2 col-md-10">' +
-                '<a href=\'comment/' + comment.CommentId + '\' class = "btn btn-default"> Edit comment </a>' +
-                '</div> </div> ').insertAfter(target);
-
-    }
-</script>
 
 <h2>Article</h2>
 <b>Title:</b>
@@ -50,32 +44,12 @@
     <b> &nbsp;</b> @Html.DisplayFor(modelItem => tag)
 }
 
-<div id="tableBody"></div>
+<div id="tableBody">
+    @Html.Partial("Comments", Model.Comments)
+</div>
 
-    @foreach (var comment in Model.Comments)
-    {
-        <br />
-        <b> &nbsp; &nbsp; Comment:</b>
-            @Html.DisplayFor(modelItem => comment.Content)
-            <b> &nbsp; &nbsp; Author's comment:</b>
-            @Html.DisplayFor(modelItem => comment.Author.Name)
-
-        @Html.RouteLink("View user", "UserAction", new { action = "Index", name = Model.Author?.Name, id = Model.Author?.Id },
-            new { @class = "btn btn-default" })
-            <b> &nbsp; &nbsp; Publication time:</b>
-            @Html.DisplayFor(modelItem => comment.PublicationDate)
-
-         if (User.IsInRole("Administrator"))
-         {
-             <div class="form-group">
-                 <div class="col-md-offset-2 col-md-10">
-                     @Html.RouteLink("Edit comment", "CommentAction", new {id = comment.Id}, new {@class = "btn btn-default"})
-                 </div>
-             </div>
-         }
-    }
-    <br/>
-    @using (Ajax.BeginForm("Create","Comment", new AjaxOptions { UpdateTargetId = "tableBody", InsertionMode = InsertionMode.InsertBefore }))
+<br/>
+    @using (Ajax.BeginForm("Create","Comment", new AjaxOptions { UpdateTargetId = "tableBody", InsertionMode = InsertionMode.Replace }))
     {
         //TODO not client side
         @Html.AntiForgeryToken()

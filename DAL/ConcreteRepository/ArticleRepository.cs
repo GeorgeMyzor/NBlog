@@ -75,7 +75,8 @@ namespace DAL.ConcreteRepository
 
         public IEnumerable<DalArticle> GetArticlesByPredicate(Expression<Func<DalArticle, bool>> expression)
         {
-            var articles = context.Set<Article>().ToList().Select(ormArticle => ormArticle.ToDalArticle());
+            var articles = context.Set<Article>().OrderByDescending(article => article.PublicationDate)
+                .ToList().Select(ormArticle => ormArticle.ToDalArticle());
 
             var dalArticles = articles as IList<DalArticle> ?? articles.ToList();
             var findedArticles = dalArticles.Where(expression.Compile());
@@ -83,7 +84,7 @@ namespace DAL.ConcreteRepository
             return findedArticles;
         }
 
-        public int Create(DalArticle dalArticle)
+        public void Create(DalArticle dalArticle)
         {
             ValidateArticle(dalArticle);
 
@@ -93,8 +94,6 @@ namespace DAL.ConcreteRepository
 
             ormArticle.Author = context.Set<User>().SingleOrDefault((user => user.Id == dalArticle.AuthorId));
             context.Set<Article>().Add(ormArticle);
-            
-            return ormArticle.Id;
         }
 
         public void Delete(DalArticle dalArticle)

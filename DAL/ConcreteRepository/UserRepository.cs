@@ -82,7 +82,7 @@ namespace DAL.ConcreteRepository
             return ormUser.Select(user => user.ToDalUser());
         }
         
-        public int Create(DalUser dalUser)
+        public void Create(DalUser dalUser)
         {
             ValidateUser(dalUser);
 
@@ -96,8 +96,6 @@ namespace DAL.ConcreteRepository
             }
             ormUser.Roles = newRoles;
             context.Set<User>().Add(ormUser);
-
-            return ormUser.Id;
         }
 
         public void Delete(DalUser dalUser)
