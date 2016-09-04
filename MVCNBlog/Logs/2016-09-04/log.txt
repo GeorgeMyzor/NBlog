@@ -164,3 +164,4 @@ The statement has been terminated.
    â System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
    â System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
    â System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) LINQ to Entities does not recognize the method 'DAL.Interface.DTO.DalComment ToDalComment(ORM.Entities.Comment)' method, and this method cannot be translated into a store expression.
+2016-09-04 21:40:04.1496 Warn Message: A public action method 'delete' was not found on controller 'MVCNBlog.Controllers.CommentController'. 

@@ -87,7 +87,7 @@ namespace MVCNBlog
                name: "CommentAction",
                url: "comment/{id}/{action}",
                defaults: new { controller = "Comment", action = "Edit" },
-               constraints: new { action = "Edit", id = @"\d+" }
+               constraints: new { action = "Edit|Delete", id = @"\d+" }
                );
 
             routes.MapRoute(
