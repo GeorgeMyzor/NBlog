@@ -1,13 +1,11 @@
-﻿@using System.Activities.Expressions
-@model MVCNBlog.ViewModels.ArticleViewModel
+﻿@model MVCNBlog.ViewModels.ArticleViewModel
 @{
     ViewBag.Title = "Home Page";
     AjaxOptions ajaxOpts = new AjaxOptions
     {
         UpdateTargetId = "tableBody",
-        //LoadingElementId = "loading",
-        //LoadingElementDuration = 1000,
-        OnSuccess = "processData"
+        OnSuccess = "processData",
+        InsertionMode = InsertionMode.Replace
     };
 }
 @section scripts {
@@ -15,8 +13,10 @@
 
     <script type="text/javascript">
         function processData(data) {
-            var target = $("#tableBody");
-            $(target).html(data);
+            var target = $("#createCommentForm");
+            $(target).each(function () {
+                this.reset();
+            });
         }
     </script>
 }
@@ -49,9 +49,8 @@
 </div>
 
 <br/>
-    @using (Ajax.BeginForm("Create","Comment", new AjaxOptions { UpdateTargetId = "tableBody", InsertionMode = InsertionMode.Replace }))
+    @using (Ajax.BeginForm("Create","Comment", null, ajaxOpts, new { id = "createCommentForm"}))
     {
-        //TODO not client side
         @Html.AntiForgeryToken()
         <input type="text" name="Content" placeholder="Type to begin..." />
             <label>@TempData["CommentError"]</label>

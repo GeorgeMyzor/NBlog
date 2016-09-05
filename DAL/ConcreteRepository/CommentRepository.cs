@@ -41,7 +41,7 @@ namespace DAL.ConcreteRepository
         public IEnumerable<DalComment> GetArticleComments(int articleId)
         {
             var comments = context.Set<Comment>().Where(comment => comment.ArticleId == articleId).
-                OrderByDescending(comment => comment.PublicationDate);
+                OrderByDescending(comment => comment.PublicationDate).ToList();
 
             return comments.Select(ormComment => ormComment.ToDalComment());
         }
