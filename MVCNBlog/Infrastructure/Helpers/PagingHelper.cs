@@ -14,17 +14,28 @@ namespace MVCNBlog.Infrastructure.Helpers
             Func<int, string> pageUrl)
         {
             StringBuilder result = new StringBuilder();
+            int pageCount;
+            int currentPage;
+            if (pagingInfo.CurrentPage - 2 < 1)
+                currentPage = 1;
+            else
+                currentPage = pagingInfo.CurrentPage - 2;
 
-            for (int i = 1; i <= pagingInfo.TotalPages; i++)
+            if (pagingInfo.CurrentPage + 2 > pagingInfo.TotalPages)
+                pageCount = pagingInfo.TotalPages;
+            else
+                pageCount = pagingInfo.CurrentPage + 2;
+
+            for (int i = currentPage; i <= pageCount; i++)
             {
-                TagBuilder tag = new TagBuilder("a"); // Construct an <a> tag
+                TagBuilder tag = new TagBuilder("a"); 
                 tag.MergeAttribute("href", pageUrl(i));
                 tag.InnerHtml = i.ToString();
                 if (i == pagingInfo.CurrentPage)
                     tag.AddCssClass("selected");
                 tag.AddCssClass("page");
-                tag.MergeAttribute("value",i.ToString());
-                result.Append(tag.ToString());
+                tag.MergeAttribute("value", i.ToString());
+                result.Append(tag);
             }
 
             return MvcHtmlString.Create(result.ToString());
