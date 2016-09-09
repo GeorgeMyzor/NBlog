@@ -28,6 +28,7 @@ namespace MVCNBlog.Infrastructure.Helpers
 
             for (int i = currentPage; i <= pageCount; i++)
             {
+                TagBuilder tagLi = new TagBuilder("li");
                 TagBuilder tag = new TagBuilder("a"); 
                 tag.MergeAttribute("href", pageUrl(i));
                 tag.InnerHtml = i.ToString();
@@ -35,7 +36,9 @@ namespace MVCNBlog.Infrastructure.Helpers
                     tag.AddCssClass("selected");
                 tag.AddCssClass("page");
                 tag.MergeAttribute("value", i.ToString());
-                result.Append(tag);
+
+                tagLi.InnerHtml = tag.ToString();
+                result.Append(tagLi);
             }
 
             return MvcHtmlString.Create(result.ToString());

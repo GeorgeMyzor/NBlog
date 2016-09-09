@@ -216,6 +216,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\no-profile-img.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -271,7 +272,40 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\yellow-blog\font-awesome.min.css" />
+    <Content Include="Content\yellow-blog\images\body_top_bg.png" />
+    <Content Include="Content\yellow-blog\images\down.png" />
+    <Content Include="Content\yellow-blog\images\header_bg.png" />
+    <Content Include="Content\yellow-blog\images\home-copy.jpg" />
+    <Content Include="Content\yellow-blog\images\latest_post_bg.png" />
+    <Content Include="Content\yellow-blog\images\menu_item.png" />
+    <Content Include="Content\yellow-blog\images\nav_right.png" />
+    <Content Include="Content\yellow-blog\images\search.png" />
+    <Content Include="Content\yellow-blog\images\slider-img.png" />
+    <Content Include="Content\yellow-blog\images\slider_arrow.png" />
+    <Content Include="Content\yellow-blog\images\slider_arrow2.png" />
+    <Content Include="Content\yellow-blog\images\slider_arrow_small_mobile.png" />
+    <Content Include="Content\yellow-blog\images\slider_arrow_tab.png" />
+    <Content Include="Content\yellow-blog\images\slider_arrow_wide_mobile.png" />
+    <Content Include="Content\yellow-blog\images\slider_bg.png" />
+    <Content Include="Content\yellow-blog\images\slides\megamind_07.jpg" />
+    <Content Include="Content\yellow-blog\images\slides\up-official-trailer-fake.jpg" />
+    <Content Include="Content\yellow-blog\images\slides\wall-e.jpg" />
+    <Content Include="Content\yellow-blog\images\thumb.png" />
+    <Content Include="Content\yellow-blog\images\thumbs\megamind_07.jpg" />
+    <Content Include="Content\yellow-blog\images\thumbs\up-official-trailer-fake.jpg" />
+    <Content Include="Content\yellow-blog\images\thumbs\wall-e.jpg" />
+    <Content Include="Content\yellow-blog\images\title_down.png" />
+    <Content Include="Content\yellow-blog\images\work1.png" />
+    <Content Include="Content\yellow-blog\images\work_bg.png" />
+    <Content Include="Content\yellow-blog\images\work_bg2.png" />
+    <Content Include="Content\yellow-blog\images\yellow_up.png" />
+    <Content Include="Content\yellow-blog\pgwslider.css" />
+    <Content Include="Content\yellow-blog\responsive.css" />
+    <Content Include="Content\yellow-blog\style.css" />
+    <Content Include="Content\yellow-blog\tooltipster.css" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Fonts\yellow-blog\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
@@ -281,6 +315,14 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Fonts\yellow-blog\fontawesome-webfont.eot" />
+    <Content Include="Fonts\yellow-blog\fontawesome-webfont.ttf" />
+    <Content Include="Fonts\yellow-blog\fontawesome-webfont.woff" />
+    <Content Include="Fonts\yellow-blog\FontAwesome.otf" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-1.8.3.intellisense.js" />
     <Content Include="Scripts\CustomScripts\LiveSearch.js" />
@@ -297,6 +339,10 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\yellow-blog\jquery.tooltipster.min.js" />
+    <Content Include="Scripts\yellow-blog\pgwslider.js" />
+    <Content Include="Scripts\yellow-blog\placeholder_support_IE.js" />
+    <Content Include="Scripts\yellow-blog\selectnav.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -334,6 +380,7 @@
     <Content Include="Views\Article\AllArticles.cshtml" />
     <Content Include="Views\User\AllUsers.cshtml" />
     <Content Include="Views\Article\Comments.cshtml" />
+    <Content Include="Views\Shared\_Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

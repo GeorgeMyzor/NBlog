@@ -2,33 +2,80 @@
 @{
     ViewBag.Title = "All";
 }
+<section id="content_area">
+    <div class="clearfix wrapper main_content_area">
+        <div class="clearfix main_content floatleft">
+                <div class="clearfix content">
+                    <div class="content_title">
+                        <h2>Latest Blog Post</h2>
+                    </div>
+                    @Html.Partial("AllArticles", Model)
+                </div>
+        </div>
+        <div class="clearfix sidebar_container floatright">
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <div class="clearfix newsletter">
+                        @using (Html.BeginForm("Login", "Account", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post,
+                    new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <h2>Signup for newsletter</h2>
+                            @Html.TextBox("Email", null, new { id = "mce-EMAIL", type = "email", placeholder = "Email" })
+                            @Html.TextBox("Password", null, new { id = "mce-TEXT", type = "password", placeholder = "Password" })
+                            @Html.CheckBox("RememberMe")
+                            <input type="submit" value="Submit" id="mc-embedded-subscribe"/>
+                        }
+                </div>
+            }
+            <div class="clearfix sidebar">
+                <div class="clearfix single_sidebar">
+                    <div class="popular_post">
+                        <div class="sidebar_title">
+                            <h2>Most Popular</h2>
+                        </div>
+                        <ul>
+                            <li><a href="">Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. </a></li>
+                            <li><a href="">Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. </a></li>
+                            <li><a href="">Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. </a></li>
+                            <li><a href="">Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. </a></li>
+                            <li><a href="">Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. </a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix single_sidebar category_items">
+                    <h2>Categories</h2>
+                    <ul>
+                        <li class="cat-item"><a href="">Category Name</a>(12)</li>
+                        <li class="cat-item"><a href="">Category Name </a>(12)</li>
+                        <li class="cat-item"><a href="">Category Name</a>(12)</li>
+                        <li class="cat-item"><a href="">Category Name </a>(12)</li>
+                        <li class="cat-item"><a href="">Category Name </a>(12)</li>
+                    </ul>
+                </div>
+                <div class="clearfix single_sidebar">
+                    <h2>Recent Post</h2>
+                    <ul>
+                        <li><a href="">Category Name <span>(12)</span></a></li>
+                        <li><a href="">Category Name <span>(12)</span></a></li>
+                        <li><a href="">Category Name <span>(12)</span></a></li>
+                        <li><a href="">Category Name <span>(12)</span></a></li>
+                        <li><a href="">Category Name <span>(12)</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-<div id="allPage">
-    <h2>Find</h2>
-    <p>
-        @using (Html.BeginForm("Find", "Article"))
-        {
-            <label for="findArticle">Find article:</label>
-            <input type="text" name="term" id="findArticle" placeholder="start with # to find by tag"/>
-        }
-    </p>
 
-    @Html.Partial("AllArticles", Model)
 
-    @Html.RouteLink("Create article", "AllArticles", new {action = "Create"})
-
-</div>
 @section scripts
 {
-    <style type="text/css">
-        .selected {
-              color: red;
-          }
-    </style>
     <link rel="stylesheet" href="/Content/themes/base/jquery-ui.css">
     <script type="text/javascript">
-        $(document).ready(function() {
-            $(document).on('keyup', '#findArticle', (function(e) {
+        $(document).ready(function () {
+            $(document).on('keyup', '#findArticle', (function (e) {
                 var findInputVal = $("#findArticle").val();
                 var url = '@Url.Action("Find", "Article")/' + findInputVal;
 
@@ -36,13 +83,13 @@
                     url: url,
                     cache: false,
                     type: "GET",
-                    success: function(data) {
+                    success: function (data) {
 
                         $('#allArticles').html(data);
                         window.history.pushState("finded articles", "", "/articles/find/" + findInputVal);
 
                     },
-                    error: function(reponse) {
+                    error: function (reponse) {
                         alert("error : " + reponse);
                     }
                 });
@@ -50,23 +97,22 @@
         });
     </script>
     <script type="text/javascript">
-        $(document).ready(function() {
-            $(document).on('click', '.page', (function(e) {
+        $(document).ready(function () {
+            $(document).on('click', '.page', (function (e) {
                 var newVal = $(e.target).attr("value");
-
                 var url = '@Url.Action("All", "Article")/page' + newVal;
 
                 $.ajax({
                     url: url,
                     cache: false,
                     type: "GET",
-                    success: function(data) {
+                    success: function (data) {
 
-                        $('#allPage').html(data);
+                        $('#content_area').replaceWith(data);
                         window.history.pushState("all articles", "", "/articles/page" + newVal);
 
                     },
-                    error: function(reponse) {
+                    error: function (reponse) {
                         alert("error : " + reponse);
                     }
                 });

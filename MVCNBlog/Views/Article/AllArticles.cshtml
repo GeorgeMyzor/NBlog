@@ -4,44 +4,74 @@
 
     @foreach (var article in Model.ViewModels)
     {
-        <b>Title:</b>
-            @Html.DisplayFor(modelItem => article.Title)
-            <br />
-            <b>Content:</b>
-            @Html.DisplayFor(modelItem => article.Content)
-            <br />
-            <b>Publication date:</b>
-            @Html.DisplayFor(modelItem => article.PublicationDate)
-            <br />
-            <b>Author:</b>
-            @Html.DisplayTextFor(modelItem => article.Author.Name)
-            <br />
-            <b>Tags:</b>
-        foreach (var tag in article.Tags)
-        {
-            <b> &nbsp;</b>
-                @Html.DisplayFor(modelItem => tag)
-        }
 
-        foreach (var comment in article.Comments)
-        {
-            <br />
-                <b> &nbsp; &nbsp; Comment:</b>
-                @Html.DisplayFor(modelItem => comment.Content)
-                <b> &nbsp; &nbsp; Author's comment:</b>
-                @Html.DisplayFor(modelItem => comment.Author.Name)
-        }
-        <br />
-            @Html.RouteLink("View article", "ArticleAction", new { action = "Index", title = article.Title, id = article.Id })
-            @Html.RouteLink("Edit article", "ArticleAction", new { action = "Edit", title = article.Title, id = article.Id })
-            @Html.RouteLink("Delete article", "ArticleAction", new { action = "Delete", title = article.Title, id = article.Id })
-
-            <br />
+        <div class="clearfix single_content">
+            <div class="clearfix post_date floatleft">
+                <div class="date">
+                    <h3>@article.PublicationDate.Day</h3>
+                    <p>Month num: @article.PublicationDate.Month</p>
+                </div>
+            </div>
+            <div class="clearfix post_detail">
+                <h2>
+                    <a href=""> @Html.DisplayFor(modelItem => article.Title). </a>
+                </h2>
+                <div class="clearfix post-meta">
+                    <p><span><i class="fa fa-user"></i> 
+                           </span> <span><i class="fa fa-comment"></i> @article.Comments.Count()</span></p>
+                </div>
+                <div class="clearfix post_excerpt">
+                    <img src="~/content/yellow-blog/images/thumb.png" alt=""/>
+                    <p>
+                        @Html.DisplayFor(modelItem => article.Content)
+                    </p>
+                </div> 
+                @Html.RouteLink("Continue Reading", "ArticleAction", new {action = "Index", title = article.Title, id = article.Id})
+            </div>
+        </div>
     }
 
-    <div class="pager">
-        @Html.PageLinks(Model.PagingInfo, x => Url.Action("All", new { page = x }))
+    <div class="pagination pager">
+        <nav>
+            <ul>
+                @Html.PageLinks(Model.PagingInfo, x => Url.Action("All", new { page = x }))
+            </ul>
+        </nav>
     </div>
+<!--
+<b>Title:</b>
+//Html.DisplayFor(modelItem => article.Title)
+<br/>
+<b>Content:</b>
+//Html.DisplayFor(modelItem => article.Content)
+<br/>
+<b>Publication date:</b>
+//Html.DisplayFor(modelItem => article.PublicationDate)
+<br/>
+<b>Author:</b>
+//Html.DisplayTextFor(modelItem => article.Author.Name)
+<br/>
+<b>Tags:</b>
+foreach (var tag in article.Tags)
+{
+<b> &nbsp;</b>
+//Html.DisplayFor(modelItem => tag)
+}
 
+foreach (var comment in article.Comments)
+{
+<br/>
+<b> &nbsp; &nbsp; Comment:</b>
+//Html.DisplayFor(modelItem => comment.Content)
+<b> &nbsp; &nbsp; Author's comment:</b>
+//Html.DisplayFor(modelItem => comment.Author.Name)
+}
+<br/>
+//Html.RouteLink("View article", "ArticleAction", new {action = "Index", title = article.Title, id = article.Id})
+//Html.RouteLink("Edit article", "ArticleAction", new {action = "Edit", title = article.Title, id = article.Id})
+//Html.RouteLink("Delete article", "ArticleAction", new {action = "Delete", title = article.Title, id = article.Id})
+
+<br/>
+    -->
 </div>
 

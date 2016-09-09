@@ -35,6 +35,7 @@ namespace MVCNBlog.Controllers
             {
                 logger.Warn(exception.Message);
                 code = (int)statusCode;
+                exception = new HttpException(code, "Page not found.");
             }
 
             Response.StatusCode = code;
