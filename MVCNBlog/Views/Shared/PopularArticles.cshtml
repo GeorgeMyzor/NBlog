@@ -1,0 +1,15 @@
+﻿@model IEnumerable<MVCNBlog.ViewModels.ArticleViewModel>
+
+<div class="clearfix single_sidebar">
+    <div class="popular_post">
+        <div class="sidebar_title">
+            <h2>Most Popular</h2>
+        </div>
+        <ul>
+            @foreach (var article in Model)
+            {
+                <li><a href=@Url.RouteUrl("ArticleAction", new { action = "Index", id = article.Id }) >@article.Title</a></li>
+            }
+        </ul>
+    </div>
+</div>

@@ -188,8 +188,6 @@
     </Compile>
     <Compile Include="Infrastructure\CustomAuthorize.cs" />
     <Compile Include="Infrastructure\Helpers\PagingHelper.cs" />
-    <Compile Include="Infrastructure\Helpers\PopularArticlesHelper.cs" />
-    <Compile Include="Infrastructure\Helpers\RecentArticlesHelper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcArticleMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcCommentMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcRoleMapper.cs" />
@@ -383,6 +381,8 @@
     <Content Include="Views\User\AllUsers.cshtml" />
     <Content Include="Views\Article\Comments.cshtml" />
     <Content Include="Views\Shared\_Login.cshtml" />
+    <Content Include="Views\Shared\PopularArticles.cshtml" />
+    <Content Include="Views\Shared\RecentArticles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

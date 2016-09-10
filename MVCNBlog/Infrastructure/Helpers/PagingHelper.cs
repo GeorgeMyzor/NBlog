@@ -29,15 +29,15 @@ namespace MVCNBlog.Infrastructure.Helpers
             for (int i = currentPage; i <= pageCount; i++)
             {
                 TagBuilder tagLi = new TagBuilder("li");
-                TagBuilder tag = new TagBuilder("a"); 
-                tag.MergeAttribute("href", pageUrl(i));
-                tag.InnerHtml = i.ToString();
+                TagBuilder tagA = new TagBuilder("a");
+                tagA.MergeAttribute("href", pageUrl(i));
+                tagA.InnerHtml = i.ToString();
                 if (i == pagingInfo.CurrentPage)
-                    tag.AddCssClass("selected");
-                tag.AddCssClass("page");
-                tag.MergeAttribute("value", i.ToString());
+                    tagA.AddCssClass("selected");
+                tagA.AddCssClass("page");
+                tagA.MergeAttribute("value", i.ToString());
 
-                tagLi.InnerHtml = tag.ToString();
+                tagLi.InnerHtml = tagA.ToString();
                 result.Append(tagLi);
             }
 

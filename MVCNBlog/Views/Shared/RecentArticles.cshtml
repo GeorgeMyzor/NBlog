@@ -1,0 +1,11 @@
+﻿@model IEnumerable<MVCNBlog.ViewModels.ArticleViewModel>
+
+<div class="clearfix single_sidebar category_items">
+    <h2>Recent posts</h2>
+    <ul>
+        @foreach (var article in Model)
+        {
+            <li class="cat-item"><a href=@Url.RouteUrl("ArticleAction", new {action = "Index", id = article.Id})>@article.Title</a>@article.PublicationDate.DayOfWeek</li>
+        }
+    </ul>
+</div>
