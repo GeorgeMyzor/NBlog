@@ -188,6 +188,8 @@
     </Compile>
     <Compile Include="Infrastructure\CustomAuthorize.cs" />
     <Compile Include="Infrastructure\Helpers\PagingHelper.cs" />
+    <Compile Include="Infrastructure\Helpers\PopularArticlesHelper.cs" />
+    <Compile Include="Infrastructure\Helpers\RecentArticlesHelper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcArticleMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcCommentMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcRoleMapper.cs" />

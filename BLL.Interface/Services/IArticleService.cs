@@ -16,6 +16,8 @@ namespace BLL.Interface.Services
         IEnumerable<BllArticle> FindArticleEntities(string findString);
         IEnumerable<BllArticle> GetPagedArticles(int pageNum, int pageSize);
         IEnumerable<BllArticle> GetPagedArticles(int pageNum, int pageSize, int userId);
+        IEnumerable<BllArticle> GetRecentArticles();
+        IEnumerable<BllArticle> GetPopularArticles();
         void CreateArticle(BllArticle article);
         void DeleteArticle(BllArticle article);
         void UpdateArticle(BllArticle article);

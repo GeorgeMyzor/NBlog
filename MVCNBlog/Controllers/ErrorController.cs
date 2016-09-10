@@ -29,7 +29,7 @@ namespace MVCNBlog.Controllers
             {
                 logger.Error(exception);
                 code = 500;
-                exception = new HttpException(code, "Server error.");
+                //exception = new HttpException(code, "Server error.");
             }
             else
             {

@@ -55,14 +55,21 @@ namespace MVCNBlog.Controllers
             var findedArticles =
                 articleService.FindArticleEntities(term).Select(bllArticle => bllArticle.ToMvcArticle()).ToList();
 
+
+            var articles2 = new ListViewModel<ArticleViewModel>()
+            {
+                ViewModels = findedArticles,
+                PagingInfo = null
+            };
+
             ViewBag.GroupName = !findedArticles.Any() ? "Nothing was found." : "Finded articles:";
             
             if (Request.IsAjaxRequest())
             {
                 return PartialView(findedArticles);
             }
-
-            return View(findedArticles);
+            TempData["isFind"] = true;
+            return View("All", articles2);
         }
 
         #region CRUD
@@ -105,9 +112,11 @@ namespace MVCNBlog.Controllers
                     CurrentPage = page,
                     ItemsPerPage = pageSize,
                     TotalItems = totalItems
-                }
+                },
+                Popular = articleService.GetPopularArticles().Select(bllArticle => bllArticle.ToMvcArticle()),
+                Recent = articleService.GetRecentArticles().Select(bllArticle => bllArticle.ToMvcArticle()),
             };
-
+            
             if (Request.IsAjaxRequest())
             {
                 return PartialView(articles);

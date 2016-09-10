@@ -74,6 +74,26 @@ namespace BLL.Services
             return articleRepository.GetPagedArticles(pageNum, pageSize, userId).Select(dalArticle => dalArticle.ToBllArticle());
         }
 
+        public IEnumerable<BllArticle> GetRecentArticles()
+        {
+            var articles = articleRepository.GetAll();
+
+            articles = articles.OrderByDescending(article => article.PublicationDate);
+            articles = articles.Skip(4).Any() ? articles.Take(5) : articles;
+
+            return articles.Select(article => article.ToBllArticle());
+        }
+
+        public IEnumerable<BllArticle> GetPopularArticles()
+        {
+            var articles = articleRepository.GetAll();
+
+            articles = articles.OrderByDescending(article => article.Comments.Count());
+            articles = articles.Skip(4).Any() ? articles.Take(5) : articles;
+
+            return articles.Select(article => article.ToBllArticle());
+        }
+
         public void CreateArticle(BllArticle article)
         {
             article.PublicationDate = DateTime.Now;
