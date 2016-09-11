@@ -32,7 +32,7 @@ namespace MVCNBlog
                 name: "AllArticles",
                 url: "articles/{action}",
                 defaults: new { controller = "Article", action = "All" },
-                constraints: new { action = @"Create|All|Find" }
+                constraints: new { action = @"Create|All|Find|Popular" }
                 );
             
             routes.MapRoute(
@@ -41,11 +41,17 @@ namespace MVCNBlog
                 defaults: new { Controller = "Article", action = "All" }
                 );
 
+            routes.MapRoute(
+                name: "ChildActions",
+                url: "article/{action}",
+                defaults: new { Controller = "Article"},
+                constraints: new { action = @"PopularSide|RecentSide"}
+                );
 
             #endregion
 
             #region User routes
-            
+
             routes.MapRoute(
                name: "EditUser",
                url: "users/{id}/UpdatePicture",

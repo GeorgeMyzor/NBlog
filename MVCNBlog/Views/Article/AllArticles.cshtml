@@ -23,7 +23,7 @@
                 <div class="clearfix post_excerpt">
                     <img src="~/content/yellow-blog/images/thumb.png" alt=""/>
                     <p>
-                        @Html.DisplayFor(modelItem => article.Content)
+                        @Html.HighLightTags(article.Content)
                     </p>
                 </div> 
                 @Html.RouteLink("Continue Reading", "ArticleAction", new {action = "Index", title = article.Title, id = article.Id})

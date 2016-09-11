@@ -71,10 +71,14 @@
     </section>
 
 
-    @RenderBody()
-    <hr/>
-    <footer>
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-    </footer>
+<section style="padding: 0" id="content_area">
+    <div class="clearfix wrapper main_content_area">
+        @RenderBody()
+    </div>
+</section>
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
 </body>
 </html>

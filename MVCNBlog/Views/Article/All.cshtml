@@ -2,48 +2,46 @@
 @{
     ViewBag.Title = "All";
 }
-<section id="content_area">
-    <div class="clearfix wrapper main_content_area">
-        <div class="clearfix main_content floatleft">
-                <div class="clearfix content">
-                    <div class="content_title">
-                        <h2>Latest Blog Post</h2>
-                    </div>
-                    @if (TempData["isFind"] != null)
-                    {
-                        @Html.Partial("Find", Model.ViewModels)
-                    }
-                    else
-                    {
-                        @Html.Partial("AllArticles", Model)
-                    }
-                </div>
-        </div>
-        <div class="clearfix sidebar_container floatright">
-            @if (!User.Identity.IsAuthenticated)
+<div id="artcilesOutput">
+    <div class="clearfix main_content floatleft">
+        <div class="clearfix content">
+            <div class="content_title">
+                <h2>Latest Blog Post</h2>
+            </div>
+            @if (TempData["isFind"] != null)
             {
-                <div class="clearfix newsletter">
-                        @using (Html.BeginForm("Login", "Account", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post,
+                @Html.Partial("Find", Model.ViewModels)
+            }
+            else
+            {
+                @Html.Partial("AllArticles", Model)
+            }
+        </div>
+    </div>
+    <div class="clearfix sidebar_container floatright">
+        @if (!User.Identity.IsAuthenticated)
+            {
+            <div class="clearfix newsletter">
+                @using (Html.BeginForm("Login", "Account", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post,
                     new { @class = "form-horizontal", role = "form" }))
-                        {
-                            @Html.AntiForgeryToken()
-                            <h2>Signup for newsletter</h2>
+                {
+                    @Html.AntiForgeryToken()
+                    <h2>Signup for newsletter</h2>
                             @Html.TextBox("Email", null, new { id = "mce-EMAIL", type = "email", placeholder = "Email" })
                             @Html.TextBox("Password", null, new { id = "mce-TEXT", type = "password", placeholder = "Password" })
                             @Html.CheckBox("RememberMe")
-                            <input type="submit" value="Submit" id="mc-embedded-subscribe"/>
-                        }
-                </div>
-            }
-            <div class="clearfix sidebar">
-                @Html.Partial("PopularArticles", Model.Popular)
-
-                @Html.Partial("RecentArticles", Model.Recent)
+                            <input type="submit" value="Submit" id="mc-embedded-subscribe" />
+                }
             </div>
+        }
+        <div class="clearfix sidebar">
+            @Html.Action("PopularSide")
+
+            @Html.Action("RecentSide")
         </div>
     </div>
-</section>
 
+</div>
 
 
 @section scripts
@@ -83,7 +81,7 @@
                     type: "GET",
                     success: function (data) {
 
-                        $('#content_area').replaceWith(data);
+                        $('#artcilesOutput').replaceWith(data);
                         window.history.pushState("all articles", "", "/articles/page" + newVal);
 
                     },

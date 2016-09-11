@@ -225,5 +225,28 @@ namespace MVCNBlog.Controllers
         }
 
         #endregion
+
+        public ActionResult Popular()
+        {
+            var popularArticles = articleService.GetPopularArticles().Select(bllArticle => bllArticle.ToMvcArticle());
+
+            return View("PopularArticles", popularArticles);
+        }
+
+        [ChildActionOnly]
+        public ActionResult PopularSide()
+        {
+            var popularArticles = articleService.GetPopularArticles().Select(bllArticle => bllArticle.ToMvcArticle());
+
+            return PartialView("PopularArticles", popularArticles);
+        }
+
+        [ChildActionOnly]
+        public ActionResult RecentSide()
+        {
+            var recentArticles = articleService.GetRecentArticles().Select(bllArticle => bllArticle.ToMvcArticle());
+
+            return PartialView("RecentArticles", recentArticles);
+        }
     }
 }
