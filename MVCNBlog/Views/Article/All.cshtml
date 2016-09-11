@@ -75,6 +75,7 @@
             $(document).on('click', '.page', (function (e) {
                 var newVal = $(e.target).attr("value");
                 var url = '@Url.Action("All", "Article")/page' + newVal;
+
                 $.ajax({
                     url: url,
                     cache: false,
