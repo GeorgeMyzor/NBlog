@@ -21,6 +21,10 @@ h1,h2,h3,h4,h5,h6{font-weight:normal;margin:0 0 15px;font-family: 'Oswald', sans
 h2 {font-size:25px;line-height:30px}
 img{max-width:100%;height:auto;border:none}
 
+.post_excerpt>p { 
+   text-indent: 30px;
+}
+
 .alignleft{float:left;margin-right:10px}	
 .aligncenter{display:block;margin:10px auto}	
 .alignright{float:right;margin-left:10px}	
@@ -255,7 +259,6 @@ text-align: right;}
 .single_sidebar .cat-item a{color: #ddd;
 display: inline-block;
 font-weight: normal;
-width: 80%;
 text-align: left;
 float: left;}
 .single_sidebar .cat-item a:hover{color:#000;text-decoration:none;}

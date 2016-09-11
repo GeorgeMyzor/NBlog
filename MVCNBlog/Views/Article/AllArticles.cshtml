@@ -23,10 +23,10 @@
                 <div class="clearfix post_excerpt">
                     <img src="~/content/yellow-blog/images/thumb.png" alt=""/>
                     <p>
-                        @Html.HighLightTags(article.Content)
+                        @Html.HighLightTags(article.Header)
                     </p>
                 </div> 
-                @Html.RouteLink("Continue Reading", "ArticleAction", new {action = "Index", title = article.Title, id = article.Id})
+                @Html.RouteLink("Continue Reading", "ArticleAction", new {action = "Index", title = article.Title.RemoveSpecialCharacters(), id = article.Id})
             </div>
         </div>
     }

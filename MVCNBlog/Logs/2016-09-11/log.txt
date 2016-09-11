@@ -315,3 +315,191 @@ System.Web.Mvc.ActionResult Popular() on type MVCNBlog.Controllers.ArticleContro
    в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
    в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
    в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) Templates can be used only with field access, property access, single-dimension array index, or single-parameter custom indexer expressions.
+2016-09-11 14:27:46.4008 Warn Message: A public action method 'Create' was not found on controller 'MVCNBlog.Controllers.CommentController'. 
+2016-09-11 14:28:19.0217 Warn Message: A public action method 'Create' was not found on controller 'MVCNBlog.Controllers.CommentController'. 
+2016-09-11 14:28:25.4461 Warn Message: A public action method 'Create' was not found on controller 'MVCNBlog.Controllers.CommentController'. 
+2016-09-11 14:28:35.9707 Warn Message: A public action method 'Create' was not found on controller 'MVCNBlog.Controllers.CommentController'. 
+2016-09-11 14:28:45.3682 Warn Message: A public action method 'Create' was not found on controller 'MVCNBlog.Controllers.CommentController'. 
+2016-09-11 14:28:59.7040 Warn Message: A public action method 'Create' was not found on controller 'MVCNBlog.Controllers.CommentController'. 
+2016-09-11 16:58:33.9633 Error Message: System.ArgumentNullException: «начение не может быть неопределенным.
+»м€ параметра: input
+   в System.Text.RegularExpressions.Regex.Matches(String input)
+   в System.Text.RegularExpressions.Regex.Matches(String input, String pattern)
+   в MVCNBlog.Infrastructure.Helpers.TagsHighlightHelper.GetTags(String content, IList`1& hightlightedTags) в D:\VS Projects\NBlog\MVCNBlog\Infrastructure\Helpers\TagsHighlightHelper.cs:строка 28
+   в MVCNBlog.Infrastructure.Helpers.TagsHighlightHelper.HighLightTags(HtmlHelper html, String artcileContent) в D:\VS Projects\NBlog\MVCNBlog\Infrastructure\Helpers\TagsHighlightHelper.cs:строка 16
+   в ASP._Page_Views_Article_AllArticles_cshtml.Execute() в D:\VS Projects\NBlog\MVCNBlog\Views\Article\AllArticles.cshtml:строка 26
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   в System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   в System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
+   в ASP._Page_Views_Article_All_cshtml.Execute() в D:\VS Projects\NBlog\MVCNBlog\Views\Article\All.cshtml:строка 11
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   в System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   в System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   в System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) «начение не может быть неопределенным.
+»м€ параметра: input
+2016-09-11 16:59:17.6928 Error Message: System.ArgumentNullException: «начение не может быть неопределенным.
+»м€ параметра: input
+   в System.Text.RegularExpressions.Regex.Matches(String input)
+   в System.Text.RegularExpressions.Regex.Matches(String input, String pattern)
+   в MVCNBlog.Infrastructure.Helpers.TagsHighlightHelper.GetTags(String content, IList`1& hightlightedTags) в D:\VS Projects\NBlog\MVCNBlog\Infrastructure\Helpers\TagsHighlightHelper.cs:строка 28
+   в MVCNBlog.Infrastructure.Helpers.TagsHighlightHelper.HighLightTags(HtmlHelper html, String artcileContent) в D:\VS Projects\NBlog\MVCNBlog\Infrastructure\Helpers\TagsHighlightHelper.cs:строка 16
+   в ASP._Page_Views_Article_AllArticles_cshtml.Execute() в D:\VS Projects\NBlog\MVCNBlog\Views\Article\AllArticles.cshtml:строка 26
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   в System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   в System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
+   в ASP._Page_Views_Article_All_cshtml.Execute() в D:\VS Projects\NBlog\MVCNBlog\Views\Article\All.cshtml:строка 11
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   в System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   в System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   в System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) «начение не может быть неопределенным.
+»м€ параметра: input
+2016-09-11 17:17:07.6660 Error Message: System.ArgumentException: Value cannot be null or empty.
+»м€ параметра: linkText
+   в System.Web.Mvc.Html.LinkExtensions.RouteLink(HtmlHelper htmlHelper, String linkText, String routeName, RouteValueDictionary routeValues, IDictionary`2 htmlAttributes)
+   в System.Web.Mvc.Html.LinkExtensions.RouteLink(HtmlHelper htmlHelper, String linkText, String routeName)
+   в ASP._Page_Views_Shared__Layout_cshtml.Execute() в D:\VS Projects\NBlog\MVCNBlog\Views\Shared\_Layout.cshtml:строка 12
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   в System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   в System.Web.WebPages.WebPageBase.<>c__DisplayClass3.<RenderPageCore>b__2(TextWriter writer)
+   в System.Web.WebPages.WebPageBase.Write(HelperResult result)
+   в System.Web.WebPages.WebPageBase.RenderSurrounding(String partialViewName, Action`1 body)
+   в System.Web.WebPages.WebPageBase.PopContext()
+   в System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) Value cannot be null or empty.
+»м€ параметра: linkText
+2016-09-11 17:17:11.7333 Error Message: System.ArgumentException: Value cannot be null or empty.
+»м€ параметра: linkText
+   в System.Web.Mvc.Html.LinkExtensions.RouteLink(HtmlHelper htmlHelper, String linkText, String routeName, RouteValueDictionary routeValues, IDictionary`2 htmlAttributes)
+   в System.Web.Mvc.Html.LinkExtensions.RouteLink(HtmlHelper htmlHelper, String linkText, String routeName)
+   в ASP._Page_Views_Shared__Layout_cshtml.Execute() в D:\VS Projects\NBlog\MVCNBlog\Views\Shared\_Layout.cshtml:строка 12
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   в System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   в System.Web.WebPages.WebPageBase.<>c__DisplayClass3.<RenderPageCore>b__2(TextWriter writer)
+   в System.Web.WebPages.WebPageBase.Write(HelperResult result)
+   в System.Web.WebPages.WebPageBase.RenderSurrounding(String partialViewName, Action`1 body)
+   в System.Web.WebPages.WebPageBase.PopContext()
+   в System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) Value cannot be null or empty.
+»м€ параметра: linkText
+2016-09-11 17:17:13.8084 Error Message: System.ArgumentException: Value cannot be null or empty.
+»м€ параметра: linkText
+   в System.Web.Mvc.Html.LinkExtensions.RouteLink(HtmlHelper htmlHelper, String linkText, String routeName, RouteValueDictionary routeValues, IDictionary`2 htmlAttributes)
+   в System.Web.Mvc.Html.LinkExtensions.RouteLink(HtmlHelper htmlHelper, String linkText, String routeName)
+   в ASP._Page_Views_Shared__Layout_cshtml.Execute() в D:\VS Projects\NBlog\MVCNBlog\Views\Shared\_Layout.cshtml:строка 12
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   в System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   в System.Web.WebPages.WebPageBase.<>c__DisplayClass3.<RenderPageCore>b__2(TextWriter writer)
+   в System.Web.WebPages.WebPageBase.Write(HelperResult result)
+   в System.Web.WebPages.WebPageBase.RenderSurrounding(String partialViewName, Action`1 body)
+   в System.Web.WebPages.WebPageBase.PopContext()
+   в System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) Value cannot be null or empty.
+»м€ параметра: linkText
+2016-09-11 17:41:08.0164 Warn Message: Page not found. 
+2016-09-11 17:44:03.6475 Warn Message: ќбнаружено потенциально опасное значение Request.Path, полученное от клиента (&). 
+2016-09-11 17:59:42.9352 Warn Message: Page not found. 
+2016-09-11 18:13:13.0855 Warn Message: Page not found. 
+2016-09-11 18:13:13.0855 Warn Message: Page not found. 
+2016-09-11 18:13:13.3665 Warn Message: Page not found. 
+2016-09-11 18:13:13.4885 Warn Message: Page not found. 
+2016-09-11 18:13:13.8106 Warn Message: Page not found. 
+2016-09-11 18:13:13.9656 Warn Message: Page not found. 
+2016-09-11 18:13:16.1237 Warn Message: Page not found. 
+2016-09-11 18:13:16.1237 Warn Message: Page not found. 
+2016-09-11 18:13:16.1347 Warn Message: Page not found. 
+2016-09-11 18:13:16.1347 Warn Message: Page not found. 
+2016-09-11 18:13:16.1347 Warn Message: Page not found. 
+2016-09-11 18:13:16.1467 Warn Message: Page not found. 
+2016-09-11 18:13:16.5347 Warn Message: Page not found. 
+2016-09-11 18:13:17.5338 Warn Message: Page not found. 
+2016-09-11 18:13:18.7248 Warn Message: Page not found. 
+2016-09-11 18:13:18.8698 Warn Message: Page not found. 
+2016-09-11 18:13:19.7329 Warn Message: Page not found. 
+2016-09-11 18:13:19.9269 Warn Message: Page not found. 
+2016-09-11 18:13:20.2639 Warn Message: Page not found. 
+2016-09-11 18:13:21.1760 Warn Message: Page not found. 
+2016-09-11 18:13:21.3180 Warn Message: Page not found. 
+2016-09-11 18:13:22.3000 Warn Message: Page not found. 
+2016-09-11 18:13:22.3360 Warn Message: Page not found. 
+2016-09-11 18:13:22.6121 Warn Message: Page not found. 
+2016-09-11 18:13:22.7071 Warn Message: Page not found. 
+2016-09-11 18:13:25.6432 Warn Message: Page not found. 

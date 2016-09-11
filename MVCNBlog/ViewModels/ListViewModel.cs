@@ -9,7 +9,5 @@ namespace MVCNBlog.ViewModels
     {
         public IEnumerable<T> ViewModels { get; set; }
         public PagingInfo PagingInfo { get; set; }
-        public IEnumerable<T> Popular { get; set; }
-        public IEnumerable<T> Recent { get; set; }
     }
 }

@@ -16,6 +16,7 @@ namespace BLL.Mappers
             {
                 Id = dalArticle.Id,
                 Title = dalArticle.Title,
+                Header = dalArticle.Header,
                 Content = dalArticle.Content,
                 PublicationDate = dalArticle.PublicationDate,
                 AuthorId = dalArticle.AuthorId,
@@ -31,6 +32,7 @@ namespace BLL.Mappers
             {
                 Id = articleEntity.Id,
                 Title = articleEntity.Title,
+                Header = articleEntity.Header,
                 Content = articleEntity.Content,
                 PublicationDate = articleEntity.PublicationDate,
                 AuthorId = articleEntity.AuthorId,

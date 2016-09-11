@@ -52,9 +52,10 @@ namespace BLL.Services
         public IEnumerable<BllArticle> FindArticleEntities(string findString)
         {
             IEnumerable<DalArticle> allArticles;
-            if (findString.StartsWith("#"))
+            if (findString.StartsWith("-hashtag-"))
             {
-                allArticles = articleRepository.GetArticlesByPredicate(article => article.Tags.Any(tag => tag.StartsWith(findString)));
+                findString = findString.Replace("-hashtag-", "#");
+                allArticles = articleRepository.GetArticlesByPredicate(article => article.Tags.Any(tag => tag.StartsWith(findString))).ToList();
             }
             else
             {
@@ -121,6 +122,7 @@ namespace BLL.Services
         private static void SetTags(BllArticle article)
         {
             var tags = TagParser.GetTags(article.Title).ToList();
+            tags.AddRange(TagParser.GetTags(article.Header));
             tags.AddRange(TagParser.GetTags(article.Content));
             article.Tags = tags;
         }

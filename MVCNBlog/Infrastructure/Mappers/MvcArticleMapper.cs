@@ -15,6 +15,7 @@ namespace MVCNBlog.Infrastructure.Mappers
             {
                 Id = articleEntity.Id,
                 Title = articleEntity.Title,
+                Header = articleEntity.Header,
                 Content = articleEntity.Content,
                 PublicationDate = articleEntity.PublicationDate,
                 Author = articleEntity.Author?.ToMvcUser(),
@@ -30,6 +31,7 @@ namespace MVCNBlog.Infrastructure.Mappers
             {
                 Id = mvcArticle.Id,
                 Title = mvcArticle.Title,
+                Header = mvcArticle.Header,
                 Content = mvcArticle.Content,
                 PublicationDate = mvcArticle.PublicationDate,
                 AuthorId = mvcArticle.AuthorId

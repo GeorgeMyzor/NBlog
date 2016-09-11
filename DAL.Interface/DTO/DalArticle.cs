@@ -10,6 +10,7 @@ namespace DAL.Interface.DTO
     {
         public int Id { get; set; }
         public string Title { get; set; }
+        public string Header { get; set; }
         public string Content { get; set; }
         public int? AuthorId { get; set; }
         public DalUser Author { get; set; }

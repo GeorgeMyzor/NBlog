@@ -12,13 +12,8 @@ namespace MVCNBlog.Infrastructure.Helpers
     {
         public static MvcHtmlString HighLightTags(this HtmlHelper html, string artcileContent)
         {
-            var tags = GetTags(artcileContent).ToList();
-            List<string> newTags = new List<string>();
-            foreach (var tag in tags)
-            {
-                string newTag = tag.SurroundWith("<span style=\"background-color: #ffd500;\">", "</span>");
-                newTags.Add(newTag);
-            }
+            IList<string> newTags;
+            var tags = GetTags(artcileContent, out newTags).ToList();
 
             for (int i = 0; i < tags.Count(); i++)
             {
@@ -28,15 +23,19 @@ namespace MVCNBlog.Infrastructure.Helpers
             return MvcHtmlString.Create(artcileContent);
         }
 
-        private static IEnumerable<string> GetTags(string content)
+        private static IEnumerable<string> GetTags(string content, out IList<string> hightlightedTags)
         {
             var matches = Regex.Matches(content, "#[a-zA-Z0-9_.-]+");
 
             var tags = new List<string>();
+            hightlightedTags = new List<string>();
 
             foreach (var match in matches)
             {
                 tags.Add(match.ToString());
+
+                string newTag = match.ToString().SurroundWith("<span style=\"background-color: #ffd500;\">", "</span>");
+                hightlightedTags.Add(newTag);
             }
 
             return tags;

@@ -25,9 +25,12 @@
 <h2>Article</h2>
 <b>Title:</b>
 @Html.DisplayFor(modelItem => Model.Title)
+<br />
+<b>Header:</b>
+@Html.HighLightTags(Model.Header)
 <br/>
 <b>Content:</b>
-@Html.DisplayFor(modelItem => Model.Content)
+@Html.HighLightTags(Model.Content)
 <br />
 <b>Publication date:</b>
 @Html.DisplayTextFor(modelItem => Model.PublicationDate)

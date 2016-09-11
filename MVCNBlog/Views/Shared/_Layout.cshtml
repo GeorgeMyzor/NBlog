@@ -1,8 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>    
+    <meta charset="utf-8" />
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Scripts.Render("~/bundles/modernizr")
 
@@ -25,7 +24,7 @@
         <div class="wrapper header" style="height: 135px">
             <div class="clearfix header_top">
                 <div class="clearfix logo floatleft">
-                    <a href=""><h1><span>Yellow</span> Blog</h1></a>
+                    <a href="@Url.RouteUrl("Main")"><h1><span>N</span> Blog</h1></a>
                 </div>
                 <div class="clearfix search floatright">
                     @using (Html.BeginForm("Find", "Article"))
@@ -38,25 +37,9 @@
             <div class="header_bottom" style="height: 50px">
                 <nav>
                     <ul id="nav">
-                        <li><a href="">Home</a></li>
-                        <li><a href="">Category</a></li>
-                        <li id="dropdown">
-                            <a href="">Drop Down</a>
-                            <ul>
-                                <li><a href="">Home</a></li>
-                                <li><a href="">Category</a></li>
-                                <li><a href="">Category</a></li>
-                                <li><a href="">Category</a></li>
-                                <li><a href="">Category</a></li>
-                                <li><a href="">Category</a></li>
-                                <li><a href="">Category</a></li>
-                                <li><a href="">Category</a></li>
-                                <li><a href="">Category</a></li>
-                                <li><a href="">About us</a></li>
-                                <li><a href="">Contact us</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="">Category</a></li>
+                        <li>@Html.RouteLink("Home", "Main")</li>
+                        <li>@Html.RouteLink("Popular", "AllArticles", new { action = "Popular"})</li>
+                        <li>@Html.RouteLink("Account", "ViewAccount")</li>
                         <li><a href="">Category</a></li>
                         <li><a href="">Category</a></li>
                         <li><a href="">Category</a></li>
@@ -64,6 +47,14 @@
                         <li><a href="">Category</a></li>
                         <li><a href="">About us</a></li>
                         <li><a href="">Contact us</a></li>
+                        <li id="dropdown">
+                            <a href="">Drop Down</a>
+                            <ul>
+                                <li><a href="">Category</a></li>
+                                <li><a href="">About us</a></li>
+                                <li><a href="">Contact us</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
             </div>

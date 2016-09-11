@@ -17,6 +17,7 @@ namespace DAL.Mappers
             {
                 Id = ormArticle.Id,
                 Title = ormArticle.Title,
+                Header = ormArticle.Header,
                 Content = ormArticle.Content,
                 PublicationDate = ormArticle.PublicationDate,
                 AuthorId = ormArticle.Author?.Id,
@@ -32,6 +33,7 @@ namespace DAL.Mappers
             {
                 Id = dalArticle.Id,
                 Title = dalArticle.Title,
+                Header = dalArticle.Header,
                 Content = dalArticle.Content,
                 PublicationDate = dalArticle.PublicationDate,
                 Tags = new List<Tag>()

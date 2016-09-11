@@ -112,9 +112,7 @@ namespace MVCNBlog.Controllers
                     CurrentPage = page,
                     ItemsPerPage = pageSize,
                     TotalItems = totalItems
-                },
-                Popular = articleService.GetPopularArticles().Select(bllArticle => bllArticle.ToMvcArticle()),
-                Recent = articleService.GetRecentArticles().Select(bllArticle => bllArticle.ToMvcArticle()),
+                }
             };
             
             if (Request.IsAjaxRequest())
