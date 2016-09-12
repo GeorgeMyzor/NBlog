@@ -139,6 +139,7 @@ padding-bottom: 15px;
 border-bottom: 3px solid #E7E7E7;}
 .single_content:last-child{border-bottom:none;}
 .post_date{background: none repeat scroll 0 0 #c3c3c3;
+width: 80px;
 margin-right: 10px;
 padding: 5px;}
 .post_date .date{border: 1px solid #ddd;
@@ -151,12 +152,14 @@ margin-top: 5px;text-align:center;}
 .post_date p{font-size: 14px;
 font-family: oswald;}
 .post_detail{}
-.post_detail > a{background: url("images/nav_right.png") no-repeat scroll 130px 4px #ffd500;
+.post_detail > a{background: url("images/nav_right.png") no-repeat scroll 100px 4px #ffd500;
+text-align: center;
 display: block;
 font-family: oswald light;
 margin-top: 10px;
 padding: 5px 10px;
-width: 140px;float:right;}
+margin-left: 10px;
+width: 105px;float:right;}
 .post_detail > a:hover{font-family: oswald;}
 .post_detail h2{font-size: 20px;
 margin-bottom: 10px;}

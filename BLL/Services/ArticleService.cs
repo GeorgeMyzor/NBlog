@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,11 +56,11 @@ namespace BLL.Services
             if (findString.StartsWith("-hashtag-"))
             {
                 findString = findString.Replace("-hashtag-", "#");
-                allArticles = articleRepository.GetArticlesByPredicate(article => article.Tags.Any(tag => tag.StartsWith(findString))).ToList();
+                allArticles = articleRepository.GetArticlesByPredicate(article => article.Tags.Any(tag => tag.StartsWith(findString, true, CultureInfo.InvariantCulture))).ToList();
             }
             else
             {
-                allArticles = articleRepository.GetArticlesByPredicate(article => article.Content.Contains(findString));
+                allArticles = articleRepository.GetArticlesByPredicate(article => article.Content.IndexOf(findString, StringComparison.OrdinalIgnoreCase) >= 0);
             }
 
             return allArticles.Select(article => article.ToBllArticle());

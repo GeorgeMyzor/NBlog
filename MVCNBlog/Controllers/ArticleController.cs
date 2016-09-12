@@ -62,7 +62,7 @@ namespace MVCNBlog.Controllers
                 PagingInfo = null
             };
 
-            ViewBag.GroupName = !findedArticles.Any() ? "Nothing was found." : "Finded articles:";
+            ViewBag.GroupName = !findedArticles.Any() ? "Nothing was found." : "";
             
             if (Request.IsAjaxRequest())
             {
@@ -164,7 +164,7 @@ namespace MVCNBlog.Controllers
                 throw httpException;
             }
 
-            if (editingArticle.Author?.Name == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
+            if (editingArticle.Author?.Email == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
                 Roles.IsUserInRole("Administrator"))
             {
                 return View(editingArticle);

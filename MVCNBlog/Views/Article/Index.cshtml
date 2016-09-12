@@ -1,4 +1,5 @@
-﻿@model MVCNBlog.ViewModels.ArticleViewModel
+﻿@using System.Globalization
+@model MVCNBlog.ViewModels.ArticleViewModel
 @{
     ViewBag.Title = "Home Page";
     AjaxOptions ajaxOpts = new AjaxOptions
@@ -33,7 +34,7 @@
 @Html.HighLightTags(Model.Content)
 <br />
 <b>Publication date:</b>
-@Html.DisplayTextFor(modelItem => Model.PublicationDate)
+<p>@Model.PublicationDate.ToString("dd MMMM yyyy", CultureInfo.InvariantCulture)</p>
 <br />
 <b>Author:</b>
 @Html.DisplayTextFor(modelItem => Model.Author.Name)

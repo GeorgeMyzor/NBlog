@@ -1,4 +1,5 @@
-﻿@model MVCNBlog.ViewModels.ListViewModel<MVCNBlog.ViewModels.ArticleViewModel>
+﻿@using System.Globalization
+@model MVCNBlog.ViewModels.ListViewModel<MVCNBlog.ViewModels.ArticleViewModel>
 <div id="allArticles">
     <h2>@ViewBag.GroupName</h2>
 
@@ -9,33 +10,46 @@
             <div class="clearfix post_date floatleft">
                 <div class="date">
                     <h3>@article.PublicationDate.Day</h3>
-                    <p>Month num: @article.PublicationDate.Month</p>
+                    <p>@article.PublicationDate.ToString("MMMM", CultureInfo.InvariantCulture)</p>
                 </div>
             </div>
             <div class="clearfix post_detail">
                 <h2
-                    >@Html.RouteLink(article.Title, "ArticleAction", new { action = "Index", title = article.Title.RemoveSpecialCharacters(), id = article.Id })
+                >@Html.RouteLink(article.Title, "ArticleAction", new {action = "Index", title = article.Title.RemoveSpecialCharacters(), id = article.Id})
                 </h2>
                 <div class="clearfix post-meta">
-                    <p><span><i class="fa fa-user">
-                     @if (article.Author != null)
-                     {
-                         @Html.RouteLink(article.Author.Name, "UserAction", new {action = "Index", name = article.Author.Name, id = article.Author.Id})
-                     }
-                     else
-                     {
-                         @Html.Raw("DELETED")
-                     }
-                    </i></span>
-                    <span><i class="fa fa-comment"></i> @article.Comments.Count()</span></p>
+                    <p>
+                        <span>
+                            <i class="fa fa-user">
+                             @if (article.Author != null)
+                             {
+                                 @Html.RouteLink(article.Author.Name, "UserAction", new {action = "Index", name = article.Author.Name,
+                                id = article.Author.Id})
+                             }
+                             else
+                             {
+                                 @Html.Raw("DELETED")
+                             }
+                            </i>
+                        </span>
+                        <span><i class="fa fa-comment"></i> @article.Comments.Count()</span>
+                    </p>
+                    <p><span><i class="fa fa-article-tags"></i> @Html.Raw(string.Join(", ", article.Tags))</span></p>
                 </div>
                 <div class="clearfix post_excerpt">
-                    <img src="~/content/yellow-blog/images/thumb.png" alt=""/>
+                    <img src="~/content/yellow-blog/images/thumb.png" alt="Preview picture."/>
                     <p>
                         @Html.HighLightTags(article.Header)
                     </p>
-                </div> 
-                @Html.RouteLink("Continue Reading", "ArticleAction", new {action = "Index", title = article.Title.RemoveSpecialCharacters(), id = article.Id})
+                </div>
+                @Html.RouteLink("Continue", "ArticleAction", new {action = "Index", title = article.Title.RemoveSpecialCharacters(), id = article.Id})
+
+                @if (article.Author?.Email == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
+                     Roles.IsUserInRole("Administrator"))
+                {
+                    @Html.RouteLink("Edit Post", "ArticleAction", new {action = "Edit", title = article.Title.RemoveSpecialCharacters(), id = article.Id})
+                    @Html.RouteLink("Delete Post", "ArticleAction", new {action = "Delete", title = article.Title.RemoveSpecialCharacters(), id = article.Id})
+                }
             </div>
         </div>
     }
