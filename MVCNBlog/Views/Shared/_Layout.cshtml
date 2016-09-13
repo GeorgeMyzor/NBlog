@@ -21,58 +21,78 @@
     <link href="~/Content/yellow-blog/style.css" rel="stylesheet" media="screen">
     <link href="~/Content/yellow-blog/responsive.css" rel="stylesheet" media="screen">
 </head>
-<body style="padding: 0;">
-    <section id="header_area">
-        <div class="wrapper header" style="height: 135px">
-            <div class="clearfix header_top">
-                <div class="clearfix logo floatleft">
-                    <a href="@Url.RouteUrl("Main")"><h1><span>N</span> Blog</h1></a>
-                </div>
-                <div class="clearfix search floatright">
-                    @using (Html.BeginForm("Find", "Article"))
-                    {
-                        <input type="text" name="term" id="findArticle" placeholder="Start with # to find by tag." />
-                        <input type="submit" />
-                    }
-                </div>
+<body>
+<section id="header_area">
+    <div class="wrapper header" style="height: 135px">
+        <div class="clearfix header_top">
+            <div class="clearfix logo floatleft">
+                <a href="@Url.RouteUrl("Main")">
+                    <h1><span>N</span> Blog
+                    </h1></a>
             </div>
-            <div class="header_bottom" style="height: 50px">
-                <nav>
-                    <ul id="nav">
-                        <li>@Html.RouteLink("Home", "Main")</li>
-                        <li>@Html.RouteLink("Popular", "AllArticles", new { action = "Popular"})</li>
-                        <li>@Html.RouteLink("Account", "ViewAccount")</li>
-                        <li><a href="">Category</a></li>
-                        <li><a href="">Category</a></li>
-                        <li><a href="">Category</a></li>
-                        <li><a href="">Category</a></li>
-                        <li><a href="">Category</a></li>
-                        <li><a href="">About us</a></li>
-                        <li><a href="">Contact us</a></li>
-                        <li id="dropdown">
-                            <a href="">Drop Down</a>
-                            <ul>
-                                <li><a href="">Category</a></li>
-                                <li><a href="">About us</a></li>
-                                <li><a href="">Contact us</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
+            <div class="clearfix search floatright">
+                @using (Html.BeginForm("Find", "Article"))
+                {
+                    <input type="text" name="term" id="findArticle" placeholder="Start with # to find by tag."/>
+                    <input type="submit"/>
+                }
             </div>
         </div>
-    </section>
+        <div class="header_bottom" style="height: 50px">
+            <nav>
+                <ul id="nav">
+                    <li>@Html.RouteLink("Home", "Main")</li>
+                    <li>@Html.RouteLink("Popular", "AllArticles", new {action = "Popular"})</li>
+                    <li>@Html.RouteLink("Account", "ViewAccount")</li>
+                    <li><a href="">About us</a></li>
+                    <li><a href="">Contact us</a></li>
+                    <li id="dropdown">
+                        <a href="">Drop Down</a>
+                        <ul>
+                            <li><a href="">Category</a></li>
+                            <li><a href="">About us</a></li>
+                            <li><a href="">Contact us</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            @if (!string.IsNullOrEmpty(User.Identity.Name))
+            {
+                <h3 style="float: right">Loggin as @User.Identity.Name</h3>
+            }
+        </div>
+    </div>
+</section>
 
 
-<section style="padding: 0" id="content_area">
+<section id="content_area">
     <div class="clearfix wrapper main_content_area">
         @RenderSection("body", required: false)
         @RenderBody()
     </div>
 </section>
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+<hr/>
+
+<footer>
+    <section id="footer_bottom_area">
+        <div class="clearfix wrapper footer_bottom">
+            <div class="clearfix copyright floatleft">
+                <p> Copyright &copy; All rights reserved by <span>Wpfreeware.com</span></p>
+            </div>
+            <div class="clearfix social floatright">
+                <ul>
+                    <li><a class="tooltip" title="Facebook" href=""><i class="fa fa-facebook-square"></i></a></li>
+                    <li><a class="tooltip" title="Twitter" href=""><i class="fa fa-twitter-square"></i></a></li>
+                    <li><a class="tooltip" title="Google+" href=""><i class="fa fa-google-plus-square"></i></a></li>
+                    <li><a class="tooltip" title="LinkedIn" href=""><i class="fa fa-linkedin-square"></i></a></li>
+                    <li><a class="tooltip" title="tumblr" href=""><i class="fa fa-tumblr-square"></i></a></li>
+                    <li><a class="tooltip" title="Pinterest" href=""><i class="fa fa-pinterest-square"></i></a></li>
+                    <li><a class="tooltip" title="RSS Feed" href=""><i class="fa fa-rss-square"></i></a></li>
+                    <li><a class="tooltip" title="Sitemap" href=""><i class="fa fa-sitemap"></i> </a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</footer>
 </body>
 </html>

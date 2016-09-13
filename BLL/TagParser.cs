@@ -17,7 +17,8 @@ namespace BLL
             
             foreach (var match in matches)
             {
-                tags.Add(match.ToString());
+                if(!tags.Contains(match.ToString()))
+                    tags.Add(match.ToString());
             }
 
             return tags;

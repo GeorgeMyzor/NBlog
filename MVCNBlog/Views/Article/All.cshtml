@@ -16,16 +16,7 @@
         @if (!User.Identity.IsAuthenticated)
         {
             <div class="clearfix newsletter">
-                @using (Html.BeginForm("Login", "Account", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post,
-            new { @class = "form-horizontal", role = "form" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <h2>Signup for newsletter</h2>
-                    @Html.TextBox("Email", null, new { id = "mce-EMAIL", type = "email", placeholder = "Email" })
-                    @Html.TextBox("Password", null, new { id = "mce-TEXT", type = "password", placeholder = "Password" })
-                    @Html.CheckBox("RememberMe")
-                    <input type="submit" value="Submit" id="mc-embedded-subscribe" />
-                }
+                @Html.Partial("_Login")
             </div>
         }
         <div class="clearfix sidebar">

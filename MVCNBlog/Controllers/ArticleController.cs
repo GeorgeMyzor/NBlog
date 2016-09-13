@@ -74,6 +74,7 @@ namespace MVCNBlog.Controllers
 
         #region CRUD
 
+        [HttpGet]
         [AllowAnonymous]
         public ActionResult Index(int? id, string title)
         {
@@ -96,6 +97,7 @@ namespace MVCNBlog.Controllers
             return View(article);
         }
 
+        [HttpGet]
         [AllowAnonymous]
         public ActionResult All(int page = 1)
         {
@@ -231,6 +233,7 @@ namespace MVCNBlog.Controllers
             return View("PopularArticles", popularArticles);
         }
 
+        [AllowAnonymous]
         [ChildActionOnly]
         public ActionResult PopularSide()
         {
@@ -239,6 +242,7 @@ namespace MVCNBlog.Controllers
             return PartialView("PopularArticles", popularArticles);
         }
 
+        [AllowAnonymous]
         [ChildActionOnly]
         public ActionResult RecentSide()
         {

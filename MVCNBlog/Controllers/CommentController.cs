@@ -48,9 +48,15 @@ namespace MVCNBlog.Controllers
                 return RedirectToAction("Index", "Article", new { id });
             }
 
+            if (Request.IsAjaxRequest())
+            {
+                return Json("ModelError", JsonRequestBehavior.AllowGet);
+            }
+
             TempData["CommentError"] = string.Join(" ", ModelState.Values
                                             .SelectMany(v => v.Errors)
                                             .Select(e => e.ErrorMessage));
+
             return RedirectToAction("Index", "Article", new { id });
         }
 

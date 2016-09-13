@@ -4,60 +4,99 @@
     ViewBag.Title = "Home Page";
     AjaxOptions ajaxOpts = new AjaxOptions
     {
-        UpdateTargetId = "tableBody",
-        OnSuccess = "processData",
-        InsertionMode = InsertionMode.Replace
+        OnSuccess = "processData"
     };
 }
-@section scripts {
-    <script type="text/javascript" src="@Url.Content("~/scripts/jquery.unobtrusive-ajax.js")"></script>
+<section id="content_area" style="">
+    <div class="clearfix wrapper main_content_area">
 
-    <script type="text/javascript">
-        function processData(data) {
-            var target = $("#createCommentForm");
-            $(target).each(function () {
-                this.reset();
-            });
-        }
-    </script>
-}
+        <div class="clearfix main_content floatleft">
 
 
-<h2>Article</h2>
-<b>Title:</b>
-@Html.DisplayFor(modelItem => Model.Title)
-<br />
-<b>Header:</b>
-@Html.HighLightTags(Model.Header)
-<br/>
-<b>Content:</b>
-@Html.HighLightTags(Model.Content)
-<br />
-<b>Publication date:</b>
-<p>@Model.PublicationDate.ToString("dd MMMM yyyy", CultureInfo.InvariantCulture)</p>
-<br />
-<b>Author:</b>
-@Html.DisplayTextFor(modelItem => Model.Author.Name)
+            <div class="clearfix content">
 
-@Html.RouteLink("View user", "UserAction", new { action = "Index", name = Model.Author?.Name, id = Model.Author?.Id },
-            new { @class = "btn btn-default" })
-<br />
-<b>Tags:</b>
-@foreach (var tag in Model.Tags)
-{
-    <b> &nbsp;</b> @Html.DisplayFor(modelItem => tag)
-}
+                <h1>@Model.Title </h1>
+                <div class="clearfix post-meta">
+                    <p>
+                        <span>
+                            <i class="fa fa-user"></i>
+                            @if (Model.Author != null)
+                            {
+                                @Html.RouteLink(Model.Author.Name, "UserAction", new
+                                {
+                                    action = "Index",
+                                    name = Model.Author.Name,
+                                    id = Model.Author.Id
+                                })
+                            }
+                            else
+                            {
+                                @Html.Raw("DELETED")
+                            }
+                        </span>
+                        <span>
+                            <i class="fa fa-clock-o"></i>@Model.PublicationDate.ToString("dd MMM yyyy", CultureInfo.InvariantCulture)
+                        </span>
+                        <span><i class="fa fa-comment"></i> @Model.Comments.Count() comments</span> 
+                        <span>
+                            <i class="fa fa-article-tags"></i> @Html.Raw(string.Join(", ", Model.Tags)) 
+                        </span>
+                    </p>
+                </div>
 
-<div id="tableBody">
-    @Html.Partial("Comments", Model.Comments)
-</div>
+                <p>
+                    @Html.HighLightTags(Model.Header)
+                </p>
+
+                <div class="rectangle_large aligncenter"> <!--Header picture--></div>
+
+
+                <p>
+                    @Html.HighLightTags(Model.Content)
+                </p>
+
+                <div class="more_post_container">
+                    <h2>Comments:</h2>
+                    <div class="more_post">
+                        <div id="comments_output">
+                            @Html.Partial("Comments", Model.Comments)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="advertisement_container">
+                    <div class="advertisement">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="clearfix sidebar_container floatright">
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <div class="clearfix newsletter">
+                    @Html.Partial("_Login")
+                </div>
+            }
+            <div class="clearfix sidebar">
+                @Html.Action("PopularSide")
+
+                @Html.Action("RecentSide")
+            </div>
+        </div>
+    </div>
+
+</section>
 
 <br/>
     @using (Ajax.BeginForm("Create","Comment", null, ajaxOpts, new { id = "createCommentForm"}))
     {
         @Html.AntiForgeryToken()
-        <input type="text" name="Content" placeholder="Type to begin..." />
-            <label>@TempData["CommentError"]</label>
+        <textarea cols="94" rows="3" id="comment_input" name="Content" placeholder="Type to begin..."></textarea>
+        <br/>
+            <label id="comment_error">@TempData["CommentError"]</label>
             <input type="hidden" name="ArticleId" value="@Model.Id" />
 
             <div class="form-group">
@@ -79,3 +118,24 @@
         @Html.RouteLink("Back to articles", "AllArticles", new { action = "All" },
     new { @class = "btn btn-default" })
     </div>
+
+@section scripts {
+    <script type="text/javascript" src="@Url.Content("~/scripts/jquery.unobtrusive-ajax.js")"></script>
+
+    <script type="text/javascript">
+        function processData(data) {
+            var target = $("#createCommentForm");
+
+            if (data.toString() === "ModelError") {
+                $('#comment_error').text("Comment should be from 1 to 200 length.");
+            }
+            else {
+                $(target).each(function () {
+                    this.reset();
+                });
+                $('#comments_output').html(data);
+                $('#comment_error').hide();
+            }
+        }
+    </script>
+}

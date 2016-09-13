@@ -1,24 +1,35 @@
-﻿@model IEnumerable<MVCNBlog.ViewModels.CommentViewModel>
+﻿@using System.Globalization
+@model IEnumerable<MVCNBlog.ViewModels.CommentViewModel>
 
 @foreach (var comment in Model)
 {
-    <br />
-        <b> &nbsp; &nbsp; Comment:</b>
-        @Html.DisplayFor(modelItem => comment.Content)
-        <b> &nbsp; &nbsp; Author's comment:</b>
-            @Html.DisplayFor(modelItem => comment.Author.Name)
+    <div id="comment" style="margin-bottom: 10px">
+        <i class="fa fa-user"></i>
+        @if (comment.Author != null)
+        {
+            @Html.RouteLink(comment.Author.Name, "UserAction", new
+            {
+                action = "Index",
+                name = comment.Author.Name,
+                id = comment.Author.Id
+            })
+        }
+        else
+        {
+            @Html.Raw("DELETED")
+        }
+        <p style="text-indent: 17px;"><span style="display: block;">@Html.DisplayFor(modelItem => comment.Content)</span></p>
 
-            @Html.RouteLink("View user", "UserAction", new { action = "Index", name = comment.Author?.Name, id = comment.Author?.Id },
-            new { @class = "btn btn-default" })
-            <b> &nbsp; &nbsp; Publication time:</b>
-            @Html.DisplayFor(modelItem => comment.PublicationDate)
 
-    if (User.IsInRole("Administrator"))
-    {
+        <b> &nbsp; &nbsp; <i class="fa fa-clock-o"></i></b>@comment.PublicationDate.ToString("dd MMM yyyy", CultureInfo.InvariantCulture)
+
+        @if (User.IsInRole("Administrator"))
+        {
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                @Html.RouteLink("Edit comment", "CommentAction", new { id = comment.Id }, new { @class = "btn btn-default" })
+                @Html.RouteLink("Edit comment", "CommentAction", new {id = comment.Id}, new {@class = "btn btn-default"})
             </div>
         </div>
-    }
+        }
+    </div>
 }

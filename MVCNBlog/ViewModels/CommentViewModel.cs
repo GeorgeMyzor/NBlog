@@ -10,8 +10,8 @@ namespace MVCNBlog.ViewModels
     public class CommentViewModel
     {
         public int Id { get; set; }
-        [Required(ErrorMessage = "Comment should be from 1 to 100 length.")]
-        [StringLength(100, MinimumLength = 1, ErrorMessage = "Comment should be from 1 to 100 length.")]
+        [Required(ErrorMessage = "Comment should be from 1 to 200 length.")]
+        [StringLength(200, MinimumLength = 1, ErrorMessage = "Comment should be from 1 to 200 length.")]
         public string Content { get; set; }
         public int ArticleId { get; set; }
         public DateTime PublicationDate { get; set; }

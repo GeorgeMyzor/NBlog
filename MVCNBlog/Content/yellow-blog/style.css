@@ -1,22 +1,14 @@
-/*
-Template Name: Yellow Blog
-Template URI: http://www.wpfreeware.com/yellow-blog/
-Author: WpFreeware
-Author URI: http://www.wpfreeware.com
-Description: A Pro bloging responsive website template
-Version: 1.0 
-License: GPL 2.0 or Later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
-
-*/
-
-
 *{margin:0;padding:0}
+html, body {
+    height: 100%;
+}
 body{font-family:Arial;
-    font-size:14px;line-height:20px}
+    font-size:14px;line-height: 20px;
+    padding: 0;
+}
 a{text-decoration:none;color:#000;}
 a:hover{text-decoration:none}
-input[type=text],input[type=password],input[type=submit],textarea{border:1px solid #ddd;padding:5px;outline:0;}
+input[type=text],input[type=submit],textarea{border:1px solid #ddd;padding:5px;outline:0;}
 h1,h2,h3,h4,h5,h6{font-weight:normal;margin:0 0 15px;font-family: 'Oswald', sans-serif;}
 h2 {font-size:25px;line-height:30px}
 img{max-width:100%;height:auto;border:none}
@@ -40,11 +32,13 @@ ul,ol{margin:0;padding:0;list-style:none;}
 /* home page style */
 #header_area{background: url("images/header_bg.png") repeat-x scroll 0 0 #000;}
 #content_area{background: url("images/body_top_bg.png") repeat-x scroll center top #fff;
-padding-top: 25px;}
+padding-top: 7px;
+min-height: 78.777%;}
 #footer_top_area{background: none repeat scroll 0 0 #171716;
 margin-top: 25px;
 padding: 20px 0;
-border-top: 5px solid #FFD500;}
+border-top: 5px solid #FFD500;
+}
 #footer_bottom_area{padding:15px 0px;background:#222;}
 .header{}
 .header_top{padding: 15px 0;}
@@ -125,7 +119,9 @@ margin-right: 10px;}
 .slider{background: url("images/slider_bg.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
 margin-bottom: 35px;
 padding: 5px;}
-.content{}
+.content>p {
+    text-indent: 30px;
+}
 .content_title {background: url("images/latest_post_bg.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
 height: 73px;
 margin-bottom: 15px;}
@@ -194,6 +190,7 @@ margin-bottom: 25px;}
 .newsletter form > h2,.newsletter > h2{text-transform: uppercase;
 font-size: 16px ;
 font-weight: bold;}
+.newsletter form > h3{ display: inline;}
 .newsletter form input[type=text]{height: 25px;
 width: 250px;
 margin-bottom: 15px;
@@ -210,6 +207,15 @@ box-shadow: inset 0px 0px 50px 0px #999999;
 -webkit-box-shadow: inset 0px 0px 50px 0px #999999;
 -moz-box-shadow: inset 0px 0px 50px 0px #999999;
 -o-box-shadow: inset 0px 0px 50px 0px #999999;}
+.newsletter input[type=password]{border: 1px solid #ddd;
+height: 35px;
+padding-left: 5px;
+width: 257px;
+margin-bottom:15px;
+box-shadow: inset 0px 0px 50px 0px #999999;
+-webkit-box-shadow: inset 0px 0px 50px 0px #999999;
+-moz-box-shadow: inset 0px 0px 50px 0px #999999;
+-o-box-shadow: inset 0px 0px 50px 0px #999999;}
 .newsletter form input[type=submit]{
 background: url("images/nav_right.png") no-repeat scroll 90px 6px #ffd500;
 border: medium none;
@@ -217,7 +223,32 @@ font-family: oswald light;
 font-size: 14px;
 padding: 8px;
 text-transform: uppercase;
+margin-top: 5px;
 width: 120px;cursor:pointer;}
+.signup {
+    border: none;
+    display: block;
+    position: relative;
+    margin-top: 40px;
+    left: 40%;
+    transform: scale(1.2);
+}
+.signup form input[type=email], input[type=password]{
+    display: block;
+}
+
+.newsletter form a {
+    display: inline-block;
+background: url("images/nav_right.png") no-repeat scroll 90px 6px #ffd500;
+border: medium none;
+font-family: oswald light;
+font-size: 14px;
+padding: 6.4px;
+    padding-left: 15px;
+text-transform: uppercase;
+margin-top: 5px;
+width: 110px;cursor:pointer;}
+
 .sidebar{}
 .single_sidebar > h2{}
 .single_sidebar{background: url("images/slider_bg.png") repeat scroll 0 0 rgba(0, 0, 0, 0);padding: 10px;margin-bottom:25px;}
@@ -333,6 +364,7 @@ margin-top: 10px;
 padding: 10px;
 background: #f5f5f5;}
 .more_post_container{border: 1px solid #ddd;
+    margin-top: 20px;
 border-radius: 5px;
 box-shadow: 0 1px 5px 0 #ddd;
 padding: 10px;}
@@ -342,7 +374,7 @@ padding: 5px;}
 .more_post{background: none repeat scroll 0 0 #f5f5f5;
 border-left: 5px solid #ddd;
 padding: 10px 5px;}
-.more_post a{display: block;
+.more_post a{
 margin-bottom: 2px;color:#000}
 .more_post a:hover{color:#FFD500;font-weight:bold;}
 .advertisement_container{}
