@@ -72,7 +72,7 @@ namespace MVCNBlog.Controllers
                 throw httpException;
             }
 
-            if (editingComment.Author?.Name == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
+            if (editingComment.Author?.Email == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
                 Roles.IsUserInRole("Administrator"))
             {
                 return View("Index", editingComment);

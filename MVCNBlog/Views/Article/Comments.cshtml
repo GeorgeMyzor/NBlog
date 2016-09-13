@@ -23,13 +23,14 @@
 
         <b> &nbsp; &nbsp; <i class="fa fa-clock-o"></i></b>@comment.PublicationDate.ToString("dd MMM yyyy", CultureInfo.InvariantCulture)
 
-        @if (User.IsInRole("Administrator"))
+        @if (comment.Author?.Email == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
+             Roles.IsUserInRole("Administrator"))
         {
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                @Html.RouteLink("Edit comment", "CommentAction", new {id = comment.Id}, new {@class = "btn btn-default"})
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.RouteLink("Edit comment", "CommentAction", new {id = comment.Id})
+                </div>
             </div>
-        </div>
         }
     </div>
 }

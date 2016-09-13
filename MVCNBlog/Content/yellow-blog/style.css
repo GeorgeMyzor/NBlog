@@ -85,6 +85,10 @@ padding: 0;}
 font-family: oswald;
 font-size: 15px;
 padding: 5px 15px;}
+.header_bottom ul li h3{display: block;
+font-family: oswald;
+font-size: 15px;
+padding: 5px 15px;}
 .header_bottom ul li a:hover{background:#f5f5f5 url(images/menu_item.png) no-repeat scroll left center;
 -webkit-transition: background 300ms ease-in;
 -moz-transition: background 300ms ease-in;
@@ -193,7 +197,7 @@ font-weight: bold;}
 .newsletter form > h3{ display: inline;}
 .newsletter form input[type=text]{height: 25px;
 width: 250px;
-margin-bottom: 15px;
+margin-bottom: 5px;
 box-shadow: inset 0px 0px 50px 0px #999999;
 -webkit-box-shadow: inset 0px 0px 50px 0px #999999;
 -moz-box-shadow: inset 0px 0px 50px 0px #999999;
@@ -202,7 +206,7 @@ box-shadow: inset 0px 0px 50px 0px #999999;
 height: 35px;
 padding-left: 5px;
 width: 257px;
-margin-bottom:15px;
+margin-bottom:6px;
 box-shadow: inset 0px 0px 50px 0px #999999;
 -webkit-box-shadow: inset 0px 0px 50px 0px #999999;
 -moz-box-shadow: inset 0px 0px 50px 0px #999999;
@@ -211,7 +215,7 @@ box-shadow: inset 0px 0px 50px 0px #999999;
 height: 35px;
 padding-left: 5px;
 width: 257px;
-margin-bottom:15px;
+margin-bottom:5px;
 box-shadow: inset 0px 0px 50px 0px #999999;
 -webkit-box-shadow: inset 0px 0px 50px 0px #999999;
 -moz-box-shadow: inset 0px 0px 50px 0px #999999;
@@ -236,7 +240,22 @@ width: 120px;cursor:pointer;}
 .signup form input[type=email], input[type=password]{
     display: block;
 }
-
+.regester{
+    border: none;
+    display: block;
+    position: relative;
+    margin-top: 40px;
+    left: 40%;
+    transform: scale(1.2);
+}
+.regester form input[type=email], input[type=password]{
+    display: block;
+    margin-bottom: 0;
+}
+.regester form input[type=text] {
+    display: block;
+    margin-bottom: 0;
+}
 .newsletter form a {
     display: inline-block;
 background: url("images/nav_right.png") no-repeat scroll 90px 6px #ffd500;
@@ -495,3 +514,9 @@ font-size: 18px;
 padding: 10px 40px;
 font-family: oswald;}
 .contact_us form input.wpcf7-submit:hover{background:#FFD500;color:#000;}
+
+/*validation*/
+.text-danger {
+    margin-top: -10px;
+    color: red;
+}

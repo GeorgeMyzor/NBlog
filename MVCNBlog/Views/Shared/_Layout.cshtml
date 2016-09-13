@@ -44,6 +44,7 @@
                     <li>@Html.RouteLink("Home", "Main")</li>
                     <li>@Html.RouteLink("Popular", "AllArticles", new {action = "Popular"})</li>
                     <li>@Html.RouteLink("Account", "ViewAccount")</li>
+                    <li>@Html.RouteLink("Create", "AllArticles", new {action = "Create"})</li>
                     <li><a href="">About us</a></li>
                     <li><a href="">Contact us</a></li>
                     <li id="dropdown">
@@ -54,12 +55,29 @@
                             <li><a href="">Contact us</a></li>
                         </ul>
                     </li>
+                    @if (!string.IsNullOrEmpty(User.Identity.Name))
+                    {
+                        <li style="float: right; display: inline">
+                            @Html.RouteLink("Logoff", "AuthAction", new {action = "Logoff"})
+                        </li>
+
+                        <li style="float: right; display: inline">
+                            <h3>Loggin as @User.Identity.Name</h3>
+                        </li>
+                    }
+                    else
+                    {
+                        <li style="float: right; display: inline">
+                            @Html.RouteLink("Login", "AuthAction", new {action = "Login"})
+                        </li>
+
+                        <li style="float: right; display: inline">
+                            @Html.RouteLink("Register", "AuthAction", new { action = "Register" })
+                        </li>
+                    }
                 </ul>
+
             </nav>
-            @if (!string.IsNullOrEmpty(User.Identity.Name))
-            {
-                <h3 style="float: right">Loggin as @User.Identity.Name</h3>
-            }
         </div>
     </div>
 </section>
@@ -77,7 +95,7 @@
     <section id="footer_bottom_area">
         <div class="clearfix wrapper footer_bottom">
             <div class="clearfix copyright floatleft">
-                <p> Copyright &copy; All rights reserved by <span>Wpfreeware.com</span></p>
+                <p> Copyright &copy; All rights reserved by <span>Me</span></p>
             </div>
             <div class="clearfix social floatright">
                 <ul>

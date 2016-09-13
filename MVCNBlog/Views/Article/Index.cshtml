@@ -54,6 +54,15 @@
                 <p>
                     @Html.HighLightTags(Model.Content)
                 </p>
+                
+                @if (Model.Author?.Email == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
+                 Roles.IsUserInRole("Administrator"))
+                {
+                    @Html.RouteLink("Edit article", "ArticleAction", new { action = "Edit", title = Model.Title, id = Model.Id },
+                        new { @class = "btn" })
+                    @Html.RouteLink("Delete article", "ArticleAction", new { action = "Delete", title = Model.Title, id = Model.Id },
+                        new { @class = "btn" })
+                }
 
                 <div class="more_post_container">
                     <h2>Comments:</h2>
@@ -61,12 +70,6 @@
                         <div id="comments_output">
                             @Html.Partial("Comments", Model.Comments)
                         </div>
-                    </div>
-                </div>
-
-                <div class="advertisement_container">
-                    <div class="advertisement">
-
                     </div>
                 </div>
 
@@ -106,11 +109,7 @@
             </div>
     }
 
-    <br />
-    @Html.RouteLink("Edit article", "ArticleAction", new { action = "Edit", title = Model.Title, id = Model.Id },
-    new { @class = "btn btn-default" })
-    @Html.RouteLink("Delete article", "ArticleAction", new { action = "Delete", title = Model.Title, id = Model.Id },
-    new { @class = "btn btn-default" })
+<br/>
 
     <br />
 

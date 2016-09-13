@@ -32,9 +32,11 @@ namespace MVCNBlog.Infrastructure.Helpers
 
             foreach (var match in matches)
             {
+                if(tags.Contains(match.ToString()))
+                    continue;
                 tags.Add(match.ToString());
 
-                string newTag = match.ToString().SurroundWith("<span style=\"background-color: #ffd500;\">", "</span>");
+                string newTag = match.ToString().SurroundWith("<span style=\"background-color: #C0C0C0;\">", "</span>");
                 hightlightedTags.Add(newTag);
             }
 
