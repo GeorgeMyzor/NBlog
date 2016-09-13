@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using MVCNBlog.Infrastructure.ValidationAttributes;
@@ -26,6 +27,7 @@ namespace MVCNBlog.ViewModels.User
         [Remote("ValidatePassword", "User")]
         [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Passwords must match")]
         [DataType(DataType.Password)]
+        [DisplayName("Confrim password")]
         public string ConfirmPassword { get; set; }
 
         public byte[] UserPic { get; set; }

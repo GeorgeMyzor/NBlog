@@ -251,7 +251,7 @@ width: 120px;cursor:pointer;}
     display: block;
     position: relative;
     margin-top: 40px;
-    left: 40%;
+    left: 44%;
     transform: scale(1.2);
 }
 .regester form input[type=email], input[type=password]{
@@ -525,4 +525,13 @@ font-family: oswald;}
 .text-danger {
     margin-top: -10px;
     color: red;
+}
+
+#roles {
+    border: 1px solid #ddd;
+    height: 35px;
+    padding-left: 5px;
+    width: 265px;
+    margin-bottom: 5px;
+    -webkit-box-shadow: inset 0px 0px 50px 0px #999999;
 }

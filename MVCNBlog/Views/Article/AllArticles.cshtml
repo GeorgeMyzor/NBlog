@@ -1,7 +1,7 @@
 ﻿@using System.Globalization
-@model MVCNBlog.ViewModels.ListViewModel<MVCNBlog.ViewModels.ArticleViewModel>
+@model IEnumerable<MVCNBlog.ViewModels.ArticleViewModel>
 <div id="allArticles">
-    @foreach (var article in Model.ViewModels)
+    @foreach (var article in Model)
     {
         <div class="clearfix single_content">
             <div class="clearfix post_date floatleft">
@@ -51,12 +51,5 @@
         </div>
     }
 
-    <div class="pagination pager">
-        <nav>
-            <ul>
-                @Html.PageLinks(Model.PagingInfo, x => Url.RouteUrl("PagedArticles", new { page = x }))
-            </ul>
-        </nav>
-    </div>
 </div>
 
