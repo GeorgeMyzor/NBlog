@@ -28,7 +28,7 @@
         {
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    @Html.RouteLink("Edit comment", "CommentAction", new {id = comment.Id})
+                    <i class="fa fa-cog"></i>@Html.RouteLink("Edit", "CommentAction", new { action = "Edit", id = comment.Id })
                 </div>
             </div>
         }

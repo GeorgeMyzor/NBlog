@@ -1,5 +1,4 @@
-﻿@using MVCNBlog.ViewModels.User
-@model MVCNBlog.ViewModels.ListViewModel<MVCNBlog.ViewModels.ArticleViewModel>
+﻿@model MVCNBlog.ViewModels.ListViewModel<MVCNBlog.ViewModels.ArticleViewModel>
 
 @{
     ViewBag.Title = "All";
@@ -18,7 +17,7 @@
         @if (!User.Identity.IsAuthenticated)
         {
             <div class="clearfix newsletter">
-                @Html.Partial("_Login", new LoginUserViewModel())
+                @Html.Partial("_Login", null)
             </div>
         }
         <div class="clearfix sidebar">
@@ -27,7 +26,6 @@
             @Html.Action("RecentSide")
         </div>
     </div>
-
 </div>
 
 

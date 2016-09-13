@@ -119,7 +119,9 @@ transition: all .3s ease 0s;-moz-transition: all .3s ease 0s;-webkit-transition:
 
 .main_content_area{}
 .main_content{width: 690px;
-margin-right: 10px;}
+margin-right: 10px;
+margin-bottom: 28px;
+}
 .slider{background: url("images/slider_bg.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
 margin-bottom: 35px;
 padding: 5px;}
@@ -138,6 +140,10 @@ text-transform: uppercase;}
 padding-bottom: 15px;
 border-bottom: 3px solid #E7E7E7;}
 .single_content:last-child{border-bottom:none;}
+.user_picture {background: none repeat scroll 0 0 #c3c3c3;
+margin-right: 10px;
+padding: 5px;
+}
 .post_date{background: none repeat scroll 0 0 #c3c3c3;
 width: 80px;
 margin-right: 10px;
@@ -272,7 +278,7 @@ width: 110px;cursor:pointer;}
 .single_sidebar > h2{}
 .single_sidebar{background: url("images/slider_bg.png") repeat scroll 0 0 rgba(0, 0, 0, 0);padding: 10px;margin-bottom:25px;}
 .sidebar_title{background: url("images/title_down.png") no-repeat scroll 12px 45px rgba(0, 0, 0, 0);
-height: 73px;margin-bottom:15px;}
+height: 73px;margin-bottom:4px;}
 .sidebar_title > h2{background: none repeat scroll 0 0 #222222;
 color: #fff;
 font-size: 16px;

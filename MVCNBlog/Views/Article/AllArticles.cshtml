@@ -1,11 +1,8 @@
 ﻿@using System.Globalization
 @model MVCNBlog.ViewModels.ListViewModel<MVCNBlog.ViewModels.ArticleViewModel>
 <div id="allArticles">
-    <h2>@ViewBag.GroupName</h2>
-
     @foreach (var article in Model.ViewModels)
     {
-
         <div class="clearfix single_content">
             <div class="clearfix post_date floatleft">
                 <div class="date">

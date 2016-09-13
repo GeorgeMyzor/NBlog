@@ -297,3 +297,43 @@
    в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
    в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
    в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) D:\VS Projects\NBlog\MVCNBlog\Views\Shared\_Login.cshtml(8): error CS1963: An expression tree may not contain a dynamic operation
+2016-09-13 20:57:31.3547 Error Message: System.InvalidOperationException: The model item passed into the dictionary is of type 'MVCNBlog.ViewModels.ArticleViewModel', but this dictionary requires a model item of type 'MVCNBlog.ViewModels.User.LoginUserViewModel'.
+   в System.Web.Mvc.ViewDataDictionary`1.SetModel(Object value)
+   в System.Web.Mvc.ViewDataDictionary..ctor(ViewDataDictionary dictionary)
+   в System.Web.Mvc.WebViewPage`1.SetViewData(ViewDataDictionary viewData)
+   в System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   в System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
+   в ASP._Page_Views_Article_Index_cshtml.Execute() в D:\VS Projects\NBlog\MVCNBlog\Views\Article\Index.cshtml:строка 83
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   в System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   в System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   в System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) The model item passed into the dictionary is of type 'MVCNBlog.ViewModels.ArticleViewModel', but this dictionary requires a model item of type 'MVCNBlog.ViewModels.User.LoginUserViewModel'.
+2016-09-13 21:09:05.5914 Warn Message: A public action method 'Create' was not found on controller 'MVCNBlog.Controllers.CommentController'. 
+2016-09-13 21:13:32.8107 Warn Message: Page not found. 
+2016-09-13 21:13:35.3439 Warn Message: Page not found. 
+2016-09-13 21:13:37.8290 Warn Message: Page not found. 
+2016-09-13 21:13:41.7282 Warn Message: Page not found. 
+2016-09-13 21:13:46.7095 Warn Message: Page not found. 
+2016-09-13 21:13:47.2596 Warn Message: Page not found. 
+2016-09-13 21:13:48.9007 Warn Message: Page not found. 
+2016-09-13 21:13:49.8427 Warn Message: Page not found. 
+2016-09-13 21:13:50.0237 Warn Message: Page not found. 
+2016-09-13 21:13:51.3648 Warn Message: Page not found. 
+2016-09-13 21:15:06.8961 Warn Message: No permissions 
+2016-09-13 22:34:01.3639 Warn Message: Page not found. 

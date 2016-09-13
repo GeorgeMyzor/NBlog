@@ -6,7 +6,13 @@
 
 
 <div id="allPage">
-    @Html.Partial("AllUsers", Model)
+    <div class="clearfix main_content floatleft" style="width: 100%">
+        <div class="clearfix content">
+                <h1 style="text-align: center">All users</h1>
+            @Html.Partial("AllUsers", Model)
+        </div>
+    </div>
+    
 
     @Html.RouteLink("Create user", "AllUsers", new {action = "Create"}, new {@class = "btn btn-default"})
 </div>
@@ -37,7 +43,7 @@
                     type: "GET",
                     success: function(data) {
 
-                        $('#allPage').html(data);
+                        $('#allPage').replaceWith(data);
                         window.history.pushState("all users", "", "/users/page" + newVal);
 
                     },

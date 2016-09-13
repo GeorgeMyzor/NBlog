@@ -1,40 +1,56 @@
 ﻿@using MVCNBlog.ViewModels.Roles
 @model MVCNBlog.ViewModels.ListViewModel<MVCNBlog.ViewModels.User.UserViewModel>
 
-<div id="allArticles">
-    <h2>All users</h2>
     @foreach (var item in Model.ViewModels)
     {
         @Html.HiddenFor(modelItem => item.Id)
-        <a style="color: black; text-decoration: none" href="@Url.RouteUrl("UserAction", new {action = "Index", name = item.Name, id = item.Id})">
-            @Html.Raw("<img style='width:80px; height:60px;' src=\"data:image/jpeg;base64,"
-                      + Convert.ToBase64String(item.UserPic) + "\" />")
 
-            <b>User name:</b>
-            @Html.DisplayFor(modelItem => item.Name)
-        </a>
+        <div class="clearfix single_content">
+            <div class="clearfix user_picture floatleft">
+                <a href="@Url.RouteUrl("UserAction", new {action = "Index", name = item.Name, id = item.Id})">
+                    @Html.Raw("<img style='width:100px; height:100px;' src=\"data:image/jpeg;base64,"
+                              + Convert.ToBase64String(item.UserPic) + "\" />")
+                </a>
 
-        <br/>
-        <b>Creation date:</b>
-        @Html.DisplayTextFor(modelItem => item.CreationDate)
-
-        @Html.RouteLink("View user", "UserAction", new {action = "Index", name = item.Name, id = item.Id},
-            new {@class = "btn btn-default"})
-
-        <b> &nbsp; &nbsp; Role:</b>
-        @Html.DisplayFor(modelItem => item.Role.RoleName)
-
-        if (item.PayedRole != null)
-        {
-            <br/>
-            <b> &nbsp; &nbsp; Payed role:</b>
-            @Html.DisplayTextFor(modelItem => ((IRole) item.PayedRole).RoleName)
-        }
-        <br/>
+            </div>
+            <div class="clearfix post_detail">
+                <div class="clearfix post_excerpt">
+                    <p>
+                        <b>User name:</b>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </p>
+                    <p>
+                        <b>Creation date:</b>
+                        @Html.DisplayTextFor(modelItem => item.CreationDate)
+                    </p>
+                    <p>
+                        <b>Rank:</b>
+                        @Html.DisplayTextFor(modelItem => item.Rank)
+                    </p>
+                    <p>
+                        <b>Role:</b>
+                        @Html.DisplayFor(modelItem => item.Role.RoleName)
+                    </p>
+                    @if (item.PayedRole != null)
+                    {
+                        <p>
+                            <b> Payed role:</b>
+                            @Html.DisplayTextFor(modelItem => ((IRole) item.PayedRole).RoleName)
+                        </p>
+                    }
+                    <p>
+                        <i style="text-indent: 0px" class="fa fa-user"></i>@Html.RouteLink("View", "UserAction", new { action = "Index", name = item.Name, id = item.Id })
+                    </p>
+                </div>
+            </div>
+        </div>
     }
 
-    <div class="pager">
-        @Html.PageLinks(Model.PagingInfo, x => Url.Action("All", new {page = x}))
+    <div class="pagination pager">
+        <nav>
+            <ul>
+                @Html.PageLinks(Model.PagingInfo, x => Url.RouteUrl("PagedUsers", new { page = x }))
+            </ul>
+        </nav>
     </div>
-</div>
 

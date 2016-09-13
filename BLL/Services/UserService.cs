@@ -47,22 +47,37 @@ namespace BLL.Services
 
         public BllUser GetUserEntity(string name)
         {
-            return userRepository.GetByPredicate(user => user.Name == name)?.ToBllUser();
+            var user = userRepository.GetByPredicate(dalUser => dalUser.Name == name)?.ToBllUser();
+            if (user != null)
+            {
+                int userActivity = userRepository.GetUserActivity(user.Id);
+                user.Rank = RankDistributor.GetRank(userActivity);
+                user.Articles =
+                    articleRepository.GetArticlesByPredicate(article => article.AuthorId == user.Id)
+                        .Select(dalArticle => dalArticle.ToBllArticle());
+            }
+
+            return user;
         }
 
         public BllUser GetUserEntityByEmail(string email)
         {
-            return userRepository.GetByPredicate(user => user.Email == email)?.ToBllUser();
+            return userRepository.GetByPredicate(dalUser => dalUser.Email == email)?.ToBllUser();
         }
 
         public IEnumerable<BllUser> GetAllUserEntities()
         {
-            return userRepository.GetAll().Select(user => user.ToBllUser());
+            return userRepository.GetAll().Select(dalUser => dalUser.ToBllUser());
         }
 
         public IEnumerable<BllUser> GetPagedUsers(int pageNum, int pageSize)
         {
-            return userRepository.GetPagedUsers(pageNum, pageSize).Select(dalUser => dalUser.ToBllUser());
+            return userRepository.GetPagedUsers(pageNum, pageSize).Select(dalUser => {
+                var bllUser = dalUser.ToBllUser();
+                int userActivity = userRepository.GetUserActivity(dalUser.Id);
+                bllUser.Rank = RankDistributor.GetRank(userActivity);
+                return bllUser;
+            });
         }
 
         public void CreateUser(BllUser user)
