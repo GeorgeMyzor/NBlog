@@ -765,3 +765,91 @@
 2016-09-15 20:08:40.7040 Warn Message: Page not found. 
 2016-09-15 20:08:41.0910 Warn Message: Page not found. 
 2016-09-15 20:08:41.2840 Warn Message: Page not found. 
+2016-09-15 22:50:52.7526 Warn Message: Page not found. 
+2016-09-15 22:51:46.1716 Error Message: System.ArgumentException: Value cannot be null or empty.
+Имя параметра: name
+   в System.Web.Mvc.Html.InputExtensions.InputHelper(HtmlHelper htmlHelper, InputType inputType, ModelMetadata metadata, String name, Object value, Boolean useViewData, Boolean isChecked, Boolean setId, Boolean isExplicitValue, String format, IDictionary`2 htmlAttributes)
+   в System.Web.Mvc.Html.InputExtensions.HiddenHelper(HtmlHelper htmlHelper, ModelMetadata metadata, Object value, Boolean useViewData, String expression, IDictionary`2 htmlAttributes)
+   в System.Web.Mvc.Html.InputExtensions.Hidden(HtmlHelper htmlHelper, String name, Object value, Object htmlAttributes)
+   в ASP._Page_Views_Article_All_cshtml.Execute() в D:\VS Projects\NBlog\MVCNBlog\Views\Article\All.cshtml:строка 40
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   в System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   в System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   в System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) Value cannot be null or empty.
+Имя параметра: name
+2016-09-15 22:55:11.3714 Warn Message: Page not found. 
+2016-09-15 22:55:11.4234 Warn Message: Page not found. 
+2016-09-15 22:55:11.8494 Warn Message: Page not found. 
+2016-09-15 22:55:12.0644 Warn Message: Page not found. 
+2016-09-15 22:55:12.1734 Warn Message: Page not found. 
+2016-09-15 23:01:17.0003 Warn Message: Page not found. 
+2016-09-15 23:01:18.4184 Warn Message: Page not found. 
+2016-09-15 23:01:19.6424 Warn Message: Page not found. 
+2016-09-15 23:01:20.7095 Warn Message: Page not found. 
+2016-09-15 23:01:22.0006 Warn Message: Page not found. 
+2016-09-15 23:01:24.0567 Warn Message: Page not found. 
+2016-09-15 23:01:30.3381 Warn Message: Page not found. 
+2016-09-15 23:01:40.1716 Warn Message: Page not found. 
+2016-09-15 23:01:44.8629 Warn Message: Page not found. 
+2016-09-15 23:02:03.4510 Warn Message: Page not found. 
+2016-09-15 23:04:38.8898 Warn Message: Page not found. 
+2016-09-15 23:04:40.2639 Warn Message: Page not found. 
+2016-09-15 23:05:51.6650 Warn Message: Page not found. 
+2016-09-15 23:06:27.1350 Warn Message: Page not found. 
+2016-09-15 23:07:23.0512 Warn Message: Page not found. 
+2016-09-15 23:07:29.1136 Warn Message: Page not found. 
+2016-09-15 23:08:04.6526 Warn Message: Page not found. 
+2016-09-15 23:08:50.0792 Warn Message: Page not found. 
+2016-09-15 23:11:43.4841 Warn Message: Page not found. 
+2016-09-15 23:14:58.4183 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:14:58.4183 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:14:59.0113 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:14:59.5033 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:14:59.5033 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:14:59.5033 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:14:59.5763 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:15:00.3044 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:15:00.3224 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:15:01.1414 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:15:01.7805 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:15:02.2925 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:15:02.6535 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:15:06.6457 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:15:07.6798 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:15:07.8588 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:15:08.2158 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:15:08.4109 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:15:08.5779 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:15:08.9059 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:15:09.2539 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:15:09.4359 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:15:09.5759 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:15:09.7859 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:15:09.9719 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:15:10.1459 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:15:10.4830 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:15:10.6680 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:15:16.0803 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:15:16.0913 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:15:17.3284 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:15:18.2514 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:15:18.9315 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:15:19.5755 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:15:19.7705 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-15 23:15:19.9485 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 

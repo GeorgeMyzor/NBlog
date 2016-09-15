@@ -9,7 +9,7 @@
         {
             @Html.RouteLink(comment.Author.Name, "UserAction", new
             {
-                action = "Index",
+                action = "index",
                 name = comment.Author.Name,
                 id = comment.Author.Id
             })
@@ -28,7 +28,7 @@
         {
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <i class="fa fa-cog"></i>@Html.RouteLink("Edit", "CommentAction", new { action = "Edit", id = comment.Id })
+                    <i class="fa fa-cog"></i>@Html.RouteLink("Edit", "CommentAction", new { action = "edit", id = comment.Id })
                 </div>
             </div>
         }

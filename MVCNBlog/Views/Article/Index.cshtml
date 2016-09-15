@@ -24,7 +24,7 @@
                             {
                                 @Html.RouteLink(Model.Author.Name, "UserAction", new
                            {
-                               action = "Index",
+                               action = "index",
                                name = Model.Author.Name,
                                id = Model.Author.Id
                            })
@@ -63,9 +63,9 @@
                 @if (Model.Author?.Email == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
                  Roles.IsUserInRole("Administrator"))
                 {
-                    @Html.RouteLink("Edit article", "ArticleAction", new { action = "Edit", title = Model.Title, id = Model.Id },
+                    @Html.RouteLink("Edit article", "ArticleAction", new { action = "edit", title = Model.Title, id = Model.Id },
                         new { @class = "btn" })
-                    @Html.RouteLink("Delete article", "ArticleAction", new { action = "Delete", title = Model.Title, id = Model.Id },
+                    @Html.RouteLink("Delete article", "ArticleAction", new { action = "delete", title = Model.Title, id = Model.Id },
                         new { @class = "btn" })
                 }
 

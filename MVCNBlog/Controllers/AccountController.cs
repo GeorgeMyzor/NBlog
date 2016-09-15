@@ -31,8 +31,7 @@ namespace MVCNBlog.Controllers
             var currentAccount = service.GetAccountEntity(User.Identity.Name).ToMvcAccount();
             if (currentAccount == null)
             {
-                string outputString = $"Account wasn't found.";
-                var httpException = new HttpException(404, outputString);
+                var httpException = new HttpException(404, "Account wasn't found.");
                 throw httpException;
             }
 
@@ -80,6 +79,7 @@ namespace MVCNBlog.Controllers
 
                 ModelState.AddModelError("", "Incorrect login or password.");
             }
+
             return View(viewModel);
         }
 

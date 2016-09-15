@@ -12,7 +12,7 @@
             </div>
             <div class="clearfix post_detail">
                 <h2
-                >@Html.RouteLink(article.Title, "ArticleAction", new {action = "Index", title = article.Title.RemoveSpecialCharacters(), id = article.Id})
+                >@Html.RouteLink(article.Title, "ArticleAction", new {action = "index", title = article.Title.RemoveSpecialCharacters(), id = article.Id})
                 </h2>
                 <div class="clearfix post-meta">
                     <p>
@@ -20,7 +20,7 @@
                             <i class="fa fa-user">
                              @if (article.Author != null)
                              {
-                                 @Html.RouteLink(article.Author.Name, "UserAction", new {action = "Index", name = article.Author.Name,
+                                 @Html.RouteLink(article.Author.Name, "UserAction", new {action = "index", name = article.Author.Name,
                                 id = article.Author.Id})
                              }
                              else
@@ -43,13 +43,13 @@
                         @Html.HighLightTags(article.Header)
                     </p>
                 </div>
-                @Html.RouteLink("Continue", "ArticleAction", new {action = "Index", title = article.Title.RemoveSpecialCharacters(), id = article.Id})
+                @Html.RouteLink("Continue", "ArticleAction", new {action = "index", title = article.Title.RemoveSpecialCharacters(), id = article.Id})
 
                 @if (article.Author?.Email == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
                      Roles.IsUserInRole("Administrator"))
                 {
-                    @Html.RouteLink("Edit Post", "ArticleAction", new {action = "Edit", title = article.Title.RemoveSpecialCharacters(), id = article.Id})
-                    @Html.RouteLink("Delete Post", "ArticleAction", new {action = "Delete", title = article.Title.RemoveSpecialCharacters(), id = article.Id})
+                    @Html.RouteLink("Edit Post", "ArticleAction", new {action = "edit", title = article.Title.RemoveSpecialCharacters(), id = article.Id})
+                    @Html.RouteLink("Delete Post", "ArticleAction", new {action = "delete", title = article.Title.RemoveSpecialCharacters(), id = article.Id})
                 }
             </div>
         </div>

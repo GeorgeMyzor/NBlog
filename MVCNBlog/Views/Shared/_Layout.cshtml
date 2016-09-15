@@ -39,9 +39,9 @@
             <nav>
                 <ul id="nav">
                     <li>@Html.RouteLink("Home", "Main")</li>
-                    <li>@Html.RouteLink("Popular", "AllArticles", new {action = "Popular"})</li>
+                    <li>@Html.RouteLink("Popular", "AllArticles", new {action = "popular"})</li>
                     <li>@Html.RouteLink("Account", "ViewAccount")</li>
-                    <li>@Html.RouteLink("Create", "AllArticles", new {action = "Create"})</li>
+                    <li>@Html.RouteLink("Create", "AllArticles", new {action = "create"})</li>
                     <li id="dropdown">
                         <a href="">Drop Down</a>
                         <ul>
@@ -53,7 +53,7 @@
                     @if (!string.IsNullOrEmpty(User.Identity.Name))
                     {
                         <li style="float: right; display: inline">
-                            @Html.RouteLink("Logoff", "AuthAction", new {action = "Logoff"})
+                            @Html.RouteLink("Logoff", "AuthAction", new {action = "logoff"})
                         </li>
 
                         <li style="float: right; display: inline">
@@ -63,11 +63,11 @@
                     else
                     {
                         <li style="float: right; display: inline">
-                            @Html.RouteLink("Login", "AuthAction", new {action = "Login"})
+                            @Html.RouteLink("Login", "AuthAction", new {action = "login"})
                         </li>
 
                         <li style="float: right; display: inline">
-                            @Html.RouteLink("Register", "AuthAction", new { action = "Register" })
+                            @Html.RouteLink("Register", "AuthAction", new { action = "register" })
                         </li>
                     }
                 </ul>

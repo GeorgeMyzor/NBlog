@@ -41,8 +41,8 @@
                 @if (article.Author?.Email == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
                      Roles.IsUserInRole("Administrator"))
                 {
-                    @Html.RouteLink("Edit Post", "ArticleAction", new { action = "Edit", title = article.Title.RemoveSpecialCharacters(), id = article.Id })
-                    @Html.RouteLink("Delete Post", "ArticleAction", new { action = "Delete", title = article.Title.RemoveSpecialCharacters(), id = article.Id })
+                    @Html.RouteLink("Edit Post", "ArticleAction", new { action = "edit", title = article.Title.RemoveSpecialCharacters(), id = article.Id })
+                    @Html.RouteLink("Delete Post", "ArticleAction", new { action = "delete", title = article.Title.RemoveSpecialCharacters(), id = article.Id })
                 }
             </div>
         </div>
