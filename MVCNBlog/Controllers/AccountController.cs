@@ -184,13 +184,13 @@ namespace MVCNBlog.Controllers
         {
             service.UpdateAccountPaidRole(editingUser.ToBllUser());
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Edit");
         }
 
         [HttpGet]
         public ActionResult UpdatePicture()
         {
-            return RedirectToAction("Index");
+            return RedirectToAction("Edit");
         }
 
         [HttpPost]

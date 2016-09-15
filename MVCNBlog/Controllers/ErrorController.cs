@@ -18,6 +18,7 @@ namespace MVCNBlog.Controllers
 
         public ActionResult Error(int? statusCode, Exception exception)
         {
+            //TODO without exception message or check for 403 error and set custom message
             int code;
             if (statusCode == null || string.IsNullOrEmpty(exception.Message))
             {

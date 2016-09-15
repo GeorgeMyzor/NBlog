@@ -25,10 +25,9 @@ namespace MVCNBlog
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
-            //~/Content/themes/base/css
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/yellow-blog/css").Include(
+                      "~/Content/yellow-blog/*.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                       "~/Content/themes/base/jquery.ui*"));

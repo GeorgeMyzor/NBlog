@@ -204,7 +204,7 @@ namespace MVCNBlog.Controllers
                 throw httpException;
             }
 
-            if (deletingArticle.Author?.Name == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
+            if (deletingArticle.Author?.Email == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
                 Roles.IsUserInRole("Administrator"))
             {
                 return View(deletingArticle);

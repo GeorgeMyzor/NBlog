@@ -1,25 +1,20 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    <script src="https://use.fontawesome.com/422948409f.js"></script>
-    @Scripts.Render("~/bundles/modernizr")
+    <title>@ViewBag.Title - NBlog</title>
 
+    @Styles.Render("~/Content/yellow-blog/css")
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'/>
+
+    @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryui")
+    <script src="https://use.fontawesome.com/422948409f.js"></script>
 
     @RenderSection("scripts", required: false)
-    <!--Oswald Font -->
-    <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="~/Content/yellow-blog/tooltipster.css" />
-    <!-- home slider-->
-    <link href="~/Content/yellow-blog/pgwslider.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="~/Content/yellow-blog/font-awesome.min.css">
-    <link href="~/Content/yellow-blog/style.css" rel="stylesheet" media="screen">
-    <link href="~/Content/yellow-blog/responsive.css" rel="stylesheet" media="screen">
+
 </head>
 <body>
 <section id="header_area">
@@ -28,7 +23,8 @@
             <div class="clearfix logo floatleft">
                 <a href="@Url.RouteUrl("Main")">
                     <h1><span>N</span> Blog
-                    </h1></a>
+                    </h1>
+                </a>
             </div>
             <div class="clearfix search floatright">
                 @using (Html.BeginForm("Find", "Article"))
@@ -100,14 +96,7 @@
             </div>
             <div class="clearfix social floatright">
                 <ul>
-                    <li><a class="tooltip" title="Facebook" href=""><i class="fa fa-facebook-square"></i></a></li>
-                    <li><a class="tooltip" title="Twitter" href=""><i class="fa fa-twitter-square"></i></a></li>
-                    <li><a class="tooltip" title="Google+" href=""><i class="fa fa-google-plus-square"></i></a></li>
-                    <li><a class="tooltip" title="LinkedIn" href=""><i class="fa fa-linkedin-square"></i></a></li>
-                    <li><a class="tooltip" title="tumblr" href=""><i class="fa fa-tumblr-square"></i></a></li>
-                    <li><a class="tooltip" title="Pinterest" href=""><i class="fa fa-pinterest-square"></i></a></li>
-                    <li><a class="tooltip" title="RSS Feed" href=""><i class="fa fa-rss-square"></i></a></li>
-                    <li><a class="tooltip" title="Sitemap" href=""><i class="fa fa-sitemap"></i> </a></li>
+                    <li><a class="tooltip" title="Github" href="https://github.com/GeorgeMyzor/NBlog"><i class="fa fa-github" aria-hidden="true"></i></a></li>
                 </ul>
             </div>
         </div>
