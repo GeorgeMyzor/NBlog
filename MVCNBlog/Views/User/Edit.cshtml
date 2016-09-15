@@ -18,7 +18,7 @@
                 @Html.TextBox("Name", null, new { id = "mce-EMAIL", type = "text", placeholder = "Name" })
                 @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
             </div>
-            
+
             <div>
                 @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div>
@@ -31,15 +31,16 @@
             </div>
 
             <div>
-                 <input type="submit" value="Save" class="user_edit" />
+                <input type="submit" style="margin-left: 70px;" value="Save" class="user_edit" />
             </div>
         }
     }
 
-    <h2>Profile picture</h2>
+
+    <h2 style="margin-left: 74px;">Profile picture</h2>
     <div id="userPic">
-        @Html.Raw("<img style='width:80px; height:60px;' src=\"data:image/jpeg;base64,"
-                  + Convert.ToBase64String(Model.UserPic) + "\" />")
+        @Html.Raw("<img style='width: 153px;height: 152px;margin-left: 57px' src=\"data:image/jpeg;base64,"
+              + Convert.ToBase64String(Model.UserPic) + "\" />")
     </div>
 
     <div id="loading" class="load" style="display: none">
@@ -50,21 +51,24 @@
         @Html.ValidationSummary(true)
 
         <input type="hidden" name="id" id="userId" value="@Model.Id" />
-        <fieldset style="border: none">
-            <legend style="font-weight: normal; margin: 0 0 15px; font-family: 'Oswald', sans-serif;">Change picture</legend>
+        <fieldset style="border: none; margin-left: 60px">
+            <legend style="font-weight: normal; margin: 0 31px 15px; font-family: 'Oswald', sans-serif;">Change picture</legend>
 
             <input type="file" id="uploadImage" name="uploadImage" class="inputfile" />
             <label for="uploadImage">
-                <i class="fa fa-file-image-o" aria-hidden="true"></i> Choose a file</label>
+                <i class="fa fa-file-image-o" aria-hidden="true"></i> Choose a file
+            </label>
 
             <p>
-                <input type="submit" id="picSubmit" value="Changes" />
+                <input type="submit" id="picSubmit" style="margin-left: 17px;" value="Change" />
             </p>
         </fieldset>
     }
 
     <label id="picError">@TempData["PicError"]</label>
 </div>
+
+
 
 <div>
     @Html.RouteLink("Back to user", "UserAction", new { action = "Index", name = Model.Name, id = Model.Id },
@@ -102,7 +106,7 @@
                                 var results = $('#userPic');
                                 results.empty();
 
-                                results.append("<img style='width:80px; height:60px;' src=\"data:image/jpeg;base64,"
+                                results.append("<img style='width: 153px;height: 152px;margin-left: 57px' src=\"data:image/jpeg;base64,"
                                     + result.ProfilePicture + "\" />");
                             }
 

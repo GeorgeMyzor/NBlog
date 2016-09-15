@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Security;
 using BLL.Interface.Entities;
 using BLL.Interface.Services;
+using MVCNBlog.Infrastructure;
 
 namespace MVCNBlog.Providers
 {
@@ -42,15 +45,7 @@ namespace MVCNBlog.Providers
                 };
             }
 
-            //TODO static method?
-            string path = HttpContext.Current.Server.MapPath("~/Content/no-profile-img.gif");
-            FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read);
-            Image image = Image.FromStream(stream);
-            using (var ms = new MemoryStream())
-            {
-                image.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
-                user.UserPic = ms.ToArray();
-            }
+            user.UserPic = Settings.GetDefaultProfilePicture();
 
             UserService.CreateUser(user);
             membershipUser = GetUser(email, false);
@@ -61,13 +56,14 @@ namespace MVCNBlog.Providers
         {
             var user = UserService.GetUserEntityByEmail(email);
 
-            if (user != null && Crypto.VerifyHashedPassword(user.Password, password))
+            if (user != null && user.Password == Sha256Hash(password))
             {
                 return true;
             }
+
             return false;
         }
-
+        
         public override MembershipUser GetUser(string email, bool userIsOnline)
         {
             var user = UserService.GetUserEntityByEmail(email);
@@ -99,7 +95,7 @@ namespace MVCNBlog.Providers
             {
                 Email = email,
                 Name = username,
-                Password = Crypto.HashPassword(password),
+                Password = Sha256Hash(password),
                 CreationDate = DateTime.Now
             };
 
@@ -112,14 +108,7 @@ namespace MVCNBlog.Providers
                 };
             }
 
-            string path = HttpContext.Current.Server.MapPath("~/Content/no-profile-img.gif");
-            FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read);
-            Image image = Image.FromStream(stream);
-            using (var ms = new MemoryStream())
-            {
-                image.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
-                user.UserPic = ms.ToArray();
-            }
+            user.UserPic = Settings.GetDefaultProfilePicture();
 
             UserService.CreateUser(user);
             membershipUser = GetUser(email, false);
@@ -128,6 +117,21 @@ namespace MVCNBlog.Providers
             return membershipUser;
         }
 
+        private static string Sha256Hash(string value)
+        {
+            StringBuilder hashedPaasword = new StringBuilder();
+
+            using (SHA256 hash = SHA256.Create())
+            {
+                Encoding encoding = Encoding.UTF8;
+                byte[] result = hash.ComputeHash(encoding.GetBytes(value));
+
+                foreach (byte b in result)
+                    hashedPaasword.Append(b.ToString("x2"));
+            }
+
+            return hashedPaasword.ToString();
+        }
         #region Stabs
 
         public override bool ChangePasswordQuestionAndAnswer(string username, string password,

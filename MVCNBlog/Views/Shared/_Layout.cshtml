@@ -15,6 +15,7 @@
 
     @RenderSection("scripts", required: false)
 
+    <link rel="shortcut icon" href="~/Content/favicon.png" />
 </head>
 <body>
 <section id="header_area">
@@ -41,8 +42,6 @@
                     <li>@Html.RouteLink("Popular", "AllArticles", new {action = "Popular"})</li>
                     <li>@Html.RouteLink("Account", "ViewAccount")</li>
                     <li>@Html.RouteLink("Create", "AllArticles", new {action = "Create"})</li>
-                    <li><a href="">About us</a></li>
-                    <li><a href="">Contact us</a></li>
                     <li id="dropdown">
                         <a href="">Drop Down</a>
                         <ul>

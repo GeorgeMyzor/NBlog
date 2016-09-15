@@ -6,7 +6,7 @@ using System.Web;
 
 namespace MVCNBlog.Infrastructure
 {
-    public static class StringExtension
+    public static class StringExtensions
     {
         public static string RemoveSpecialCharacters(this string str)
         {
@@ -26,5 +26,4 @@ namespace MVCNBlog.Infrastructure
             return newString.ToString().ToLower();
         }
     }
-
 }

@@ -181,7 +181,6 @@
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -196,7 +195,8 @@
     <Compile Include="Infrastructure\ModelBinders\AccountModelBinder.cs" />
     <Compile Include="Infrastructure\ModelBinders\UserModelBinder.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
-    <Compile Include="Infrastructure\StringExtension.cs" />
+    <Compile Include="Infrastructure\Settings.cs" />
+    <Compile Include="Infrastructure\StringExtensions.cs" />
     <Compile Include="Infrastructure\ValidationAttributes\CorrectEmailAttribute.cs" />
     <Compile Include="Infrastructure\ValidationAttributes\CorrectNameAttribute.cs" />
     <Compile Include="Infrastructure\ValidationAttributes\CorrectPasswordAttribute.cs" />
@@ -217,6 +217,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\favicon.png" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\no-profile-img.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -386,7 +387,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Infrastructure\Filters\" />
     <Folder Include="Logs\" />
   </ItemGroup>
   <ItemGroup>

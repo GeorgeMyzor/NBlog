@@ -523,7 +523,8 @@ font-family: oswald;}
 
 /*validation*/
 .text-danger {
-    margin-top: -10px;
+    display: block;
+    margin-top: 3px;
     color: red;
 }
 

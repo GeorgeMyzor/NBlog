@@ -104,16 +104,7 @@ namespace MVCNBlog.Controllers
 
             if (ModelState.IsValid)
             {
-                userViewModel.Password = Crypto.HashPassword(userViewModel.Password);
-
-                string path = System.Web.HttpContext.Current.Server.MapPath("~/Content/no-profile-img.gif");
-                FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read);
-                Image image = Image.FromStream(stream);
-                using (var ms = new MemoryStream())
-                {
-                    image.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
-                    userViewModel.UserPic = ms.ToArray();
-                }
+                userViewModel.UserPic = Settings.GetDefaultProfilePicture();
 
                 service.CreateUser(userViewModel.ToBllUser());
                 return RedirectToAction("All");

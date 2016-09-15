@@ -55,7 +55,7 @@
 
     <h2 style="margin-left: 74px;">Profile picture</h2>
     <div id="userPic">
-        @Html.Raw("<img style='width: 153px;height: 152px;margin-left: 54px' src=\"data:image/jpeg;base64,"
+        @Html.Raw("<img style='width: 153px;height: 152px;margin-left: 57px' src=\"data:image/jpeg;base64,"
               + Convert.ToBase64String(Model.UserPic) + "\" />")
     </div>
 
@@ -119,7 +119,7 @@
                                 var results = $('#userPic');
                                 results.empty();
 
-                                results.append("<img style='width: 153px;height: 152px;margin-left: 54px' src=\"data:image/jpeg;base64,"
+                                results.append("<img style='width: 153px;height: 152px;margin-left: 57px' src=\"data:image/jpeg;base64,"
                                     + result.ProfilePicture + "\" />");
                             }
 
