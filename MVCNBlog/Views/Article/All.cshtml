@@ -60,12 +60,16 @@
                         
                         $('#allArticles').html(data);
 
-                        if (findInputVal === '')
+                        if (findInputVal === '') {
                             $('.content_title h2').text('Latest Blog Post');
-                        else
+                            $('.pagination').show();
+                            window.history.pushState("finded articles", "", "/articles");
+                        } else {
                             $('.content_title h2').text('Finded Posts');
+                            $('.pagination').hide();
+                            window.history.pushState("finded articles", "", "/articles/find/" + findInputVal);
+                        }
 
-                        window.history.pushState("finded articles", "", "/articles/find/" + findInputVal);
 
                     },
                     error: function (reponse) {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
@@ -49,7 +50,7 @@ namespace MVCNBlog.Controllers
                     }
                 };
 
-                return PartialView("AllArticles", articles);
+                return PartialView("AllArticles", articles.ViewModels);
             }
 
             var findedArticles =
@@ -59,7 +60,12 @@ namespace MVCNBlog.Controllers
             var articles2 = new ListViewModel<ArticleViewModel>()
             {
                 ViewModels = findedArticles,
-                PagingInfo = null
+                PagingInfo = new PagingInfo()
+                {
+                    CurrentPage = 1,
+                    ItemsPerPage = pageSize,
+                    TotalItems = articleService.GetArticlesCount()
+                }
             };
 
             ViewBag.GroupName = !findedArticles.Any() ? "Nothing was found." : "";
@@ -147,6 +153,10 @@ namespace MVCNBlog.Controllers
             
             if (ModelState.IsValid)
             {
+                articleViewModel.HeaderPicture = GetHeaderPicture();
+                if (articleViewModel.HeaderPicture == null)
+                    return RedirectToAction("Create");
+
                 articleService.CreateArticle(articleViewModel.ToBllArticle());
                 return RedirectToAction("All");
             }
@@ -183,6 +193,10 @@ namespace MVCNBlog.Controllers
         {
             if (ModelState.IsValid)
             {
+                editingArticle.HeaderPicture = GetHeaderPicture();
+                if (editingArticle.HeaderPicture == null)
+                    return View();
+
                 articleService.UpdateArticle(editingArticle.ToBllArticle());
 
                 int id = editingArticle.Id;
@@ -249,6 +263,25 @@ namespace MVCNBlog.Controllers
             var recentArticles = articleService.GetRecentArticles().Select(bllArticle => bllArticle.ToMvcArticle());
 
             return PartialView("RecentArticles", recentArticles);
+        }
+
+        [NonAction]
+        private byte[] GetHeaderPicture()
+        {
+            HttpPostedFileBase uploadImage = Request.Files["uploadImage"];
+            if (uploadImage != null && uploadImage.ContentLength / 1024 < 1500)
+            {
+                byte[] imageData = null;
+
+                using (var binaryReader = new BinaryReader(uploadImage.InputStream))
+                {
+                    imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
+                }
+                return imageData;
+            }
+
+            TempData["PicError"] = "Either image not found or image size too big.";
+            return null;
         }
     }
 }

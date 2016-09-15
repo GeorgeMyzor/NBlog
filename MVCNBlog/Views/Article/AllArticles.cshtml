@@ -31,10 +31,14 @@
                         </span>
                         <span><i class="fa fa-comment"></i> @article.Comments.Count()</span>
                     </p>
-                    <p><span><i class="fa fa-article-tags"></i> @Html.Raw(string.Join(", ", article.Tags))</span></p>
+                    <p><span><i class="fa fa-hashtag" aria-hidden="true"></i> @Html.Raw(string.Join(", ", article.Tags))</span></p>
                 </div>
                 <div class="clearfix post_excerpt">
-                    <img src="~/content/yellow-blog/images/thumb.png" alt="Preview picture."/>
+                    @if (article.HeaderPicture != null)
+                    {
+
+                        @Html.Raw("<img src=\"data:image/jpeg;base64," + Convert.ToBase64String(article.HeaderPicture) + "\" />")
+                    }
                     <p>
                         @Html.HighLightTags(article.Header)
                     </p>
@@ -50,6 +54,5 @@
             </div>
         </div>
     }
-
 </div>
 

@@ -39,7 +39,7 @@
                         </span>
                         <span><i class="fa fa-comment"></i> @Model.Comments.Count() comments</span>
                         <span>
-                            <i class="fa fa-article-tags"></i> @Html.Raw(string.Join(", ", Model.Tags))
+                            <i class="fa fa-hashtag" aria-hidden="true"></i> @Html.Raw(string.Join(", ", Model.Tags))
                         </span>
                     </p>
                 </div>
@@ -48,7 +48,12 @@
                     @Html.HighLightTags(Model.Header)
                 </p>
 
-                <div class="rectangle_large aligncenter"> <!--Header picture--></div>
+                <div class="rectangle_large aligncenter"> 
+                    @if (Model.HeaderPicture != null)
+                    {
+                        @Html.Raw("<img src=\"data:image/jpeg;base64," + Convert.ToBase64String(Model.HeaderPicture) + "\" />")
+                    }
+                </div>
 
 
                 <p>

@@ -9,6 +9,7 @@ namespace ORM.Entities
         public string Title { get; set; }
         public string Header { get; set; }
         public string Content { get; set; }
+        public byte[] HeaderPicture { get; set; }
         public DateTime PublicationDate { get; set; }
 
         public virtual User Author { get; set; }

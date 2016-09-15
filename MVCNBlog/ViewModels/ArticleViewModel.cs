@@ -25,6 +25,7 @@ namespace MVCNBlog.ViewModels
         public string Header { get; set; }
         [DataType(DataType.Date)]
         public DateTime PublicationDate { get; set; }
+        public byte[] HeaderPicture { get; set; }
         public int? AuthorId { get; set; }
         public UserViewModel Author { get; set; }
         public IEnumerable<string> Tags { get; set; }

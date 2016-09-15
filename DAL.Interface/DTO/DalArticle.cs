@@ -14,6 +14,7 @@ namespace DAL.Interface.DTO
         public string Content { get; set; }
         public int? AuthorId { get; set; }
         public DalUser Author { get; set; }
+        public byte[] HeaderPicture { get; set; }
         public DateTime PublicationDate { get; set; }
         public IEnumerable<string> Tags { get; set; }
         public IEnumerable<DalComment> Comments { get; set; }

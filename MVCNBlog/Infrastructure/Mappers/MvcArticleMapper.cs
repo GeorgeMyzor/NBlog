@@ -18,6 +18,7 @@ namespace MVCNBlog.Infrastructure.Mappers
                 Header = articleEntity.Header,
                 Content = articleEntity.Content,
                 PublicationDate = articleEntity.PublicationDate,
+                HeaderPicture = articleEntity.HeaderPicture,
                 Author = articleEntity.Author?.ToMvcUser(),
                 AuthorId = articleEntity.AuthorId,
                 Comments = articleEntity.Comments.Select(bllComment => bllComment.ToMvcComment()).ToList(),
@@ -34,6 +35,7 @@ namespace MVCNBlog.Infrastructure.Mappers
                 Header = mvcArticle.Header,
                 Content = mvcArticle.Content,
                 PublicationDate = mvcArticle.PublicationDate,
+                HeaderPicture = mvcArticle.HeaderPicture,
                 AuthorId = mvcArticle.AuthorId
             };
         }

@@ -19,6 +19,7 @@ namespace BLL.Mappers
                 Header = dalArticle.Header,
                 Content = dalArticle.Content,
                 PublicationDate = dalArticle.PublicationDate,
+                HeaderPicture = dalArticle.HeaderPicture,
                 AuthorId = dalArticle.AuthorId,
                 Author = dalArticle.Author?.ToBllUser(),
                 Comments = dalArticle.Comments.Select(dalComment => dalComment.ToBllComment()),
@@ -35,6 +36,7 @@ namespace BLL.Mappers
                 Header = articleEntity.Header,
                 Content = articleEntity.Content,
                 PublicationDate = articleEntity.PublicationDate,
+                HeaderPicture = articleEntity.HeaderPicture,
                 AuthorId = articleEntity.AuthorId,
                 Tags = articleEntity.Tags
             };

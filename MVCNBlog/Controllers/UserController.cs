@@ -190,7 +190,7 @@ namespace MVCNBlog.Controllers
                 return Json(new { ErrorMessage = "Inavalid image." }, JsonRequestBehavior.AllowGet);
             }
 
-            TempData["PicError"] = "Inavalid image.";
+            TempData["PicError"] = "Either image not found or image size too big.";
 
             return RedirectToAction("Edit", id);
         }

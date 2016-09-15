@@ -20,6 +20,7 @@ namespace DAL.Mappers
                 Header = ormArticle.Header,
                 Content = ormArticle.Content,
                 PublicationDate = ormArticle.PublicationDate,
+                HeaderPicture = ormArticle.HeaderPicture,
                 AuthorId = ormArticle.Author?.Id,
                 Author = ormArticle.Author?.ToDalUser(),
                 Comments = ormArticle.Comments.Select(ormComment => ormComment.ToDalComment()),
@@ -36,6 +37,7 @@ namespace DAL.Mappers
                 Header = dalArticle.Header,
                 Content = dalArticle.Content,
                 PublicationDate = dalArticle.PublicationDate,
+                HeaderPicture = dalArticle.HeaderPicture,
                 Tags = new List<Tag>()
             };
         }

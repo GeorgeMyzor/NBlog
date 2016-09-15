@@ -7,7 +7,7 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create","Article", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -30,6 +30,12 @@
             </div>
         </div>
 
+        <input type="file" id="uploadImage" name="uploadImage" class="inputfile" />
+        <label for="uploadImage" style="margin-left: 0;">
+            <i class="fa fa-file-image-o" aria-hidden="true"></i> Choose a header file
+        </label>
+
+        <label id="picError" style="color: red">@TempData["PicError"]</label>
         <div class="form-group">
             @Html.LabelFor(model => model.Content, htmlAttributes: new { style = "font-weight: normal;margin: 0 0 15px;font-family: 'Oswald', sans-serif; " })
             <div class="col-md-10">
