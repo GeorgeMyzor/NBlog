@@ -14,19 +14,11 @@ namespace MVCNBlog.Infrastructure.Helpers
             Func<int, string> pageUrl)
         {
             StringBuilder result = new StringBuilder();
-            int pageCount;
-            int currentPage;
-            if (pagingInfo.CurrentPage - 2 < 1)
-                currentPage = 1;
-            else
-                currentPage = pagingInfo.CurrentPage - 2;
+            var startPage = GetStartPage(pagingInfo);
 
-            if (pagingInfo.CurrentPage + 2 > pagingInfo.TotalPages)
-                pageCount = pagingInfo.TotalPages;
-            else
-                pageCount = pagingInfo.CurrentPage + 2;
+            var lastPage = GetLastPage(pagingInfo);
 
-            for (int i = currentPage; i <= pageCount; i++)
+            for (int i = startPage; i <= lastPage; i++)
             {
                 TagBuilder tagLi = new TagBuilder("li");
                 TagBuilder tagA = new TagBuilder("a");
@@ -42,6 +34,26 @@ namespace MVCNBlog.Infrastructure.Helpers
             }
 
             return MvcHtmlString.Create(result.ToString());
+        }
+
+        private static int GetLastPage(PagingInfo pagingInfo)
+        {
+            int lastPage;
+            if (pagingInfo.CurrentPage + 2 > pagingInfo.TotalPages)
+                lastPage = pagingInfo.TotalPages;
+            else
+                lastPage = pagingInfo.CurrentPage + 2;
+            return lastPage;
+        }
+
+        private static int GetStartPage(PagingInfo pagingInfo)
+        {
+            int startPage;
+            if (pagingInfo.CurrentPage - 2 < 1)
+                startPage = 1;
+            else
+                startPage = pagingInfo.CurrentPage - 2;
+            return startPage;
         }
     }
 }

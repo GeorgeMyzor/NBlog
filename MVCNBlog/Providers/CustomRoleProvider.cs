@@ -16,28 +16,9 @@ namespace MVCNBlog.Providers
             => (IUserService)System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IUserService));
         public IRoleService RoleService
             => (IRoleService)System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IRoleService));
-
-        public override bool IsUserInRole(string name, string roleName)
-        {
-            throw new NotImplementedException();
-            var user = UserService.GetAllUserEntities().FirstOrDefault(u => u.Name == name).ToMvcUser();
-
-            if (user == null) return false;
-
-            BllRole userRole = RoleService.GetRoleEntity(user.Role.RoleId);
-
-            if (userRole != null && userRole.Name == roleName)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        //for logon user. ^ for any
+        
         public override string[] GetRolesForUser(string email)
         {
-
             var user = UserService.GetAllUserEntities().FirstOrDefault(u => u.Email == email).ToMvcUser();
 
             var userRole = user.Role;
@@ -51,6 +32,11 @@ namespace MVCNBlog.Providers
         private string[] GetRolesName(params string[] roles)
         {
             return roles.Where(role => role != null).ToArray();
+        }
+        
+        public override bool IsUserInRole(string name, string roleName)
+        {
+            throw new NotImplementedException();
         }
 
         public override void CreateRole(string roleName)

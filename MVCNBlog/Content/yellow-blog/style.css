@@ -524,6 +524,10 @@ font-family: oswald;}
     color: red;
 }
 
+.tag {
+    background-color: #C0C0C0;
+}
+
 #roles {
     border: 1px solid #ddd;
     height: 35px;

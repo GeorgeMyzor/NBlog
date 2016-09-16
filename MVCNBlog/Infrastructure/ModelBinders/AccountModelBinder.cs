@@ -33,7 +33,7 @@ namespace MVCNBlog.Infrastructure.ModelBinders
                 {
                     IPayedRole payedRole = new PayedRole()
                     {
-                        RoleId = 3
+                        RoleId = Settings.VipRoleId
                     };
 
                     propertyDescriptor.SetValue(bindingContext.Model, payedRole);

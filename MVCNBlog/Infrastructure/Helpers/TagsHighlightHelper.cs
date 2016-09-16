@@ -36,7 +36,7 @@ namespace MVCNBlog.Infrastructure.Helpers
                     continue;
                 tags.Add(match.ToString());
 
-                string newTag = match.ToString().SurroundWith("<span style=\"background-color: #C0C0C0;\">", "</span>");
+                string newTag = match.ToString().SurroundWith("<span class='tag'>", "</span>");
                 hightlightedTags.Add(newTag);
             }
 

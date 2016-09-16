@@ -26,8 +26,8 @@ namespace MVCNBlog.Infrastructure.Mappers
                 Rank = bllUser.Rank,
                 CreationDate = bllUser.CreationDate,
                 UserPic = bllUser.UserPic,
-                Role = roles.Find((role => role.RoleName != "VipUser")),
-                PayedRole = (IPayedRole) roles.Find((role => role.RoleName == "VipUser")),
+                Role = roles.Find((role => role.RoleId != Settings.VipRoleId)),
+                PayedRole = (IPayedRole) roles.Find((role => role.RoleId == Settings.VipRoleId)),
                 Articles = bllUser.Articles?.Select(article => article.ToMvcArticle())
             };
         }
@@ -84,8 +84,8 @@ namespace MVCNBlog.Infrastructure.Mappers
                 Rank = bllUser.Rank,
                 SubscriptionCost = bllUser.SubscriptionCost,
                 UserPic = bllUser.UserPic,
-                Role = roles.Find((role => role.RoleName != "VipUser")),
-                PayedRole = (IPayedRole)roles.Find((role => role.RoleName == "VipUser"))
+                Role = roles.Find((role => role.RoleId != Settings.VipRoleId)),
+                PayedRole = (IPayedRole)roles.Find((role => role.RoleId == Settings.VipRoleId))
             };
         }
 

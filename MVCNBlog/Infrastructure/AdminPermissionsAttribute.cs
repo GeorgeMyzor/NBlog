@@ -10,7 +10,7 @@ using MVCNBlog.Controllers;
 
 namespace MVCNBlog.Infrastructure
 {
-    public class CustomAuthorizeAttribute : AuthorizeAttribute
+    public class AdminPermissionsAttribute : AuthorizeAttribute
     {
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
@@ -20,9 +20,7 @@ namespace MVCNBlog.Infrastructure
             }
             else
             {
-                var httpNoPermissionsException = new HttpException(403, "No permissions");
-
-                throw httpNoPermissionsException;
+                throw new HttpException(403, "No permissions");
             }
         }
     }

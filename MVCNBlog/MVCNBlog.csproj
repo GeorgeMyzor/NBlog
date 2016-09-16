@@ -185,7 +185,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\CustomAuthorize.cs" />
+    <Compile Include="Infrastructure\AdminPermissionsAttribute.cs" />
     <Compile Include="Infrastructure\Helpers\PagingHelper.cs" />
     <Compile Include="Infrastructure\Helpers\TagsHighlightHelper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcArticleMapper.cs" />
@@ -330,6 +330,7 @@
     <Content Include="Scripts\CustomScripts\change-picture.js" />
     <Content Include="Scripts\CustomScripts\pagination.js" />
     <Content Include="Scripts\CustomScripts\live-search.js" />
+    <Content Include="Scripts\CustomScripts\refresh-comments.js" />
     <Content Include="Scripts\jquery-1.8.3.js" />
     <Content Include="Scripts\jquery-1.8.3.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.23.js" />
