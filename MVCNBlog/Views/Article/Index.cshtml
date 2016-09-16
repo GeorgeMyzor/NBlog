@@ -101,7 +101,7 @@
                 @Html.AntiForgeryToken()
                 <textarea cols="94" rows="3" id="comment_input" name="Content" placeholder="Type your comment..."></textarea>
                 <br />
-                <label id="comment_error">@TempData["CommentError"]</label>
+                <label id="comment_error" class="text-danger">@TempData["CommentError"]</label>
                 <input type="hidden" name="ArticleId" value="@Model.Id" />
 
                 <div class="form-group">

@@ -18,22 +18,19 @@ namespace MVCNBlog.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private readonly IAccountService service;
+        private readonly IAccountService accountService;
 
-        public AccountController(IAccountService service)
+        public AccountController(IAccountService accountService)
         {
-            this.service = service;
+            this.accountService = accountService;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            var currentAccount = service.GetAccountEntity(User.Identity.Name).ToMvcAccount();
+            var currentAccount = accountService.GetAccountEntity(User.Identity.Name).ToMvcAccount();
             if (currentAccount == null)
-            {
-                var httpException = new HttpException(404, "Account wasn't found.");
-                throw httpException;
-            }
+                throw new HttpException(404, "Account wasn't found.");
 
             return View(currentAccount);
         }
@@ -57,7 +54,7 @@ namespace MVCNBlog.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginUserViewModel viewModel, string returnUrl)
+        public ActionResult Login(LoginUserViewModel loginUser, string returnUrl)
         {
             if (Request.IsAuthenticated)
             {
@@ -66,9 +63,9 @@ namespace MVCNBlog.Controllers
 
             if (ModelState.IsValid)
             {
-                if (Membership.ValidateUser(viewModel.Email, viewModel.Password))
+                if (Membership.ValidateUser(loginUser.Email, loginUser.Password))
                 {
-                    FormsAuthentication.SetAuthCookie(viewModel.Email, viewModel.RememberMe);
+                    FormsAuthentication.SetAuthCookie(loginUser.Email, loginUser.RememberMe);
                     if (Url.IsLocalUrl(returnUrl))
                     {
                         return Redirect(returnUrl);
@@ -80,7 +77,7 @@ namespace MVCNBlog.Controllers
                 ModelState.AddModelError("", "Incorrect login or password.");
             }
 
-            return View(viewModel);
+            return View(loginUser);
         }
 
         [HttpGet]
@@ -98,41 +95,29 @@ namespace MVCNBlog.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(RegisterUserViewModel viewModel)
+        public ActionResult Register(RegisterUserViewModel registerUser)
         {
-            if (Request.IsAuthenticated)
-            {
-                return RedirectToAction("Index", "Account");
-            }
-
-            var anyUser = service.GetAccountEntity(viewModel.Email);
-
-            if (anyUser != null)
-            {
-                ModelState.AddModelError(nameof(viewModel.Email), "User with same email already registered.");
-                if (anyUser.Name == viewModel.Name)
-                    ModelState.AddModelError(nameof(viewModel.Name), "User with same name already registered.");
-
-                return View(viewModel);
-            }
-
+            if(IsDuplicateUser(registerUser))
+                return View(registerUser);
+            
             if (ModelState.IsValid)
             {
                 MembershipCreateStatus status;
                 var membershipUser = ((CustomMembershipProvider) Membership.Provider)
-                    .CreateUser(viewModel.Name, viewModel.Password, viewModel.Email, null, null, false, null, out status);
-
+                    .CreateUser(registerUser.Name, registerUser.Password, registerUser.Email, null, null, false, null, out status);
+                
                 if (membershipUser != null)
                 {
-                    FormsAuthentication.SetAuthCookie(viewModel.Email, false);
+                    FormsAuthentication.SetAuthCookie(registerUser.Email, false);
                     return RedirectToAction("All", "Article");
                 }
 
-                ModelState.AddModelError("", "Error registration.");
+                ModelState.AddModelError("", "Error registration. " + status);
             }
-            return View(viewModel);
-        }
 
+            return View(registerUser);
+        }
+        
         [AllowAnonymous]
         public ActionResult LogOff()
         {
@@ -141,48 +126,68 @@ namespace MVCNBlog.Controllers
             return RedirectToAction("Login", "Account");
         }
 
+
+        [NonAction]
+        private bool IsDuplicateUser(RegisterUserViewModel registerUser)
+        {
+            var anyEmailUser = accountService.GetAccountEntity(registerUser.Email);
+            var anyNameUser = accountService.GetAccountEntityByName(registerUser.Name);
+
+            if (anyEmailUser != null)
+            {
+                ModelState.AddModelError(nameof(registerUser.Email), "User with same email already registered.");
+
+                return true;
+            }
+
+            if (anyNameUser != null)
+            {
+                ModelState.AddModelError(nameof(registerUser.Name), "User with same name already registered.");
+
+                return true;
+            }
+
+            return false;
+        }
+
         #endregion
 
-        #region Editing account
+        #region Edit account
 
         [HttpGet]
         public ActionResult Edit()
         {
-            var currentAccount = service.GetAccountEntity(User.Identity.Name).ToMvcAccount();
+            var currentAccount = accountService.GetAccountEntity(User.Identity.Name).ToMvcAccount();
             if (currentAccount == null)
-            {
-                var outputString = $"{nameof(currentAccount)} wasnt found.";
-                var httpException = new HttpException(404, outputString);
+                throw new HttpException(404, $"{nameof(currentAccount)} wasnt found.");
 
-                throw httpException;
+            return View(currentAccount);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(AccountViewModel editingAccount)
+        {
+            var user = accountService.GetAccountEntityByName(editingAccount.Name);
+            if (user != null && user.Email != User.Identity.Name)
+                ModelState.AddModelError(nameof(AccountViewModel.Name), "A user with the same name already exists");
+
+            var currentAccount = accountService.GetAccountEntity(User.Identity.Name).ToMvcAccount();
+            if (ModelState.IsValidField("Name") && editingAccount.Role.RoleId == currentAccount.Role.RoleId)
+            {
+                accountService.UpdateAccount(editingAccount.ToBllUser());
+
+                return RedirectToAction("Index");
             }
 
             return View(currentAccount);
         }
 
         [HttpPost]
-        [ActionName("Edit")]
-        public ActionResult ConfirmEdit(AccountViewModel editingUser)
-        {
-            var user = service.GetAccountEntityByName(editingUser.Name);
-            if (user != null && user.Email != User.Identity.Name)
-                ModelState.AddModelError(nameof(AccountViewModel.Name), "A user with the same name already exists");
-
-            if (ModelState.IsValid)
-            {
-                service.UpdateAccount(editingUser.ToBllUser());
-
-                return RedirectToAction("Index");
-            }
-            var outputUser = service.GetAccountEntity(User.Identity.Name).ToMvcAccount();
-
-            return View(outputUser);
-        }
-
-        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult EditVipStatus(AccountViewModel editingUser)
         {
-            service.UpdateAccountPaidRole(editingUser.ToBllUser());
+            accountService.UpdateAccountPaidRole(editingUser.ToBllUser());
 
             return RedirectToAction("Edit");
         }
@@ -194,17 +199,18 @@ namespace MVCNBlog.Controllers
         }
 
         [HttpPost]
-        [ActionName("UpdatePicture")]
-        public ActionResult UpdatePictureConfirm(HttpPostedFileBase uploadImage)
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdatePicture(HttpPostedFileBase uploadImage)
         {
             if (!User.IsInRole("VipUser"))
             {
+                string buyVipMessage = "Please buy VIP.";
                 if (Request.IsAjaxRequest())
                 {
-                    return Json(new {ErrorMessage = "Please buy VIP."}, JsonRequestBehavior.AllowGet);
+                    return Json(new {ErrorMessage = buyVipMessage }, JsonRequestBehavior.AllowGet);
                 }
 
-                TempData["PicError"] = "Please buy VIP.";
+                TempData["PicError"] = buyVipMessage;
 
                 return RedirectToAction("Edit");
             }
@@ -223,10 +229,10 @@ namespace MVCNBlog.Controllers
                     imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
                 }
 
-                var currentAccount = service.GetAccountEntity(User.Identity.Name);
+                var currentAccount = accountService.GetAccountEntity(User.Identity.Name);
                 currentAccount.UserPic = imageData;
 
-                service.UpdateAccountPicture(currentAccount);
+                accountService.UpdateAccountPicture(currentAccount);
 
                 if (Request.IsAjaxRequest())
                 {
@@ -236,13 +242,14 @@ namespace MVCNBlog.Controllers
 
                 return RedirectToAction("Edit");
             }
-            
+
+            string imageErrorString = "Either image not found or size too big.";
             if (Request.IsAjaxRequest())
             {
-                return Json(new { ErrorMessage = "Inavalid image."}, JsonRequestBehavior.AllowGet);
+                return Json(new { ErrorMessage = imageErrorString }, JsonRequestBehavior.AllowGet);
             }
 
-            TempData["PicError"] = "Inavalid image.";
+            TempData["PicError"] = imageErrorString;
 
             return RedirectToAction("Edit");
         }
@@ -254,30 +261,23 @@ namespace MVCNBlog.Controllers
         [HttpGet]
         public ActionResult Delete()
         {
-            var currentAccount = service.GetAccountEntity(User.Identity.Name).ToMvcAccount();
+            var currentAccount = accountService.GetAccountEntity(User.Identity.Name).ToMvcAccount();
             if (currentAccount == null)
-            {
-                string outputString = $"Account wasn't found.";
-                var httpException = new HttpException(404, outputString);
-                throw httpException;
-            }
+                throw new HttpException(404, "Account wasn't found.");
 
             return View(currentAccount);
         }
 
         [HttpPost]
         [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public ActionResult ConfirmDelete()
         {
-            var currentAccount = service.GetAccountEntity(User.Identity.Name);
+            var currentAccount = accountService.GetAccountEntity(User.Identity.Name);
             if (currentAccount == null)
-            {
-                string outputString = $"Account wasn't found.";
-                var httpException = new HttpException(404, outputString);
-                throw httpException;
-            }
+                throw new HttpException(404, "Account wasn't found.");
 
-            service.DeleteAccount(currentAccount);
+            accountService.DeleteAccount(currentAccount);
 
             return RedirectToAction("LogOff");
         }

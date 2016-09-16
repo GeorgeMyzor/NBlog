@@ -27,19 +27,19 @@ namespace MVCNBlog.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CommentViewModel commentViewModel)
+        public ActionResult Create(CommentViewModel newComment)
         {
-            int id = commentViewModel.ArticleId;
+            int id = newComment.ArticleId;
             if (ModelState.IsValid)
             {
-                var currentUser = userService.GetUserEntityByEmail(User.Identity.Name).ToMvcUser();
-                commentViewModel.AuthorId = currentUser.Id;
+                var currentUser = userService.GetUserEntityByEmail(User.Identity.Name);
+                newComment.AuthorId = currentUser.Id;
 
-                commentService.CreateComment(commentViewModel.ToBllComment());
+                commentService.CreateComment(newComment.ToBllComment());
 
                 if (Request.IsAjaxRequest())
                 {
-                    var comments = commentService.GetArticleComments(commentViewModel.ArticleId)
+                    var comments = commentService.GetArticleComments(newComment.ArticleId)
                         .Select(comment => comment.ToMvcComment());
                     
                     return PartialView("~/Views/Article/Comments.cshtml", comments);
@@ -63,14 +63,13 @@ namespace MVCNBlog.Controllers
         [HttpGet]
         public ActionResult Edit(int? id)
         {
-            var editingComment = commentService.GetCommentEntity(id ?? 0)?.ToMvcComment();
+            if (id == null || id < 0)
+                throw new HttpException(404, "Incorrect id.");
+
+            var editingComment = commentService.GetCommentEntity(id.Value)?.ToMvcComment();
 
             if (editingComment == null)
-            {
-                var outputString = $"{nameof(editingComment)} wasn't found.";
-                var httpException = new HttpException(404, outputString);
-                throw httpException;
-            }
+                throw new HttpException(404, $"{nameof(editingComment)} wasn't found.");
 
             if (editingComment.Author?.Email == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
                 Roles.IsUserInRole("Administrator"))
@@ -78,15 +77,14 @@ namespace MVCNBlog.Controllers
                 return View("Index", editingComment);
             }
 
-            var httpNoPermissionsException = new HttpException(403, $"User with name - {User.Identity.Name} " +
+            throw new HttpException(403, $"User with name - {User.Identity.Name} " +
                                                                     $"don't have permissions to edit or delete" +
                                                                     $" comment with id {editingComment.Id}.");
-            throw httpNoPermissionsException;
         }
 
         [HttpPost]
-        [ActionName("Edit")]
-        public ActionResult ConfirmEdit(CommentViewModel editingComment)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(CommentViewModel editingComment)
         {
             commentService.UpdateComment(editingComment.ToBllComment());
 
@@ -95,13 +93,10 @@ namespace MVCNBlog.Controllers
         }
 
         [HttpPost]
-        [ActionName("Delete")]
-        public ActionResult ConfirmDelete(CommentViewModel deletingComment)
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(CommentViewModel deletingComment)
         {
-            commentService.DeleteComment(new BllComment()
-            {
-                Id = deletingComment.Id
-            });
+            commentService.DeleteComment(deletingComment.ToBllComment());
 
             int id = deletingComment.ArticleId;
             return RedirectToAction("Index", "Article", new { id });

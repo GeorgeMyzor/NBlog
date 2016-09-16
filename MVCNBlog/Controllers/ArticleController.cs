@@ -22,6 +22,7 @@ namespace MVCNBlog.Controllers
         private readonly IArticleService articleService;
         private readonly IUserService userService;
         private readonly int pageSize;
+        private const string AjaxTempKey = "__isAjax";
 
         public ArticleController(IArticleService articleService, IUserService userService)
         {
@@ -30,67 +31,21 @@ namespace MVCNBlog.Controllers
             pageSize = int.Parse(WebConfigurationManager.AppSettings["PageSize"]);
         }
 
-        [AllowAnonymous]
-        public ActionResult Find(string term)
-        {
-            if (string.IsNullOrEmpty(term))
-            {
-                if (!Request.IsAjaxRequest())
-                    return RedirectToAction("All");
-
-                var articles = new ListViewModel<ArticleViewModel>()
-                {
-                    ViewModels =
-                        articleService.GetPagedArticles(1, pageSize).Select(bllArticle => bllArticle.ToMvcArticle()),
-                    PagingInfo = new PagingInfo()
-                    {
-                        CurrentPage = 1,
-                        ItemsPerPage = pageSize,
-                        TotalItems = articleService.GetArticlesCount()
-                    }
-                };
-
-                return PartialView("AllArticles", articles.ViewModels);
-            }
-
-            var findedArticles =
-                articleService.FindArticleEntities(term).Select(bllArticle => bllArticle.ToMvcArticle()).ToList();
-
-
-            var articles2 = new ListViewModel<ArticleViewModel>()
-            {
-                ViewModels = findedArticles,
-                PagingInfo = new PagingInfo()
-                {
-                    CurrentPage = 1,
-                    ItemsPerPage = pageSize,
-                    TotalItems = articleService.GetArticlesCount()
-                }
-            };
-
-            ViewBag.GroupName = !findedArticles.Any() ? "Nothing was found." : "";
-            
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView(findedArticles);
-            }
-            TempData["isFind"] = true;
-            return View("All", articles2);
-        }
-
-        #region CRUD
+        public bool IsAjax => Request.IsAjaxRequest() || (TempData.ContainsKey(AjaxTempKey));
+        
+        #region View
 
         [HttpGet]
         [AllowAnonymous]
         public ActionResult Index(int? id, string title)
         {
-            var article = articleService.GetArticleEntity(id ?? 0).ToMvcArticle();
+            if(id == null || id < 0)
+                throw new HttpException(404, "Incorrect id.");
+
+            var article = articleService.GetArticleEntity(id.Value).ToMvcArticle();
 
             if (article == null)
-            {
-                var httpException = new HttpException(404, $"{nameof(article)} with id - {id} wasnt found.");
-                throw httpException;
-            }
+                throw new HttpException(404, $"{nameof(article)} with id - {id} wasnt found.");
 
             string urlWithTitle = article.Title.RemoveSpecialCharacters();
             urlWithTitle = Url.Encode(urlWithTitle);
@@ -123,123 +78,18 @@ namespace MVCNBlog.Controllers
                 }
             };
             
-            if (Request.IsAjaxRequest())
+            if (IsAjax)
             {
-                return PartialView(articles);
+                if (TempData.ContainsKey(AjaxTempKey))
+                    TempData.Remove(AjaxTempKey);
+                return PartialView("AllArticles", articles.ViewModels);
             }
 
             return View(articles);
         }
 
         [HttpGet]
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(ArticleViewModel articleViewModel)
-        {
-            var currentUser = userService.GetUserEntityByEmail(User.Identity.Name)?.ToMvcUser();
-            if(currentUser == null)
-            {
-                var outputString = $"{nameof(currentUser)} wasnt found. When trying to add new atricle.";
-                var httpException = new HttpException(404, outputString);
-                throw httpException;
-            }
-
-            articleViewModel.AuthorId = currentUser.Id;
-            
-            if (ModelState.IsValid)
-            {
-                articleViewModel.HeaderPicture = GetHeaderPicture();
-                if (articleViewModel.HeaderPicture == null)
-                    return RedirectToAction("Create");
-
-                articleService.CreateArticle(articleViewModel.ToBllArticle());
-                return RedirectToAction("All");
-            }
-
-            return View();
-        }
-
-        [HttpGet]
-        public ActionResult Edit(int? id)
-        {
-            var editingArticle = articleService.GetArticleEntity(id ?? 0).ToMvcArticle();
-
-            if (editingArticle == null)
-            {
-                var outputString = $"{nameof(editingArticle)} wasnt found. When trying to edit atricle.";
-                var httpException = new HttpException(404, outputString);
-                throw httpException;
-            }
-
-            if (editingArticle.Author?.Email == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
-                Roles.IsUserInRole("Administrator"))
-            {
-                return View(editingArticle);
-            }
-
-            var httpNoPermissionsException = new HttpException(403, "No permissions");
-
-            throw httpNoPermissionsException;
-        }
-
-        [HttpPost]
-        [ActionName("Edit")]
-        public ActionResult ConfirmEdit(ArticleViewModel editingArticle)
-        {
-            if (ModelState.IsValid)
-            {
-                editingArticle.HeaderPicture = GetHeaderPicture();
-                if (editingArticle.HeaderPicture == null)
-                    return View();
-
-                articleService.UpdateArticle(editingArticle.ToBllArticle());
-
-                int id = editingArticle.Id;
-                return RedirectToAction("Index", "Article", new { id });
-            }
-
-            return View();
-        }
-        
-        [HttpGet]
-        public ActionResult Delete(int? id)
-        {
-            var deletingArticle = articleService.GetArticleEntity(id ?? 0).ToMvcArticle();
-
-            if (deletingArticle == null)
-            {
-                var outputString = $"{nameof(deletingArticle)} wasnt found. When trying to delete atricle.";
-                var httpException = new HttpException(404, outputString);
-                throw httpException;
-            }
-
-            if (deletingArticle.Author?.Email == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
-                Roles.IsUserInRole("Administrator"))
-            {
-                return View(deletingArticle);
-            }
-
-            var httpNoPermissionsException = new HttpException(403, $"User with name - {User.Identity.Name} " +
-                                                    $"don't have permissions to delete article with id {deletingArticle.Id}.");
-            throw httpNoPermissionsException;
-        }
-
-        [HttpPost]
-        [ActionName("Delete")]
-        public ActionResult ConfirmDelete(ArticleViewModel editingArticle)
-        {
-            articleService.DeleteArticle(editingArticle.ToBllArticle());
-
-            return RedirectToAction("All");
-        }
-
-        #endregion
-
+        [AllowAnonymous]
         public ActionResult Popular()
         {
             var popularArticles = articleService.GetPopularArticles().Select(bllArticle => bllArticle.ToMvcArticle());
@@ -264,12 +114,157 @@ namespace MVCNBlog.Controllers
 
             return PartialView("RecentArticles", recentArticles);
         }
+        
+        [AllowAnonymous]
+        public ActionResult Find(string term)
+        {
+            if (string.IsNullOrEmpty(term))
+            {
+                TempData[AjaxTempKey] = true;
+                return RedirectToAction("All");
+            }
 
+            var findedArticles =
+                articleService.FindArticleEntities(term).Select(bllArticle => bllArticle.ToMvcArticle()).ToList();
+
+            var findedPagedArticles = new ListViewModel<ArticleViewModel>()
+            {
+                ViewModels = findedArticles,
+                PagingInfo = new PagingInfo()
+                {
+                    CurrentPage = 1,
+                    ItemsPerPage = pageSize,
+                    TotalItems = articleService.GetArticlesCount()
+                }
+            };
+
+            ViewBag.GroupName = !findedArticles.Any() ? "Nothing was found." : "";
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView(findedArticles);
+            }
+
+            TempData["isFind"] = true;
+            return View("All", findedPagedArticles);
+        }
+
+        #endregion
+
+        #region Create
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(ArticleViewModel newArticle)
+        {
+            var currentUser = userService.GetUserEntityByEmail(User.Identity.Name)?.ToMvcUser();
+            if(currentUser == null)
+                throw new HttpException(404, $"{nameof(currentUser)} wasnt found. When trying to add new atricle.");
+
+            newArticle.AuthorId = currentUser.Id;
+            
+            if (ModelState.IsValid)
+            {
+                newArticle.HeaderPicture = GetHeaderPicture();
+                if (newArticle.HeaderPicture == null)
+                    return RedirectToAction("Create");
+
+                articleService.CreateArticle(newArticle.ToBllArticle());
+                return RedirectToAction("All");
+            }
+
+            return View();
+        }
+
+        #endregion
+
+        #region Edit
+
+        [HttpGet]
+        public ActionResult Edit(int? id)
+        {
+            if (id == null || id < 0)
+                throw new HttpException(404, "Incorrect id.");
+
+            var editingArticle = articleService.GetArticleEntity(id.Value).ToMvcArticle();
+
+            if (editingArticle == null)
+                throw new HttpException(404, $"{nameof(editingArticle)} wasnt found. When trying to edit atricle.");
+
+            if (editingArticle.Author?.Email == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
+                Roles.IsUserInRole("Administrator"))
+            {
+                return View(editingArticle);
+            }
+            
+            throw new HttpException(403, "No permissions");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(ArticleViewModel editingArticle)
+        {
+            if (ModelState.IsValid)
+            {
+                editingArticle.HeaderPicture = GetHeaderPicture();
+                if (editingArticle.HeaderPicture == null)
+                    return View();
+
+                articleService.UpdateArticle(editingArticle.ToBllArticle());
+                
+                return RedirectToAction("Index", "Article", new { id = editingArticle.Id });
+            }
+
+            return View();
+        }
+
+        #endregion
+
+        #region Delete
+
+        [HttpGet]
+        public ActionResult Delete(int? id)
+        {
+            if (id == null || id < 0)
+                throw new HttpException(404, "Incorrect id.");
+
+            var deletingArticle = articleService.GetArticleEntity(id.Value).ToMvcArticle();
+
+            if (deletingArticle == null)
+                throw new HttpException(404, $"{nameof(deletingArticle)} wasnt found. When trying to delete atricle.");
+
+            if (deletingArticle.Author?.Email == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
+                Roles.IsUserInRole("Administrator"))
+            {
+                return View(deletingArticle);
+            }
+
+            throw new HttpException(403, $"User with email - {User.Identity.Name} " +
+                                                    $"don't have permissions to delete article with id {deletingArticle.Id}.");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(ArticleViewModel editingArticle)
+        {
+            articleService.DeleteArticle(editingArticle.ToBllArticle());
+
+            return RedirectToAction("All");
+        }
+
+        #endregion
+        
         [NonAction]
         private byte[] GetHeaderPicture()
         {
             HttpPostedFileBase uploadImage = Request.Files["uploadImage"];
-            if (uploadImage != null && uploadImage.ContentLength / 1024 < 1500)
+            if (uploadImage != null && uploadImage.ContentLength / 1024 < 1500 && uploadImage.ContentLength > 0)
             {
                 byte[] imageData = null;
 

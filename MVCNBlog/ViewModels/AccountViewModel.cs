@@ -11,11 +11,9 @@ namespace MVCNBlog.ViewModels
     public class AccountViewModel
     {
         public int Id { get; set; }
-        [CorrectEmail]
-        [Remote("ValidateEmail", "User")]
         public string Email { get; set; }
         [CorrectName]
-        [Remote("ValidateLoginName", "User")]
+        [Remote("ValidateName", "User")]
         public string Name { get; set; }
         public DateTime CreationDate { get; set; }
         public string Rank { get; set; }

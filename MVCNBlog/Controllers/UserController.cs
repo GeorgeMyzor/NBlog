@@ -33,19 +33,19 @@ namespace MVCNBlog.Controllers
             pageSize = int.Parse(WebConfigurationManager.AppSettings["PageSize"]);
         }
 
+        #region View
+
         [HttpGet]
         [AllowAnonymous]
         public ActionResult Index(int? id, string name)
         {
-            var user = service.GetUserEntity(id ?? 0).ToMvcUser();
+            if (id == null || id < 0)
+                throw new HttpException(404, "Incorrect id.");
+
+            var user = service.GetUserEntity(id.Value).ToMvcUser();
 
             if (user == null)
-            {
-                string outputString = $"{nameof(user)} wasnt found.";
-                var httpException = new HttpException(404, outputString);
-
-                throw httpException;
-            }
+                throw new HttpException(404, $"{nameof(user)} wasnt found.");
 
             string urlWithName = user.Name.RemoveSpecialCharacters();
             urlWithName = Url.Encode(urlWithName);
@@ -84,6 +84,10 @@ namespace MVCNBlog.Controllers
             return View(users);
         }
 
+        #endregion
+
+        #region Create
+
         [HttpGet]
         public ActionResult Create()
         {
@@ -92,46 +96,48 @@ namespace MVCNBlog.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(RegisterUserViewModel userViewModel)
+        public ActionResult Create(RegisterUserViewModel newUser)
         {
-            var user = service.GetUserEntityByEmail(userViewModel.Email);
-            if (user != null)
-            {
-                if(user.Name == userViewModel.Name)
-                    ModelState.AddModelError(nameof(RegisterUserViewModel.Name), "A user with the same name already exists");
+            var duplicateEmailUser = service.GetUserEntityByEmail(newUser.Email);
+            if (duplicateEmailUser != null)
                 ModelState.AddModelError(nameof(RegisterUserViewModel.Email), "A user with the same email already exists");
-            }
+
+            var duplicateNameUser = service.GetUserEntity(newUser.Name);
+            if (duplicateNameUser != null)
+                ModelState.AddModelError(nameof(RegisterUserViewModel.Name), "A user with the same name already exists");
 
             if (ModelState.IsValid)
             {
-                userViewModel.UserPic = Settings.GetDefaultProfilePicture();
+                newUser.UserPic = Settings.GetDefaultProfilePicture();
 
-                service.CreateUser(userViewModel.ToBllUser());
+                service.CreateUser(newUser.ToBllUser());
                 return RedirectToAction("All");
             }
 
             return View();
         }
 
+        #endregion
+
+        #region Edit
+
         [HttpGet]
         public ActionResult Edit(int? id)
         {
-            var editingUser = service.GetUserEntity(id ?? 0)?.ToMvcUser();
+            if (id == null || id < 0)
+                throw new HttpException(404, "Incorrect id.");
+
+            var editingUser = service.GetUserEntity(id.Value)?.ToMvcUser();
 
             if (editingUser == null)
-            {
-                string outputString = $"{nameof(editingUser)} wasn't found.";
-                var httpException = new HttpException(404, outputString);
-
-                throw httpException;
-            }
+                throw new HttpException(404, $"{nameof(editingUser)} wasn't found.");
 
             return View(editingUser);
         }
 
         [HttpPost]
-        [ActionName("Edit")]
-        public ActionResult ConfirmEdit(UserViewModel editingUser)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(UserViewModel editingUser)
         {
             if (ModelState.IsValidField(nameof(editingUser.Name)) && ModelState.IsValidField(nameof(editingUser.Role)))
             {
@@ -142,7 +148,7 @@ namespace MVCNBlog.Controllers
 
             var outUser = service.GetUserEntity(editingUser.Id)?.ToMvcUser();
 
-            return View(outUser);
+            return View("Index", outUser);
         }
 
         [HttpGet]
@@ -152,16 +158,17 @@ namespace MVCNBlog.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult UpdatePicture(int? id, HttpPostedFileBase uploadImage)
         {
+            if (id == null || id < 0)
+                throw new HttpException(404, "Incorrect id.");
+
             if (Request.Files.Count > 0 && uploadImage == null)
             {
                 uploadImage = Request.Files[0];
             }
-
-            if(id == null)
-                throw new HttpException(404, "");
-
+            
             if (uploadImage != null && uploadImage.ContentLength / 1024 < 200)
             {
                 byte[] imageData = null;
@@ -195,33 +202,41 @@ namespace MVCNBlog.Controllers
             return RedirectToAction("Edit", id);
         }
 
+        #endregion
+
+        #region Delete
+
         public ActionResult Delete(int? id)
         {
-            var deletingUser = service.GetUserEntity(id ?? 0)?.ToMvcUser();
+            if (id == null || id < 0)
+                throw new HttpException(404, "Incorrect id.");
+
+            var deletingUser = service.GetUserEntity(id.Value)?.ToMvcUser();
 
             if (deletingUser == null)
-            {
-                string outputString = $"{nameof(deletingUser)} wasn't found.";
-                var httpException = new HttpException(404, outputString);
-
-                throw httpException;
-            }
+                throw new HttpException(404, $"{nameof(deletingUser)} wasn't found.");
 
             return View(deletingUser);
         }
 
         [HttpPost]
-        [ActionName("Delete")]
-        public ActionResult ConfirmDelete(BllUser deletingUser)
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(BllUser deletingUser)
         {
             deletingUser = service.GetUserEntity(deletingUser.Id);
+
+            if(deletingUser == null)
+                throw new HttpException(404, "User not found.");
+
             service.DeleteUser(deletingUser);
 
             return RedirectToAction("All");
         }
 
+        #endregion
+
         #region Remote validation
-        
+
         [HttpGet]
         [AllowAnonymous]
         public JsonResult ValidateName(string name)
