@@ -158,7 +158,6 @@ namespace MVCNBlog.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult UpdatePicture(int? id, HttpPostedFileBase uploadImage)
         {
             if (id == null || id < 0)

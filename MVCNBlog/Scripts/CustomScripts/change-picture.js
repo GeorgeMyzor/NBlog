@@ -13,10 +13,11 @@ $(document).ready(function () {
             }
 
             $("#loading").show('slow');
+            var url = $('#updatePictureUrl').val();
 
             e.preventDefault();
             $.ajax({
-                url: '/Users/' + id + '/UpdatePicture',
+                url: url,
                 type: "POST",
                 contentType: false,
                 processData: false,

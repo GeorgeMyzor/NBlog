@@ -49,10 +49,10 @@
               + Convert.ToBase64String(Model.UserPic) + "\" />")
     </div>
 
-    <div id="loading" class="load" style="display: none">
+    <div id="loading" class="load" style="display: none; margin-left: 87px;">
         <p>Loading Picture...</p>
     </div>
-    @using (Html.BeginRouteForm("EditUser", new { id = Model.Id }, FormMethod.Post, new { id = "uploadForm", enctype = "multipart/form-data" }))
+    @using (Html.BeginRouteForm("EditAccount", new { action = "UpdatePicture" }, FormMethod.Post, new { id = "uploadForm", enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
@@ -61,18 +61,19 @@
         <fieldset style="border: none; margin-left: 60px">
             <legend style="font-weight: normal; margin: 0 31px 15px; font-family: 'Oswald', sans-serif;">Change picture</legend>
 
-            <input type="file" id="uploadImage" name="uploadImage" class="inputfile" />
+            <input type="file" id="uploadImage" name="uploadImage" class="inputfile"/>
             <label for="uploadImage">
                 <i class="fa fa-file-image-o" aria-hidden="true"></i> Choose a file
             </label>
 
             <p>
-                <input type="submit" id="picSubmit" style="margin-left: 17px;" value="Change" />
+                <input type="submit" id="picSubmit" style="margin-left: 17px;" value="Change"/>
             </p>
         </fieldset>
     }
 
-    <label id="picError">@TempData["PicError"]</label>
+    <input type="hidden" id="updatePictureUrl" value="@Url.RouteUrl("EditAccount", new {action = "UpdatePicture"})" />
+    <label style="margin-left: 87px;" class="text-danger" id="picError">@TempData["PicError"]</label>
 </div>
 
 <div>

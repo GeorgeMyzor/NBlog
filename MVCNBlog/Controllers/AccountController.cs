@@ -199,7 +199,6 @@ namespace MVCNBlog.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult UpdatePicture(HttpPostedFileBase uploadImage)
         {
             if (!User.IsInRole("VipUser"))

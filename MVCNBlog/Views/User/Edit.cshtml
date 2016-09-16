@@ -8,32 +8,30 @@
 <div class="clearfix newsletter regester">
     @using (Html.BeginForm())
     {
-        {
-            @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-            @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.Id)
 
+        <div>
+            @Html.LabelFor(m => m.Name, new {@class = "col-md-2 control-label"})
+            @Html.TextBox("Name", null, new {id = "mce-EMAIL", type = "text", placeholder = "Name"})
+            @Html.ValidationMessageFor(m => m.Name, null, new {@class = "text-danger"})
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.Role, htmlAttributes: new {@class = "control-label col-md-2"})
             <div>
-                @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
-                @Html.TextBox("Name", null, new { id = "mce-EMAIL", type = "text", placeholder = "Name" })
-                @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+                <select class="form-control" id="roles" name="roleId">
+                    <option value="1">Admin</option>
+                    <option value="2">Moderator</option>
+                    <option value="4">User</option>
+                </select>
             </div>
+        </div>
 
-            <div>
-                @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div>
-                    <select class="form-control" id="roles" name="roleId">
-                        <option value="1">Admin</option>
-                        <option value="2">Moderator</option>
-                        <option value="4">User</option>
-                    </select>
-                </div>
-            </div>
-
-            <div>
-                <input type="submit" style="margin-left: 70px;" value="Save" class="user_edit" />
-            </div>
-        }
+        <div>
+            <input type="submit" style="margin-left: 70px;" value="Save" class="user_edit"/>
+        </div>
     }
 
 
@@ -43,7 +41,7 @@
               + Convert.ToBase64String(Model.UserPic) + "\" />")
     </div>
 
-    <div id="loading" class="load" style="display: none">
+    <div id="loading" class="load" style="display: none; margin-left: 87px;">
         <p>Loading Picture...</p>
     </div>
     @using (Html.BeginRouteForm("EditUser", new { id = Model.Id }, FormMethod.Post, new { id = "uploadForm", enctype = "multipart/form-data" }))
@@ -65,10 +63,9 @@
         </fieldset>
     }
 
-    <label id="picError">@TempData["PicError"]</label>
+    <input type="hidden" id="updatePictureUrl" value="@Url.RouteUrl("EditUser", new { id = Model.Id })" />
+    <label style="margin-left: 87px;" class="text-danger" id="picError">@TempData["PicError"]</label>
 </div>
-
-
 
 <div>
     @Html.RouteLink("Back to user", "UserAction", new { action = "Index", name = Model.Name, id = Model.Id },

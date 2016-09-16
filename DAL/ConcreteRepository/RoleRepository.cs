@@ -18,9 +18,9 @@ namespace DAL.ConcreteRepository
 
         public RoleRepository(DbContext context)
         {
-            this.context = context;
             if (context == null)
                 throw new ArgumentNullException(nameof(context), "Context is null.");
+            this.context = context;
         }
 
         public DalRole GetById(int id)
@@ -58,8 +58,7 @@ namespace DAL.ConcreteRepository
                 throw new ArgumentOutOfRangeException(nameof(id), $"{nameof(id)} must be positive.");
             }    
         }
-
-
+        
         #endregion
     }
 }

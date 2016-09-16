@@ -70,12 +70,7 @@ namespace BLL.Services
         {
             return articleRepository.GetPagedArticles(pageNum, pageSize).Select(dalArticle => dalArticle.ToBllArticle());
         }
-
-        public IEnumerable<BllArticle> GetPagedArticles(int pageNum, int pageSize, int userId)
-        {
-            return articleRepository.GetPagedArticles(pageNum, pageSize, userId).Select(dalArticle => dalArticle.ToBllArticle());
-        }
-
+        
         public IEnumerable<BllArticle> GetRecentArticles()
         {
             var articles = articleRepository.GetAll();

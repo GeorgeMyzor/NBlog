@@ -18,9 +18,9 @@ namespace DAL.ConcreteRepository
 
         public CommentRepository(DbContext context)
         {
-            this.context = context;
             if (context == null)
                 throw new ArgumentNullException(nameof(context), "Context is null.");
+            this.context = context;
         }
         
         public int GetCount(string userName = null)
@@ -30,12 +30,14 @@ namespace DAL.ConcreteRepository
                 : context.Set<Comment>().Count(comment => comment.Author.Name == userName);
         }
 
+        #region Read
+
         public IEnumerable<DalComment> GetAll()
         {
             return
                 context.Set<Comment>()
                     .OrderBy(comment => comment.PublicationDate)
-                    .Select(ormComment => ormComment.ToDalComment());
+                    .Select(comment => comment.ToDalComment());
         }
 
         public IEnumerable<DalComment> GetArticleComments(int articleId)
@@ -63,6 +65,8 @@ namespace DAL.ConcreteRepository
             return comment?.ToDalComment();
         }
 
+        #endregion
+
         public void Create(DalComment dalComment)
         {
             ValidateComment(dalComment);
@@ -70,7 +74,7 @@ namespace DAL.ConcreteRepository
             var ormComment = dalComment.ToOrmComment();
 
             ormComment.Author = context.Set<User>().SingleOrDefault((user => user.Id == dalComment.AuthorId));
-            ormComment.Article = context.Set<Article>().SingleOrDefault((article => article.Id == dalComment.ArticleId));
+            ormComment.Article = context.Set<Article>().Single((article => article.Id == dalComment.ArticleId));
 
             context.Set<Comment>().Add(ormComment);
             context.SaveChanges();
@@ -92,8 +96,7 @@ namespace DAL.ConcreteRepository
 
             ormComment.Content = dalComment.Content;
         }
-
-
+        
         #region Private methods
         
         private static void ValidateComment(DalComment dalComment)

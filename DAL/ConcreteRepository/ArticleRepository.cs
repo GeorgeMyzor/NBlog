@@ -19,9 +19,9 @@ namespace DAL.ConcreteRepository
 
         public ArticleRepository(DbContext context)
         {
-            this.context = context;
             if (context == null)
                 throw new ArgumentNullException(nameof(context), "Context is null.");
+            this.context = context;
         }
         
         public int GetCount(string userName = null)
@@ -31,9 +31,11 @@ namespace DAL.ConcreteRepository
                 : context.Set<Article>().Count(article => article.Author.Name == userName);
         }
 
+        #region Read
+
         public DalArticle GetById(int id)
         {
-            ValidateParams(userId: id);
+            ValidateParams(id: id);
 
             var ormArticle = context.Set<Article>().FirstOrDefault(article => article.Id == id);
 
@@ -42,7 +44,7 @@ namespace DAL.ConcreteRepository
         
         public IEnumerable<DalArticle> GetAll()
         {
-            return context.Set<Article>().ToList().Select(ormArticle => ormArticle.ToDalArticle());
+            return context.Set<Article>().ToList().Select(article => article.ToDalArticle());
         }
 
         public IEnumerable<DalArticle> GetPagedArticles(int pageNum, int pageSize)
@@ -51,16 +53,6 @@ namespace DAL.ConcreteRepository
 
             var ormArticles = context.Set<Article>().OrderByDescending(article => article.PublicationDate).
                 Skip((pageNum - 1) * pageSize).Take(pageSize).ToList();
-
-            return ormArticles.Select(article => article.ToDalArticle());
-        }
-
-        public IEnumerable<DalArticle> GetPagedArticles(int pageNum, int pageSize, int userId)
-        {
-            ValidateParams(pageNum, pageSize, userId);
-
-            var ormArticles = context.Set<Article>().OrderByDescending(article => article.PublicationDate).
-                Where(x => x.Author.Id == userId).Skip((pageNum - 1)*pageSize).Take(pageSize).ToList();
 
             return ormArticles.Select(article => article.ToDalArticle());
         }
@@ -83,6 +75,8 @@ namespace DAL.ConcreteRepository
 
             return findedArticles;
         }
+
+        #endregion
 
         public void Create(DalArticle dalArticle)
         {
@@ -144,7 +138,7 @@ namespace DAL.ConcreteRepository
             }
         }
 
-        private static void ValidateParams(int pageNum = 1, int pageSize = 1, int userId = 0)
+        private static void ValidateParams(int pageNum = 1, int pageSize = 1, int id = 0)
         {
             if (pageNum < 1)
             {
@@ -154,7 +148,7 @@ namespace DAL.ConcreteRepository
             {
                 throw new ArgumentOutOfRangeException(nameof(pageSize), $"{nameof(pageSize)} must be greator then 0.");
             }
-            else if (userId < 0)
+            else if (id < 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(pageSize), $"{nameof(pageSize)} must be positive.");
             }

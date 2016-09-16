@@ -18,38 +18,16 @@ namespace DAL.ConcreteRepository
 
         public UserRepository(DbContext context)
         {
-            this.context = context;
             if (context == null)
-                throw new ArgumentNullException(nameof(context),"Context is null.");
+                throw new ArgumentNullException(nameof(context), "Context is null.");
+            this.context = context;
         }
 
-        public IEnumerable<DalUser> GetAll()
-        {
-            return context.Set<User>().ToList().Select(ormUser => ormUser.ToDalUser());
-        }
-        
         public int GetCount(string userEmail = null)
         {
             return userEmail == null
                 ? context.Set<User>().Count()
                 : context.Set<User>().Count(user => user.Email == userEmail);
-        }
-
-        public DalUser GetById(int id)
-        {
-            ValidateId(id);
-
-            var ormUser = context.Set<User>().FirstOrDefault(user => user.Id == id);
-
-            return ormUser?.ToDalUser();
-        }
-        
-        public DalUser GetByPredicate(Expression<Func<DalUser, bool>> expression)
-        {
-            var newExpr = Modifier.Convert<DalUser,User>(expression);
-
-            var user = context.Set<User>().FirstOrDefault(newExpr);
-            return user?.ToDalUser();
         }
 
         public int GetUserActivity(int id)
@@ -62,14 +40,23 @@ namespace DAL.ConcreteRepository
             return activity;
         }
 
-        public void UpdateUserPicture(DalUser dalUser)
+        #region Read
+
+        public DalUser GetById(int id)
         {
-            ValidateUser(dalUser);
+            ValidateId(id);
 
-            var editingUser = dalUser.ToOrmUser();
-            var ormUser = context.Set<User>().Single(u => u.Id == dalUser.Id);
+            var ormUser = context.Set<User>().FirstOrDefault(user => user.Id == id);
 
-            ormUser.UserPic = editingUser.UserPic;
+            return ormUser?.ToDalUser();
+        }
+
+        public DalUser GetByPredicate(Expression<Func<DalUser, bool>> expression)
+        {
+            var newExpr = Modifier.Convert<DalUser, User>(expression);
+
+            var user = context.Set<User>().FirstOrDefault(newExpr);
+            return user?.ToDalUser();
         }
 
         public IEnumerable<DalUser> GetPagedUsers(int pageNum, int pageSize)
@@ -77,11 +64,18 @@ namespace DAL.ConcreteRepository
             ValidatePageParams(pageNum, pageSize);
 
             var ormUser = context.Set<User>().OrderByDescending(user => user.Name).
-                Skip((pageNum - 1) * pageSize).Take(pageSize).ToList();
+                Skip((pageNum - 1)*pageSize).Take(pageSize).ToList();
 
             return ormUser.Select(user => user.ToDalUser());
         }
-        
+
+        public IEnumerable<DalUser> GetAll()
+        {
+            return context.Set<User>().ToList().Select(user => user.ToDalUser());
+        }
+
+        #endregion
+
         public void Create(DalUser dalUser)
         {
             ValidateUser(dalUser);
@@ -107,7 +101,9 @@ namespace DAL.ConcreteRepository
             ormUser = context.Set<User>().Single(u => u.Id == ormUser.Id);
             context.Set<User>().Remove(ormUser);
         }
-        
+
+        #region Update
+
         public void Update(DalUser dalUser)
         {
             ValidateUser(dalUser);
@@ -121,7 +117,17 @@ namespace DAL.ConcreteRepository
 
             UpdateOrmUserRoles(ormUser, editingUser);
         }
-        
+
+        public void UpdateUserPicture(DalUser dalUser)
+        {
+            ValidateUser(dalUser);
+
+            var editingUser = dalUser.ToOrmUser();
+            var ormUser = context.Set<User>().Single(u => u.Id == dalUser.Id);
+
+            ormUser.UserPic = editingUser.UserPic;
+        }
+
         public void UpdatePaidRole(DalUser dalUser)
         {
             ValidateUser(dalUser);
@@ -131,8 +137,10 @@ namespace DAL.ConcreteRepository
 
             CopyOrmUserNotPaidRoles(ormUser, editingUser);
 
-            UpdateOrmUserRoles(ormUser,editingUser);
+            UpdateOrmUserRoles(ormUser, editingUser);
         }
+
+        #endregion
 
         #region Private methods
 
@@ -197,6 +205,7 @@ namespace DAL.ConcreteRepository
                 throw new ArgumentOutOfRangeException(nameof(pageSize), $"{nameof(pageSize)} must be greator then 0.");
             }
         }
+
         #endregion
     }
 }
