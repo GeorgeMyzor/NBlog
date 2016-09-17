@@ -11,6 +11,15 @@ namespace MVCNBlog.Infrastructure.Helpers
     public static class PagingHelper
     {
         private const int PageLinkIndent = 1;
+        /// <summary>
+        /// Creates <a></a> tag in <li></li> tag for every page number. Every <a></a> tag with number on it 
+        /// contains link to page with same number. Only one link will be with "selected" class. 
+        /// Also creates link to first and last pages;
+        /// </summary>
+        /// <param name="html">Html helper to be extended.</param>
+        /// <param name="pagingInfo">Info about pages.</param>
+        /// <param name="pageUrl">Delegate that transform page number into Url.</param>
+        /// <returns>li tag with page link.</returns>
         public static MvcHtmlString PageLinks(this HtmlHelper html, PagingInfo pagingInfo,
             Func<int, string> pageUrl)
         {

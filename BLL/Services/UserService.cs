@@ -63,7 +63,7 @@ namespace BLL.Services
             return user;
         }
 
-        public BllUser GetUserEntityByEmail(string email)
+        public BllUser GetUserByEmail(string email)
         {
             return userRepository.GetByPredicate(dalUser => dalUser.Email == email)?.ToBllUser();
         }
@@ -114,18 +114,18 @@ namespace BLL.Services
 
         public static string Sha256Hash(string value)
         {
-            StringBuilder Sb = new StringBuilder();
+            StringBuilder resultHash = new StringBuilder();
 
-            using (SHA256 hash = SHA256Managed.Create())
+            using (SHA256 hash = SHA256.Create())
             {
                 Encoding enc = Encoding.UTF8;
-                Byte[] result = hash.ComputeHash(enc.GetBytes(value));
+                byte[] result = hash.ComputeHash(enc.GetBytes(value));
 
-                foreach (Byte b in result)
-                    Sb.Append(b.ToString("x2"));
+                foreach (byte b in result)
+                    resultHash.Append(b.ToString("x2"));
             }
 
-            return Sb.ToString();
+            return resultHash.ToString();
         }
     }
 }

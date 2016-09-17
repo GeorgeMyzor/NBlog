@@ -54,7 +54,7 @@ namespace MVCNBlog.Providers
 
         public override bool ValidateUser(string email, string password)
         {
-            var user = UserService.GetUserEntityByEmail(email);
+            var user = UserService.GetUserByEmail(email);
 
             if (user != null && user.Password == Sha256Hash(password))
             {
@@ -66,7 +66,7 @@ namespace MVCNBlog.Providers
         
         public override MembershipUser GetUser(string email, bool userIsOnline)
         {
-            var user = UserService.GetUserEntityByEmail(email);
+            var user = UserService.GetUserByEmail(email);
 
             if (user == null) return null;
 

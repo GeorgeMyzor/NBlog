@@ -30,6 +30,11 @@ namespace DAL.ConcreteRepository
                 : context.Set<User>().Count(user => user.Email == userEmail);
         }
 
+        /// <summary>
+        /// Gets user activity. Activity - count of user's posts or comments.
+        /// </summary>
+        /// <param name="id">User id.</param>
+        /// <returns>Count of user's posts and comments.</returns>
         public int GetUserActivity(int id)
         {
             ValidateId(id);
@@ -51,6 +56,11 @@ namespace DAL.ConcreteRepository
             return ormUser?.ToDalUser();
         }
 
+        /// <summary>
+        /// Return user by predicate <param name="expression"></param>
+        /// </summary>
+        /// <param name="expression">Rule according to which will find out a user.</param>
+        /// <returns>User.</returns>
         public DalUser GetByPredicate(Expression<Func<DalUser, bool>> expression)
         {
             var newExpr = Modifier.Convert<DalUser, User>(expression);
@@ -59,6 +69,14 @@ namespace DAL.ConcreteRepository
             return user?.ToDalUser();
         }
 
+
+        /// <summary>
+        /// Returns number of users which is specified in <param name="pageSize"></param>, 
+        /// starting from <param name="pageNum"></param>. Users are sorted by name.
+        /// </summary>
+        /// <param name="pageNum">Offset in list of users.</param>
+        /// <param name="pageSize">Amount of users to be returned.</param>
+        /// <returns>Users.</returns>
         public IEnumerable<DalUser> GetPagedUsers(int pageNum, int pageSize)
         {
             ValidatePageParams(pageNum, pageSize);
@@ -104,6 +122,10 @@ namespace DAL.ConcreteRepository
 
         #region Update
 
+        /// <summary>
+        /// Update user name and roles.
+        /// </summary>
+        /// <param name="dalUser">User to be updated.</param>
         public void Update(DalUser dalUser)
         {
             ValidateUser(dalUser);
@@ -118,6 +140,10 @@ namespace DAL.ConcreteRepository
             UpdateOrmUserRoles(ormUser, editingUser);
         }
 
+        /// <summary>
+        /// Update user's profile picture.
+        /// </summary>
+        /// <param name="dalUser">User to be updated.</param>
         public void UpdateUserPicture(DalUser dalUser)
         {
             ValidateUser(dalUser);
@@ -128,6 +154,10 @@ namespace DAL.ConcreteRepository
             ormUser.UserPic = editingUser.UserPic;
         }
 
+        /// <summary>
+        /// Update user's payed role such as Vip role.
+        /// </summary>
+        /// <param name="dalUser">User to be updated.</param>
         public void UpdatePaidRole(DalUser dalUser)
         {
             ValidateUser(dalUser);

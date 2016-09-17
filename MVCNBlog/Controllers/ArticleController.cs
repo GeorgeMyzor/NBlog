@@ -160,7 +160,7 @@ namespace MVCNBlog.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ArticleViewModel newArticle)
         {
-            var currentUser = userService.GetUserEntityByEmail(User.Identity.Name)?.ToMvcUser();
+            var currentUser = userService.GetUserByEmail(User.Identity.Name)?.ToMvcUser();
             if(currentUser == null)
                 throw new HttpException(404, $"{nameof(currentUser)} wasnt found. When trying to add new atricle.");
 

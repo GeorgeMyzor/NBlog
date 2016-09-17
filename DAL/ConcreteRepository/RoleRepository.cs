@@ -32,6 +32,11 @@ namespace DAL.ConcreteRepository
             return ormRole?.ToDalRole();
         }
 
+        /// <summary>
+        /// Return role by predicate <param name="expression"></param>
+        /// </summary>
+        /// <param name="expression">Rule according to which will find out a role.</param>
+        /// <returns>Role.</returns>
         public DalRole GetByPredicate(Expression<Func<DalRole, bool>> expression)
         {
             var newExpr = Modifier.Convert<DalRole, Role>(expression);
@@ -40,6 +45,11 @@ namespace DAL.ConcreteRepository
             return role.ToDalRole();
         }
 
+        /// <summary>
+        /// Gets role cost by role <param name="id">. If role is payed role cost will be greater then 0.</param>
+        /// </summary>
+        /// <param name="id">Id of role.</param>
+        /// <returns>Role cost. 0 if not a payed role.</returns>
         public int GetRoleCost(int id)
         {
             ValidateParams(id);

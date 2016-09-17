@@ -22,7 +22,12 @@ namespace DAL.ConcreteRepository
                 throw new ArgumentNullException(nameof(context), "Context is null.");
             this.context = context;
         }
-        
+
+        /// <summary>
+        /// Returns comments count, if <param name="userName"></param> not null, returns user's comments count.
+        /// </summary>
+        /// <param name="userName">Name of user by which comments count will be searched.</param>
+        /// <returns>Comments count.</returns>
         public int GetCount(string userName = null)
         {
             return userName == null
@@ -32,22 +37,6 @@ namespace DAL.ConcreteRepository
 
         #region Read
 
-        public IEnumerable<DalComment> GetAll()
-        {
-            return
-                context.Set<Comment>()
-                    .OrderBy(comment => comment.PublicationDate)
-                    .Select(comment => comment.ToDalComment());
-        }
-
-        public IEnumerable<DalComment> GetArticleComments(int articleId)
-        {
-            var comments = context.Set<Comment>().Where(comment => comment.ArticleId == articleId).
-                OrderByDescending(comment => comment.PublicationDate).ToList();
-
-            return comments.Select(ormComment => ormComment.ToDalComment());
-        }
-
         public DalComment GetById(int id)
         {
             ValidateId(id);
@@ -56,7 +45,37 @@ namespace DAL.ConcreteRepository
 
             return ormComment.ToDalComment();
         }
-        
+
+        /// <summary>
+        /// Returns ordered, by publication date, sequence of all comments.
+        /// </summary>
+        /// <returns>All comments.</returns>
+        public IEnumerable<DalComment> GetAll()
+        {
+            return
+                context.Set<Comment>()
+                    .OrderByDescending(comment => comment.PublicationDate)
+                    .Select(comment => comment.ToDalComment());
+        }
+
+        /// <summary>
+        /// Returns ordered, by publication date, sequence of articles's comments. 
+        /// Commets searched by <param name="articleId"></param> property.
+        /// </summary>
+        /// <returns>Article's comments.</returns>
+        public IEnumerable<DalComment> GetArticleComments(int articleId)
+        {
+            var comments = context.Set<Comment>().Where(comment => comment.ArticleId == articleId).
+                OrderByDescending(comment => comment.PublicationDate).ToList();
+
+            return comments.Select(ormComment => ormComment.ToDalComment());
+        }
+
+        /// <summary>
+        /// Return comment by predicate <param name="expression"></param>
+        /// </summary>
+        /// <param name="expression">Rule according to which will find out a comment.</param>
+        /// <returns>Comment.</returns>
         public DalComment GetByPredicate(Expression<Func<DalComment, bool>> expression)
         {
             var newExpr = Modifier.Convert<DalComment, Comment>(expression);

@@ -24,6 +24,11 @@ namespace DAL.ConcreteRepository
             this.context = context;
         }
         
+        /// <summary>
+        /// Returns articles count, if <param name="userName"></param> not null, returns user's articles count.
+        /// </summary>
+        /// <param name="userName">Name of user by which articles count will be searched.</param>
+        /// <returns>Articles count.</returns>
         public int GetCount(string userName = null)
         {
             return userName == null
@@ -51,6 +56,13 @@ namespace DAL.ConcreteRepository
             return context.Set<Article>().ToList().Select(article => article.ToDalArticle());
         }
 
+        /// <summary>
+        /// Returns number of articles which is specified in <param name="pageSize"></param>, 
+        /// starting from <param name="pageNum"></param>. Articles are sorted by publication date.
+        /// </summary>
+        /// <param name="pageNum">Offset in list of articles.</param>
+        /// <param name="pageSize">Amount of articles to be returned.</param>
+        /// <returns>Articles.</returns>
         public IEnumerable<DalArticle> GetPagedArticles(int pageNum, int pageSize)
         {
             ValidateParams(pageNum, pageSize);
@@ -61,6 +73,11 @@ namespace DAL.ConcreteRepository
             return ormArticles.Select(article => article.ToDalArticle());
         }
         
+        /// <summary>
+        /// Return article by predicate <param name="expression"></param>
+        /// </summary>
+        /// <param name="expression">Rule according to which will find out a article.</param>
+        /// <returns>Article.</returns>
         public DalArticle GetByPredicate(Expression<Func<DalArticle, bool>> expression)
         {
             var newExpr = Modifier.Convert<DalArticle, Article>(expression);
@@ -69,6 +86,11 @@ namespace DAL.ConcreteRepository
             return article?.ToDalArticle();
         }
 
+        /// <summary>
+        /// Return articles by predicate <param name="expression"></param>.
+        /// </summary>
+        /// <param name="expression">Rule according to which will find out a articles.</param>
+        /// <returns>Articles.</returns>
         public IEnumerable<DalArticle> GetArticlesByPredicate(Expression<Func<DalArticle, bool>> expression)
         {
             var articles = context.Set<Article>().OrderByDescending(article => article.PublicationDate)
@@ -102,6 +124,10 @@ namespace DAL.ConcreteRepository
             context.Set<Article>().Remove(ormArticle);
         }
 
+        /// <summary>
+        /// Updating article by the following properties: Title, Header, Content, HeaderPicture, Tags.
+        /// </summary>
+        /// <param name="dalArticle">Article to be updated.</param>
         public void Update(DalArticle dalArticle)
         {
             ValidateArticle(dalArticle);

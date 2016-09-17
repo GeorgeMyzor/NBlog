@@ -12,7 +12,7 @@ namespace BLL.Interface.Services
         int GetUsersCount();
         BllUser GetUserEntity(int id);
         BllUser GetUserEntity(string name);
-        BllUser GetUserEntityByEmail(string email);
+        BllUser GetUserByEmail(string email);
         IEnumerable<BllUser> GetAllUserEntities();
         IEnumerable<BllUser> GetPagedUsers(int pageNum, int pageSize);
         void CreateUser(BllUser user);

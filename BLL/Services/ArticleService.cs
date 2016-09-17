@@ -48,32 +48,37 @@ namespace BLL.Services
             return articleRepository.GetAll().Select(article => article.ToBllArticle());
         }
 
-        public IEnumerable<BllArticle> FindArticleEntities(string findString)
+        /// <summary>
+        /// Find articles by <param name="term"></param> if its tag then finding in article's tags.
+        /// </summary>
+        /// <param name="term">Tag or text from article's content.</param>
+        /// <returns>Finded articles.</returns>
+        public IEnumerable<BllArticle> FindArticleEntities(string term)
         {
-            IEnumerable<DalArticle> allArticles;
-            if (findString.StartsWith("-hashtag-"))
+            IEnumerable<DalArticle> findedArticles;
+            if (term.StartsWith("-hashtag-"))
             {
-                findString = findString.Replace("-hashtag-", "#");
-                allArticles =
+                term = term.Replace("-hashtag-", "#");
+                findedArticles =
                     articleRepository.GetArticlesByPredicate(
                         article =>
-                            article.Tags.Any(tag => tag.StartsWith(findString, true, CultureInfo.InvariantCulture)));
+                            article.Tags.Any(tag => tag.StartsWith(term, true, CultureInfo.InvariantCulture)));
             }
             else
             {
-                allArticles =
+                findedArticles =
                     articleRepository.GetArticlesByPredicate(
-                        article => article.Content.IndexOf(findString, StringComparison.OrdinalIgnoreCase) >= 0);
+                        article => article.Content.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0);
             }
 
-            return allArticles.Select(article => article.ToBllArticle());
+            return findedArticles.Select(article => article.ToBllArticle());
         }
 
         public IEnumerable<BllArticle> GetPagedArticles(int pageNum, int pageSize)
         {
             return articleRepository.GetPagedArticles(pageNum, pageSize).Select(article => article.ToBllArticle());
         }
-
+        
         public IEnumerable<BllArticle> GetRecentArticles()
         {
             var articles = articleRepository.GetAll();

@@ -98,7 +98,7 @@ namespace MVCNBlog.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(RegisterUserViewModel newUser)
         {
-            var duplicateEmailUser = service.GetUserEntityByEmail(newUser.Email);
+            var duplicateEmailUser = service.GetUserByEmail(newUser.Email);
             if (duplicateEmailUser != null)
                 ModelState.AddModelError(nameof(RegisterUserViewModel.Email), "A user with the same email already exists");
 
@@ -278,7 +278,7 @@ namespace MVCNBlog.Controllers
             if (!Request.IsAjaxRequest())
                 throw new HttpException(404, "Page not found.");
 
-            var user = service.GetUserEntityByEmail(email);
+            var user = service.GetUserByEmail(email);
             if (user != null && user.Email != User.Identity.Name)
                 return Json("User with the same email already exists.",
                     JsonRequestBehavior.AllowGet);

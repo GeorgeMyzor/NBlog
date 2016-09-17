@@ -10,6 +10,12 @@ namespace MVCNBlog.Infrastructure.Helpers
 {
     public static class TagsHighlightHelper
     {
+        /// <summary>
+        /// Creates a <span></span> tag around tag in content or header. The span contains special class, so he will be highlighted.
+        /// </summary>
+        /// <param name="html">HtmlHelper to be extended.</param>
+        /// <param name="artcileContent">Article content which can contains tags.</param>
+        /// <returns>Article's content with highlighted tags.</returns>
         public static MvcHtmlString HighLightTags(this HtmlHelper html, string artcileContent)
         {
             IList<string> newTags;

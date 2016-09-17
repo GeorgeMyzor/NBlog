@@ -20,3 +20,4 @@
 2016-09-17 17:35:16.0888 Warn Message: Page not found. 
 2016-09-17 17:35:16.3858 Warn Message: Page not found. 
 2016-09-17 17:35:16.6009 Warn Message: Page not found. 
+2016-09-17 18:44:56.3190 Warn Message: A public action method 'Create' was not found on controller 'MVCNBlog.Controllers.CommentController'. 
