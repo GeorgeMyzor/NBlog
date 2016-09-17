@@ -22,7 +22,6 @@ namespace MVCNBlog.Controllers
         private readonly IArticleService articleService;
         private readonly IUserService userService;
         private readonly int pageSize;
-        private const string AjaxTempKey = "__isAjax";
 
         public ArticleController(IArticleService articleService, IUserService userService)
         {
@@ -30,8 +29,7 @@ namespace MVCNBlog.Controllers
             this.userService = userService;
             pageSize = int.Parse(WebConfigurationManager.AppSettings["PageSize"]);
         }
-
-        public bool IsAjax => Request.IsAjaxRequest() || (TempData.ContainsKey(AjaxTempKey));
+        
         
         #region View
 
@@ -78,11 +76,9 @@ namespace MVCNBlog.Controllers
                 }
             };
             
-            if (IsAjax)
+            if (Request.IsAjaxRequest())
             {
-                if (TempData.ContainsKey(AjaxTempKey))
-                    TempData.Remove(AjaxTempKey);
-                return PartialView("AllArticles", articles.ViewModels);
+                return PartialView("All", articles);
             }
 
             return View(articles);
@@ -120,8 +116,9 @@ namespace MVCNBlog.Controllers
         {
             if (string.IsNullOrEmpty(term))
             {
-                TempData[AjaxTempKey] = true;
-                return RedirectToAction("All");
+                var articles = articleService.GetPagedArticles(1, pageSize).Select(bllArticle => bllArticle.ToMvcArticle());
+
+                return PartialView("AllArticles", articles);
             }
 
             var findedArticles =

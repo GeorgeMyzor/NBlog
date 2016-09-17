@@ -47,10 +47,7 @@ namespace BLL.Services
 
         public void DeleteComment(BllComment comment)
         {
-            commentRepository.Delete(new DalComment()
-            {
-                Id = comment.Id
-            });
+            commentRepository.Delete(comment.ToDalComment());
             uow.Commit();
         }
 

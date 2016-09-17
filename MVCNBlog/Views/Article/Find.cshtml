@@ -17,12 +17,25 @@
             </div>
             <div class="clearfix post_detail">
                 <h2>
-                    <a href=""> @Html.DisplayFor(modelItem => article.Title). </a>
-                </h2>
+                    @Html.RouteLink(article.Title, "ArticleAction", new {action = "index", title = article.Title.RemoveSpecialCharacters(), id = article.Id})
+                 </h2>
                 <div class="clearfix post-meta">
                     <p>
                         <span>
-                            <i class="fa fa-user"></i>
+                            <i class="fa fa-user">
+                                @if (article.Author != null)
+                                {
+                                    @Html.RouteLink(article.Author.Name, "UserAction", new
+                                    {
+                                        action = "index",
+                                        name = article.Author.Name,
+                                        id = article.Author.Id
+                                    })
+                                }
+                                else
+                                {
+                                    @Html.Raw("DELETED")
+                                }</i>
                         </span> <span><i class="fa fa-comment"></i> @article.Comments.Count()</span>
                     </p>
                     <p><span><i class="fa fa-hashtag" aria-hidden="true"></i> @Html.Raw(string.Join(", ", article.Tags))</span></p>
@@ -36,8 +49,8 @@
                         @Html.HighLightTags(article.Header)
                     </p>
                 </div>
-                @Html.RouteLink("Continue", "ArticleAction", new { action = "Index", title = article.Title, id = article.Id })
-
+                @Html.RouteLink("Continue", "ArticleAction", new { action = "index", title = article.Title.RemoveSpecialCharacters(), id = article.Id })
+                
                 @if (article.Author?.Email == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
                      Roles.IsUserInRole("Administrator"))
                 {

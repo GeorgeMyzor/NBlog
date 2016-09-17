@@ -18,7 +18,7 @@ namespace BLL.Services
         public RoleService(IUnitOfWork uow, IRoleRepository repository)
         {
             this.uow = uow;
-            this.roleRepository = repository;
+            roleRepository = repository;
         }
 
         public BllRole GetRoleEntity(int id)

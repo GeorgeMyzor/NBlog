@@ -30,6 +30,8 @@ namespace BLL.Services
             return userRepository.GetCount();
         }
 
+        #region Read
+
         public BllUser GetUserEntity(int id)
         {
             var user = userRepository.GetById(id)?.ToBllUser();
@@ -81,6 +83,8 @@ namespace BLL.Services
                 return bllUser;
             });
         }
+
+        #endregion
 
         public void CreateUser(BllUser user)
         {

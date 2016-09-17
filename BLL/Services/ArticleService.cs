@@ -16,6 +16,7 @@ namespace BLL.Services
     {
         private readonly IUnitOfWork uow;
         private readonly IArticleRepository articleRepository;
+        private const int SideBarSize = 5;
 
         public ArticleService(IUnitOfWork uow, IArticleRepository repository)
         {
@@ -33,14 +34,11 @@ namespace BLL.Services
             return articleRepository.GetCount(userName);
         }
 
+        #region Read
+
         public BllArticle GetArticleEntity(int id)
         {
             var bllArticle = articleRepository.GetById(id).ToBllArticle();
-
-            if (bllArticle != null)
-            {
-                bllArticle.Comments = new List<BllComment>(bllArticle.Comments.OrderByDescending(comment => comment.PublicationDate));
-            }
 
             return bllArticle;
         }
@@ -56,11 +54,16 @@ namespace BLL.Services
             if (findString.StartsWith("-hashtag-"))
             {
                 findString = findString.Replace("-hashtag-", "#");
-                allArticles = articleRepository.GetArticlesByPredicate(article => article.Tags.Any(tag => tag.StartsWith(findString, true, CultureInfo.InvariantCulture))).ToList();
+                allArticles =
+                    articleRepository.GetArticlesByPredicate(
+                        article =>
+                            article.Tags.Any(tag => tag.StartsWith(findString, true, CultureInfo.InvariantCulture)));
             }
             else
             {
-                allArticles = articleRepository.GetArticlesByPredicate(article => article.Content.IndexOf(findString, StringComparison.OrdinalIgnoreCase) >= 0);
+                allArticles =
+                    articleRepository.GetArticlesByPredicate(
+                        article => article.Content.IndexOf(findString, StringComparison.OrdinalIgnoreCase) >= 0);
             }
 
             return allArticles.Select(article => article.ToBllArticle());
@@ -68,15 +71,16 @@ namespace BLL.Services
 
         public IEnumerable<BllArticle> GetPagedArticles(int pageNum, int pageSize)
         {
-            return articleRepository.GetPagedArticles(pageNum, pageSize).Select(dalArticle => dalArticle.ToBllArticle());
+            return articleRepository.GetPagedArticles(pageNum, pageSize).Select(article => article.ToBllArticle());
         }
-        
+
         public IEnumerable<BllArticle> GetRecentArticles()
         {
             var articles = articleRepository.GetAll();
 
             articles = articles.OrderByDescending(article => article.PublicationDate);
-            articles = articles.Skip(4).Any() ? articles.Take(5) : articles;
+            var dalArticles = articles as IList<DalArticle> ?? articles.ToList();
+            articles = dalArticles.Skip(SideBarSize - 1).Any() ? dalArticles.Take(SideBarSize) : dalArticles;
 
             return articles.Select(article => article.ToBllArticle());
         }
@@ -86,15 +90,18 @@ namespace BLL.Services
             var articles = articleRepository.GetAll();
 
             articles = articles.OrderByDescending(article => article.Comments.Count());
-            articles = articles.Skip(4).Any() ? articles.Take(5) : articles;
+            var dalArticles = articles as IList<DalArticle> ?? articles.ToList();
+            articles = dalArticles.Skip(SideBarSize - 1).Any() ? dalArticles.Take(SideBarSize) : dalArticles;
 
             return articles.Select(article => article.ToBllArticle());
         }
 
+        #endregion
+
         public void CreateArticle(BllArticle article)
         {
             article.PublicationDate = DateTime.Now;
-            
+
             SetTags(article);
 
             articleRepository.Create(article.ToDalArticle());
@@ -115,6 +122,8 @@ namespace BLL.Services
             uow.Commit();
         }
 
+        #region Private methods
+
         private static void SetTags(BllArticle article)
         {
             var tags = TagParser.GetTags(article.Title).ToList();
@@ -123,5 +132,6 @@ namespace BLL.Services
             article.Tags = tags;
         }
 
+        #endregion
     }
 }

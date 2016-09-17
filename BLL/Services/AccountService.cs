@@ -24,6 +24,8 @@ namespace BLL.Services
             this.roleRepository = roleRepository;
         }
 
+        #region Read
+
         public BllUser GetAccountEntity(string email)
         {
             var user = userRepository.GetByPredicate(dalUser => dalUser.Email == email)?.ToBllUser();
@@ -49,7 +51,9 @@ namespace BLL.Services
         {
             return userRepository.GetAll().Select(user => user.ToBllUser());
         }
-        
+
+        #endregion
+
         public void DeleteAccount(BllUser account)
         {
             userRepository.Delete(account.ToDalUser());

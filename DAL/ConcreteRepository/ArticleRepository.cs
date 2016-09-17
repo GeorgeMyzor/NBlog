@@ -38,6 +38,10 @@ namespace DAL.ConcreteRepository
             ValidateParams(id: id);
 
             var ormArticle = context.Set<Article>().FirstOrDefault(article => article.Id == id);
+            if (ormArticle != null)
+            {
+                ormArticle.Comments = new List<Comment>(ormArticle.Comments.OrderByDescending(comment => comment.PublicationDate));
+            }
 
             return ormArticle.ToDalArticle();
         }
