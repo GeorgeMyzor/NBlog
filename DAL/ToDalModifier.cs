@@ -22,10 +22,10 @@ namespace DAL
         {
             private ReadOnlyCollection<ParameterExpression> parameters;
 
-            protected override Expression VisitParameter(ParameterExpression node)
+            protected override Expression VisitParameter(ParameterExpression paramNode)
             {
-                return parameters?.FirstOrDefault(p => p.Name == node.Name) ??
-                    (node.Type == typeof(TSource) ? Expression.Parameter(typeof(TTarget), node.Name) : node);
+                return parameters?.FirstOrDefault(param => param.Name == paramNode.Name) ??
+                    (paramNode.Type == typeof(TSource) ? Expression.Parameter(typeof(TTarget), paramNode.Name) : paramNode);
             }
 
             protected override Expression VisitLambda<T>(Expression<T> node)
@@ -34,13 +34,13 @@ namespace DAL
                 return Expression.Lambda(Visit(node.Body), parameters);
             }
 
-            protected override Expression VisitMember(MemberExpression node)
+            protected override Expression VisitMember(MemberExpression memberNode)
             {
-                if (node.Member.DeclaringType == typeof(TSource))
+                if (memberNode.Member.DeclaringType == typeof(TSource))
                 {
-                    return Expression.Property(Visit(node.Expression), node.Member.Name);
+                    return Expression.Property(Visit(memberNode.Expression), memberNode.Member.Name);
                 }
-                return base.VisitMember(node);
+                return base.VisitMember(memberNode);
             }
         }
 

@@ -19,11 +19,11 @@ namespace MVCNBlog.Providers
         
         public override string[] GetRolesForUser(string email)
         {
-            var user = UserService.GetAllUserEntities().FirstOrDefault(u => u.Email == email).ToMvcUser();
+            var user = UserService.GetUserByEmail(email).ToMvcUser();
 
             var userRole = user.Role;
             var userPayedRole = user.PayedRole;
-
+            
             var roles = GetRolesName(userRole?.RoleName, userPayedRole?.RoleName);
 
             return roles;

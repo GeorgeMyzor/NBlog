@@ -16,8 +16,8 @@ namespace MVCNBlog.ViewModels
         [StringLength(100, ErrorMessage = "Title should be 5 to 100 length.", MinimumLength = 5)]
         public string Title { get; set; }
         [DataType(DataType.MultilineText)]
-        [Required(ErrorMessage = "Content should be 5 to 400 length.")]
-        [StringLength(2000, ErrorMessage = "Content should be up to 50 length.", MinimumLength = 50)]
+        [Required(ErrorMessage = "Content should be up to 50 length.")]
+        [StringLength(10000, ErrorMessage = "Content should be up to 50 length.", MinimumLength = 50)]
         public string Content { get; set; }
         [DataType(DataType.MultilineText)]
         [Required(ErrorMessage = "Header should be 5 to 400 length.")]

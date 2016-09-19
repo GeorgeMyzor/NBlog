@@ -95,7 +95,7 @@ namespace MVCNBlog.Providers
             {
                 Email = email,
                 Name = username,
-                Password = Sha256Hash(password),
+                Password = password,
                 CreationDate = DateTime.Now
             };
 

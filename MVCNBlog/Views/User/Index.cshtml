@@ -51,8 +51,11 @@
 @Html.Partial("~/Views/Article/AllArticles.cshtml", Model.Articles)
 
 <div>
-    @Html.RouteLink("Back to users", "AllUsers", new { action = "All" },
+    @if (Roles.IsUserInRole("Administrator"))
+    {
+        @Html.RouteLink("Back to users", "AllUsers", new { action = "All" },
         new { @class = "btn btn-default" })
+    }
 </div>
 
 @section Scripts {

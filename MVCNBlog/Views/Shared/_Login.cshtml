@@ -5,6 +5,7 @@
 {
     @Html.AntiForgeryToken()
     <h2>Signup for more</h2>
+    @Html.ValidationSummary(true, null, new { @class = "text-danger"})
     @Html.TextBox("Email", null, new {id = "mce-EMAIL", type = "email", placeholder = "Email"})
     @Html.ValidationMessageFor(m => m.Email, null, new { @class = "text-danger" })
     @Html.TextBox("Password", null, new {id = "mce-TEXT", type = "password", placeholder = "Password"})

@@ -133,3 +133,130 @@
 2016-09-19 15:40:31.6353 Warn Message: A public action method 'Index' was not found on controller 'MVCNBlog.Controllers.ArticleController'. 
 2016-09-19 17:53:50.8189 Warn Message: No permissions 
 2016-09-19 18:03:31.7581 Warn Message: ќбнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 
+2016-09-19 20:47:30.2839 Error Message: System.InvalidOperationException: ѕоследовательность содержит более одного элемента
+   в System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)
+   в DAL.ConcreteRepository.ArticleRepository.CopyTags(DalArticle dalArticle, Article ormArticle) в D:\VS Projects\NBlog\DAL\ConcreteRepository\ArticleRepository.cs:строка 152
+   в DAL.ConcreteRepository.ArticleRepository.Update(DalArticle dalArticle) в D:\VS Projects\NBlog\DAL\ConcreteRepository\ArticleRepository.cs:строка 143
+   в BLL.Services.ArticleService.UpdateArticle(BllArticle article) в D:\VS Projects\NBlog\BLL\Services\ArticleService.cs:строка 126
+   в MVCNBlog.Controllers.ArticleController.Edit(ArticleViewModel editingArticle) в D:\VS Projects\NBlog\MVCNBlog\Controllers\ArticleController.cs:строка 223
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) ѕоследовательность содержит более одного элемента
+2016-09-19 20:48:29.9893 Error Message: System.InvalidOperationException: ѕоследовательность содержит более одного элемента
+   в System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)
+   в DAL.ConcreteRepository.ArticleRepository.CopyTags(DalArticle dalArticle, Article ormArticle) в D:\VS Projects\NBlog\DAL\ConcreteRepository\ArticleRepository.cs:строка 152
+   в DAL.ConcreteRepository.ArticleRepository.Update(DalArticle dalArticle) в D:\VS Projects\NBlog\DAL\ConcreteRepository\ArticleRepository.cs:строка 143
+   в BLL.Services.ArticleService.UpdateArticle(BllArticle article) в D:\VS Projects\NBlog\BLL\Services\ArticleService.cs:строка 126
+   в MVCNBlog.Controllers.ArticleController.Edit(ArticleViewModel editingArticle) в D:\VS Projects\NBlog\MVCNBlog\Controllers\ArticleController.cs:строка 223
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) ѕоследовательность содержит более одного элемента
+2016-09-19 20:48:37.7147 Error Message: System.InvalidOperationException: ѕоследовательность содержит более одного элемента
+   в System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)
+   в DAL.ConcreteRepository.ArticleRepository.CopyTags(DalArticle dalArticle, Article ormArticle) в D:\VS Projects\NBlog\DAL\ConcreteRepository\ArticleRepository.cs:строка 152
+   в DAL.ConcreteRepository.ArticleRepository.Update(DalArticle dalArticle) в D:\VS Projects\NBlog\DAL\ConcreteRepository\ArticleRepository.cs:строка 143
+   в BLL.Services.ArticleService.UpdateArticle(BllArticle article) в D:\VS Projects\NBlog\BLL\Services\ArticleService.cs:строка 126
+   в MVCNBlog.Controllers.ArticleController.Edit(ArticleViewModel editingArticle) в D:\VS Projects\NBlog\MVCNBlog\Controllers\ArticleController.cs:строка 223
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) ѕоследовательность содержит более одного элемента
+2016-09-19 20:49:03.7342 Error Message: System.InvalidOperationException: ѕоследовательность содержит более одного элемента
+   в System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)
+   в DAL.ConcreteRepository.ArticleRepository.CopyTags(DalArticle dalArticle, Article ormArticle) в D:\VS Projects\NBlog\DAL\ConcreteRepository\ArticleRepository.cs:строка 152
+   в DAL.ConcreteRepository.ArticleRepository.Update(DalArticle dalArticle) в D:\VS Projects\NBlog\DAL\ConcreteRepository\ArticleRepository.cs:строка 143
+   в BLL.Services.ArticleService.UpdateArticle(BllArticle article) в D:\VS Projects\NBlog\BLL\Services\ArticleService.cs:строка 126
+   в MVCNBlog.Controllers.ArticleController.Edit(ArticleViewModel editingArticle) в D:\VS Projects\NBlog\MVCNBlog\Controllers\ArticleController.cs:строка 223
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) ѕоследовательность содержит более одного элемента
+2016-09-19 20:49:42.6555 Warn Message: Page not found. 
+2016-09-19 20:59:33.5032 Warn Message: Page not found. 
+2016-09-19 21:12:43.4471 Warn Message: No permissions 
+2016-09-19 21:14:44.3900 Warn Message: A public action method 'Find' was not found on controller 'MVCNBlog.Controllers.ArticleController'. 
+2016-09-19 21:15:22.3251 Warn Message: A public action method 'Find' was not found on controller 'MVCNBlog.Controllers.ArticleController'. 
+2016-09-19 21:16:27.6459 Warn Message: A public action method 'Find' was not found on controller 'MVCNBlog.Controllers.ArticleController'. 
+2016-09-19 21:17:46.3284 Warn Message: A public action method 'Find' was not found on controller 'MVCNBlog.Controllers.ArticleController'. 
+2016-09-19 21:26:27.6422 Warn Message: User not found. 
+2016-09-19 21:26:43.0571 Warn Message: deletingUser wasn't found. 
+2016-09-19 21:26:46.2123 Warn Message: deletingUser wasn't found. 
+2016-09-19 21:27:01.8522 Warn Message: editingUser wasn't found. 
+2016-09-19 21:27:11.1807 Warn Message: editingUser wasn't found. 
+2016-09-19 21:33:04.8809 Warn Message: Page not found. 
+2016-09-19 21:34:14.1629 Warn Message: Page not found. 
+2016-09-19 21:34:25.5925 Warn Message: Page not found. 

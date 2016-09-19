@@ -18,7 +18,6 @@ namespace MVCNBlog.Controllers
 
         public ActionResult Error(int? statusCode, Exception exception)
         {
-            //TODO without exception message or check for 403 error and set custom message
             int code;
             if (statusCode == null || string.IsNullOrEmpty(exception.Message))
             {
@@ -30,13 +29,11 @@ namespace MVCNBlog.Controllers
             {
                 logger.Error(exception);
                 code = 500;
-                //exception = new HttpException(code, "Server error.");
             }
             else
             {
                 logger.Warn(exception.Message);
                 code = (int)statusCode;
-                exception = new HttpException(code, "Page not found.");
             }
 
             Response.StatusCode = code;
@@ -44,18 +41,10 @@ namespace MVCNBlog.Controllers
             {
                 StatusCode = code.ToString(),
                 StatusDescription = HttpWorkerRequest.GetStatusDescription(code),
-                Message = FirstCharToUpper(exception?.Message),
                 DateTime = DateTime.Now
             };
 
             return View(error);
-        }
-
-        private static string FirstCharToUpper(string errorString)
-        {
-            if (string.IsNullOrEmpty(errorString))
-                return "Page not found.";
-            return errorString.First().ToString().ToUpper() + errorString.Substring(1);
         }
     }
 }
