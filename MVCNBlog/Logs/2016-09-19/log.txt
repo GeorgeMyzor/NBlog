@@ -260,3 +260,8 @@
 2016-09-19 21:33:04.8809 Warn Message: Page not found. 
 2016-09-19 21:34:14.1629 Warn Message: Page not found. 
 2016-09-19 21:34:25.5925 Warn Message: Page not found. 
+2016-09-19 21:57:07.4984 Warn Message: No permissions 
+2016-09-19 21:57:23.4113 Warn Message: User with email - loluser@email.ru don't have permissions to delete article with id 14014. 
+2016-09-19 21:57:33.6379 Warn Message: No permissions 
+2016-09-19 22:00:27.7709 Warn Message: A public action method 'Index' was not found on controller 'MVCNBlog.Controllers.ArticleController'. 
+2016-09-19 23:06:43.7929 Warn Message: Page not found. 

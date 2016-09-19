@@ -6,7 +6,7 @@ using MVCNBlog.ViewModels.Roles;
 
 namespace MVCNBlog.ViewModels.User
 {
-    public class UserViewModel
+    public sealed class UserViewModel
     {
         public int Id { get; set; }
         [CorrectEmail]

@@ -7,7 +7,7 @@ using MVCNBlog.ViewModels.Roles;
 
 namespace MVCNBlog.ViewModels.User
 {
-    public class RegisterUserViewModel
+    public sealed class RegisterUserViewModel
     {
         [CorrectEmail]
         [Remote("ValidateEmail", "User")]

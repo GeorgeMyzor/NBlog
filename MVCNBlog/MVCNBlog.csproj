@@ -205,13 +205,16 @@
     <Compile Include="Providers\CustomRoleProvider.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\ErrorViewModel.cs" />
+    <Compile Include="ViewModels\Roles\IPayedRole.cs" />
+    <Compile Include="ViewModels\Roles\IRole.cs" />
+    <Compile Include="ViewModels\Roles\PayedRole.cs" />
+    <Compile Include="ViewModels\Roles\Role.cs" />
     <Compile Include="ViewModels\User\LoginUserViewModel.cs" />
     <Compile Include="ViewModels\User\RegisterUserViewModel.cs" />
     <Compile Include="ViewModels\ListViewModel.cs" />
     <Compile Include="ViewModels\ArticleViewModel.cs" />
     <Compile Include="ViewModels\CommentViewModel.cs" />
     <Compile Include="ViewModels\PagingInfo.cs" />
-    <Compile Include="ViewModels\Roles\AbstractRole.cs" />
     <Compile Include="ViewModels\User\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

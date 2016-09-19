@@ -8,7 +8,7 @@ using MVCNBlog.ViewModels.Roles;
 
 namespace MVCNBlog.ViewModels
 {
-    public class AccountViewModel
+    public sealed class AccountViewModel
     {
         public int Id { get; set; }
         public string Email { get; set; }

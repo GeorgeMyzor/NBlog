@@ -7,7 +7,7 @@ using MVCNBlog.ViewModels.User;
 
 namespace MVCNBlog.ViewModels
 {
-    public class CommentViewModel
+    public sealed class CommentViewModel
     {
         public int Id { get; set; }
         [DataType(DataType.MultilineText)]

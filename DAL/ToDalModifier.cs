@@ -31,6 +31,7 @@ namespace DAL
             protected override Expression VisitLambda<T>(Expression<T> node)
             {
                 parameters = VisitAndConvert(node.Parameters, "VisitLambda");
+
                 return Expression.Lambda(Visit(node.Body), parameters);
             }
 
@@ -40,6 +41,7 @@ namespace DAL
                 {
                     return Expression.Property(Visit(memberNode.Expression), memberNode.Member.Name);
                 }
+
                 return base.VisitMember(memberNode);
             }
         }
@@ -54,6 +56,7 @@ namespace DAL
         {
             var visitor = new ParameterTypeVisitor<TSource, TTarget>();
             var newExpression = (Expression<Func<TTarget, bool>>)visitor.Visit(expression);
+
             return newExpression.Compile();
         }
     }

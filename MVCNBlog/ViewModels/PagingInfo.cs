@@ -5,7 +5,7 @@ using System.Web;
 
 namespace MVCNBlog.ViewModels
 {
-    public class PagingInfo
+    public sealed class PagingInfo
     {
         public int TotalItems { get; set; }
         public int ItemsPerPage { get; set; }
