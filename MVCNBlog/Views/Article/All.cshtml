@@ -21,7 +21,7 @@
                 <div class="pagination pager">
                     <nav>
                         <ul>
-                            @Html.PageLinks(Model.PagingInfo, x => Url.RouteUrl("PagedArticles", new { page = x }))
+                            @Html.PageLinks(Model.PagingInfo, pageNum => Url.RouteUrl("PagedArticles", new { page = pageNum }))
                         </ul>
                     </nav>
                 </div>

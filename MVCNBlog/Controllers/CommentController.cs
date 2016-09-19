@@ -45,19 +45,23 @@ namespace MVCNBlog.Controllers
                     return PartialView("~/Views/Article/Comments.cshtml", comments);
                 }
 
-                return RedirectToAction("Index", "Article", new { id });
+                return RedirectToAction("Index", "Article", new { id = id });
             }
 
             if (Request.IsAjaxRequest())
             {
-                return Json("ModelError", JsonRequestBehavior.AllowGet);
+                var comments = commentService.GetArticleComments(newComment.ArticleId)
+                    .Select(comment => comment.ToMvcComment());
+
+                return PartialView("~/Views/Article/Comments.cshtml", comments);
             }
+
 
             TempData["CommentError"] = string.Join(" ", ModelState.Values
                                             .SelectMany(v => v.Errors)
                                             .Select(e => e.ErrorMessage));
 
-            return RedirectToAction("Index", "Article", new { id });
+            return RedirectToAction("Index", "Article", new { id = id });
         }
 
         [HttpGet]

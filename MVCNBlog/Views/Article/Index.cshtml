@@ -4,7 +4,9 @@
     ViewBag.Title = Model.Title;
     AjaxOptions ajaxOpts = new AjaxOptions
     {
-        OnSuccess = "processData"
+        Url = Url.Action("Create","Comment"),
+        UpdateTargetId = "comments_output",
+        InsertionMode = InsertionMode.Replace,
     };
 }
 <section id="content_area" style="">
@@ -96,7 +98,7 @@
         </div>
 
         <div style="margin-top: 10px">
-            @using (Ajax.BeginForm("Create", "Comment", null, ajaxOpts, new { id = "createCommentForm" }))
+            @using (Ajax.BeginForm("Create", "Comment",ajaxOpts))
             {
                 @Html.AntiForgeryToken()
                 <textarea cols="94" rows="3" id="comment_input" name="Content" placeholder="Type your comment..."></textarea>
@@ -122,6 +124,4 @@
 
 @section scripts {
     <script type="text/javascript" src="@Url.Content("~/scripts/jquery.unobtrusive-ajax.js")"></script>
-
-    <script type="text/javascript" src="~/Scripts/CustomScripts/refresh-comments.js"></script>
 }

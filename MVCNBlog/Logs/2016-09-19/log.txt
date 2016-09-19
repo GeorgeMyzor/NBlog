@@ -123,3 +123,11 @@
 2016-09-19 13:22:17.2461 Warn Message: Page not found. 
 2016-09-19 13:22:17.7651 Warn Message: Page not found. 
 2016-09-19 14:06:49.5962 Warn Message: No permissions 
+2016-09-19 15:24:48.7222 Warn Message: Page not found. 
+2016-09-19 15:37:43.9813 Warn Message: A public action method 'Index' was not found on controller 'MVCNBlog.Controllers.ArticleController'. 
+2016-09-19 15:37:52.3378 Warn Message: A public action method 'Index' was not found on controller 'MVCNBlog.Controllers.ArticleController'. 
+2016-09-19 15:38:27.6948 Warn Message: A public action method 'Index' was not found on controller 'MVCNBlog.Controllers.ArticleController'. 
+2016-09-19 15:38:30.8070 Warn Message: A public action method 'Index' was not found on controller 'MVCNBlog.Controllers.ArticleController'. 
+2016-09-19 15:39:40.9520 Warn Message: A public action method 'Index' was not found on controller 'MVCNBlog.Controllers.ArticleController'. 
+2016-09-19 15:40:22.0131 Warn Message: A public action method 'Index' was not found on controller 'MVCNBlog.Controllers.ArticleController'. 
+2016-09-19 15:40:31.6353 Warn Message: A public action method 'Index' was not found on controller 'MVCNBlog.Controllers.ArticleController'. 
