@@ -137,7 +137,7 @@ namespace DAL.ConcreteRepository
             ormArticle.Title = dalArticle.Title;
             ormArticle.Header = dalArticle.Header;
             ormArticle.Content = dalArticle.Content;
-            ormArticle.HeaderPicture = dalArticle.HeaderPicture;
+            ormArticle.HeaderPicture = dalArticle.HeaderPicture ?? ormArticle.HeaderPicture;
             ormArticle.Tags.Clear();
 
             CopyTags(dalArticle, ormArticle);

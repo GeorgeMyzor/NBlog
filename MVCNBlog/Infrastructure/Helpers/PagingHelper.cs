@@ -49,9 +49,12 @@ namespace MVCNBlog.Infrastructure.Helpers
 
             if (lastPage < pagingInfo.TotalPages)
             {
-                TagBuilder span = new TagBuilder("span");
-                span.SetInnerText("...");
-                result.Append(span);
+                if (lastPage < pagingInfo.TotalPages - 1)
+                {
+                    TagBuilder span = new TagBuilder("span");
+                    span.SetInnerText("...");
+                    result.Append(span);
+                }
 
                 var lastTagLi = CreatePageTag(pagingInfo, pageUrl, pagingInfo.TotalPages);
 

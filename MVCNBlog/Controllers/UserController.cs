@@ -167,8 +167,9 @@ namespace MVCNBlog.Controllers
             {
                 uploadImage = Request.Files[0];
             }
-            
-            if (uploadImage != null && uploadImage.ContentLength / 1024 < 200)
+            var currentUser = service.GetUserEntity(id.Value);
+
+            if (uploadImage != null && uploadImage.ContentLength > 0 && uploadImage.ContentLength / 1024 < 200)
             {
                 byte[] imageData = null;
 
@@ -176,8 +177,7 @@ namespace MVCNBlog.Controllers
                 {
                     imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
                 }
-
-                var currentUser = service.GetUserEntity(id.Value);
+                
                 currentUser.UserPic = imageData;
 
                 service.UpdateUserPicture(currentUser);
@@ -198,7 +198,7 @@ namespace MVCNBlog.Controllers
 
             TempData["PicError"] = "Either image not found or image size too big.";
 
-            return RedirectToAction("Edit", id);
+            return View("Edit", currentUser.ToMvcUser());
         }
 
         #endregion

@@ -118,7 +118,12 @@ namespace MVCNBlog.Controllers
             {
                 var articles = articleService.GetPagedArticles(1, pageSize).Select(bllArticle => bllArticle.ToMvcArticle());
 
-                return PartialView("AllArticles", articles);
+                if (Request.IsAjaxRequest())
+                {
+                    return PartialView("AllArticles", articles);
+                }
+
+                return RedirectToAction("All");
             }
 
             var findedArticles =
@@ -170,7 +175,11 @@ namespace MVCNBlog.Controllers
             {
                 newArticle.HeaderPicture = GetHeaderPicture();
                 if (newArticle.HeaderPicture == null)
+                {
+                    TempData["PicError"] = "Either image not found or image size too big.";
                     return RedirectToAction("Create");
+                }
+
 
                 articleService.CreateArticle(newArticle.ToBllArticle());
                 return RedirectToAction("All");
@@ -210,8 +219,6 @@ namespace MVCNBlog.Controllers
             if (ModelState.IsValid)
             {
                 editingArticle.HeaderPicture = GetHeaderPicture();
-                if (editingArticle.HeaderPicture == null)
-                    return View();
 
                 articleService.UpdateArticle(editingArticle.ToBllArticle());
                 
@@ -261,7 +268,7 @@ namespace MVCNBlog.Controllers
         private byte[] GetHeaderPicture()
         {
             HttpPostedFileBase uploadImage = Request.Files["uploadImage"];
-            if (uploadImage != null && uploadImage.ContentLength / 1024 < 1500 && uploadImage.ContentLength > 0)
+            if (uploadImage != null && uploadImage.ContentLength > 0 && uploadImage.ContentLength / 1024 < 1500 && uploadImage.ContentLength > 0)
             {
                 byte[] imageData = null;
 
@@ -272,7 +279,6 @@ namespace MVCNBlog.Controllers
                 return imageData;
             }
 
-            TempData["PicError"] = "Either image not found or image size too big.";
             return null;
         }
     }

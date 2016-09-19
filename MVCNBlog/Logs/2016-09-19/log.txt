@@ -1,0 +1,125 @@
+2016-09-19 00:52:46.2424 Warn Message: No permissions 
+2016-09-19 00:52:54.2139 Warn Message: No permissions 
+2016-09-19 00:52:56.8200 Warn Message: user wasnt found. 
+2016-09-19 00:53:04.4725 Warn Message: user wasnt found. 
+2016-09-19 00:53:07.0986 Warn Message: user wasnt found. 
+2016-09-19 00:53:11.7069 Warn Message: user wasnt found. 
+2016-09-19 00:53:17.1092 Warn Message: No permissions 
+2016-09-19 00:53:31.8870 Warn Message: No permissions 
+2016-09-19 00:53:35.5502 Warn Message: No permissions 
+2016-09-19 01:13:08.3124 Error Message: System.InvalidOperationException: No route in the route table matches the supplied values.
+   в System.Web.Mvc.RedirectToRouteResult.ExecuteResult(ControllerContext context)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) No route in the route table matches the supplied values.
+2016-09-19 01:13:31.9548 Error Message: System.InvalidOperationException: No route in the route table matches the supplied values.
+   в System.Web.Mvc.RedirectToRouteResult.ExecuteResult(ControllerContext context)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) No route in the route table matches the supplied values.
+2016-09-19 01:18:49.6949 Warn Message: Page not found. 
+2016-09-19 01:19:41.6799 Warn Message: user wasnt found. 
+2016-09-19 10:44:39.0545 Error Message: System.InvalidOperationException: The model item passed into the dictionary is of type 'MVCNBlog.ViewModels.ArticleViewModel', but this dictionary requires a model item of type 'MVCNBlog.ViewModels.User.LoginUserViewModel'.
+   в System.Web.Mvc.ViewDataDictionary`1.SetModel(Object value)
+   в System.Web.Mvc.ViewDataDictionary..ctor(ViewDataDictionary dictionary)
+   в System.Web.Mvc.WebViewPage`1.SetViewData(ViewDataDictionary viewData)
+   в System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   в System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
+   в ASP._Page_Views_Article_Index_cshtml.Execute() в D:\VS Projects\NBlog\MVCNBlog\Views\Article\Index.cshtml:строка 88
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   в System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   в System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   в System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) The model item passed into the dictionary is of type 'MVCNBlog.ViewModels.ArticleViewModel', but this dictionary requires a model item of type 'MVCNBlog.ViewModels.User.LoginUserViewModel'.
+2016-09-19 10:44:56.2945 Error Message: System.InvalidOperationException: The model item passed into the dictionary is of type 'MVCNBlog.ViewModels.ArticleViewModel', but this dictionary requires a model item of type 'MVCNBlog.ViewModels.User.LoginUserViewModel'.
+   в System.Web.Mvc.ViewDataDictionary`1.SetModel(Object value)
+   в System.Web.Mvc.ViewDataDictionary..ctor(ViewDataDictionary dictionary)
+   в System.Web.Mvc.WebViewPage`1.SetViewData(ViewDataDictionary viewData)
+   в System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   в System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
+   в ASP._Page_Views_Article_Index_cshtml.Execute() в D:\VS Projects\NBlog\MVCNBlog\Views\Article\Index.cshtml:строка 88
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   в System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   в System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   в System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   в System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   в System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) The model item passed into the dictionary is of type 'MVCNBlog.ViewModels.ArticleViewModel', but this dictionary requires a model item of type 'MVCNBlog.ViewModels.User.LoginUserViewModel'.
+2016-09-19 10:55:48.8558 Warn Message: Page not found. 
+2016-09-19 13:13:33.1451 Warn Message: Page not found. 
+2016-09-19 13:13:41.3406 Warn Message: Page not found. 
+2016-09-19 13:13:41.7296 Warn Message: Page not found. 
+2016-09-19 13:13:41.8226 Warn Message: Page not found. 
+2016-09-19 13:13:41.8676 Warn Message: Page not found. 
+2016-09-19 13:13:41.9266 Warn Message: Page not found. 
+2016-09-19 13:13:41.9616 Warn Message: Page not found. 
+2016-09-19 13:13:42.0097 Warn Message: Page not found. 
+2016-09-19 13:13:42.0877 Warn Message: Page not found. 
+2016-09-19 13:13:42.1187 Warn Message: Page not found. 
+2016-09-19 13:13:42.6327 Warn Message: Page not found. 
+2016-09-19 13:14:50.5366 Warn Message: Page not found. 
+2016-09-19 13:15:39.3524 Warn Message: Page not found. 
+2016-09-19 13:21:57.6150 Warn Message: Page not found. 
+2016-09-19 13:22:05.5785 Warn Message: Page not found. 
+2016-09-19 13:22:08.4776 Warn Message: Page not found. 
+2016-09-19 13:22:09.3677 Warn Message: Page not found. 
+2016-09-19 13:22:10.3957 Warn Message: Page not found. 
+2016-09-19 13:22:10.6317 Warn Message: Page not found. 
+2016-09-19 13:22:13.5099 Warn Message: Page not found. 
+2016-09-19 13:22:13.5189 Warn Message: Page not found. 
+2016-09-19 13:22:15.4920 Warn Message: Page not found. 
+2016-09-19 13:22:17.2461 Warn Message: Page not found. 
+2016-09-19 13:22:17.7651 Warn Message: Page not found. 
+2016-09-19 14:06:49.5962 Warn Message: No permissions 

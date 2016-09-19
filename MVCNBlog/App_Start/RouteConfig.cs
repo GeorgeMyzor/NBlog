@@ -165,21 +165,21 @@ namespace MVCNBlog
             *              
             * Comment:
             * 10.  NBlog.com/comment/<comment code>/edit     Страница редактирования комментария.
-            * 11.  NBlog.com/comment/<comment code>/delete   Страница подтверждения удаления комментария.
+            * 11.  NBlog.com/comment/<comment code>/delete   Удаления комментария.
             *                                                  
             * User:
             * 12.  NBlog.com/users                            Показывает страницу со списком пользователей, там же находится
             *                                                    изменение и удаления. (Админ, модератор)
-            * 13.
+            * 13.  NBlog.com/users/create                     Страница создания пользователей.
             * 14.  NBlog.com/users/<user code>/edit           Изменяет выбранного пользователя (отправка формы). (Админ, модератор)
             * 15.  NBlog.com/users/<user code>/delete         Удаляет выбранного пользователя (отправка формы). (Админ, модератор)
             * 16.  NBlog.com/users/page<page num>             Выводит страницу с пользователями по указанному номеру. (Админ, модератор)
             * 
             * Account:          
-            * 17. NBlog.com/login                            Страница логина.
-            * 18. NBlog.com/register                         Страница регистрации.
-            * 19. NBlog.com/logoff                           Страница выхода из аккаунта.
-            * 20. NBlog.com/account                          Страница аккаунта.
-            * 21. NBlog.com/account/edit                     Изменение аккаунта.
+            * 17. NBlog.com/login                             Страница логина.
+            * 18. NBlog.com/register                          Страница регистрации.
+            * 19. NBlog.com/logoff                            Страница выхода из аккаунта.
+            * 20. NBlog.com/account                           Страница аккаунта.
+            * 21. NBlog.com/account/edit                      Изменение аккаунта.
             */
 }

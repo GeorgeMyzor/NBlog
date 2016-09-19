@@ -40,16 +40,18 @@
                 <ul id="nav">
                     <li>@Html.RouteLink("Home", "Main")</li>
                     <li>@Html.RouteLink("Popular", "AllArticles", new {action = "popular"})</li>
+                    <li>@Html.RouteLink("Create", "AllArticles", new { action = "create" })</li>
                     <li>@Html.RouteLink("Account", "ViewAccount")</li>
-                    <li>@Html.RouteLink("Create", "AllArticles", new {action = "create"})</li>
-                    <li id="dropdown">
-                        <a href="">Drop Down</a>
-                        <ul>
-                            <li><a href="">Category</a></li>
-                            <li><a href="">About us</a></li>
-                            <li><a href="">Contact us</a></li>
-                        </ul>
-                    </li>
+                    @if (Roles.IsUserInRole("Administrator"))
+                    {
+                        <li id="dropdown">
+                            <a href="">Users</a>
+                            <ul>
+                                <li>@Html.RouteLink("All", "AllUsers", new {action = "all"})</li>
+                                <li>@Html.RouteLink("Create", "AllUsers", new {action = "create"})</li>
+                            </ul>
+                        </li>
+                    }
                     @if (!string.IsNullOrEmpty(User.Identity.Name))
                     {
                         <li style="float: right; display: inline">

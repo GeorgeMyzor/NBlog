@@ -219,7 +219,7 @@ namespace MVCNBlog.Controllers
                 uploadImage = Request.Files[0];
             }
 
-            if (uploadImage != null && uploadImage.ContentLength/1024 < 200)
+            if (uploadImage != null && uploadImage.ContentLength > 0 && uploadImage.ContentLength/1024 < 200)
             {
                 byte[] imageData = null;
 
