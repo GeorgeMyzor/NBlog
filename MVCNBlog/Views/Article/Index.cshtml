@@ -7,6 +7,7 @@
         Url = Url.Action("Create","Comment"),
         UpdateTargetId = "comments_output",
         InsertionMode = InsertionMode.Replace,
+        OnSuccess = "clearInput"
     };
 }
 <section id="content_area" style="">
@@ -124,4 +125,5 @@
 
 @section scripts {
     <script type="text/javascript" src="@Url.Content("~/scripts/jquery.unobtrusive-ajax.js")"></script>
+    <script type="text/javascript" src="~/Scripts/CustomScripts/refresh-comments.js"></script>
 }

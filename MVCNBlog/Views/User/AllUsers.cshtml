@@ -49,7 +49,7 @@
     <div class="pagination pager">
         <nav>
             <ul>
-                @Html.PageLinks(Model.PagingInfo, x => Url.RouteUrl("PagedUsers", new { page = x }))
+                @Html.PageLinks(Model.PagingInfo, x => Ajax.RouteLink(x.ToString(), "PagedUsers", new {page = x}, new AjaxOptions { UpdateTargetId = "allPage", OnSuccess = "page_cleanup"}).ToString())
             </ul>
         </nav>
     </div>

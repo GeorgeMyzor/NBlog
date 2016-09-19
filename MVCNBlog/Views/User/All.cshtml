@@ -20,17 +20,9 @@
 
 @section scripts
 {
-    <script type="text/javascript">
-        $(document).ready(function() {
+<script type="text/javascript" src="~/Scripts/CustomScripts/page-cleanup.js"></script>
 
-            $('#userPic').live('click', function(e) {
-                var newVal = $(this).find("input").val();
-                alert(newVal);
-            });
-        });
-    </script>
-
-    <script type="text/javascript">
+    @*<script type="text/javascript">
         $(document).ready(function() {
             $(document).on('click', '.page', (function(e) {
                 var newVal = $(e.target).attr("value");
@@ -54,5 +46,5 @@
                 e.preventDefault();
             }));
         });
-    </script>
+    </script>*@
 }

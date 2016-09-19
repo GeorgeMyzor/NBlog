@@ -12,6 +12,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryui")
     <script src="https://use.fontawesome.com/422948409f.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 
     @RenderSection("scripts", required: false)
 
@@ -45,7 +46,7 @@
                     @if (Roles.IsUserInRole("Administrator"))
                     {
                         <li id="dropdown">
-                            <a href="">Users</a>
+                            @Html.RouteLink("Users", "AllUsers", new {action = "all"})
                             <ul>
                                 <li>@Html.RouteLink("All", "AllUsers", new {action = "all"})</li>
                                 <li>@Html.RouteLink("Create", "AllUsers", new {action = "create"})</li>

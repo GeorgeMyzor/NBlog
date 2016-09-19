@@ -328,6 +328,7 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-1.8.3.intellisense.js" />
     <Content Include="Scripts\CustomScripts\change-picture.js" />
+    <Content Include="Scripts\CustomScripts\page-cleanup.js" />
     <Content Include="Scripts\CustomScripts\pagination.js" />
     <Content Include="Scripts\CustomScripts\live-search.js" />
     <Content Include="Scripts\CustomScripts\refresh-comments.js" />

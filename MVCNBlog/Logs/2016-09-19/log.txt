@@ -131,3 +131,5 @@
 2016-09-19 15:39:40.9520 Warn Message: A public action method 'Index' was not found on controller 'MVCNBlog.Controllers.ArticleController'. 
 2016-09-19 15:40:22.0131 Warn Message: A public action method 'Index' was not found on controller 'MVCNBlog.Controllers.ArticleController'. 
 2016-09-19 15:40:31.6353 Warn Message: A public action method 'Index' was not found on controller 'MVCNBlog.Controllers.ArticleController'. 
+2016-09-19 17:53:50.8189 Warn Message: No permissions 
+2016-09-19 18:03:31.7581 Warn Message: Обнаружено потенциально опасное значение Request.Path, полученное от клиента (<). 

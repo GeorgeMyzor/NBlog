@@ -68,15 +68,18 @@ namespace MVCNBlog.Infrastructure.Helpers
         private static TagBuilder CreatePageTag(PagingInfo pagingInfo, Func<int, string> pageUrl, int i)
         {
             TagBuilder tagLi = new TagBuilder("li");
-            TagBuilder tagA = new TagBuilder("a");
-            tagA.MergeAttribute("href", pageUrl(i));
-            tagA.InnerHtml = i.ToString();
-            if (i == pagingInfo.CurrentPage)
-                tagA.AddCssClass("selected");
-            tagA.AddCssClass("page");
-            tagA.MergeAttribute("value", i.ToString());
+            tagLi.InnerHtml = pageUrl(i);
 
-            tagLi.InnerHtml = tagA.ToString();
+            if (i == pagingInfo.CurrentPage)
+            {
+                TagBuilder pageNum = new TagBuilder("input");
+                pageNum.MergeAttribute("type", "hidden");
+                pageNum.MergeAttribute("value",i.ToString());
+                pageNum.MergeAttribute("id","pageNum");
+
+                tagLi.InnerHtml += pageNum.ToString();
+            }
+            
             return tagLi;
         }
 
