@@ -60,7 +60,7 @@
     <Compile Include="Mappers\DalRoleMapper.cs" />
     <Compile Include="Mappers\DalUserMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ToDalModifier.cs" />
+    <Compile Include="Modifier.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL.Interface\DAL.Interface.csproj">

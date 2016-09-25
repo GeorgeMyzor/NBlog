@@ -52,12 +52,12 @@ namespace DAL
         /// </summary>
         /// <typeparam name="TSource">Source type.</typeparam>
         /// <typeparam name="TTarget">Target type.</typeparam>
-        public static Func<TTarget, bool> Convert<TSource, TTarget>(Expression<Func<TSource, bool>> expression)
+        public static Expression<Func<TTarget, bool>> Convert<TSource, TTarget>(Expression<Func<TSource, bool>> expression)
         {
             var visitor = new ParameterTypeVisitor<TSource, TTarget>();
             var newExpression = (Expression<Func<TTarget, bool>>)visitor.Visit(expression);
 
-            return newExpression.Compile();
+            return newExpression;
         }
     }
 }
