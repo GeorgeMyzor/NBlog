@@ -1,6 +1,6 @@
 # NBlog
 
-Blog on ASP.NET MVC 4 with c#.
+Blog on ASP.NET MVC 4.
 
 Implemented features:
   * Form authentication.
