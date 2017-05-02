@@ -50,6 +50,36 @@ namespace MVCNBlog
 
             #endregion
 
+            #region Questions routes
+
+            routes.MapRoute(
+                name: "FindQuestion",
+                url: "questions/find/{term}",
+                defaults: new { controller = "Question", action = "Find" }
+                );
+
+            routes.MapRoute(
+                name: "QuestionAction",
+                url: "questions/{id}/{title}/{action}",
+                defaults: new { controller = "Question", action = "Index", title = UrlParameter.Optional },
+                constraints: new { action = @"Delete|Edit|Index", id = @"\d+" }
+                );
+
+            routes.MapRoute(
+                name: "AllQuestions",
+                url: "questions/{action}",
+                defaults: new { controller = "Question", action = "All" },
+                constraints: new { action = @"Create|All|Find|Popular" }
+                );
+
+            routes.MapRoute(
+                name: "PagedQuestions",
+                url: "questions/page{page}",
+                defaults: new { Controller = "Question", action = "All" }
+                );
+            
+            #endregion
+
             #region User routes
 
             routes.MapRoute(

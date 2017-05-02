@@ -40,15 +40,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mappers\BllAnswerMapper.cs" />
     <Compile Include="Mappers\BllArticleMapper.cs" />
     <Compile Include="Mappers\BllCommentMapper.cs" />
+    <Compile Include="Mappers\BllQuestionMapper.cs" />
     <Compile Include="Mappers\BllRoleMapper.cs" />
     <Compile Include="Mappers\BllUserMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RankDistributor.cs" />
     <Compile Include="Services\AccountService.cs" />
+    <Compile Include="Services\AnswerService.cs" />
     <Compile Include="Services\ArticleService.cs" />
     <Compile Include="Services\CommentService.cs" />
+    <Compile Include="Services\QuestionService.cs" />
     <Compile Include="Services\RoleService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="TagParser.cs" />

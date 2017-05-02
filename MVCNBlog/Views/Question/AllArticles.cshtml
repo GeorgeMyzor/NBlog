@@ -1,0 +1,51 @@
+﻿@using System.Globalization
+@model IEnumerable<MVCNBlog.ViewModels.QuestionViewModel>
+<div id="allArticles">
+    @foreach (var article in Model)
+    {
+        <div class="clearfix single_content">
+            <div class="clearfix post_date floatleft">
+                <div class="date">
+                    <h3>@article.PublicationDate.Day</h3>
+                    <p>@article.PublicationDate.ToString("MMMM", CultureInfo.InvariantCulture)</p>
+                </div>
+            </div>
+            <div class="clearfix post_detail">
+                <h2>@Html.RouteLink(article.Title, "ArticleAction", new {action = "index", title = article.Title.RemoveSpecialCharacters(), id = article.Id})
+                </h2>
+                <div class="clearfix post-meta">
+                    <p>
+                        <span>
+                            <i class="fa fa-user">
+                             @if (article.Author != null)
+                             {
+                                 @Html.RouteLink(article.Author.Name, "UserAction", new {action = "index", name = article.Author.Name,
+                                id = article.Author.Id})
+                             }
+                             else
+                             {
+                                 @Html.Raw("DELETED")
+                             }
+                            </i>
+                        </span>
+                        <span><i class="fa fa-comment"></i> @article.Answers.Count()</span>
+                    </p>
+                </div>
+                <div class="clearfix post_excerpt">
+                    <p>
+                        @Html.HighLightTags(article.Header)
+                    </p>
+                </div>
+                @Html.RouteLink("Continue", "QuestionAction", new {action = "index", title = article.Title.RemoveSpecialCharacters(), id = article.Id})
+
+                @if (article.Author?.Email == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
+                     Roles.IsUserInRole("Administrator"))
+                {
+                    @Html.RouteLink("Edit Post", "QuestionAction", new {action = "edit", title = article.Title.RemoveSpecialCharacters(), id = article.Id})
+                    @Html.RouteLink("Delete Post", "QuestionAction", new {action = "delete", title = article.Title.RemoveSpecialCharacters(), id = article.Id})
+                }
+            </div>
+        </div>
+    }
+</div>
+

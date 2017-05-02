@@ -41,7 +41,8 @@
                 <ul id="nav">
                     <li>@Html.RouteLink("Home", "Main")</li>
                     <li>@Html.RouteLink("Popular", "AllArticles", new {action = "popular"})</li>
-                    <li>@Html.RouteLink("Create", "AllArticles", new { action = "create" })</li>
+                    <li>@Html.RouteLink("Create post", "AllArticles", new { action = "create" })</li>
+                    <li>@Html.RouteLink("Ask question", "AllQuestions", new { action = "create" })</li>
                     <li>@Html.RouteLink("Account", "ViewAccount")</li>
                     @if (Roles.IsUserInRole("Administrator"))
                     {

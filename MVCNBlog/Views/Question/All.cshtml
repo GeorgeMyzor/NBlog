@@ -1,0 +1,56 @@
+﻿@model MVCNBlog.ViewModels.ListViewModel<MVCNBlog.ViewModels.QuestionViewModel>
+
+@{
+    ViewBag.Title = "Interesting articles";
+}
+
+<div id="artcilesOutput">
+    <div class="clearfix main_content floatleft">
+        <div class="clearfix content">
+            <div class="content_title">
+                <h2>Latest Asked Questions</h2>
+            </div>
+            @if (TempData["isFind"] != null)
+            {
+                @Html.Partial("Find", Model.ViewModels);
+            }
+            else
+            {
+                @Html.Partial("AllArticles", Model.ViewModels);
+
+                <div class="pagination pager">
+                    <nav>
+                        <ul>
+                            @Html.PageLinks(Model.PagingInfo, pageNum => Ajax.RouteLink(pageNum.ToString(), "PagedArticles", new { page = pageNum }, new AjaxOptions { UpdateTargetId = "artcilesOutput", OnSuccess = "page_cleanup"}).ToString())
+
+                        </ul>
+                    </nav>
+                </div>
+            } 
+
+        </div>
+    </div>
+    <div class="clearfix sidebar_container floatright">
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <div class="clearfix newsletter">
+                @Html.Partial("_Login", new LoginUserViewModel())
+            </div>
+        }
+        <div class="clearfix sidebar">
+            @Html.Action("PopularSide", "Article")
+
+            @Html.Action("RecentSide", "Article")
+        </div>
+    </div>
+    @Html.Hidden("FindUrl", Url.Action("Find", "Article"), new { id = "FindUrl" })
+</div>
+
+@section scripts
+{
+    <link rel="stylesheet" href="/Content/themes/base/jquery-ui.css">
+    <script type="text/javascript" src="~/Scripts/CustomScripts/live-search.js"></script>
+<script type="text/javascript" src="~/Scripts/CustomScripts/page-cleanup.js"></script>
+}
+
+

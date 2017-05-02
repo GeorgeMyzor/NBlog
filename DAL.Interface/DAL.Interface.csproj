@@ -40,14 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\DalAnswer.cs" />
     <Compile Include="DTO\DalArticle.cs" />
     <Compile Include="DTO\DalComment.cs" />
+    <Compile Include="DTO\DalQuestion.cs" />
     <Compile Include="DTO\DalRole.cs" />
     <Compile Include="DTO\DalUser.cs" />
     <Compile Include="DTO\IEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\IAnswerRepository.cs" />
     <Compile Include="Repository\IArticleRepository.cs" />
     <Compile Include="Repository\ICommentRepository.cs" />
+    <Compile Include="Repository\IQuestionRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\IRoleRepository.cs" />
     <Compile Include="Repository\IUnitOfWork.cs" />

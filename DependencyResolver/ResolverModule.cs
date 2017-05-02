@@ -34,12 +34,16 @@ namespace DependencyResolver
             kernel.Bind<IArticleService>().To<ArticleService>();
             kernel.Bind<ICommentService>().To<CommentService>();
             kernel.Bind<IRoleService>().To<RoleService>();
+            kernel.Bind<IAnswerService>().To<AnswerService>();
+            kernel.Bind<IQuestionService>().To<QuestionService>();
 
             //Repos
             kernel.Bind<IUserRepository>().To<UserRepository>();
             kernel.Bind<IArticleRepository>().To<ArticleRepository>();
             kernel.Bind<ICommentRepository>().To<CommentRepository>();
             kernel.Bind<IRoleRepository>().To<RoleRepository>();
+            kernel.Bind<IQuestionRepository>().To<QuestionRepository>();
+            kernel.Bind<IAnswerRepository>().To<AnswerRepository>();
 
             kernel.Bind<ILogger>().To<NLogAdapter>().InSingletonScope();
         }

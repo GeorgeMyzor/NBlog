@@ -49,14 +49,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConcreteRepository\AnswerRepository.cs" />
     <Compile Include="ConcreteRepository\ArticleRepository.cs" />
     <Compile Include="ConcreteRepository\CommentRepository.cs" />
+    <Compile Include="ConcreteRepository\QuestionRepository.cs" />
     <Compile Include="ConcreteRepository\RoleRepository.cs" />
     <Compile Include="ConcreteRepository\UnitOfWork.cs" />
     <Compile Include="ConcreteRepository\UserRepository.cs" />
     <Compile Include="Exceptions\UnitOfWorkException.cs" />
+    <Compile Include="Mappers\DalAnswerMapper.cs" />
     <Compile Include="Mappers\DalArticleMapper.cs" />
     <Compile Include="Mappers\DalCommentMapper.cs" />
+    <Compile Include="Mappers\DalQuestionMapper.cs" />
     <Compile Include="Mappers\DalRoleMapper.cs" />
     <Compile Include="Mappers\DalUserMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

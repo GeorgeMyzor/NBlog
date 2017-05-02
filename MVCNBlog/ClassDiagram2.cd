@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MVCNBlog.BundleConfig" Collapsed="true">
+    <Position X="6" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\BundleConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.FilterConfig" Collapsed="true">
+    <Position X="13" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\FilterConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.RouteConfig" Collapsed="true">
+    <Position X="14.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\RouteConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.MvcApplication" Collapsed="true">
+    <Position X="7.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAIAAAAAAAAAAA=</HashCode>
+      <FileName>Global.asax.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.App_Start.NinjectWebCommon" Collapsed="true">
+    <Position X="7.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAACAAAQACAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\NinjectWebCommon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.Controllers.AccountController" Collapsed="true">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAABAAAEAAAAAgAAAAAEBAAACAAEQAARAAAA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.Controllers.ArticleController" Collapsed="true">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAACIAAAAAAAAAAMIAEACAIEBAAgAABA=</HashCode>
+      <FileName>Controllers\ArticleController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.Controllers.CommentController" Collapsed="true">
+    <Position X="7.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAMAAEACAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\CommentController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.Controllers.ErrorController" Collapsed="true">
+    <Position X="9.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQACAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\ErrorController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.Controllers.UserController" Collapsed="true">
+    <Position X="11.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAoAAQAAEAAkACAMEAAIAAABA=</HashCode>
+      <FileName>Controllers\UserController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.Infrastructure.AdminPermissionsAttribute" Collapsed="true">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Infrastructure\AdminPermissionsAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.Infrastructure.NinjectDependencyResolver" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAEI=</HashCode>
+      <FileName>Infrastructure\NinjectDependencyResolver.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MVCNBlog.Infrastructure.Settings" Collapsed="true">
+    <Position X="6" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Infrastructure\Settings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.Infrastructure.StringExtensions" Collapsed="true">
+    <Position X="7.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Infrastructure\StringExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.Infrastructure.Helpers.PagingHelper" Collapsed="true">
+    <Position X="9.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAACAAAAAACAAAAAAIAAAAAAAAAAAACA=</HashCode>
+      <FileName>Infrastructure\Helpers\PagingHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.Infrastructure.Helpers.TagsHighlightHelper" Collapsed="true">
+    <Position X="9.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAQAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Infrastructure\Helpers\TagsHighlightHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.Infrastructure.Mappers.MvcArticleMapper" Collapsed="true">
+    <Position X="9.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Infrastructure\Mappers\MvcArticleMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.Infrastructure.Mappers.MvcCommentMapper" Collapsed="true">
+    <Position X="11.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Infrastructure\Mappers\MvcCommentMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.Infrastructure.Mappers.MvcRoleMapper" Collapsed="true">
+    <Position X="13" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Infrastructure\Mappers\MvcRoleMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.Infrastructure.Mappers.MvcUserMapper" Collapsed="true">
+    <Position X="14.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAAAAAAAAAEAAAAAIAAAAAA=</HashCode>
+      <FileName>Infrastructure\Mappers\MvcUserMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.Infrastructure.ModelBinders.AccountModelBinder" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAg=</HashCode>
+      <FileName>Infrastructure\ModelBinders\AccountModelBinder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.Infrastructure.ModelBinders.UserModelBinder" Collapsed="true">
+    <Position X="13" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAg=</HashCode>
+      <FileName>Infrastructure\ModelBinders\UserModelBinder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.Infrastructure.ValidationAttributes.CorrectEmailAttribute" Collapsed="true">
+    <Position X="11.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Infrastructure\ValidationAttributes\CorrectEmailAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.Infrastructure.ValidationAttributes.CorrectNameAttribute" Collapsed="true">
+    <Position X="13" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Infrastructure\ValidationAttributes\CorrectNameAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.Infrastructure.ValidationAttributes.CorrectPasswordAttribute" Collapsed="true">
+    <Position X="14.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Infrastructure\ValidationAttributes\CorrectPasswordAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.Providers.CustomMembershipProvider" Collapsed="true">
+    <Position X="6" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAAAIAAQAEgCiMEYAEgAAQAQIAAAICHAEAAAkAAAQ=</HashCode>
+      <FileName>Providers\CustomMembershipProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.Providers.CustomRoleProvider" Collapsed="true">
+    <Position X="7.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAEEAAwAAAEACAAAAAAhAACAAAAAAIAAAAEAAEQAAA=</HashCode>
+      <FileName>Providers\CustomRoleProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.ViewModels.AccountViewModel" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAADAAAAACAAAAAAMgAAAAQAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\AccountViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.ViewModels.ArticleViewModel" Collapsed="true">
+    <Position X="14.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAICAAAAAgAAAEAAgAAAAAAAAAgAAEAAABAAAAAAIAA=</HashCode>
+      <FileName>ViewModels\ArticleViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.ViewModels.CommentViewModel" Collapsed="true">
+    <Position X="9.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAICAAAAAgAAAAAAgAAAAAAAAAAAAAAAgBAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\CommentViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.ViewModels.ErrorViewModel" Collapsed="true">
+    <Position X="11.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAQAIAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ErrorViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.ViewModels.ListViewModel&lt;T&gt;" Collapsed="true">
+    <Position X="14.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ListViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.ViewModels.PagingInfo" Collapsed="true">
+    <Position X="11.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAABAAQAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>ViewModels\PagingInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.ViewModels.Roles.PayedRole" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\Roles\PayedRole.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVCNBlog.ViewModels.Roles.Role" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>ViewModels\Roles\Role.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MVCNBlog.ViewModels.User.LoginUserViewModel" Collapsed="true">
+    <Position X="6" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAACAAAAAAEAAAAAAAAAAAAAACAAAAAAAgAAA=</HashCode>
+      <FileName>ViewModels\User\LoginUserViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.ViewModels.User.RegisterUserViewModel" Collapsed="true">
+    <Position X="13" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAACAAAAAAEAAAAAQAAAAAAACCAAAAAAAAIAA=</HashCode>
+      <FileName>ViewModels\User\RegisterUserViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNBlog.ViewModels.User.UserViewModel" Collapsed="true">
+    <Position X="14.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAADAAAIACAAAAAAMAAAAAQAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\User\UserViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="MVCNBlog.ViewModels.Roles.IPayedRole" Collapsed="true">
+    <Position X="3.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\Roles\IPayedRole.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MVCNBlog.ViewModels.Roles.IRole" Collapsed="true">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>ViewModels\Roles\IRole.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

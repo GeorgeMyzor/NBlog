@@ -1,0 +1,36 @@
+﻿@using System.Globalization
+@model IEnumerable<MVCNBlog.ViewModels.AnswerViewModel>
+
+@foreach (var comment in Model)
+{
+    <div id="comment" style="margin-bottom: 10px">
+        <i class="fa fa-user"></i>
+        @if (comment.Author != null)
+        {
+            @Html.RouteLink(comment.Author.Name, "UserAction", new
+            {
+                action = "index",
+                name = comment.Author.Name,
+                id = comment.Author.Id
+            })
+        }
+        else
+        {
+            @Html.Raw("DELETED")
+        }
+        <p style="text-indent: 17px;"><span style="display: block;">@Html.DisplayFor(modelItem => comment.Content)</span></p>
+
+
+        <b> &nbsp; &nbsp; <i class="fa fa-clock-o"></i></b>@comment.PublicationDate.ToString("dd MMM yyyy", CultureInfo.InvariantCulture)
+
+        @if (comment.Author?.Email == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
+             Roles.IsUserInRole("Administrator"))
+        {
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <i class="fa fa-cog"></i>@Html.RouteLink("Edit", "CommentAction", new { action = "edit", id = comment.Id })
+                </div>
+            </div>
+        }
+    </div>
+}

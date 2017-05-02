@@ -1,0 +1,55 @@
+﻿@model MVCNBlog.ViewModels.QuestionViewModel
+
+@{
+    ViewBag.Title = "Delete article";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <b>@Html.DisplayNameFor(model => model.Title)</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            <b>@Html.DisplayNameFor(model => model.Header)</b>
+        </dt>
+
+        <dd>
+            @Html.HighLightTags(Model.Header)
+        </dd>
+
+        <dt>
+            <b>@Html.DisplayNameFor(model => model.Content)</b>
+        </dt>
+
+        <dd>
+            @Html.HighLightTags(Model.Content)
+        </dd>
+
+        <dt>
+            <b>@Html.DisplayNameFor(model => model.PublicationDate)</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PublicationDate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.RouteLink("Back", "AllArticles", new { action = "All" }, new {@class = "btn"})
+        </div>
+    }
+</div>

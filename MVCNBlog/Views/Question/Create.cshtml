@@ -1,0 +1,51 @@
+﻿@model MVCNBlog.ViewModels.QuestionViewModel
+
+@{
+    ViewBag.Title = "Ask Question";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm("Create","Question", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr/>
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new {style = "font-weight: normal;margin: 0 0 15px;font-family: 'Oswald', sans-serif; "})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new {htmlAttributes = new {cols = 100, @rows = 3}})
+                @Html.ValidationMessageFor(model => model.Title, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Header, htmlAttributes: new { style = "font-weight: normal;margin: 0 0 15px;font-family: 'Oswald', sans-serif; " })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Header, new {htmlAttributes = new {cols = 100, @rows = 5}})
+                @Html.ValidationMessageFor(model => model.Header, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Content, htmlAttributes: new { style = "font-weight: normal;margin: 0 0 15px;font-family: 'Oswald', sans-serif; " })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Content, new {htmlAttributes = new {cols = 120, @rows = 14}})
+                @Html.ValidationMessageFor(model => model.Content, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn"/>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

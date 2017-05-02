@@ -178,9 +178,11 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AnswerController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -188,8 +190,10 @@
     <Compile Include="Infrastructure\AdminPermissionsAttribute.cs" />
     <Compile Include="Infrastructure\Helpers\PagingHelper.cs" />
     <Compile Include="Infrastructure\Helpers\TagsHighlightHelper.cs" />
+    <Compile Include="Infrastructure\Mappers\MvcAnswerMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcArticleMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcCommentMapper.cs" />
+    <Compile Include="Infrastructure\Mappers\MvcQuestionMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcRoleMapper.cs" />
     <Compile Include="Infrastructure\Mappers\MvcUserMapper.cs" />
     <Compile Include="Infrastructure\ModelBinders\AccountModelBinder.cs" />
@@ -204,7 +208,9 @@
     <Compile Include="Providers\CustomMembershipProvider.cs" />
     <Compile Include="Providers\CustomRoleProvider.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
+    <Compile Include="ViewModels\AnswerViewModel.cs" />
     <Compile Include="ViewModels\ErrorViewModel.cs" />
+    <Compile Include="ViewModels\QuestionViewModel.cs" />
     <Compile Include="ViewModels\Roles\IPayedRole.cs" />
     <Compile Include="ViewModels\Roles\IRole.cs" />
     <Compile Include="ViewModels\Roles\PayedRole.cs" />
@@ -391,6 +397,16 @@
     <Content Include="Views\Shared\_Login.cshtml" />
     <Content Include="Views\Shared\PopularArticles.cshtml" />
     <Content Include="Views\Shared\RecentArticles.cshtml" />
+    <Content Include="Views\Answer\Create.cshtml" />
+    <Content Include="Views\Answer\Index.cshtml" />
+    <Content Include="Views\Question\Answers.cshtml" />
+    <Content Include="Views\Question\All.cshtml" />
+    <Content Include="Views\Question\AllArticles.cshtml" />
+    <Content Include="Views\Question\Create.cshtml" />
+    <Content Include="Views\Question\Delete.cshtml" />
+    <Content Include="Views\Question\Edit.cshtml" />
+    <Content Include="Views\Question\Find.cshtml" />
+    <Content Include="Views\Question\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BLL.Mappers.BllArticleMapper" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mappers\BllArticleMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.Mappers.BllCommentMapper" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mappers\BllCommentMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.Mappers.BllRoleMapper" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mappers\BllRoleMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.Mappers.BllUserMapper" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Mappers\BllUserMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.RankDistributor" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RankDistributor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.TagParser" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TagParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.Services.AccountService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABgAAgAAACAAAAQAQAAAgAAAAAAAAAAYABAAA=</HashCode>
+      <FileName>Services\AccountService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BLL.Services.ArticleService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQECAkAAQAAABAgAAAAAQiAAAAAAAAACCAAAAAAAA=</HashCode>
+      <FileName>Services\ArticleService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BLL.Services.CommentService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AJAAAAIAAAAAAAAAAAAAQAQACAAAAAAACAAAAAAAQAA=</HashCode>
+      <FileName>Services\CommentService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BLL.Services.RoleService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAACAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\RoleService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BLL.Services.UserService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABgICAQAAAAAGgAAAAAQAAQAAAAAACACAAIAAAAA=</HashCode>
+      <FileName>Services\UserService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
