@@ -15,6 +15,6 @@ namespace ORM.Entities
         public DateTime PublicationDate { get; set; }
 
         public virtual User Author { get; set; }
-        public virtual Article Article { get; set; }
+        public virtual Question Question { get; set; }
     }
 }

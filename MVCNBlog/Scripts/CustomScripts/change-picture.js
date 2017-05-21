@@ -27,11 +27,13 @@ $(document).ready(function () {
                         var results = $('#userPic');
                         results.empty();
 
-                        results.append("<img style='width: 153px;height: 152px;margin-left: 57px' src=\"data:image/jpeg;base64,"
-                            + result.ProfilePicture + "\" />");
-                    }
+                        results
+                            .append("<img style='width: 153px;height: 152px;margin-left: 57px' src=\"data:image/jpeg;base64," + result.ProfilePicture + "\" />");
 
-                    $('#picError').text(result.ErrorMessage);
+                        $('#picError').text('');
+                    } else {
+                        $('#picError').text(result.ErrorMessage);
+                    }
                 },
                 error: function (err) {
                     alert("Cannot upload image.");

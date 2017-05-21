@@ -25,7 +25,7 @@
         </div>
     }
 
-    @using (Html.BeginRouteForm("EditAccount", new { action = "EditVipStatus" }))
+    @*@using (Html.BeginRouteForm("EditAccount", new { action = "EditVipStatus" }))
     {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.Id)
@@ -41,7 +41,7 @@
 
             <button class="subs_submit" type="submit">Buy a subscription <i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
         }
-    }
+    }*@
 
     <h2 style="margin-left: 74px;">Profile picture</h2>
     <div id="userPic">
@@ -73,7 +73,7 @@
     }
 
     <input type="hidden" id="updatePictureUrl" value="@Url.RouteUrl("EditAccount", new {action = "UpdatePicture"})" />
-    <label style="margin-left: 87px;" class="text-danger" id="picError">@TempData["PicError"]</label>
+    <label style="margin-left: 87px;" class="text-danger" id="picError"></label>
 </div>
 
 <div>

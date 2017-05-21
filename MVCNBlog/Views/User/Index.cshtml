@@ -30,7 +30,7 @@
                 <b>Role:</b>
                 @Html.DisplayFor(modelItem => Model.Role.RoleName)
             </p>
-            @if (Model.PayedRole != null)
+            @if (false)//(Model.PayedRole != null)
             {
                 <p>
                     <b> Payed role:</b>
@@ -38,7 +38,7 @@
                 </p>
             }
             <p style="text-indent: 15px;">
-                @if (Roles.IsUserInRole("Moderator") || Roles.IsUserInRole("Administrator"))
+                @if ( Roles.IsUserInRole("Administrator"))
                 {
                     <i class="fa fa-cog"></i>@Html.RouteLink("Edit user", "UserAction", new {action = "Edit", name = Model.Name, id = Model.Id})
                     <i class="fa fa-cog"></i>@Html.RouteLink("Delete user", "UserAction", new {action = "Delete", name = Model.Name, id = Model.Id})

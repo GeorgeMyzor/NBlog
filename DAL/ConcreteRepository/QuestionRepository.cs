@@ -79,7 +79,7 @@ namespace DAL.ConcreteRepository
         {
             ValidateArticle(dalQuestion);
 
-            var ormArticle = context.Set<Article>().Single(u => u.Id == dalQuestion.Id);
+            var ormArticle = context.Set<Question>().Single(u => u.Id == dalQuestion.Id);
 
             ormArticle.Title = dalQuestion.Title;
             ormArticle.Header = dalQuestion.Header;

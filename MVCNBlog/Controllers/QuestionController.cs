@@ -34,12 +34,12 @@ namespace MVCNBlog.Controllers
             if (id == null || id < 0)
                 throw new HttpException(404, "Incorrect id.");
 
-            var article = questionService.GetQuestionEntity(id.Value).ToMvcQuestion();
+            var question = questionService.GetQuestionEntity(id.Value).ToMvcQuestion();
 
-            if (article == null)
-                throw new HttpException(404, $"{nameof(article)} with id - {id} wasnt found.");
+            if (question == null)
+                throw new HttpException(404, $"{nameof(question)} with id - {id} wasnt found.");
 
-            string urlWithTitle = article.Title.RemoveSpecialCharacters();
+            string urlWithTitle = question.Title.RemoveSpecialCharacters();
             urlWithTitle = Url.Encode(urlWithTitle);
 
             if (!urlWithTitle.Equals(title))
@@ -47,7 +47,7 @@ namespace MVCNBlog.Controllers
                 return RedirectToAction("Index", new { id, title = urlWithTitle });
             }
 
-            return View(article);
+            return View(question);
         }
 
         [HttpGet]
@@ -58,10 +58,10 @@ namespace MVCNBlog.Controllers
             if (page > (totalItems + pageSize - 1) / pageSize)
                 throw new HttpException(404, "");
 
-            var articles = new ListViewModel<QuestionViewModel>()
+            var questions = new ListViewModel<QuestionViewModel>()
             {
                 ViewModels =
-                    questionService.GetPagedQuestions(page, pageSize).Select(bllArticle => bllArticle.ToMvcQuestion()),
+                    questionService.GetPagedQuestions(page, pageSize).Select(bllQuestion => bllQuestion.ToMvcQuestion()),
                 PagingInfo = new PagingInfo()
                 {
                     CurrentPage = page,
@@ -72,52 +72,12 @@ namespace MVCNBlog.Controllers
 
             if (Request.IsAjaxRequest())
             {
-                return PartialView("All", articles);
+                return PartialView("All", questions);
             }
 
-            return View(articles);
+            return View(questions);
         }
         
-        [AllowAnonymous]
-        public ActionResult Find(string term)
-        {
-            if (string.IsNullOrEmpty(term))
-            {
-                var articles = questionService.GetPagedQuestions(1, pageSize).Select(bllArticle => bllArticle.ToMvcQuestion());
-
-                if (Request.IsAjaxRequest())
-                {
-                    return PartialView("AllArticles", articles);
-                }
-
-                return RedirectToAction("All");
-            }
-
-            var findedArticles =
-                questionService.FindQuestionEntities(term).Select(bllArticle => bllArticle.ToMvcQuestion()).ToList();
-
-            var findedPagedArticles = new ListViewModel<QuestionViewModel>()
-            {
-                ViewModels = findedArticles,
-                PagingInfo = new PagingInfo()
-                {
-                    CurrentPage = 1,
-                    ItemsPerPage = pageSize,
-                    TotalItems = questionService.GetQuestionsCount()
-                }
-            };
-
-            ViewBag.GroupName = !findedArticles.Any() ? "Nothing was found." : "";
-
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView(findedArticles);
-            }
-
-            TempData["isFind"] = true;
-            return View("All", findedPagedArticles);
-        }
-
         #endregion
 
         #region Create
@@ -157,15 +117,15 @@ namespace MVCNBlog.Controllers
             if (id == null || id < 0)
                 throw new HttpException(404, "Incorrect id.");
 
-            var editingArticle = questionService.GetQuestionEntity(id.Value).ToMvcQuestion();
+            var editingQuestion = questionService.GetQuestionEntity(id.Value).ToMvcQuestion();
 
-            if (editingArticle == null)
-                throw new HttpException(404, $"{nameof(editingArticle)} wasnt found. When trying to edit atricle.");
+            if (editingQuestion == null)
+                throw new HttpException(404, $"{nameof(editingQuestion)} wasnt found. When trying to edit atricle.");
 
-            if (editingArticle.Author?.Email == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
+            if (editingQuestion.Author?.Email == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
                 Roles.IsUserInRole("Administrator"))
             {
-                return View(editingArticle);
+                return View(editingQuestion);
             }
 
             throw new HttpException(403, "No permissions");
@@ -173,13 +133,13 @@ namespace MVCNBlog.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(QuestionViewModel editingArticle)
+        public ActionResult Edit(QuestionViewModel editingQuestion)
         {
             if (ModelState.IsValid)
             {
-                questionService.UpdateQuestion(editingArticle.ToBllQuestion());
+                questionService.UpdateQuestion(editingQuestion.ToBllQuestion());
 
-                return RedirectToAction("Index", "Article", new { id = editingArticle.Id });
+                return RedirectToAction("Index", "Question", new { id = editingQuestion.Id });
             }
 
             return View();
@@ -195,26 +155,26 @@ namespace MVCNBlog.Controllers
             if (id == null || id < 0)
                 throw new HttpException(404, "Incorrect id.");
 
-            var deletingArticle = questionService.GetQuestionEntity(id.Value).ToMvcQuestion();
+            var deletingQuestion = questionService.GetQuestionEntity(id.Value).ToMvcQuestion();
 
-            if (deletingArticle == null)
-                throw new HttpException(404, $"{nameof(deletingArticle)} wasnt found. When trying to delete atricle.");
+            if (deletingQuestion == null)
+                throw new HttpException(404, $"{nameof(deletingQuestion)} wasnt found. When trying to delete question.");
 
-            if (deletingArticle.Author?.Email == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
+            if (deletingQuestion.Author?.Email == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
                 Roles.IsUserInRole("Administrator"))
             {
-                return View(deletingArticle);
+                return View(deletingQuestion);
             }
 
             throw new HttpException(403, $"User with email - {User.Identity.Name} " +
-                                                    $"don't have permissions to delete article with id {deletingArticle.Id}.");
+                                                    $"don't have permissions to delete question with id {deletingQuestion.Id}.");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(QuestionViewModel editingArticle)
+        public ActionResult Delete(QuestionViewModel editingQuestion)
         {
-            questionService.DeleteQuestion(editingArticle.ToBllQuestion());
+            questionService.DeleteQuestion(editingQuestion.ToBllQuestion());
 
             return RedirectToAction("All");
         }

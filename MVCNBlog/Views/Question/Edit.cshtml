@@ -1,13 +1,13 @@
 ﻿@model MVCNBlog.ViewModels.QuestionViewModel
 
 @{
-    ViewBag.Title = "Edit article";
+    ViewBag.Title = "Edit question";
 }
 
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm("Edit","Article", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit","Question", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -31,14 +31,7 @@
                 @Html.ValidationMessageFor(model => model.Header, "", new {@class = "text-danger"})
             </div>
         </div>
-
-        <input type="file" id="uploadImage" name="uploadImage" class="inputfile" />
-        <label for="uploadImage" style="margin-left: 0;">
-            <i class="fa fa-file-image-o" aria-hidden="true"></i> Choose a header file
-        </label>
-
-        <label id="picError" style="color: red">@TempData["PicError"]</label>
-
+        
         <div class="form-group">
             @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -56,7 +49,7 @@
 }
 
 <div>
-    @Html.RouteLink("Back", "AllArticles", new { action = "All" }, new {@class = "btn"})
+    @Html.RouteLink("Back", "AllQuestions", new { action = "All" }, new {@class = "btn"})
 </div>
 
 @section Scripts {

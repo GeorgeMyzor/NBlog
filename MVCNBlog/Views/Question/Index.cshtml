@@ -4,7 +4,7 @@
     ViewBag.Title = Model.Title;
     AjaxOptions ajaxOpts = new AjaxOptions
     {
-        Url = Url.Action("Create","Comment"),
+        Url = Url.Action("Create","Answer"),
         UpdateTargetId = "comments_output",
         InsertionMode = InsertionMode.Replace,
         OnSuccess = "clearInput"
@@ -40,7 +40,7 @@
                         <span>
                             <i class="fa fa-clock-o"></i>@Model.PublicationDate.ToString("dd MMM yyyy", CultureInfo.InvariantCulture)
                         </span>
-                        <span><i class="fa fa-comment"></i> @Model.Answers.Count() comments</span>
+                        <span><i class="fa fa-comment"></i> @Model.Answers.Count() answers</span>
                     </p>
                 </div>
 
@@ -56,14 +56,14 @@
                 @if (Model.Author?.Email == User.Identity.Name || Roles.IsUserInRole("Moderator") ||
                  Roles.IsUserInRole("Administrator"))
                 {
-                    @Html.RouteLink("Edit question", "ArticleAction", new { action = "edit", title = Model.Title.RemoveSpecialCharacters(), id = Model.Id },
+                    @Html.RouteLink("Edit question", "QuestionAction", new { action = "edit", title = Model.Title.RemoveSpecialCharacters(), id = Model.Id },
                         new { @class = "btn" })
-                    @Html.RouteLink("Delete question", "ArticleAction", new { action = "delete", title = Model.Title.RemoveSpecialCharacters(), id = Model.Id },
+                    @Html.RouteLink("Delete question", "QuestionAction", new { action = "delete", title = Model.Title.RemoveSpecialCharacters(), id = Model.Id },
                         new { @class = "btn" })
                 }
 
                 <div class="more_post_container">
-                    <h2>Comments:</h2>
+                    <h2>Answers:</h2>
                     <div class="more_post">
                         <div id="comments_output">
                             @Html.Partial("Answers", Model.Answers)
@@ -89,24 +89,24 @@
         </div>
 
         <div style="margin-top: 10px">
-            @using (Ajax.BeginForm("Create", "Comment", ajaxOpts))
+            @using (Ajax.BeginForm("Create", "Answer", ajaxOpts))
             {
                 @Html.AntiForgeryToken()
-                <textarea cols="94" rows="3" id="comment_input" name="Content" placeholder="Type your comment..."></textarea>
+                <textarea cols="94" rows="3" id="comment_input" name="Content" placeholder="Type your answer..."></textarea>
                 <br />
                 <label id="comment_error" class="text-danger">@TempData["CommentError"]</label>
                 <input type="hidden" name="ArticleId" value="@Model.Id" />
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Add comment" class="btn btn-default" />
+                        <input type="submit" value="Answer" class="btn btn-default" />
                     </div>
                 </div>
             }
         </div>
 
         <div>
-            @Html.RouteLink("Back to articles", "AllArticles", new { action = "All" },
+            @Html.RouteLink("Back to articles", "AllQuestions", new { action = "All" },
             new { @class = "btn btn-default" })
         </div>
     </div>

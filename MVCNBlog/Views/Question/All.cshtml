@@ -21,7 +21,7 @@
                 <div class="pagination pager">
                     <nav>
                         <ul>
-                            @Html.PageLinks(Model.PagingInfo, pageNum => Ajax.RouteLink(pageNum.ToString(), "PagedArticles", new { page = pageNum }, new AjaxOptions { UpdateTargetId = "artcilesOutput", OnSuccess = "page_cleanup"}).ToString())
+                            @Html.PageLinks(Model.PagingInfo, pageNum => Ajax.RouteLink(pageNum.ToString(), "PagedQuestions", new { page = pageNum }, new AjaxOptions { UpdateTargetId = "artcilesOutput", OnSuccess = "page_cleanup"}).ToString())
 
                         </ul>
                     </nav>
@@ -43,14 +43,13 @@
             @Html.Action("RecentSide", "Article")
         </div>
     </div>
-    @Html.Hidden("FindUrl", Url.Action("Find", "Article"), new { id = "FindUrl" })
 </div>
 
 @section scripts
 {
     <link rel="stylesheet" href="/Content/themes/base/jquery-ui.css">
     <script type="text/javascript" src="~/Scripts/CustomScripts/live-search.js"></script>
-<script type="text/javascript" src="~/Scripts/CustomScripts/page-cleanup.js"></script>
+    <script type="text/javascript" src="~/Scripts/CustomScripts/page-cleanup.js"></script>
 }
 
 

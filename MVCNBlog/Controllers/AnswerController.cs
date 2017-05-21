@@ -40,7 +40,7 @@ namespace MVCNBlog.Controllers
                     return PartialView("~/Views/Question/Answers.cshtml", answers);
                 }
 
-                return RedirectToAction("Index", "Article", new { id = id });
+                return RedirectToAction("Index", "Question", new { id = id });
             }
 
             if (Request.IsAjaxRequest())
@@ -56,7 +56,7 @@ namespace MVCNBlog.Controllers
                                             .SelectMany(v => v.Errors)
                                             .Select(e => e.ErrorMessage));
 
-            return RedirectToAction("Index", "Article", new { id = id });
+            return RedirectToAction("Index", "Question", new { id = id });
         }
 
         [HttpGet]
@@ -88,7 +88,7 @@ namespace MVCNBlog.Controllers
             answerService.UpdateAnswer(editingAnswer.ToBllAnswer());
 
             int id = editingAnswer.QuestionId;
-            return RedirectToAction("Index", "Article", new { id });
+            return RedirectToAction("Index", "Question", new { id });
         }
 
         [HttpPost]
@@ -98,7 +98,7 @@ namespace MVCNBlog.Controllers
             answerService.DeleteAnswer(deletingAnswer.ToBllAnswer());
 
             int id = deletingAnswer.QuestionId;
-            return RedirectToAction("Index", "Article", new { id });
+            return RedirectToAction("Index", "Question", new { id });
         }
     }
 }

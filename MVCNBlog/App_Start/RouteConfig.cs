@@ -132,6 +132,19 @@ namespace MVCNBlog
                 defaults: new { controller = "Comment", action = "Create" }
                 );
 
+            routes.MapRoute(
+               name: "AnswerAction",
+               url: "answer/{id}/{action}",
+               defaults: new { controller = "Answer", action = "Edit" },
+               constraints: new { action = "Edit|Delete", id = @"\d+" }
+               );
+
+            routes.MapRoute(
+                name: "AnswerCreate",
+                url: "answer/create",
+                defaults: new { controller = "Answer", action = "Create" }
+                );
+
             #endregion
 
             #region Account routes

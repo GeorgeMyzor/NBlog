@@ -201,7 +201,7 @@ namespace MVCNBlog.Controllers
         [HttpPost]
         public ActionResult UpdatePicture(HttpPostedFileBase uploadImage)
         {
-            if (!User.IsInRole("VipUser"))
+            if (false)//(!User.IsInRole("VipUser"))
             {
                 string buyVipMessage = "Please buy VIP.";
                 if (Request.IsAjaxRequest())

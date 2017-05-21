@@ -149,7 +149,7 @@ namespace DAL.ConcreteRepository
         {
             foreach (var tag in dalArticle.Tags)
             {
-                var existingTag = context.Set<Tag>().SingleOrDefault((ormTag => ormTag.Name == tag));
+                var existingTag = context.Set<Tag>().FirstOrDefault((ormTag => ormTag.Name == tag));
                 if (existingTag != null)
                     ormArticle.Tags.Add(existingTag);
                 else

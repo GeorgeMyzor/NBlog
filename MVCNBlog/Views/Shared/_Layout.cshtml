@@ -40,22 +40,34 @@
             <nav>
                 <ul id="nav">
                     <li>@Html.RouteLink("Home", "Main")</li>
-                    <li>@Html.RouteLink("Popular", "AllArticles", new {action = "popular"})</li>
-                    <li>@Html.RouteLink("Create post", "AllArticles", new { action = "create" })</li>
-                    <li>@Html.RouteLink("Ask question", "AllQuestions", new { action = "create" })</li>
-                    <li>@Html.RouteLink("Account", "ViewAccount")</li>
+                    <li id="dropdown">
+                        @Html.RouteLink("Articles", "AllArticles", new {action = "all"})
+                        <ul>
+                            <li>@Html.RouteLink("Recent", "Main")</li>
+                            <li>@Html.RouteLink("Popular", "AllArticles", new { action = "popular" })</li>
+                            <li>@Html.RouteLink("Create post", "AllArticles", new { action = "create" })</li>
+                        </ul>
+                    </li>
+                    <li id="dropdown">
+                        @Html.RouteLink("Questions", "AllQuestions", new { action = "all" })
+                        <ul>
+                            <li>@Html.RouteLink("All", "AllQuestions", new { action = "all" })</li>
+                            <li>@Html.RouteLink("Ask question", "AllQuestions", new { action = "create" })</li>
+                        </ul>
+                    </li>
                     @if (Roles.IsUserInRole("Administrator"))
                     {
                         <li id="dropdown">
                             @Html.RouteLink("Users", "AllUsers", new {action = "all"})
                             <ul>
                                 <li>@Html.RouteLink("All", "AllUsers", new {action = "all"})</li>
-                                <li>@Html.RouteLink("Create", "AllUsers", new {action = "create"})</li>
+                                <li>@Html.RouteLink("Create user", "AllUsers", new {action = "create"})</li>
                             </ul>
                         </li>
                     }
                     @if (!string.IsNullOrEmpty(User.Identity.Name))
                     {
+                        <li>@Html.RouteLink("Account", "ViewAccount")</li>
                         <li style="float: right; display: inline">
                             @Html.RouteLink("Logoff", "AuthAction", new {action = "logoff"})
                         </li>
