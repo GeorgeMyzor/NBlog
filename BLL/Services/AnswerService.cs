@@ -5,39 +5,55 @@ using System.Text;
 using System.Threading.Tasks;
 using BLL.Interface.Entities;
 using BLL.Interface.Services;
+using BLL.Mappers;
+using DAL.Interface.Repository;
 
 namespace BLL.Services
 {
     public class AnswerService : IAnswerService
     {
+        private readonly IUnitOfWork uow;
+        private readonly IAnswerRepository answerRepository;
+
+        public AnswerService(IUnitOfWork uow, IAnswerRepository repository)
+        {
+            this.uow = uow;
+            this.answerRepository = repository;
+        }
+
         public int GetAnswersCount(string userName)
         {
-            throw new NotImplementedException();
+            return answerRepository.GetCount(userName);
         }
 
         public BllAnswer GetAnswerEntity(int id)
         {
-            throw new NotImplementedException();
+            return answerRepository.GetById(id).ToBllAnswer();
         }
 
         public IEnumerable<BllAnswer> GetQuestionAnswers(int questionId)
         {
-            throw new NotImplementedException();
+            return answerRepository.GetQuestionAnswers(questionId).Select(answer => answer.ToBllAnswer());
         }
 
-        public void CreateAnswer(BllAnswer comment)
+        public void CreateAnswer(BllAnswer answer)
         {
-            throw new NotImplementedException();
+            answer.PublicationDate = DateTime.Now;
+
+            answerRepository.Create(answer.ToDalAnswer());
+            uow.Commit();
         }
 
-        public void DeleteAnswer(BllAnswer comment)
+        public void DeleteAnswer(BllAnswer answer)
         {
-            throw new NotImplementedException();
+            answerRepository.Delete(answer.ToDalAnswer());
+            uow.Commit();
         }
 
-        public void UpdateAnswer(BllAnswer comment)
+        public void UpdateAnswer(BllAnswer answer)
         {
-            throw new NotImplementedException();
+            answerRepository.Update(answer.ToDalAnswer());
+            uow.Commit();
         }
     }
 }

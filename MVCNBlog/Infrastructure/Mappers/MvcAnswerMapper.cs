@@ -29,7 +29,7 @@ namespace MVCNBlog.Infrastructure.Mappers
                 Id = mvcAnswer.Id,
                 Content = mvcAnswer.Content,
                 AuthorId = mvcAnswer.AuthorId,
-                IsAnswer = mvcAnswer.IsAnswer,
+                IsAnswer = mvcAnswer.IsAnswer ?? false,
                 QuestionId = mvcAnswer.QuestionId
             };
         }

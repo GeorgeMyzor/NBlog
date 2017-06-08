@@ -12,7 +12,7 @@ namespace BLL.Interface.Entities
         public string Content { get; set; }
         public int QuestionId { get; set; }
         public int? AuthorId { get; set; }
-        public bool? IsAnswer { get; set; }
+        public bool IsAnswer { get; set; }
         public BllUser Author { get; set; }
         public DateTime PublicationDate { get; set; }
     }

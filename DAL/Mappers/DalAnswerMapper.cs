@@ -30,7 +30,7 @@ namespace DAL.Mappers
             {
                 Id = dalAnswer.Id,
                 Content = dalAnswer.Content,
-                IsAnswer = dalAnswer.IsAnswer ?? false,
+                IsAnswer = dalAnswer.IsAnswer,
                 PublicationDate = dalAnswer.PublicationDate
             };
         }

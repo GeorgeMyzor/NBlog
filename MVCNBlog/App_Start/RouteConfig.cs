@@ -136,7 +136,7 @@ namespace MVCNBlog
                name: "AnswerAction",
                url: "answer/{id}/{action}",
                defaults: new { controller = "Answer", action = "Edit" },
-               constraints: new { action = "Edit|Delete", id = @"\d+" }
+               constraints: new { action = "Edit|Delete|IsAnswer", id = @"\d+" }
                );
 
             routes.MapRoute(

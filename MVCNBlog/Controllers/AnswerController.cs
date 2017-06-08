@@ -93,6 +93,17 @@ namespace MVCNBlog.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        public ActionResult IsAnswer(AnswerViewModel editingAnswer)
+        {
+            editingAnswer.IsAnswer = true;
+            answerService.UpdateAnswer(editingAnswer.ToBllAnswer());
+
+            int id = editingAnswer.QuestionId;
+            return RedirectToAction("Index", "Question", new { id });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(AnswerViewModel deletingAnswer)
         {
             answerService.DeleteAnswer(deletingAnswer.ToBllAnswer());
